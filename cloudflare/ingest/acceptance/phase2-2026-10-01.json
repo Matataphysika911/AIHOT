@@ -824,5 +824,22 @@
       "onlyOneAdditionalAttempt": true,
       "taskId": "ee1d407cb31d19ef12b8ef63339105133b83a7c7525fc8fae0e688e467d274f9"
     }
+  },
+  "ci": {
+    "codeCommit": "9ee0f64fc8eb3b0cdabdd1a10d2ad24d8993ce51",
+    "cloudIngest": {
+      "result": "success",
+      "runId": 36880730410
+    },
+    "rootCheck": {
+      "result": "failure",
+      "runId": 36880730371,
+      "rootTypecheck": "success",
+      "webBuild": "success",
+      "webTests": "success",
+      "failure": "pre-existing UNDEFINED_VALUE topic seed at publication/topics.ts:43; Docker setup same failure",
+      "backendTests": "skipped",
+      "smokeTests": "skipped"
+    }
   }
 }
