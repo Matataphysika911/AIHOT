@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "primary_categories": [
+    {
+      "key": "embodied-ai",
+      "label": "具身智能",
+      "topics": [
+        "Humanoid",
+        "Wheeled Manipulator",
+        "Quadruped",
+        "Dexterous Hand",
+        "Manipulation",
+        "VLA",
+        "World Model"
+      ]
+    },
+    {
+      "key": "robotics-products",
+      "label": "机器人产品",
+      "topics": [
+        "Robot Vacuum",
+        "Lawn Mower",
+        "Pool Robot",
+        "Companion Robot",
+        "Sports Robot",
+        "Industrial Robot",
+        "Inspection Robot"
+      ]
+    },
+    {
+      "key": "robot-ai",
+      "label": "机器人AI",
+      "topics": [
+        "Perception",
+        "SLAM",
+        "Navigation",
+        "Motion Control",
+        "Planning",
+        "Simulation",
+        "Sim2Real",
+        "Data Engine"
+      ]
+    },
+    {
+      "key": "edge-ai-soc",
+      "label": "端侧AI SoC",
+      "topics": [
+        "NPU",
+        "GPU",
+        "CPU",
+        "MCU",
+        "ISP",
+        "Memory",
+        "LPDDR5",
+        "LPDDR6",
+        "Bandwidth",
+        "Quantization",
+        "Compiler",
+        "Runtime"
+      ]
+    },
+    {
+      "key": "industry-signal",
+      "label": "产业信号",
+      "topics": [
+        "Product Launch",
+        "Design Win",
+        "Mass Production",
+        "Funding",
+        "M&A",
+        "Partnership",
+        "Pricing",
+        "Supply Chain",
+        "Regulation",
+        "Talent"
+      ]
+    }
+  ],
+  "signal_tags": [
+    "technology",
+    "product",
+    "market",
+    "customer",
+    "competitor",
+    "supply-chain",
+    "investment"
+  ],
+  "tracked_entities": [
+    "NVIDIA",
+    "Qualcomm",
+    "Arm",
+    "D-Robotics",
+    "Horizon Robotics",
+    "Rockchip",
+    "Ambarella",
+    "Axera",
+    "Tesla",
+    "Figure AI",
+    "Agility Robotics",
+    "Unitree",
+    "Boston Dynamics",
+    "1X",
+    "Apptronik",
+    "Physical Intelligence",
+    "Skild AI",
+    "Google DeepMind",
+    "Meta AI",
+    "OpenAI"
+  ]
+}

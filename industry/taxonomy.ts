@@ -7,7 +7,13 @@
  * section 是日报里的分节标题（几个类别可以共用一节，按这里的顺序排）；guide 告诉模型怎么归类。
  * 没归上类的资料在日报里放进第一个 key 为 industry 的类别所在的节（没有就放最后一节）。
  */
+// V1 keys are additive: existing category URLs and API identities remain valid.
 export const CATEGORIES = [
+  {"key": "embodied-ai", "label": "具身智能", "section": "具身智能", "guide": "具身基础模型、VLA、世界模型与人形、四足、移动操作和灵巧手能力进展；具体论文归 paper"},
+  {"key": "robotics-products", "label": "机器人产品", "section": "机器人产品", "guide": "消费、服务、工业与巡检机器人的整机发布、硬件升级与产品参数"},
+  {"key": "robot-ai", "label": "机器人AI", "section": "机器人AI", "guide": "感知、SLAM、导航、规划、运动控制、仿真、Sim2Real 与数据引擎的工具及系统更新；论文归 paper，教程归 tip"},
+  {"key": "edge-ai-soc", "label": "端侧AI SoC", "section": "端侧AI SoC", "guide": "端侧 AI SoC、NPU、ISP、传感器、内存带宽、编译器、量化与推理运行时的发布和工程变化"},
+  {"key": "industry-signal", "label": "产业信号", "section": "产业信号", "guide": "机器人与端侧 AI 的 design win、量产、订单、融资并购、价格、供应链与监管信号"},
   { key: "ai-models", label: "模型", section: "模型发布/更新", guide: "新模型、模型版本、权重开放、模型能力与价格变化的发布与评测结果" },
   { key: "ai-products", label: "产品", section: "产品发布/更新", guide: "AI 产品、功能、应用、工具、API 与平台的发布和更新" },
   { key: "industry", label: "行业", section: "行业动态", guide: "公司经营、融资并购、人事、合作、诉讼、监管与政策、市场与基础设施" },
@@ -32,11 +38,12 @@ export const CATEGORY_TAGS = [
 
 /** 可选的主题标签。 */
 export const TOPIC_TAGS = [
+  "机器人产品", "人形机器人", "四足机器人", "灵巧操作", "VLA", "世界模型", "感知/SLAM", "导航/规划", "运动控制", "仿真/Sim2Real", "边缘AI SoC", "NPU", "ISP/传感器", "内存/带宽", "量化/编译器", "量产/订单", "Design Win", "供应链",
   "Agent", "编码", "推理", "多模态", "语音", "视频", "图像生成", "RAG", "端侧", "数据/训练", "搜索", "部署/工程", "开源生态", "具身智能", "MCP/工具调用",
 ] as const;
 
 /** 可选的实体标签（公司、机构、平台）。 */
-export const ENTITY_TAGS = ["OpenAI", "Anthropic", "DeepSeek", "DeepMind", "Google", "Meta", "Microsoft", "xAI", "Hugging Face", "GitHub", "arXiv"] as const;
+export const ENTITY_TAGS = ["Qualcomm", "Arm", "D-Robotics", "Horizon Robotics", "Rockchip", "Ambarella", "Axera", "Tesla", "Figure AI", "Agility Robotics", "Unitree", "Boston Dynamics", "1X", "Apptronik", "Physical Intelligence", "Skild AI", "Open Robotics", "NVIDIA", "OpenAI", "Anthropic", "DeepSeek", "DeepMind", "Google", "Meta", "Microsoft", "xAI", "Hugging Face", "GitHub", "arXiv"] as const;
 
 /** 模型常写的近义词，统一成词表里的写法。 */
 export const TAG_SYNONYMS: Readonly<Record<string, string>> = {
@@ -61,6 +68,24 @@ export const CATEGORY_BY_ITEM_TYPE: Readonly<Record<string, string>> = {
 
 /** 公司主题：id → 显示名、卡片上显示的标签（null 表示只用 entity:<id> 归类）、别名。 */
 export const ENTITIES: Record<string, { name: string; displayTag: string | null; aliases: string[] }> = {
+  "qualcomm": {"name": "Qualcomm", "displayTag": "Qualcomm", "aliases": ["Qualcomm", "高通"]},
+  "arm": {"name": "Arm", "displayTag": "Arm", "aliases": ["Arm"]},
+  "d-robotics": {"name": "D-Robotics", "displayTag": "D-Robotics", "aliases": ["D-Robotics", "地瓜机器人"]},
+  "horizon-robotics": {"name": "Horizon Robotics", "displayTag": "Horizon Robotics", "aliases": ["Horizon Robotics", "地平线机器人"]},
+  "rockchip": {"name": "Rockchip", "displayTag": "Rockchip", "aliases": ["Rockchip", "瑞芯微"]},
+  "ambarella": {"name": "Ambarella", "displayTag": "Ambarella", "aliases": ["Ambarella", "安霸"]},
+  "axera": {"name": "Axera", "displayTag": "Axera", "aliases": ["Axera", "爱芯元智"]},
+  "tesla": {"name": "Tesla", "displayTag": "Tesla", "aliases": ["Tesla", "特斯拉"]},
+  "figure": {"name": "Figure AI", "displayTag": "Figure AI", "aliases": ["Figure AI", "Figure Robotics"]},
+  "agility": {"name": "Agility Robotics", "displayTag": "Agility Robotics", "aliases": ["Agility Robotics"]},
+  "unitree": {"name": "Unitree", "displayTag": "Unitree", "aliases": ["Unitree", "宇树"]},
+  "boston-dynamics": {"name": "Boston Dynamics", "displayTag": "Boston Dynamics", "aliases": ["Boston Dynamics", "波士顿动力"]},
+  "1x": {"name": "1X", "displayTag": "1X", "aliases": ["1X Technologies", "1X"]},
+  "apptronik": {"name": "Apptronik", "displayTag": "Apptronik", "aliases": ["Apptronik"]},
+  "physical-intelligence": {"name": "Physical Intelligence", "displayTag": "Physical Intelligence", "aliases": ["Physical Intelligence"]},
+  "skild-ai": {"name": "Skild AI", "displayTag": "Skild AI", "aliases": ["Skild AI"]},
+  "open-robotics": {"name": "Open Robotics", "displayTag": "Open Robotics", "aliases": ["Open Robotics"]},
+
   openai: { name: "OpenAI", displayTag: "OpenAI", aliases: ["OpenAI", "ChatGPT", "Sora", "Codex", "GPT"] },
   anthropic: { name: "Anthropic", displayTag: "Anthropic", aliases: ["Anthropic", "Claude"] },
   google: { name: "Google", displayTag: "Google", aliases: ["Google", "DeepMind", "Gemini", "谷歌"] },
@@ -72,7 +97,7 @@ export const ENTITIES: Record<string, { name: string; displayTag: string | null;
   xai: { name: "xAI", displayTag: "xAI", aliases: ["xAI", "Grok"] },
   meta: { name: "Meta", displayTag: "Meta", aliases: ["Meta", "Llama"] },
   microsoft: { name: "Microsoft", displayTag: "Microsoft", aliases: ["Microsoft", "微软", "Copilot"] },
-  nvidia: { name: "NVIDIA", displayTag: null, aliases: ["NVIDIA", "英伟达"] },
+  nvidia: { name: "NVIDIA", displayTag: "NVIDIA", aliases: ["NVIDIA", "英伟达"] },
   "hugging-face": { name: "Hugging Face", displayTag: "Hugging Face", aliases: ["Hugging Face"] },
   cursor: { name: "Cursor", displayTag: null, aliases: ["Cursor", "Anysphere"] },
   openrouter: { name: "OpenRouter", displayTag: null, aliases: ["OpenRouter"] },
@@ -83,6 +108,24 @@ export const ENTITIES: Record<string, { name: string; displayTag: string | null;
  * 行业没有这个问题时可以留空数组。
  */
 export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; patterns: RegExp[] }> = [
+  { id: "qualcomm", name: "Qualcomm", patterns: [/\bQualcomm\b|高通/i] },
+  { id: "arm", name: "Arm", patterns: [/\bArm\b/] },
+  { id: "d-robotics", name: "D-Robotics", patterns: [/\bD\-Robotics\b|地瓜机器人/i] },
+  { id: "horizon-robotics", name: "Horizon Robotics", patterns: [/\bHorizon\ Robotics\b|地平线机器人/i] },
+  { id: "rockchip", name: "Rockchip", patterns: [/\bRockchip\b|瑞芯微/i] },
+  { id: "ambarella", name: "Ambarella", patterns: [/\bAmbarella\b|安霸/i] },
+  { id: "axera", name: "Axera", patterns: [/\bAxera\b|爱芯元智/i] },
+  { id: "tesla", name: "Tesla", patterns: [/\bTesla\b|特斯拉/i] },
+  { id: "figure", name: "Figure AI", patterns: [/\bFigure\ AI\b|\bFigure\ Robotics\b/i] },
+  { id: "agility", name: "Agility Robotics", patterns: [/\bAgility\ Robotics\b/i] },
+  { id: "unitree", name: "Unitree", patterns: [/\bUnitree\b|宇树/i] },
+  { id: "boston-dynamics", name: "Boston Dynamics", patterns: [/\bBoston\ Dynamics\b|波士顿动力/i] },
+  { id: "1x", name: "1X", patterns: [/\b1X\ Technologies\b/i, /\b1X\b/] },
+  { id: "apptronik", name: "Apptronik", patterns: [/\bApptronik\b/i] },
+  { id: "physical-intelligence", name: "Physical Intelligence", patterns: [/\bPhysical\ Intelligence\b/i] },
+  { id: "skild-ai", name: "Skild AI", patterns: [/\bSkild\ AI\b/i] },
+  { id: "open-robotics", name: "Open Robotics", patterns: [/\bOpen\ Robotics\b/i] },
+
   { id: "openai", name: "OpenAI", patterns: [/openai|chatgpt|\bgpt-?[o\d]|\bsora\b|\bcodex\b/i] },
   { id: "anthropic", name: "Anthropic", patterns: [/anthropic|\bclaude\b/i, /\b(?:opus|sonnet|haiku)\s*\d+(?:[.\-]\d+)*\b/i, /\bfable\s*\d+(?:[.\-]\d+)*\b|\bmythos\b/i] },
   { id: "google", name: "Google / Gemini", patterns: [/google|deepmind|\bgemini\b|notebooklm|\bveo\s?\d|\bAlphaFold\b|\bAMIE\b/i] },
@@ -119,6 +162,24 @@ export const IDENTITY_LEXICON: ReadonlyArray<{ id: string; name: string; pattern
 
 /** 这些域名上的文章，发布方就是对应的公司（托管平台如 GitHub、arXiv 不算）。 */
 export const PUBLISHER_DOMAINS: ReadonlyArray<{ entityId: string; domains: readonly string[] }> = [
+  {"entityId": "qualcomm", "domains": ["qualcomm.com"]},
+  {"entityId": "arm", "domains": ["arm.com"]},
+  {"entityId": "d-robotics", "domains": ["d-robotics.cc"]},
+  {"entityId": "horizon-robotics", "domains": ["horizon.auto"]},
+  {"entityId": "rockchip", "domains": ["rock-chips.com"]},
+  {"entityId": "ambarella", "domains": ["ambarella.com"]},
+  {"entityId": "axera", "domains": ["axera-tech.com"]},
+  {"entityId": "tesla", "domains": ["tesla.com"]},
+  {"entityId": "figure", "domains": ["figure.ai"]},
+  {"entityId": "agility", "domains": ["agilityrobotics.com"]},
+  {"entityId": "unitree", "domains": ["unitree.com"]},
+  {"entityId": "boston-dynamics", "domains": ["bostondynamics.com"]},
+  {"entityId": "1x", "domains": ["1x.tech"]},
+  {"entityId": "apptronik", "domains": ["apptronik.com"]},
+  {"entityId": "physical-intelligence", "domains": ["pi.website"]},
+  {"entityId": "skild-ai", "domains": ["skild.ai"]},
+  {"entityId": "open-robotics", "domains": ["openrobotics.org"]},
+
   { entityId: "openai", domains: ["openai.com"] },
   { entityId: "anthropic", domains: ["anthropic.com", "claude.com"] },
   { entityId: "google", domains: ["deepmind.google", "ai.google", "blog.google"] },
