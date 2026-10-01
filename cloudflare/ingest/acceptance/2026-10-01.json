@@ -1,0 +1,688 @@
+{
+  "recordedAt": "2026-10-01T14:17:25.518Z",
+  "timezone": "Asia/Shanghai",
+  "workerUrl": "https://uprivate-intelligence-ingest.wdhnlx.workers.dev",
+  "codeVersion": "04ab90c1-8a35-48ee-9b5a-5ac274b75050",
+  "initialCollectionRuns": [
+    {
+      "source_id": "robotics-nvidia-robotics",
+      "started_at": "2026-10-01T13:58:05.372Z",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-lerobot",
+      "started_at": "2026-10-01T13:58:07.572Z",
+      "status": "success",
+      "fetched_items": 5,
+      "inserted_items": 5,
+      "duplicate_items": 0,
+      "backfill_items": 5,
+      "error": null
+    },
+    {
+      "source_id": "robotics-figure",
+      "started_at": "2026-10-01T13:58:08.560Z",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-nvidia-robotics",
+      "started_at": "2026-10-01T13:58:52.897Z",
+      "status": "success",
+      "fetched_items": 74,
+      "inserted_items": 66,
+      "duplicate_items": 8,
+      "backfill_items": 66,
+      "error": null
+    },
+    {
+      "source_id": "robotics-lerobot",
+      "started_at": "2026-10-01T13:58:58.184Z",
+      "status": "success",
+      "fetched_items": 5,
+      "inserted_items": 0,
+      "duplicate_items": 5,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "robotics-figure",
+      "started_at": "2026-10-01T13:58:58.952Z",
+      "status": "success",
+      "fetched_items": 21,
+      "inserted_items": 13,
+      "duplicate_items": 8,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "robotics-nvidia-robotics",
+      "started_at": "2026-10-01T14:03:44.538Z",
+      "status": "success",
+      "fetched_items": 74,
+      "inserted_items": 0,
+      "duplicate_items": 74,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "robotics-lerobot",
+      "started_at": "2026-10-01T14:03:46.508Z",
+      "status": "success",
+      "fetched_items": 5,
+      "inserted_items": 0,
+      "duplicate_items": 5,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "robotics-figure",
+      "started_at": "2026-10-01T14:03:47.396Z",
+      "status": "success",
+      "fetched_items": 21,
+      "inserted_items": 0,
+      "duplicate_items": 21,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "phase12-acceptance-retry",
+      "started_at": "2026-10-01T14:07:05.227Z",
+      "status": "failed",
+      "fetched_items": 0,
+      "inserted_items": 0,
+      "duplicate_items": 0,
+      "backfill_items": 0,
+      "error": "upstream HTTP 404"
+    },
+    {
+      "source_id": "robotics-nvidia-robotics",
+      "started_at": "2026-10-01T14:08:45.555Z",
+      "status": "success",
+      "fetched_items": 74,
+      "inserted_items": 0,
+      "duplicate_items": 74,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "robotics-lerobot",
+      "started_at": "2026-10-01T14:08:48.367Z",
+      "status": "success",
+      "fetched_items": 5,
+      "inserted_items": 0,
+      "duplicate_items": 5,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "robotics-figure",
+      "started_at": "2026-10-01T14:08:49.182Z",
+      "status": "success",
+      "fetched_items": 21,
+      "inserted_items": 0,
+      "duplicate_items": 21,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "phase12-acceptance-retry",
+      "started_at": "2026-10-01T14:09:21.757Z",
+      "status": "failed",
+      "fetched_items": 0,
+      "inserted_items": 0,
+      "duplicate_items": 0,
+      "backfill_items": 0,
+      "error": "upstream HTTP 404"
+    }
+  ],
+  "preCronArticleFlags": [
+    {
+      "source_id": "robotics-figure",
+      "total": 21,
+      "backfill": 21,
+      "eligible": 0,
+      "incorrectly_eligible_old": 0
+    },
+    {
+      "source_id": "robotics-lerobot",
+      "total": 5,
+      "backfill": 5,
+      "eligible": 0,
+      "incorrectly_eligible_old": 0
+    },
+    {
+      "source_id": "robotics-nvidia-robotics",
+      "total": 74,
+      "backfill": 74,
+      "eligible": 0,
+      "incorrectly_eligible_old": 0
+    }
+  ],
+  "postCronSourceHealth": [
+    {
+      "id": "phase12-acceptance-retry",
+      "enabled": 0,
+      "health": "degraded",
+      "consecutive_failures": 2,
+      "last_success_at": null,
+      "last_error": "upstream HTTP 404",
+      "next_fetch_at": "2026-10-01T14:54:21.815Z"
+    },
+    {
+      "id": "robotics-ambarella",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:01.287Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:16:01.287Z"
+    },
+    {
+      "id": "robotics-arm",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:15:59.961Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:15:59.961Z"
+    },
+    {
+      "id": "robotics-arxiv-robotics",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:04.576Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:16:04.576Z"
+    },
+    {
+      "id": "robotics-axera-api",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:00.710Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:16:00.710Z"
+    },
+    {
+      "id": "robotics-d-robotics",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:15:58.519Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:15:58.519Z"
+    },
+    {
+      "id": "robotics-deepmind",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:02.889Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:16:02.889Z"
+    },
+    {
+      "id": "robotics-figure",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:08:51.053Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:08:51.053Z"
+    },
+    {
+      "id": "robotics-isaaclab",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:06.714Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T17:16:06.714Z"
+    },
+    {
+      "id": "robotics-lerobot",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:08:49.105Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:08:49.105Z"
+    },
+    {
+      "id": "robotics-nvidia-jetson",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:15:57.404Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:15:57.404Z"
+    },
+    {
+      "id": "robotics-nvidia-news",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:15:58.703Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:15:58.703Z"
+    },
+    {
+      "id": "robotics-nvidia-robotics",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:08:48.293Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:08:48.293Z"
+    },
+    {
+      "id": "robotics-qualcomm-aihub",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:04.735Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T17:16:04.735Z"
+    },
+    {
+      "id": "robotics-robot-report",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:05.725Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T17:16:05.725Z"
+    },
+    {
+      "id": "robotics-rockchip",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:15:59.539Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:15:59.539Z"
+    },
+    {
+      "id": "robotics-ros",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:07.219Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T17:16:07.219Z"
+    },
+    {
+      "id": "robotics-semieng",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:09.107Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T17:16:09.107Z"
+    },
+    {
+      "id": "robotics-unitree",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:03.063Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:16:03.063Z"
+    },
+    {
+      "id": "robotics-unitree-sdk",
+      "enabled": 1,
+      "health": "ok",
+      "consecutive_failures": 0,
+      "last_success_at": "2026-10-01T14:16:09.928Z",
+      "last_error": null,
+      "next_fetch_at": "2026-10-01T16:16:09.928Z"
+    }
+  ],
+  "postCronCollectionRuns": [
+    {
+      "source_id": "robotics-nvidia-jetson",
+      "status": "success",
+      "fetched_items": 0,
+      "inserted_items": 0,
+      "duplicate_items": 0,
+      "backfill_items": 0,
+      "error": null
+    },
+    {
+      "source_id": "robotics-d-robotics",
+      "status": "success",
+      "fetched_items": 5,
+      "inserted_items": 5,
+      "duplicate_items": 0,
+      "backfill_items": 5,
+      "error": null
+    },
+    {
+      "source_id": "robotics-nvidia-news",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-rockchip",
+      "status": "success",
+      "fetched_items": 5,
+      "inserted_items": 5,
+      "duplicate_items": 0,
+      "backfill_items": 5,
+      "error": null
+    },
+    {
+      "source_id": "robotics-arm",
+      "status": "success",
+      "fetched_items": 6,
+      "inserted_items": 6,
+      "duplicate_items": 0,
+      "backfill_items": 6,
+      "error": null
+    },
+    {
+      "source_id": "robotics-axera-api",
+      "status": "success",
+      "fetched_items": 5,
+      "inserted_items": 5,
+      "duplicate_items": 0,
+      "backfill_items": 5,
+      "error": null
+    },
+    {
+      "source_id": "robotics-ambarella",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-unitree",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-deepmind",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-arxiv-robotics",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-qualcomm-aihub",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-robot-report",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-isaaclab",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-ros",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-semieng",
+      "status": "success",
+      "fetched_items": 8,
+      "inserted_items": 8,
+      "duplicate_items": 0,
+      "backfill_items": 8,
+      "error": null
+    },
+    {
+      "source_id": "robotics-unitree-sdk",
+      "status": "success",
+      "fetched_items": 4,
+      "inserted_items": 4,
+      "duplicate_items": 0,
+      "backfill_items": 4,
+      "error": null
+    }
+  ],
+  "schedulerRuns": [
+    {
+      "id": "cfdcb882-2f16-47b8-ae37-36dabd0c871c",
+      "cron": "*/15 * * * *",
+      "scheduled_at": "2026-10-01T14:15:50.000Z",
+      "started_at": "2026-10-01T14:15:50.343Z",
+      "finished_at": "2026-10-01T14:15:52.319Z",
+      "status": "success",
+      "error": null
+    }
+  ],
+  "dedupChecks": [
+    [
+      {
+        "duplicate_url_groups": 0
+      }
+    ],
+    [
+      {
+        "duplicate_content_groups": 0
+      }
+    ]
+  ],
+  "httpStorageAndHealth": [
+    {
+      "path": "/admin/storage/check",
+      "status": 200,
+      "data": {
+        "ok": true,
+        "id": "9fc40dd7-75ac-42d6-a6f5-679dc9baf51a",
+        "status": "success",
+        "before": {
+          "bytes": 4893882,
+          "objects": 28
+        },
+        "after": {
+          "bytes": 4893882,
+          "objects": 28
+        },
+        "deleted": 0,
+        "dryRun": false,
+        "eligibleObjects": 0,
+        "inventoryComplete": true,
+        "afterInventoryComplete": true,
+        "provider": {
+          "available": false,
+          "reason": "analytics_token_not_configured",
+          "billingGbMonth": null
+        },
+        "metric": {
+          "status": "ok",
+          "percent": 0.048938819999999994
+        },
+        "pressureCleanup": false,
+        "cleanupTargetPercent": 85,
+        "pressureUnresolved": false,
+        "deletionLimitReached": false
+      }
+    },
+    {
+      "path": "/health",
+      "status": 200,
+      "data": {
+        "ok": true,
+        "service": "uprivate-intelligence-ingest",
+        "sources": {
+          "total": 20,
+          "enabled": 19,
+          "healthy": 19,
+          "degraded": 1,
+          "failing": 0
+        },
+        "articles24h": {
+          "count": 205
+        },
+        "failedRuns24h": {
+          "count": 2
+        },
+        "storage": {
+          "policy": {
+            "retentionDays": 60,
+            "freeBytes": 10000000000,
+            "warning": 70,
+            "critical": 85,
+            "cleanup": 90,
+            "maxPages": 20,
+            "maxDeletes": 100
+          },
+          "latest": {
+            "id": "e77f739a-7a93-49e5-aabf-5cda4b0e4905",
+            "measured_at": "2026-10-01T14:17:26.754Z",
+            "provider_json": "{\"available\":false,\"reason\":\"analytics_token_not_configured\",\"billingGbMonth\":null}",
+            "inventory_bytes": 4893882,
+            "inventory_objects": 28,
+            "inventory_complete": 1,
+            "status": "ok",
+            "usage_percent": 0.048938819999999994
+          },
+          "lastMaintenance": {
+            "id": "9fc40dd7-75ac-42d6-a6f5-679dc9baf51a",
+            "started_at": "2026-10-01T14:17:26.326Z",
+            "finished_at": "2026-10-01T14:17:26.871Z",
+            "status": "success",
+            "retention_days": 60,
+            "before_bytes": 4893882,
+            "before_objects": 28,
+            "after_bytes": 4893882,
+            "after_objects": 28,
+            "deleted_count": 0,
+            "deleted_bytes": 0,
+            "details_json": "{\"dryRun\":false,\"eligibleObjects\":0,\"inventoryComplete\":true,\"afterInventoryComplete\":true,\"provider\":{\"available\":false,\"reason\":\"analytics_token_not_configured\",\"billingGbMonth\":null},\"metric\":{\"status\":\"ok\",\"percent\":0.048938819999999994},\"pressureCleanup\":false,\"cleanupTargetPercent\":85,\"pressureUnresolved\":false,\"deletionLimitReached\":false}",
+            "error": null
+          },
+          "stale": false,
+          "quotaScope": "account-wide GB-month; inventory is current bucket payload bytes",
+          "accountBillingQuotaStatus": "unknown; current bytes do not establish monthly billing or other-bucket coverage",
+          "notifications": "D1 status and Worker warning logs; Dashboard must poll /admin/storage/status"
+        },
+        "lastScheduled": {
+          "cron": "*/15 * * * *",
+          "scheduled_at": "2026-10-01T14:15:50.000Z",
+          "finished_at": "2026-10-01T14:15:52.319Z",
+          "status": "success",
+          "error": null
+        }
+      }
+    },
+    {
+      "path": "/admin/storage/status",
+      "status": 200,
+      "data": {
+        "policy": {
+          "retentionDays": 60,
+          "freeBytes": 10000000000,
+          "warning": 70,
+          "critical": 85,
+          "cleanup": 90,
+          "maxPages": 20,
+          "maxDeletes": 100
+        },
+        "latest": {
+          "id": "e77f739a-7a93-49e5-aabf-5cda4b0e4905",
+          "measured_at": "2026-10-01T14:17:26.754Z",
+          "provider_json": "{\"available\":false,\"reason\":\"analytics_token_not_configured\",\"billingGbMonth\":null}",
+          "inventory_bytes": 4893882,
+          "inventory_objects": 28,
+          "inventory_complete": 1,
+          "status": "ok",
+          "usage_percent": 0.048938819999999994
+        },
+        "lastMaintenance": {
+          "id": "9fc40dd7-75ac-42d6-a6f5-679dc9baf51a",
+          "started_at": "2026-10-01T14:17:26.326Z",
+          "finished_at": "2026-10-01T14:17:26.871Z",
+          "status": "success",
+          "retention_days": 60,
+          "before_bytes": 4893882,
+          "before_objects": 28,
+          "after_bytes": 4893882,
+          "after_objects": 28,
+          "deleted_count": 0,
+          "deleted_bytes": 0,
+          "details_json": "{\"dryRun\":false,\"eligibleObjects\":0,\"inventoryComplete\":true,\"afterInventoryComplete\":true,\"provider\":{\"available\":false,\"reason\":\"analytics_token_not_configured\",\"billingGbMonth\":null},\"metric\":{\"status\":\"ok\",\"percent\":0.048938819999999994},\"pressureCleanup\":false,\"cleanupTargetPercent\":85,\"pressureUnresolved\":false,\"deletionLimitReached\":false}",
+          "error": null
+        },
+        "stale": false,
+        "quotaScope": "account-wide GB-month; inventory is current bucket payload bytes",
+        "accountBillingQuotaStatus": "unknown; current bytes do not establish monthly billing or other-bucket coverage",
+        "notifications": "D1 status and Worker warning logs; Dashboard must poll /admin/storage/status"
+      }
+    }
+  ],
+  "retryRuntimeObservation": {
+    "sourceId": "phase12-acceptance-retry",
+    "delaySeconds": 2700,
+    "attempts": 1,
+    "fixtureDisabled": true
+  },
+  "pending": [
+    "Dedicated CF_ANALYTICS_TOKEN",
+    "Daily 04:20/04:35 Asia/Shanghai Cron observation",
+    "Lifecycle expiry at object age 60 days; no live expired objects yet"
+  ],
+  "checks": {
+    "typecheck": "passed",
+    "storageTests": 7,
+    "prDraft": true,
+    "merged": false
+  }
+}

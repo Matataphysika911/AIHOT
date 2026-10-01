@@ -119,3 +119,79 @@ Phase 2:
 - independent dual scoring
 - structure extraction
 - processing queue / status transitions
+
+## R2 storage monitoring and retention (Phase 1.2)
+
+Three deployed Cron schedules run independently:
+
+| UTC Cron | Asia/Shanghai | Purpose |
+| --- | --- | --- |
+| `*/15 * * * *` | Every 15 minutes | Enqueue due RSS/JSON/web sources |
+| `20 20 * * *` | 04:20 daily | Adaptive source intervals |
+| `35 20 * * *` | 04:35 daily | R2 metrics, retention and maintenance audit |
+
+`storage_metrics` persists each measurement. `maintenance_runs` records before/after payload bytes and object counts, deleted count/bytes, policy, provider availability and failures. `scheduler_runs` records actual Cron invocation results. Concurrent maintenance is prevented by a D1 lease; failed maintenance releases its lease and preserves confirmed deletion progress.
+
+### Metrics and quota scope
+
+The monitor first tries the official [Cloudflare GraphQL storage dataset](https://developers.cloudflare.com/r2/platform/metrics-analytics/) using the optional Worker secret `CF_ANALYTICS_TOKEN`. Create a dedicated token with **Account / Account Analytics / Read**, scoped to this account, then install it:
+
+```bash
+npx wrangler secret put CF_ANALYTICS_TOKEN
+```
+
+Dashboard alternative: Workers & Pages → uprivate-intelligence-ingest → Settings → Variables and Secrets → Add → Type Secret → Name CF_ANALYTICS_TOKEN → Deploy. The token is never committed or returned through the API. Never upload a personal Wrangler OAuth refresh credential as this secret. See the [token setup instructions](https://developers.cloudflare.com/analytics/graphql-api/getting-started/authentication/api-token-auth/).
+
+If analytics credentials, permissions or fresh samples are unavailable, the monitor explicitly records the reason and uses the official R2 binding's paginated `list()` inventory. This measures this bucket's current payload bytes across **all prefixes**, including reserved prefixes. It is not a billing total: it excludes metadata, pending multipart uploads and other buckets. Provider samples include payload/metadata, are delayed, and expose latest observed account bucket samples separately. They are not a complete account inventory or an invoice.
+
+R2 Standard's [free allowance](https://developers.cloudflare.com/r2/pricing/) is **10 GB-month per account**, shared with other buckets; operation quotas are separate. Current bytes are a conservative capacity proxy, not an exact monthly GB-month bill. `accountBillingQuotaStatus` remains explicitly unknown. Standard storage is retained; no plan or billing changes are made.
+
+### Policy
+
+| Setting | Default | Behavior |
+| --- | --- | --- |
+| `RAW_RETENTION_DAYS` | 60 | Minimum archive retention; positive, configurable |
+| `R2_FREE_BYTES` | 10000000000 | Capacity proxy corresponding to 10 decimal GB |
+| `R2_WARNING_PERCENT` | 70 | Warning at 7 GB |
+| `R2_CRITICAL_PERCENT` | 85 | Critical at 8.5 GB |
+| `R2_CLEANUP_PERCENT` | 90 | Pressure flag at 9 GB; desired result below 85% |
+| `R2_SCAN_MAX_PAGES` | 20 | Up to 20,000 objects per inventory; allowed 1–100 pages |
+| `R2_DELETE_MAX_OBJECTS` | 100 | Deletion cap per run; allowed 1–200 |
+
+Daily retention removes expired objects even below the capacity thresholds. Capacity pressure never shortens retention or authorizes deletion of protected data. If only recent/protected objects remain, the critical status persists; the target is not guaranteed. An incomplete scan is a lower bound, sets unknown/critical status as appropriate, and skips deletion. Increase the scan limit within the documented bound or use provider analytics as the archive grows.
+
+Only keys under `raw/YYYY/MM/DD/` with a valid date are eligible. Both the date partition **and upload age** must be older than the retention cutoff. The worker rechecks object metadata before deletion; ingestion uses immutable timestamped keys. `reports/`, `backup-staging/` and every other prefix are protected. Daily deletion work is bounded; a native lifecycle rule handles larger expiry backlogs.
+
+Native [R2 lifecycle](https://developers.cloudflare.com/r2/buckets/object-lifecycles/) fallback is installed and verified:
+
+```bash
+npx wrangler r2 bucket lifecycle add uprivate-intelligence-raw raw-retention-60d raw/ --expire-days 60 --force
+npx wrangler r2 bucket lifecycle list uprivate-intelligence-raw
+```
+
+It expires only `raw/` objects after 60 days of upload age and preserves the default 7-day incomplete multipart abort rule. Lifecycle deletion is asynchronous, typically within 24 hours of expiry. Worker audit deletion counts exclude Cloudflare lifecycle deletions; subsequent inventory reflects them. To change retention, update **both** the Worker variable and this lifecycle rule (remove the named rule then add the new duration); increasing Worker retention alone cannot override the lifecycle fallback. NAS replication must operate within this window; no NAS backup has been verified in this phase.
+
+### Dashboard endpoints and manual checks
+
+- `GET /health`: source counts, storage state and last observed Cron invocation.
+- `GET /admin/storage/status`: authenticated latest metrics, maintenance record, policy and staleness (>30 hours).
+- `POST /admin/storage/check`: authenticated measurement/retention run; defaults to dry run. `{"dryRun":false}` permits expiration cleanup.
+
+```bash
+curl "https://uprivate-intelligence-ingest.wdhnlx.workers.dev/admin/storage/status" \
+  -H "Authorization: Bearer $ADMIN_TOKEN"
+curl -X POST "https://uprivate-intelligence-ingest.wdhnlx.workers.dev/admin/storage/check" \
+  -H "Authorization: Bearer $ADMIN_TOKEN" -H "Content-Type: application/json" \
+  -d '{"dryRun":true}'
+```
+
+Warnings are available through D1, Dashboard polling and Worker warning logs. No email, push or third-party alert destination is configured. The later NAS Dashboard should surface warning/critical, stale/incomplete metrics and failed maintenance. These checks reduce storage risk but do not impose a billing hard cap.
+
+### Verification
+
+```bash
+npm run typecheck
+npm test
+```
+
+Tests cover protected prefixes, valid dates and upload age, bounded/incomplete scans, dry runs, before/after audit, failed deletion, lease release, and provider permission errors without network calls. Real source/backfill/dedup/retry/R2 acceptance is recorded separately in [DEPLOYMENT.md](DEPLOYMENT.md). PostgreSQL/web application checks from the root AGENTS.md are not applicable to this standalone Cloudflare module and were not run; no root application code was changed.

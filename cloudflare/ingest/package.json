@@ -6,6 +6,7 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.ts",
     "d1:migrate:local": "wrangler d1 migrations apply uprivate-intelligence --local",
     "d1:migrate:remote": "wrangler d1 migrations apply uprivate-intelligence --remote"
   },

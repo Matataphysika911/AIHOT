@@ -1,8 +1,9 @@
 import { XMLParser } from "fast-xml-parser";
+import { maintainStorage, storageStatus, type StorageEnv } from "./storage";
 
 type SourceKind = "rss" | "json_list" | "web_list" | "external";
 
-interface Env {
+interface Env extends StorageEnv {
   DB: D1Database;
   RAW_ARCHIVE: R2Bucket;
   SOURCE_QUEUE: Queue<SourceJob>;
@@ -67,7 +68,20 @@ export default {
         sources,
         articles24h,
         failedRuns24h: failed24h,
+        storage: await storageStatus(env),
+        lastScheduled: await env.DB.prepare('SELECT cron,scheduled_at,finished_at,status,error FROM scheduler_runs ORDER BY started_at DESC LIMIT 1').first(),
       });
+    }
+
+    if (url.pathname === "/admin/storage/status" && request.method === "GET") {
+      if (!authorized(request, env)) return new Response("Unauthorized", { status: 401 });
+      return Response.json(await storageStatus(env));
+    }
+
+    if (url.pathname === "/admin/storage/check" && request.method === "POST") {
+      if (!authorized(request, env)) return new Response("Unauthorized", { status: 401 });
+      const body = await request.json<{ dryRun?: boolean }>();
+      return Response.json(await maintainStorage(env, body.dryRun !== false));
     }
 
     if (url.pathname === "/admin/sources/sync" && request.method === "POST") {
@@ -94,8 +108,7 @@ export default {
   },
 
   async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext) {
-    if (controller.cron === "20 20 * * *") ctx.waitUntil(adaptIntervals(env));
-    else ctx.waitUntil(enqueueDueSources(env));
+    ctx.waitUntil(runScheduled(controller, env));
   },
 
   async queue(batch: MessageBatch<SourceJob>, env: Env): Promise<void> {
@@ -105,11 +118,30 @@ export default {
         message.ack();
       } catch (error) {
         console.error("collection failed", message.body.sourceId, error);
-        message.retry();
+        const state = await env.DB.prepare('SELECT next_fetch_at FROM sources WHERE id=?').bind(message.body.sourceId).first<{ next_fetch_at: string }>();
+        const delaySeconds = Math.max(60, Math.min(43200, Math.ceil((Date.parse(state?.next_fetch_at ?? '') - Date.now()) / 1000) || 60));
+        console.warn('collection retry scheduled', { sourceId: message.body.sourceId, delaySeconds, attempts: message.attempts });
+        message.retry({ delaySeconds });
       }
     }
   },
 } satisfies ExportedHandler<Env, SourceJob>;
+
+async function runScheduled(controller: ScheduledController, env: Env) {
+  const id = crypto.randomUUID();
+  await env.DB.prepare(`INSERT INTO scheduler_runs(id,cron,scheduled_at,started_at,status) VALUES(?,?,?,?,'running')`).bind(
+    id, controller.cron, new Date(controller.scheduledTime).toISOString(), new Date().toISOString(),
+  ).run();
+  try {
+    if (controller.cron === '35 20 * * *') await maintainStorage(env);
+    else if (controller.cron === '20 20 * * *') await adaptIntervals(env);
+    else await enqueueDueSources(env);
+    await env.DB.prepare("UPDATE scheduler_runs SET finished_at=?,status='success' WHERE id=?").bind(new Date().toISOString(), id).run();
+  } catch (error) {
+    await env.DB.prepare("UPDATE scheduler_runs SET finished_at=?,status='failed',error=? WHERE id=?").bind(new Date().toISOString(), String(error).slice(0,1000), id).run();
+    throw error;
+  }
+}
 
 function authorized(request: Request, env: Env): boolean {
   const auth = request.headers.get("authorization");
@@ -121,6 +153,7 @@ async function enqueueDueSources(env: Env): Promise<void> {
   const due = await env.DB.prepare(
     `SELECT id FROM sources
      WHERE enabled = 1
+       AND kind IN ('rss','json_list','web_list')
        AND (next_fetch_at IS NULL OR next_fetch_at <= ?)
      ORDER BY COALESCE(next_fetch_at, '1970-01-01T00:00:00Z')
      LIMIT 100`,
@@ -292,18 +325,28 @@ async function parseWebList(html: string, config: Record<string, unknown>): Prom
   const sourceUrl = stringValue(config.url);
   if (!itemSelector || !sourceUrl) throw new Error("web_list requires itemSelector and url");
 
-  const items: Array<{ href: string | null; text: string }> = [];
-  let current: { href: string | null; text: string } | null = null;
+  const items: Array<{ href: string | null; text: string; title: string; date: string; datetime: string | null }> = [];
+  let current: typeof items[number] | null = null;
 
   const rewriter = new HTMLRewriter().on(itemSelector, {
     element(element) {
-      current = { href: element.getAttribute("href"), text: "" };
+      current = { href: element.getAttribute("href"), text: "", title: "", date: "", datetime: null };
       items.push(current);
       element.onEndTag(() => { current = null; });
     },
     text(text) {
       if (current) current.text += text.text;
     },
+  });
+
+  const titleSelector = stringValue(config.titleSelector);
+  if (titleSelector) rewriter.on(`${itemSelector} ${titleSelector}`, {
+    text(text) { if (current) current.title += text.text; },
+  });
+  const dateSelector = stringValue(config.publishedAtSelector);
+  if (dateSelector) rewriter.on(`${itemSelector} ${dateSelector}`, {
+    element(element) { if (current) current.datetime = element.getAttribute('datetime'); },
+    text(text) { if (current) current.date += text.text; },
   });
 
   await rewriter.transform(new Response(html, { headers: { "content-type": "text/html;charset=UTF-8" } })).text();
@@ -318,9 +361,13 @@ async function parseWebList(html: string, config: Record<string, unknown>): Prom
     try { url = new URL(item.href, base).toString(); } catch { return []; }
     if (allow.length && !allow.some((p) => url.startsWith(p))) return [];
     if (deny.some((p) => url.startsWith(p))) return [];
-    const title = item.text.replace(/\s+/g, " ").trim();
+    const title = (item.title.trim() || item.text).replace(/\s+/g, " ").trim();
     if (!title) return [];
-    return [{ title, url, publishedAt: null, summary: null, author: null, externalId: null }];
+    let date = item.datetime || item.date.trim() || null;
+    if (date && /^\d{4}[-./]\d{2}[-./]\d{2}$/.test(date)) {
+      date = `${date.replace(/[./]/g, '-')}T00:00:00${stringValue(config.publishedAtUtcOffset) ?? '+00:00'}`;
+    }
+    return [{ title, url, publishedAt: normalizeDate(date), summary: null, author: null, externalId: null }];
   });
 }
 
@@ -391,6 +438,15 @@ async function storeItem(
     isBackfill ? 1 : 0,
     isBackfill ? 0 : 1,
   ).run();
+
+  if (!Number(result.meta.changes ?? 0) && item.publishedAt) {
+    await env.DB.prepare(`UPDATE articles SET published_at=?,
+      is_backfill=CASE WHEN ?=1 THEN 1 ELSE is_backfill END,
+      publish_eligible=CASE WHEN ?=1 THEN 0 ELSE publish_eligible END
+      WHERE source_id=? AND url_hash=? AND published_at IS NULL`).bind(
+      item.publishedAt, isBackfill ? 1 : 0, isBackfill ? 1 : 0, source.id, urlHash,
+    ).run();
+  }
 
   return { inserted: Number(result.meta.changes ?? 0) > 0, backfill: isBackfill };
 }
@@ -495,7 +551,7 @@ function rawArchiveKey(sourceId: string, iso: string, kind: string): string {
   const yyyy = d.getUTCFullYear();
   const mm = String(d.getUTCMonth() + 1).padStart(2, "0");
   const dd = String(d.getUTCDate()).padStart(2, "0");
-  return `raw/${yyyy}/${mm}/${dd}/${sourceId}/${iso.replace(/[:.]/g, "-")}.${kind === "json_list" ? "json" : "xml"}`;
+  return `raw/${yyyy}/${mm}/${dd}/${sourceId}/${iso.replace(/[:.]/g, "-")}.${kind === "json_list" ? "json" : kind === "web_list" ? "html" : "xml"}`;
 }
 
 function toArray<T>(value: T | T[] | undefined | null): T[] {
