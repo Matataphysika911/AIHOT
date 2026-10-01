@@ -1,0 +1,20 @@
+{
+  "name": "@aihot/cloud-ingest",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "d1:migrate:local": "wrangler d1 migrations apply uprivate-intelligence --local",
+    "d1:migrate:remote": "wrangler d1 migrations apply uprivate-intelligence --remote"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.2.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260926.0",
+    "typescript": "^7.0.2",
+    "wrangler": "^4.43.0"
+  }
+}
