@@ -194,4 +194,4 @@ npm run typecheck
 npm test
 ```
 
-Tests cover protected prefixes, valid dates and upload age, bounded/incomplete scans, dry runs, before/after audit, failed deletion, lease release, and provider permission errors without network calls. Real source/backfill/dedup/retry/R2 acceptance is recorded separately in [DEPLOYMENT.md](DEPLOYMENT.md). PostgreSQL/web application checks from the root AGENTS.md are not applicable to this standalone Cloudflare module and were not run; no root application code was changed.
+Tests cover protected prefixes, valid dates and upload age, bounded/incomplete scans, dry runs, before/after audit, failed deletion, lease release, and provider permission errors without network calls. The module CI uses the lockfile and runs typecheck plus these tests. Real source/backfill/dedup/retry/R2 acceptance is recorded separately in [DEPLOYMENT.md](DEPLOYMENT.md). PostgreSQL/web application checks from the root AGENTS.md are not applicable to this standalone Cloudflare module and were not run; no root application code was changed.

@@ -66,7 +66,7 @@ export async function inventory(env: StorageEnv, now: number) {
 
 export async function providerMetrics(env: StorageEnv, now: number) {
   if (!env.CF_ANALYTICS_TOKEN || !env.CF_ACCOUNT_ID) {
-    return { available: false, reason: 'analytics_token_not_configured', billingGbMonth: null };
+    return { available: false, configured: false, querySucceeded: false, reason: 'analytics_token_not_configured', billingGbMonth: null };
   }
   try {
     const response = await fetch('https://api.cloudflare.com/client/v4/graphql', {
@@ -87,20 +87,23 @@ export async function providerMetrics(env: StorageEnv, now: number) {
     });
     const data = await response.json() as any;
     if (!response.ok || data.errors?.length) throw new Error(`Analytics unavailable (HTTP ${response.status}, ${data.errors?.[0]?.message ?? 'no details'})`);
-    const rows = data.data?.viewer?.accounts?.[0]?.r2StorageAdaptiveGroups;
-    if (!Array.isArray(rows) || !rows.length) throw new Error('Analytics has no samples');
+    const account = data.data?.viewer?.accounts?.[0];
+    if (!account) throw new Error('Analytics account is not accessible');
+    const rows = account.r2StorageAdaptiveGroups;
+    if (!Array.isArray(rows)) throw new Error('Invalid analytics response');
+    if (!rows.length) return { available: false, configured: true, querySucceeded: true, reason: 'analytics_no_samples', billingGbMonth: null };
     const buckets = new Map<string, any>();
     for (const row of rows) if (!buckets.has(row.dimensions.bucketName)) buckets.set(row.dimensions.bucketName, row);
     const samples = [...buckets.values()];
     const bytes = samples.reduce((sum, row) => sum + Number(row.max.payloadSize) + Number(row.max.metadataSize), 0);
     if (!Number.isFinite(bytes)) throw new Error('Invalid analytics size');
     return {
-      available: true, source: 'cloudflare_graphql', scope: 'account_latest_observed_buckets',
+      available: true, configured: true, querySucceeded: true, source: 'cloudflare_graphql', scope: 'account_latest_observed_buckets',
       bytes, buckets: samples, billingGbMonth: null,
       caveat: 'Delayed samples, not an invoice or a complete account inventory. Free tier is shared account-wide; GB-month and operation quotas require billing/operations metrics.',
     };
   } catch (error) {
-    return { available: false, reason: String(error).slice(0, 1000), billingGbMonth: null };
+    return { available: false, configured: true, querySucceeded: false, reason: String(error).slice(0, 1000), billingGbMonth: null };
   }
 }
 

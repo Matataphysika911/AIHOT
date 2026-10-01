@@ -47,3 +47,23 @@ test('provider permission errors are explicit, never reported as zero usage',asy
  const original=globalThis.fetch;globalThis.fetch=async()=>new Response(JSON.stringify({errors:[{message:'denied'}]}),{status:403});
  try{const result:any=await providerMetrics({CF_ACCOUNT_ID:'account',CF_ANALYTICS_TOKEN:'test'} as any,now);assert.equal(result.available,false);assert.match(result.reason,/denied/);assert.equal(result.billingGbMonth,null);}finally{globalThis.fetch=original;}
 });
+test('empty analytics samples distinguish a successful query from inaccessible account',async()=>{
+ const original=globalThis.fetch;
+ try{
+  for(const [accounts,expected] of [[[{r2StorageAdaptiveGroups:[]}],true],[[],false]] as const){
+   globalThis.fetch=async()=>Response.json({data:{viewer:{accounts}}});
+   const result:any=await providerMetrics({CF_ACCOUNT_ID:'account',CF_ANALYTICS_TOKEN:'test'} as any,now);
+   assert.equal(result.available,false);assert.equal(result.configured,true);assert.equal(result.querySucceeded,expected);
+   if(expected)assert.equal(result.reason,'analytics_no_samples');
+  }
+ }finally{globalThis.fetch=original;}
+});
+test('provider groups newest observed bucket samples and includes metadata separately from billing',async()=>{
+ const original=globalThis.fetch;
+ globalThis.fetch=async()=>Response.json({data:{viewer:{accounts:[{r2StorageAdaptiveGroups:[
+  {dimensions:{bucketName:'raw',datetime:'2026-10-01T11:00:00Z'},max:{payloadSize:100,metadataSize:10}},
+  {dimensions:{bucketName:'other',datetime:'2026-10-01T10:00:00Z'},max:{payloadSize:200,metadataSize:20}},
+  {dimensions:{bucketName:'raw',datetime:'2026-10-01T09:00:00Z'},max:{payloadSize:90,metadataSize:9}},
+ ]}]}}});
+ try{const result:any=await providerMetrics({CF_ACCOUNT_ID:'account',CF_ANALYTICS_TOKEN:'test'} as any,now);assert.equal(result.available,true);assert.equal(result.bytes,330);assert.equal(result.buckets.length,2);assert.equal(result.billingGbMonth,null);}finally{globalThis.fetch=original;}
+});

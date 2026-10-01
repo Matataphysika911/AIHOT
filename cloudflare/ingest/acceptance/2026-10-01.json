@@ -1,8 +1,8 @@
 {
-  "recordedAt": "2026-10-01T14:17:25.518Z",
+  "recordedAt": "2026-10-01T14:26:02.300Z",
   "timezone": "Asia/Shanghai",
   "workerUrl": "https://uprivate-intelligence-ingest.wdhnlx.workers.dev",
-  "codeVersion": "04ab90c1-8a35-48ee-9b5a-5ac274b75050",
+  "codeVersion": "b8fc7bfa-50e5-4da2-b17a-79e92cc64a6e",
   "initialCollectionRuns": [
     {
       "source_id": "robotics-nvidia-robotics",
@@ -525,7 +525,7 @@
       "status": 200,
       "data": {
         "ok": true,
-        "id": "9fc40dd7-75ac-42d6-a6f5-679dc9baf51a",
+        "id": "cfa22e02-a597-45f4-84a2-e0580ea8ae4e",
         "status": "success",
         "before": {
           "bytes": 4893882,
@@ -542,7 +542,9 @@
         "afterInventoryComplete": true,
         "provider": {
           "available": false,
-          "reason": "analytics_token_not_configured",
+          "configured": true,
+          "querySucceeded": true,
+          "reason": "analytics_no_samples",
           "billingGbMonth": null
         },
         "metric": {
@@ -585,9 +587,9 @@
             "maxDeletes": 100
           },
           "latest": {
-            "id": "e77f739a-7a93-49e5-aabf-5cda4b0e4905",
-            "measured_at": "2026-10-01T14:17:26.754Z",
-            "provider_json": "{\"available\":false,\"reason\":\"analytics_token_not_configured\",\"billingGbMonth\":null}",
+            "id": "29d18830-cb96-470f-b752-cf63ff259802",
+            "measured_at": "2026-10-01T14:26:03.518Z",
+            "provider_json": "{\"available\":false,\"configured\":true,\"querySucceeded\":true,\"reason\":\"analytics_no_samples\",\"billingGbMonth\":null}",
             "inventory_bytes": 4893882,
             "inventory_objects": 28,
             "inventory_complete": 1,
@@ -595,9 +597,9 @@
             "usage_percent": 0.048938819999999994
           },
           "lastMaintenance": {
-            "id": "9fc40dd7-75ac-42d6-a6f5-679dc9baf51a",
-            "started_at": "2026-10-01T14:17:26.326Z",
-            "finished_at": "2026-10-01T14:17:26.871Z",
+            "id": "cfa22e02-a597-45f4-84a2-e0580ea8ae4e",
+            "started_at": "2026-10-01T14:26:02.154Z",
+            "finished_at": "2026-10-01T14:26:03.640Z",
             "status": "success",
             "retention_days": 60,
             "before_bytes": 4893882,
@@ -606,7 +608,7 @@
             "after_objects": 28,
             "deleted_count": 0,
             "deleted_bytes": 0,
-            "details_json": "{\"dryRun\":false,\"eligibleObjects\":0,\"inventoryComplete\":true,\"afterInventoryComplete\":true,\"provider\":{\"available\":false,\"reason\":\"analytics_token_not_configured\",\"billingGbMonth\":null},\"metric\":{\"status\":\"ok\",\"percent\":0.048938819999999994},\"pressureCleanup\":false,\"cleanupTargetPercent\":85,\"pressureUnresolved\":false,\"deletionLimitReached\":false}",
+            "details_json": "{\"dryRun\":false,\"eligibleObjects\":0,\"inventoryComplete\":true,\"afterInventoryComplete\":true,\"provider\":{\"available\":false,\"configured\":true,\"querySucceeded\":true,\"reason\":\"analytics_no_samples\",\"billingGbMonth\":null},\"metric\":{\"status\":\"ok\",\"percent\":0.048938819999999994},\"pressureCleanup\":false,\"cleanupTargetPercent\":85,\"pressureUnresolved\":false,\"deletionLimitReached\":false}",
             "error": null
           },
           "stale": false,
@@ -637,9 +639,9 @@
           "maxDeletes": 100
         },
         "latest": {
-          "id": "e77f739a-7a93-49e5-aabf-5cda4b0e4905",
-          "measured_at": "2026-10-01T14:17:26.754Z",
-          "provider_json": "{\"available\":false,\"reason\":\"analytics_token_not_configured\",\"billingGbMonth\":null}",
+          "id": "29d18830-cb96-470f-b752-cf63ff259802",
+          "measured_at": "2026-10-01T14:26:03.518Z",
+          "provider_json": "{\"available\":false,\"configured\":true,\"querySucceeded\":true,\"reason\":\"analytics_no_samples\",\"billingGbMonth\":null}",
           "inventory_bytes": 4893882,
           "inventory_objects": 28,
           "inventory_complete": 1,
@@ -647,9 +649,9 @@
           "usage_percent": 0.048938819999999994
         },
         "lastMaintenance": {
-          "id": "9fc40dd7-75ac-42d6-a6f5-679dc9baf51a",
-          "started_at": "2026-10-01T14:17:26.326Z",
-          "finished_at": "2026-10-01T14:17:26.871Z",
+          "id": "cfa22e02-a597-45f4-84a2-e0580ea8ae4e",
+          "started_at": "2026-10-01T14:26:02.154Z",
+          "finished_at": "2026-10-01T14:26:03.640Z",
           "status": "success",
           "retention_days": 60,
           "before_bytes": 4893882,
@@ -658,7 +660,7 @@
           "after_objects": 28,
           "deleted_count": 0,
           "deleted_bytes": 0,
-          "details_json": "{\"dryRun\":false,\"eligibleObjects\":0,\"inventoryComplete\":true,\"afterInventoryComplete\":true,\"provider\":{\"available\":false,\"reason\":\"analytics_token_not_configured\",\"billingGbMonth\":null},\"metric\":{\"status\":\"ok\",\"percent\":0.048938819999999994},\"pressureCleanup\":false,\"cleanupTargetPercent\":85,\"pressureUnresolved\":false,\"deletionLimitReached\":false}",
+          "details_json": "{\"dryRun\":false,\"eligibleObjects\":0,\"inventoryComplete\":true,\"afterInventoryComplete\":true,\"provider\":{\"available\":false,\"configured\":true,\"querySucceeded\":true,\"reason\":\"analytics_no_samples\",\"billingGbMonth\":null},\"metric\":{\"status\":\"ok\",\"percent\":0.048938819999999994},\"pressureCleanup\":false,\"cleanupTargetPercent\":85,\"pressureUnresolved\":false,\"deletionLimitReached\":false}",
           "error": null
         },
         "stale": false,
@@ -675,14 +677,16 @@
     "fixtureDisabled": true
   },
   "pending": [
-    "Dedicated CF_ANALYTICS_TOKEN",
+    "Official R2 Analytics samples (query is authorized, no samples yet)",
     "Daily 04:20/04:35 Asia/Shanghai Cron observation",
     "Lifecycle expiry at object age 60 days; no live expired objects yet"
   ],
   "checks": {
     "typecheck": "passed",
-    "storageTests": 7,
+    "storageTests": 9,
     "prDraft": true,
-    "merged": false
+    "merged": false,
+    "cloudCI": "success on 8cef6d1; final commit verification pending",
+    "rootCI": "pre-existing topic seed UNDEFINED_VALUE error on 185b804 and 8cef6d1; Docker job also fails"
   }
 }

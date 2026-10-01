@@ -1,6 +1,6 @@
 # Phase 1.2 real Cloudflare deployment and acceptance
 
-Recorded 2026-10-01, Asia/Shanghai. The ingestion Worker is deployed and its three collection kinds have passed live acceptance. Storage inventory/retention is operational. Dedicated Analytics token setup and observation of daily Cron executions remain explicit follow-ups; neither is represented as already verified.
+Recorded 2026-10-01, Asia/Shanghai. The ingestion Worker is deployed and its three collection kinds have passed live acceptance. Storage inventory/retention is operational. The dedicated Analytics token is configured and its GraphQL query has succeeded; the new bucket has no provider samples yet, so real-time official R2 inventory remains active. Daily Cron execution observations remain explicit follow-ups.
 
 ## Deployed resources
 
@@ -17,7 +17,7 @@ Account: `8681f9abc29572d2ea09be866b251519`.
 
 Production URL: **https://uprivate-intelligence-ingest.wdhnlx.workers.dev**.
 
-Latest code version at this record: `04ab90c1-8a35-48ee-9b5a-5ac274b75050`. A Dashboard secret change may create a newer version without changing this source code.
+Latest deployed code version: `b8fc7bfa-50e5-4da2-b17a-79e92cc64a6e`. The user created and deployed `CF_ANALYTICS_TOKEN` at 22:21–22:22 +08:00; the subsequent source deployment retained both secrets and reverified the Queue consumer.
 
 No billing enrollment, terms acceptance, storage-class transition or plan change was performed. R2 activation was already confirmed by the user.
 
@@ -69,7 +69,7 @@ A live inventory at 22:08:42 +08:00 measured **1,822,312 payload bytes, 9 object
 
 Official `wrangler r2 bucket info` and a local GraphQL query were tried first. Initially Wrangler displayed zero objects/zero bytes, while the GraphQL query returned no samples and inventory already contained snapshots. Zero from this delayed provider view is not treated as proof of an empty bucket. The monitor stores provider availability separately and falls back to paginated official R2 binding inventory.
 
-The user is being guided to create a dedicated **Account Analytics Read** token and save it as Worker secret `CF_ANALYTICS_TOKEN`. It was not present at initial acceptance. Local agnesAI's `AGNES_API_KEY` is an application credential, not a Cloudflare Analytics token, and was not uploaded or exposed. No personal OAuth refresh credential was installed in the Worker.
+The user created a dedicated **Account Analytics Read** token and saved it as Worker secret `CF_ANALYTICS_TOKEN`. Secret names were verified without reading their values. At **22:26:03 +08:00**, the live check returned `configured=true`, `querySucceeded=true`, `reason=analytics_no_samples`. GraphQL access is verified; actual provider samples remain pending. The check persisted these provider fields to D1, measured **4,893,882 bytes / 28 objects**, and recorded zero expired deletions. The monitor distinguishes successful empty queries from inaccessible accounts and permission failures. Local agnesAI's `AGNES_API_KEY` is an application credential, not a Cloudflare Analytics token, and was not uploaded or exposed. No personal OAuth refresh credential was installed in the Worker.
 
 See [README monitoring policy](README.md#r2-storage-monitoring-and-retention-phase-12): 70% warning, 85% critical, 90% pressure flag, desired result under 85%, 60-day default minimum retention, daily inspection, bounded cleanup of expired `raw/YYYY/MM/DD/` only. Current bucket payload bytes are not an exact account-wide GB-month bill; other buckets, metadata, multipart uploads and separate operation quotas require provider/billing data. Unknown billing coverage is explicitly reported.
 
@@ -90,8 +90,9 @@ The scheduler writes invocation status/errors to `scheduler_runs`. The first rea
 ## Validation and GitHub state
 
 - Module typecheck passed.
-- Seven targeted storage tests passed, including retention/protected-prefix boundaries, incomplete scans, dry runs, deletion audit/failure, lease release and provider permission errors.
+- Nine targeted storage tests passed, including retention/protected-prefix boundaries, incomplete scans, dry runs, deletion audit/failure, lease release, provider permission errors, valid empty samples/inaccessible accounts, and latest observed bucket aggregation.
 - Live RSS/JSON/web, stable dedup, first-import backfill, web-date repair, health/backoff, Queue retry delay and R2 snapshot checks passed.
 - Additive remote migrations applied; no application PostgreSQL schema was changed.
-- Root PostgreSQL/web build/smoke checks were not run: this change is restricted to the standalone Cloudflare module.
+- Locally, root PostgreSQL/web checks were not run. GitHub Actions on published commit `8cef6d1` passed root typecheck, web build and web tests, but the root `Check` workflow failed during topic seeding with `UNDEFINED_VALUE: Undefined values are not allowed`; backend/smoke checks were skipped and the Docker job also failed. The same seed error and failed jobs already existed on the pre-change commit `185b804` ([prior run](https://github.com/Matataphysika911/AIHOT/actions/runs/36862473255), [current run](https://github.com/Matataphysika911/AIHOT/actions/runs/36875907482)). No root application/schema fix is included.
+- Cloud Ingest CI on `8cef6d1` succeeded. Its final workflow now installs the lockfile with `npm ci --ignore-scripts` and runs both typecheck and the nine storage tests.
 - All source/config/documentation changes belong to `feat/cloudflare-ingestion-v1`; PR #2 remains Draft and is not merged.
