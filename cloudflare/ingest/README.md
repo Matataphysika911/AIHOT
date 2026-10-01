@@ -199,3 +199,5 @@ Tests cover protected prefixes, valid dates and upload age, bounded/incomplete s
 ## Phase 2 Intelligence Layer
 
 See [PHASE2.md](PHASE2.md) for provider setup, processing states, audit/receipt safety, protected endpoints and deployment acceptance. Live processing is disabled until a separate API key, endpoint and model are configured. Mock jobs do not write production article decisions.
+
+Phase 2A Plus/Plugin/MCP acceptance and its isolated API Worker are recorded in [PHASE2A.md](PHASE2A.md). This addition does not enable model calls or article processing.

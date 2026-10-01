@@ -1,0 +1,102 @@
+{
+  "phase": "2A",
+  "date": "2026-10-01",
+  "timezone": "Asia/Shanghai",
+  "mcp_url": "https://uprivate-intelligence-api.wdhnlx.workers.dev/mcp",
+  "worker_version": "16efc1ae-658e-4585-9cae-a26f015f38f1",
+  "deployment_at": "2026-10-01T15:26:32.890Z",
+  "account_plan_observed": "Plus",
+  "plugin_id": "asdk_app_6abe77e5dfa88191bfee276a2deed423",
+  "chat_url": "https://chatgpt.com/c/6abe7a3f-eb84-83ea-aeef-38df754b25ae",
+  "gates": {
+    "interactive_read": {
+      "status": "passed",
+      "batch_limit": 3,
+      "tools": [
+        "get_processing_batch",
+        "get_article"
+      ],
+      "article_id": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+      "source_name": "Unitree SDK2 Releases",
+      "canonical_url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/1.0.0"
+    },
+    "interactive_write": {
+      "status": "passed",
+      "oauth_scopes": [
+        "articles:read",
+        "probes:write"
+      ],
+      "d1_receipt": {
+        "run_id": "phase2a-plus-interactive-20261001",
+        "article_id": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+        "note": "Phase 2A interactive Plus write probe",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "created_at": "2026-10-01T15:33:03.980Z"
+      },
+      "article_before": {
+        "id": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+        "processing_status": "new",
+        "prefilter_status": null,
+        "score_a": null,
+        "score_b": null,
+        "final_score": null,
+        "event_id": null,
+        "updated_at": "2026-10-01 14:16:09"
+      },
+      "article_after": {
+        "id": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+        "processing_status": "new",
+        "prefilter_status": null,
+        "score_a": null,
+        "score_b": null,
+        "final_score": null,
+        "event_id": null,
+        "updated_at": "2026-10-01 14:16:09"
+      },
+      "production_article_fields_unchanged": true
+    },
+    "scheduled": {
+      "status": "passed",
+      "scheduled_at": "2026-10-01T15:40:27Z",
+      "run_id": "phase2a-plus-scheduled-20261001",
+      "one_shot": true,
+      "d1_receipt": {
+        "run_id": "phase2a-plus-scheduled-20261001",
+        "article_id": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+        "note": "Phase 2A unattended Scheduled Task probe",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "created_at": "2026-10-01T15:43:09.556Z"
+      },
+      "human_intervention_during_run": false,
+      "ui_status": "Completed · Last run Today",
+      "production_article_fields_unchanged": true,
+      "note": "Scheduled at 15:40:27Z; actual saved receipt at 15:43:09.556Z. One run does not establish long-term reliability."
+    }
+  },
+  "validation": {
+    "intel_api_typecheck": "passed",
+    "intel_api_tests": 9,
+    "ingest_typecheck": "passed",
+    "ingest_tests": 18,
+    "rate_limit_429_observed": true,
+    "read_scope_probe_denied": true,
+    "unauthenticated_mcp": 401,
+    "invalid_token": 401,
+    "hostile_origin": 403,
+    "oversized_mcp_body": 413
+  },
+  "scope": {
+    "paid_model_api_calls": 0,
+    "article_processing_added": false,
+    "phase2b_started": false,
+    "merge_performed": false
+  },
+  "preexisting_state": {
+    "migration": "0005_intelligence.sql",
+    "ai_runs": 81,
+    "task_receipts": 80,
+    "note": "Pre-existing work from another task; preserved. PR head advanced to 2a7ca6d during verification. This Phase2A task did not create these processing records."
+  },
+  "final_deployed_version": "26cac28a-7664-4c4e-a10d-e0a9aeb150c8",
+  "final_deployment_note": "Same source redeployed after client acceptance; accepted client version retained separately."
+}

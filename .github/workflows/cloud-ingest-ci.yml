@@ -4,12 +4,14 @@ on:
   pull_request:
     paths:
       - "cloudflare/ingest/**"
+      - "cloudflare/intel-api/**"
       - ".github/workflows/cloud-ingest-ci.yml"
   push:
     branches:
       - "feat/cloudflare-ingestion-v1"
     paths:
       - "cloudflare/ingest/**"
+      - "cloudflare/intel-api/**"
       - ".github/workflows/cloud-ingest-ci.yml"
 
 jobs:
@@ -18,6 +20,19 @@ jobs:
     defaults:
       run:
         working-directory: cloudflare/ingest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: npm ci --ignore-scripts
+      - run: npm run typecheck
+      - run: npm test
+  intel-api:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cloudflare/intel-api
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
