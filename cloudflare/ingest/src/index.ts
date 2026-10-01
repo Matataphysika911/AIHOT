@@ -58,8 +58,8 @@ export default {
           sum(CASE WHEN health='degraded' THEN 1 ELSE 0 END) AS degraded,
           sum(CASE WHEN health='failing' THEN 1 ELSE 0 END) AS failing
           FROM sources`).first(),
-        env.DB.prepare("SELECT count(*) AS count FROM articles WHERE discovered_at >= datetime('now','-24 hours')").first(),
-        env.DB.prepare("SELECT count(*) AS count FROM collection_runs WHERE status='failed' AND started_at >= datetime('now','-24 hours')").first(),
+        env.DB.prepare("SELECT count(*) AS count FROM articles WHERE datetime(discovered_at) >= datetime('now','-24 hours')").first(),
+        env.DB.prepare("SELECT count(*) AS count FROM collection_runs WHERE status='failed' AND datetime(started_at) >= datetime('now','-24 hours')").first(),
       ]);
       return Response.json({
         ok: true,
@@ -178,10 +178,11 @@ async function collectSource(env: Env, sourceId: string): Promise<void> {
 
     let inserted = 0, duplicates = 0, backfill = 0;
     for (const item of items) {
-      const stored = await storeItem(env, source, item, archiveKey, startedAt);
-      if (stored.inserted) inserted++;
-      else duplicates++;
-      if (stored.backfill) backfill++;
+      const stored = await storeItem(env, source, item, archiveKey, startedAt, firstImport);
+      if (stored.inserted) {
+        inserted++;
+        if (stored.backfill) backfill++;
+      } else duplicates++;
     }
 
     const nextFetchAt = new Date(
@@ -357,6 +358,7 @@ async function storeItem(
   item: NormalizedItem,
   rawR2Key: string,
   discoveredAt: string,
+  forceBackfill = false,
 ): Promise<{ inserted: boolean; backfill: boolean }> {
   const canonicalUrl = canonicalizeUrl(item.url);
   const urlHash = await sha256(canonicalUrl);
@@ -366,7 +368,7 @@ async function storeItem(
   const published = item.publishedAt ? new Date(item.publishedAt) : null;
   const oldNewsHours = Number(env.OLD_NEWS_HOURS ?? "48");
   const ageMs = published ? Date.now() - published.getTime() : 0;
-  const isBackfill = Boolean(published && ageMs > oldNewsHours * 3_600_000);
+  const isBackfill = forceBackfill || Boolean(published && ageMs > oldNewsHours * 3_600_000);
 
   const result = await env.DB.prepare(
     `INSERT OR IGNORE INTO articles(
@@ -442,7 +444,7 @@ async function adaptIntervals(env: Env): Promise<void> {
     `SELECT s.id,s.kind,s.participation_mode,s.interval_minutes,
       (SELECT count(*) FROM articles a
        WHERE a.source_id=s.id
-         AND a.discovered_at >= datetime('now','-7 days')
+         AND datetime(a.discovered_at) >= datetime('now','-7 days')
          AND a.is_backfill=0) / 7.0 AS per_day
      FROM sources s
      WHERE s.enabled=1 AND s.kind IN ('rss','json_list','web_list')`
@@ -450,7 +452,7 @@ async function adaptIntervals(env: Env): Promise<void> {
 
   for (const row of rows.results) {
     const perDay = Number(row.per_day ?? 0);
-    const max = row.participation_mode === "hot_signal" ? 180 : row.kind === "web_list" ? 120 : 60;
+    const max = row.participation_mode === "hot_signal" ? 180 : 60;
     const min = 15;
     const target = perDay <= 0.15
       ? max
