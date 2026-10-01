@@ -686,7 +686,7 @@
     "storageTests": 9,
     "prDraft": true,
     "merged": false,
-    "cloudCI": "success on 8cef6d1; final commit verification pending",
+    "cloudCI": "success on 60bd990: lockfile install, typecheck and 9 storage tests; run 36876782228",
     "rootCI": "pre-existing topic seed UNDEFINED_VALUE error on 185b804 and 8cef6d1; Docker job also fails"
   }
 }
