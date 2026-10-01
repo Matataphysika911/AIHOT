@@ -8,7 +8,7 @@ Phase 1 moves the deterministic collection layer of AIHOT to Cloudflare while pr
 Cron (15 min)
   -> D1: sources due to run
   -> Cloudflare Queue
-  -> RSS / JSON collectors
+  -> RSS / JSON / direct HTML collectors
   -> canonical URL + SHA-256 exact dedup
   -> 48h old-news/backfill rule
   -> D1: structured article metadata
@@ -47,7 +47,9 @@ npx wrangler queues create uprivate-source-jobs
 npx wrangler queues create uprivate-source-jobs-dlq
 ```
 
-Copy the D1 database id into `wrangler.jsonc`.
+The current `wrangler.jsonc` records the provisioned account and D1 database ID. For another account, replace both IDs and create its resources. See [DEPLOYMENT.md](DEPLOYMENT.md) for the actual Phase 1.2 state.
+
+Enable R2 in the Cloudflare Dashboard before creating its bucket. Wrangler returns error 10042 when R2 has not been activated.
 
 Set the admin secret:
 
@@ -58,7 +60,7 @@ npx wrangler secret put ADMIN_TOKEN
 Apply schema and deploy:
 
 ```bash
-npm install
+npm ci
 npm run d1:migrate:remote
 npm run deploy
 ```

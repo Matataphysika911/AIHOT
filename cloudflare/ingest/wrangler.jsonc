@@ -4,13 +4,16 @@
   "main": "src/index.ts",
   "compatibility_date": "2026-10-01",
   "triggers": {
-    "crons": ["*/15 * * * *", "20 20 * * *"]
+    "crons": [
+      "*/15 * * * *",
+      "20 20 * * *"
+    ]
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "uprivate-intelligence",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID",
+      "database_id": "796475b7-6819-48fe-b61e-16971d36c985",
       "migrations_dir": "migrations"
     }
   ],
@@ -40,5 +43,6 @@
   "vars": {
     "OLD_NEWS_HOURS": "48",
     "DEFAULT_FETCH_MINUTES": "120"
-  }
+  },
+  "account_id": "8681f9abc29572d2ea09be866b251519"
 }
