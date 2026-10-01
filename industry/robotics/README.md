@@ -14,4 +14,4 @@ Industry intelligence layer for embodied AI, robotics and edge AI SoC.
 
 Source ingestion → prefilter → dual scoring → event clustering → hotness → robotics relevance → SoC/commercial implications → daily digest.
 
-The first implementation is additive so upstream AIHOT can still be synchronized cleanly. After evaluation, these configs will be merged into the active industry/*.ts and prompts.
+The active industry pack now uses the V1 identity, additive categories, robotics vocabulary, prefilter and selection rubric, and 19 crawlable sources. See [source matrix and rollout notes](source-matrix.md) for verification, limitations and migration behavior. The dedicated SoC analysis and custom digest designs remain reference documents; the runtime still uses the upstream pipeline and output schemas.

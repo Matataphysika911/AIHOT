@@ -573,6 +573,271 @@
         "safety",
         "trends"
       ]
+    },
+    {
+      "slug": "qualcomm",
+      "name": "Qualcomm",
+      "group": "company",
+      "entityId": "qualcomm",
+      "definition": "Qualcomm 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "arm",
+      "name": "Arm",
+      "group": "company",
+      "entityId": "arm",
+      "definition": "Arm 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "d-robotics",
+      "name": "D-Robotics",
+      "group": "company",
+      "entityId": "d-robotics",
+      "definition": "D-Robotics 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "horizon-robotics",
+      "name": "Horizon Robotics",
+      "group": "company",
+      "entityId": "horizon-robotics",
+      "definition": "Horizon Robotics 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "rockchip",
+      "name": "Rockchip",
+      "group": "company",
+      "entityId": "rockchip",
+      "definition": "Rockchip 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "ambarella",
+      "name": "Ambarella",
+      "group": "company",
+      "entityId": "ambarella",
+      "definition": "Ambarella 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "axera",
+      "name": "Axera",
+      "group": "company",
+      "entityId": "axera",
+      "definition": "Axera 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "tesla",
+      "name": "Tesla",
+      "group": "company",
+      "entityId": "tesla",
+      "definition": "Tesla 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "figure",
+      "name": "Figure AI",
+      "group": "company",
+      "entityId": "figure",
+      "definition": "Figure AI 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "agility",
+      "name": "Agility Robotics",
+      "group": "company",
+      "entityId": "agility",
+      "definition": "Agility Robotics 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "unitree",
+      "name": "Unitree",
+      "group": "company",
+      "entityId": "unitree",
+      "definition": "Unitree 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "boston-dynamics",
+      "name": "Boston Dynamics",
+      "group": "company",
+      "entityId": "boston-dynamics",
+      "definition": "Boston Dynamics 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "1x",
+      "name": "1X",
+      "group": "company",
+      "entityId": "1x",
+      "definition": "1X 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "apptronik",
+      "name": "Apptronik",
+      "group": "company",
+      "entityId": "apptronik",
+      "definition": "Apptronik 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "physical-intelligence",
+      "name": "Physical Intelligence",
+      "group": "company",
+      "entityId": "physical-intelligence",
+      "definition": "Physical Intelligence 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "skild-ai",
+      "name": "Skild AI",
+      "group": "company",
+      "entityId": "skild-ai",
+      "definition": "Skild AI 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "open-robotics",
+      "name": "Open Robotics",
+      "group": "company",
+      "entityId": "open-robotics",
+      "definition": "Open Robotics 的机器人与端侧 AI 技术、产品和商业进展。",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "embodied-ai",
+      "name": "具身智能",
+      "group": "field",
+      "tags": [
+        "具身智能",
+        "VLA",
+        "世界模型"
+      ],
+      "definition": "具身基础模型、VLA、世界模型与人形、四足、移动操作和灵巧手能力进展；具体论文归 paper",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "robotics-products",
+      "name": "机器人产品",
+      "group": "field",
+      "tags": [
+        "机器人产品",
+        "人形机器人",
+        "四足机器人"
+      ],
+      "definition": "消费、服务、工业与巡检机器人的整机发布、硬件升级与产品参数",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "robot-ai",
+      "name": "机器人AI",
+      "group": "field",
+      "tags": [
+        "感知/SLAM",
+        "导航/规划",
+        "运动控制",
+        "仿真/Sim2Real"
+      ],
+      "definition": "感知、SLAM、导航、规划、运动控制、仿真、Sim2Real 与数据引擎的工具及系统更新；论文归 paper，教程归 tip",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "edge-ai-soc",
+      "name": "端侧AI SoC",
+      "group": "field",
+      "tags": [
+        "边缘AI SoC",
+        "NPU",
+        "ISP/传感器",
+        "内存/带宽",
+        "量化/编译器"
+      ],
+      "definition": "端侧 AI SoC、NPU、ISP、传感器、内存带宽、编译器、量化与推理运行时的发布和工程变化",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
+    },
+    {
+      "slug": "industry-signal",
+      "name": "产业信号",
+      "group": "field",
+      "tags": [
+        "量产/订单",
+        "Design Win",
+        "供应链"
+      ],
+      "definition": "机器人与端侧 AI 的 design win、量产、订单、融资并购、价格、供应链与监管信号",
+      "related": [
+        "embodied",
+        "on-device"
+      ]
     }
   ]
 }

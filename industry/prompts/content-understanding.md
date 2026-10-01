@@ -36,10 +36,10 @@
 
 其后可选 0–5 个适用标签，并且只能来自以下两个白名单：
 
-- 主题：Agent、编码、推理、多模态、语音、视频、图像生成、RAG、端侧、数据/训练、搜索、部署/工程、开源生态、具身智能、MCP/工具调用
-- 实体：OpenAI、Anthropic、DeepSeek、DeepMind、Google、Meta、Microsoft、xAI、Hugging Face、GitHub、arXiv
+- 主题：机器人产品、人形机器人、四足机器人、灵巧操作、VLA、世界模型、感知/SLAM、导航/规划、运动控制、仿真/Sim2Real、边缘AI SoC、NPU、ISP/传感器、内存/带宽、量化/编译器、量产/订单、Design Win、供应链、Agent、编码、推理、多模态、语音、视频、图像生成、RAG、端侧、数据/训练、搜索、部署/工程、开源生态、具身智能、MCP/工具调用
+- 实体：NVIDIA、Qualcomm、Arm、D-Robotics、Horizon Robotics、Rockchip、Ambarella、Axera、Tesla、Figure AI、Agility Robotics、Unitree、Boston Dynamics、1X、Apptronik、Physical Intelligence、Skild AI、Open Robotics、OpenAI、Anthropic、DeepSeek、DeepMind、Google、Meta、Microsoft、xAI、Hugging Face、GitHub、arXiv
 
-正文中即使明确出现了 NVIDIA、Apple、阿里等其他实体，也不要把它们放进 `tags`。不要创造白名单之外的标签。没有适用的主题或实体时，只返回第一个分类标签；例如学校限制 AI 使用的监管新闻，不需要强行归到“编码”或“推理”。
+正文中即使明确出现了白名单以外的实体，也不要把它们放进 `tags`。不要创造白名单之外的标签。没有适用的主题或实体时，只返回第一个分类标签；例如机器人监管新闻，不需要强行归到“编码”或“推理”。
 
 ## 候选阅读价值
 
