@@ -1,0 +1,64 @@
+{
+  "version": "1.0",
+  "tiers": {
+    "T1_first_party": [
+      "NVIDIA Robotics",
+      "Qualcomm",
+      "Arm",
+      "D-Robotics",
+      "Horizon Robotics",
+      "Rockchip",
+      "Ambarella",
+      "Axera",
+      "Tesla AI",
+      "Figure AI",
+      "Agility Robotics",
+      "Unitree",
+      "Boston Dynamics",
+      "1X",
+      "Apptronik",
+      "Physical Intelligence",
+      "Skild AI",
+      "Google DeepMind",
+      "Meta AI",
+      "OpenAI"
+    ],
+    "T2_robotics_media": [
+      "The Robot Report",
+      "IEEE Spectrum Robotics",
+      "Robotics 24/7",
+      "ROS Discourse",
+      "TechCrunch Robotics"
+    ],
+    "T2_semiconductor_ai": [
+      "SemiAnalysis",
+      "EE Times",
+      "Semiconductor Engineering",
+      "ServeTheHome",
+      "The Next Platform",
+      "Hacker News"
+    ],
+    "T2_research": [
+      "arXiv",
+      "Hugging Face Papers",
+      "GitHub Trending",
+      "Papers With Code"
+    ],
+    "China_watchlist": [
+      "高工机器人",
+      "机器人大讲堂",
+      "新战略机器人",
+      "机器之心",
+      "量子位",
+      "智东西",
+      "甲子光年",
+      "36Kr",
+      "晚点"
+    ]
+  },
+  "notes": [
+    "V1 is a curation manifest, not yet the active collector config.",
+    "Prefer first-party feeds and official release notes whenever available.",
+    "Media items should be deduplicated into events before ranking."
+  ]
+}
