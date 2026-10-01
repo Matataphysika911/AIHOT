@@ -1,9 +1,11 @@
+import { enqueueNew, recoverDue, processTask, manualProcessing, intelligenceHealth, type IntelligenceEnv, type ProcessingJob } from "./intelligence";
+import { ProviderError } from "./provider";
 import { XMLParser } from "fast-xml-parser";
 import { maintainStorage, storageStatus, type StorageEnv } from "./storage";
 
 type SourceKind = "rss" | "json_list" | "web_list" | "external";
 
-interface Env extends StorageEnv {
+interface Env extends StorageEnv, IntelligenceEnv {
   DB: D1Database;
   RAW_ARCHIVE: R2Bucket;
   SOURCE_QUEUE: Queue<SourceJob>;
@@ -69,8 +71,14 @@ export default {
         articles24h,
         failedRuns24h: failed24h,
         storage: await storageStatus(env),
+        intelligence: await intelligenceHealth(env),
         lastScheduled: await env.DB.prepare('SELECT cron,scheduled_at,finished_at,status,error FROM scheduler_runs ORDER BY started_at DESC LIMIT 1').first(),
       });
+    }
+
+    if (url.pathname.startsWith("/admin/processing/")) {
+      if (!authorized(request, env)) return new Response("Unauthorized", { status: 401 });
+      try { return await manualProcessing(request, env); } catch { return Response.json({error:"processing_request_failed"}, {status:400}); }
     }
 
     if (url.pathname === "/admin/storage/status" && request.method === "GET") {
@@ -111,21 +119,31 @@ export default {
     ctx.waitUntil(runScheduled(controller, env));
   },
 
-  async queue(batch: MessageBatch<SourceJob>, env: Env): Promise<void> {
+  async queue(batch: MessageBatch<SourceJob | ProcessingJob>, env: Env): Promise<void> {
+    if (batch.queue === "uprivate-processing-jobs") {
+      for (const message of batch.messages) {
+        try { await processTask(env, (message.body as ProcessingJob).taskId); message.ack(); }
+        catch (error) {
+          if (error instanceof ProviderError && error.disposition !== "retry") message.ack();
+          else message.retry({delaySeconds:300});
+        }
+      }
+      return;
+    }
     for (const message of batch.messages) {
       try {
-        await collectSource(env, message.body.sourceId);
+        await collectSource(env, (message.body as SourceJob).sourceId);
         message.ack();
       } catch (error) {
-        console.error("collection failed", message.body.sourceId, error);
-        const state = await env.DB.prepare('SELECT next_fetch_at FROM sources WHERE id=?').bind(message.body.sourceId).first<{ next_fetch_at: string }>();
+        console.error("collection failed", (message.body as SourceJob).sourceId, error);
+        const state = await env.DB.prepare('SELECT next_fetch_at FROM sources WHERE id=?').bind((message.body as SourceJob).sourceId).first<{ next_fetch_at: string }>();
         const delaySeconds = Math.max(60, Math.min(43200, Math.ceil((Date.parse(state?.next_fetch_at ?? '') - Date.now()) / 1000) || 60));
-        console.warn('collection retry scheduled', { sourceId: message.body.sourceId, delaySeconds, attempts: message.attempts });
+        console.warn('collection retry scheduled', { sourceId: (message.body as SourceJob).sourceId, delaySeconds, attempts: message.attempts });
         message.retry({ delaySeconds });
       }
     }
   },
-} satisfies ExportedHandler<Env, SourceJob>;
+} satisfies ExportedHandler<Env, SourceJob | ProcessingJob>;
 
 async function runScheduled(controller: ScheduledController, env: Env) {
   const id = crypto.randomUUID();
@@ -135,7 +153,12 @@ async function runScheduled(controller: ScheduledController, env: Env) {
   try {
     if (controller.cron === '35 20 * * *') await maintainStorage(env);
     else if (controller.cron === '20 20 * * *') await adaptIntervals(env);
-    else await enqueueDueSources(env);
+    else {
+      await enqueueDueSources(env);
+      // Processing outages must never change the source scheduler outcome. D1 is the durable outbox.
+      try { await recoverDue(env); await enqueueNew(env); }
+      catch { console.error("intelligence dispatch failed; will recover next Cron"); }
+    }
     await env.DB.prepare("UPDATE scheduler_runs SET finished_at=?,status='success' WHERE id=?").bind(new Date().toISOString(), id).run();
   } catch (error) {
     await env.DB.prepare("UPDATE scheduler_runs SET finished_at=?,status='failed',error=? WHERE id=?").bind(new Date().toISOString(), String(error).slice(0,1000), id).run();

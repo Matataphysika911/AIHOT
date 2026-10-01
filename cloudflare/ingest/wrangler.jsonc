@@ -31,6 +31,10 @@
       {
         "binding": "SOURCE_QUEUE",
         "queue": "uprivate-source-jobs"
+      },
+      {
+        "binding": "PROCESSING_QUEUE",
+        "queue": "uprivate-processing-jobs"
       }
     ],
     "consumers": [
@@ -40,6 +44,14 @@
         "max_batch_timeout": 5,
         "max_retries": 3,
         "dead_letter_queue": "uprivate-source-jobs-dlq"
+      },
+      {
+        "queue": "uprivate-processing-jobs",
+        "max_batch_size": 1,
+        "max_batch_timeout": 5,
+        "max_concurrency": 1,
+        "max_retries": 3,
+        "dead_letter_queue": "uprivate-processing-jobs-dlq"
       }
     ]
   },
@@ -54,7 +66,19 @@
     "R2_CRITICAL_PERCENT": "85",
     "R2_CLEANUP_PERCENT": "90",
     "R2_SCAN_MAX_PAGES": "20",
-    "R2_DELETE_MAX_OBJECTS": "100"
+    "R2_DELETE_MAX_OBJECTS": "100",
+    "MODEL_CALLS_ENABLED": "false",
+    "INTELLIGENCE_DAILY_CALL_LIMIT": "100",
+    "INTELLIGENCE_HOURLY_CALL_LIMIT": "20"
   },
-  "account_id": "8681f9abc29572d2ea09be866b251519"
+  "account_id": "8681f9abc29572d2ea09be866b251519",
+  "rules": [
+    {
+      "type": "Text",
+      "globs": [
+        "**/*.txt"
+      ],
+      "fallthrough": false
+    }
+  ]
 }
