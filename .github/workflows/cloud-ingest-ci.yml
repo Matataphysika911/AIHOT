@@ -1,0 +1,27 @@
+name: Cloud Ingest CI
+
+on:
+  pull_request:
+    paths:
+      - "cloudflare/ingest/**"
+      - ".github/workflows/cloud-ingest-ci.yml"
+  push:
+    branches:
+      - "feat/cloudflare-ingestion-v1"
+    paths:
+      - "cloudflare/ingest/**"
+      - ".github/workflows/cloud-ingest-ci.yml"
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cloudflare/ingest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: npm install --ignore-scripts
+      - run: npm run typecheck
