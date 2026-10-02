@@ -98,7 +98,11 @@ Live ingest health independently shows providerConfigured=false,
 liveEnabled=false, with exactly 81 pre-existing successful **mock** ai_runs.
 No OpenAI/GLM key was configured and no paid model API was called by this task.
 Backend PostgreSQL tests/app smoke were not run because no local PostgreSQL,
-Docker or running app was available. Cloud CI is tracked on the PR separately.
+Docker or running app was available. Cloud Ingest CI passed on code commit `3592d58`, runs
+36965933509 and 36965929482, including intel-api and ingest jobs. Root Check
+run 36965933553 still fails both check/Docker at the previously documented
+`UNDEFINED_VALUE`, `packages/backend/src/publication/topics.ts:43`; downstream
+backend/smoke checks are skipped. The error was verified in both actual logs.
 
 **Strict double-review independence is not passed.** Both real interactive and
 Scheduled outputs disclose that A/B were evaluated in the same conversation.

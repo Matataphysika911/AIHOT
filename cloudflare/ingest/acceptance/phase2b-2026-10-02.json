@@ -95,7 +95,32 @@
       "passed": 31
     },
     "backend_postgres_tests": "not_run_no_local_PostgreSQL_or_Docker",
-    "app_smoke": "not_run_no_running_app"
+    "app_smoke": "not_run_no_running_app",
+    "github_ci": {
+      "code_commit": "3592d587d423f86115fd7adb93e0ae7962f627ed",
+      "cloud_ingest_ci": {
+        "status": "passed",
+        "run_ids": [
+          36965933509,
+          36965929482
+        ],
+        "jobs": {
+          "intel-api": "success",
+          "typecheck": "success"
+        }
+      },
+      "root_check": {
+        "status": "failed_preexisting_topic_seed",
+        "run_id": 36965933553,
+        "jobs": [
+          "check",
+          "docker"
+        ],
+        "error": "UNDEFINED_VALUE",
+        "location": "packages/backend/src/publication/topics.ts:43",
+        "backend_and_smoke_checks_skipped_after_seed_failure": true
+      }
+    }
   },
   "d1": {
     "candidate_comparison": [
