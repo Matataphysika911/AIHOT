@@ -12,6 +12,7 @@ import { independentScoreSchema, HYBRID_PROMPT_VERSION } from './processing';
 import { probeConnection } from './connectivity';
 import { z } from 'zod';
 import { probeSchema, saveProcessingProbe } from './probes';
+import { submissionSchema, applySchema, validateReviewResult, appendReview, applyReviewSubmission } from './submissions';
 
 export interface Env extends ReviewEnv {
   DB: D1Database;
@@ -52,6 +53,16 @@ export function makeReviewerServer(db:D1Database,role:Reviewer,authScopes:string
    if(clientId!=='https://chatgpt.com/oauth/client.json')return reply({saved:false,error:'chatgpt_client_required'});
    return reply(await saveReviewer(db,role,name as keyof typeof processingSchemas,args,clientId));
   });
+ }
+ if(role==='A')for(const name of ['validate_review_result','append_review_probe','submit_reviewer_a_result']) {
+  server.registerTool(name,{title:name,description:name==='validate_review_result'?'Pure schema and score arithmetic validation; no writes.':name==='append_review_probe'?'Append an idempotent review-shaped test receipt to an isolated probe table only; no production changes.':'Append to immutable submission inbox; does not modify article state or finalize a decision. Only inserts review_submissions. Admin apply is a separate explicit operation.',inputSchema:submissionSchema,
+   annotations:{...annotations,readOnlyHint:name==='validate_review_result'},_meta:meta},async args=>{
+    if(!allowed())return reply({saved:false,error:'exclusive_reviewer_scope_required'});
+    if(name!=='validate_review_result'&&clientId!=='https://chatgpt.com/oauth/client.json')return reply({saved:false,error:'chatgpt_client_required'});
+    const data=name==='validate_review_result'?validateReviewResult(args):await appendReview(db,args,clientId,name==='append_review_probe');
+    console.log(JSON.stringify({event:'phase2b2_tool',tool:name,id:args.id,task_id:args.scheduled_task_id,result:data}));
+    return {...reply(data),...(('valid' in data&&data.valid===false)?{isError:true}:{})};
+   });
  }
  return server;
 }
@@ -178,6 +189,13 @@ async function validOwnerKey(value: string, expected: string | undefined) {
 const defaultHandler = {
   async fetch(request: Request, env: Env) {
     const url = new URL(request.url);
+    if(url.pathname==='/admin/apply-review-submission') {
+      if(request.method!=='POST')return json({error:'method_not_allowed'},405);
+      if(!await validOwnerKey((request.headers.get('Authorization')??'').replace(/^Bearer /,''),env.OWNER_LOGIN_KEY))return json({error:'owner_authentication_failed'},401);
+      const body=await request.text();if(new TextEncoder().encode(body).byteLength>1024)return json({error:'request_too_large'},413);
+      try{return json(await applyReviewSubmission(env.DB,applySchema.parse(JSON.parse(body))));}
+      catch(error){if(error instanceof z.ZodError||error instanceof SyntaxError)return json({error:'invalid_apply_request'},400);throw error;}
+    }
     if (url.pathname === '/authorize') {
       try {
         if (request.method === 'GET') {

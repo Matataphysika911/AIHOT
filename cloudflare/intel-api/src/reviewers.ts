@@ -21,6 +21,10 @@ export async function getReviewerBatch(db:D1Database,role:Reviewer,input:unknown
  AND t.stage='score_a') AND a.score_b IS NULL AND a.processing_status='processing'`;
  const query=`SELECT ${factProjection} FROM articles a JOIN sources s ON s.id=a.source_id WHERE ${predicate}${args.article_id?' AND a.id=?':''} ORDER BY a.discovered_at DESC,a.id ASC LIMIT ?`;
  const rows=await db.prepare(query).bind(...(args.article_id?[args.article_id]:[]),args.limit).all();
+ if(role==='A')for(const row of rows.results){
+  const fact=await db.prepare('SELECT snapshot FROM mcp_article_facts WHERE id=?').bind(row.id).first<{snapshot:string}>();
+  if(fact)row.input_snapshot_hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(fact.snapshot)))].map(n=>n.toString(16).padStart(2,'0')).join('');
+ }
  return {articles:rows.results,count:rows.results.length,read_only:true,frozen_policy:policy};
 }
 export async function saveReviewer(db:D1Database,role:Reviewer,tool:keyof typeof processingSchemas,input:unknown,clientId:string) {
