@@ -1,0 +1,84 @@
+{
+  "ok": true,
+  "service": "uprivate-intelligence-ingest",
+  "sources": {
+    "total": 20,
+    "enabled": 19,
+    "healthy": 17,
+    "degraded": 3,
+    "failing": 0
+  },
+  "articles24h": {
+    "count": 697
+  },
+  "failedRuns24h": {
+    "count": 16
+  },
+  "storage": {
+    "policy": {
+      "retentionDays": 60,
+      "freeBytes": 10000000000,
+      "warning": 70,
+      "critical": 85,
+      "cleanup": 90,
+      "maxPages": 20,
+      "maxDeletes": 100
+    },
+    "latest": {
+      "id": "d04aa730-999a-42ab-87f2-314aa925d224",
+      "measured_at": "2026-10-01T20:35:52.519Z",
+      "provider_json": "{\"available\":true,\"configured\":true,\"querySucceeded\":true,\"source\":\"cloudflare_graphql\",\"scope\":\"account_latest_observed_buckets\",\"bytes\":10277521,\"buckets\":[{\"dimensions\":{\"bucketName\":\"uprivate-intelligence-raw\",\"datetime\":\"2026-10-01T19:50:00Z\"},\"max\":{\"metadataSize\":5815,\"objectCount\":55,\"payloadSize\":10271706,\"uploadCount\":0}}],\"billingGbMonth\":null,\"caveat\":\"Delayed samples, not an invoice or a complete account inventory. Free tier is shared account-wide; GB-month and operation quotas require billing/operations metrics.\"}",
+      "inventory_bytes": 10279835,
+      "inventory_objects": 56,
+      "inventory_complete": 1,
+      "status": "ok",
+      "usage_percent": 0.10279835000000001
+    },
+    "lastMaintenance": {
+      "id": "923acedc-2671-4c3c-94ef-93ee81ffb595",
+      "started_at": "2026-10-01T20:35:50.629Z",
+      "finished_at": "2026-10-01T20:35:53.128Z",
+      "status": "success",
+      "retention_days": 60,
+      "before_bytes": 10279835,
+      "before_objects": 56,
+      "after_bytes": 10279835,
+      "after_objects": 56,
+      "deleted_count": 0,
+      "deleted_bytes": 0,
+      "details_json": "{\"dryRun\":false,\"eligibleObjects\":0,\"inventoryComplete\":true,\"afterInventoryComplete\":true,\"provider\":{\"available\":true,\"configured\":true,\"querySucceeded\":true,\"source\":\"cloudflare_graphql\",\"scope\":\"account_latest_observed_buckets\",\"bytes\":10277521,\"buckets\":[{\"dimensions\":{\"bucketName\":\"uprivate-intelligence-raw\",\"datetime\":\"2026-10-01T19:50:00Z\"},\"max\":{\"metadataSize\":5815,\"objectCount\":55,\"payloadSize\":10271706,\"uploadCount\":0}}],\"billingGbMonth\":null,\"caveat\":\"Delayed samples, not an invoice or a complete account inventory. Free tier is shared account-wide; GB-month and operation quotas require billing/operations metrics.\"},\"metric\":{\"status\":\"ok\",\"percent\":0.10279835000000001},\"pressureCleanup\":false,\"cleanupTargetPercent\":85,\"pressureUnresolved\":false,\"deletionLimitReached\":false}",
+      "error": null
+    },
+    "stale": false,
+    "quotaScope": "account-wide GB-month; inventory is current bucket payload bytes",
+    "accountBillingQuotaStatus": "unknown; current bytes do not establish monthly billing or other-bucket coverage",
+    "notifications": "D1 status and Worker warning logs; Dashboard must poll /admin/storage/status"
+  },
+  "intelligence": {
+    "providerConfigured": false,
+    "liveEnabled": false,
+    "promptVersion": "robotics-intelligence.v1",
+    "states": [
+      {
+        "mode": "mock",
+        "status": "completed",
+        "count": 20
+      }
+    ],
+    "runs": [
+      {
+        "mode": "mock",
+        "status": "succeeded",
+        "count": 81,
+        "latency_ms": 0
+      }
+    ]
+  },
+  "lastScheduled": {
+    "cron": "*/15 * * * *",
+    "scheduled_at": "2026-10-02T04:30:50.000Z",
+    "finished_at": "2026-10-02T04:30:51.804Z",
+    "status": "success",
+    "error": null
+  }
+}

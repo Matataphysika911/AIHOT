@@ -83,3 +83,26 @@ issued tokens. This creates a temporary SDK OAuth grant and performs read-only
 D1 calls. SDK success must not be presented as ChatGPT or Scheduled success.
 
 See `../ingest/PHASE2A.md` for actual client acceptance and subsequent gates.
+
+## Phase 2B production MCP processing
+
+The same Worker now exposes `get_processing_policy`, `save_prefilter`,
+`save_score` (A/B), `save_structure`, and `finalize_processing`, in addition to
+both original reads and the isolated probe. Production writes require separately
+consented `processing:write`; `articles:read` and `probes:write` cannot write
+article decisions. `PROCESSING_ENABLED` controls tool exposure.
+
+Migration 0007 adds isolated `mcp_processing_runs`, `mcp_task_receipts` and
+`mcp_ai_runs` (equivalent audit view). SQL triggers enforce exclusive ownership,
+new/processing state, exact immutable factual snapshots, stage order and atomic
+stage writes/finalization. No queue/provider API is used. Provider is stored as
+`ChatGPT Plus Scheduled/MCP` or `ChatGPT Plus interactive/MCP` for new runs; earlier
+immutable rows retain `ChatGPT Plus/MCP`. Runtime labels are declared claims,
+which require external ChatGPT run evidence. Same-stage identical retries create
+no new rows; conflicting payloads never overwrite. Incomplete runs can resume
+under the same run id/client after OAuth reconnection; there is intentionally no
+automatic takeover of another run or arbitrary reset tool.
+
+Frozen policy: `industry/robotics/prompts/phase2b.v1.md`. The exact analysis and
+scoring V1 files are returned through the read tool. SDK scope tests are separate
+from actual Plus production processing acceptance. See `../ingest/PHASE2B.md`.

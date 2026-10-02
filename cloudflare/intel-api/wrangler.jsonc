@@ -17,5 +17,5 @@
     "simple": { "limit": 60, "period": 60 }
   }],
   "observability": { "enabled": true },
-  "vars": { "PROBE_ENABLED": "true" }
+  "vars": { "PROBE_ENABLED": "true", "PROCESSING_ENABLED": "true" }
 }

@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-export const statuses = ['new', 'processing', 'selected', 'near_selected', 'rejected', 'failed'] as const;
+export const statuses = ['new', 'processing', 'selected', 'near_selected', 'rejected', 'failed', 'completed'] as const;
 export const batchSchema = z.object({
   limit: z.number().int().min(1).max(20).default(5),
-  statuses: z.array(z.enum(statuses)).min(1).max(6).optional(),
+  statuses: z.array(z.enum(statuses)).min(1).max(7).optional(),
 }).strict();
 export const articleSchema = z.object({ id: z.string().min(1).max(128).regex(/^[a-zA-Z0-9_-]+$/) }).strict();
 

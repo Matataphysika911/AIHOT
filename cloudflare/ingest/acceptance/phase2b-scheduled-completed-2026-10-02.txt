@@ -1,0 +1,264 @@
+- link "Skip to content":
+  - /url: "#_R_trcuktdbntccged79l75_"
+- complementary:
+  - navigation "Show sidebar":
+    - button "Show sidebar"
+    - button "Show sidebar":
+    - button "New chat":
+      - generic: New chat
+    - button "Search":
+      - generic: Search
+    - button "Recents":
+      - generic: Recents
+    - button "Library":
+      - generic: Library
+    - button "Open profile menu"
+- main:
+  - heading "Scheduled" [level=1]
+  - button "Filter and sort tasks":
+  - generic: Search scheduled tasks
+  - searchbox "Search scheduled tasks"
+  - button "Add":
+    - generic: Add
+  - table "Scheduled tasks":
+    - row "Task Next run Scheduled":
+      - columnheader "Task":
+        - generic: Task
+      - columnheader "Next run"
+      - columnheader "Scheduled"
+    - row "GPT Dots Plus 开放 GPT Dots Plus 开放 Always on Monitoring":
+      - cell "GPT Dots Plus 开放 GPT Dots Plus 开放":
+        - generic: 🔓
+        - generic: GPT Dots Plus 开放
+        - button "GPT Dots Plus 开放"
+      - cell "Always on"
+      - generic: ·
+      - cell "Monitoring"
+  - complementary:
+    - separator "Resize workspace panes"
+    - generic: 🤖
+    - heading "Phase 2B 四篇无人值守验收" [level=2]
+    - status: Completed · Last run Today
+    - button "More task actions":
+    - button "Close task details":
+    - paragraph:
+      - generic: Last run
+      - generic: 1 minute ago
+    - paragraph:
+      - strong: 四篇均完成实际 MCP 处理与幂等验收；严格双评独立性未通过。
+      - text: 本次执行全程无人工确认、无 OAuth 阻塞，未发生错误或跳过。
+    - paragraph: 已实际读取冻结规则 robotics-plus-mcp.phase2b.v1、20 条 new 批次，并逐篇 get_article 确认四篇仍为 new。最终均返回 processing_status=completed。
+    - table:
+      - rowgroup:
+        - row "文章 article_id run_id":
+          - columnheader "文章"
+          - columnheader "article_id"
+          - columnheader "run_id"
+      - rowgroup:
+        - row "FuncBridge 05c19d36-266e-4869-928c-2a06994b77b8 phase2b-plus-scheduled-20261002-05c19d36":
+          - cell "FuncBridge"
+          - cell "05c19d36-266e-4869-928c-2a06994b77b8"
+          - cell "phase2b-plus-scheduled-20261002-05c19d36"
+        - row "Large Reward Models 0667260c-e339-4f40-9f8f-ad619da85f08 phase2b-plus-scheduled-20261002-0667260c":
+          - cell "Large Reward Models"
+          - cell "0667260c-e339-4f40-9f8f-ad619da85f08"
+          - cell "phase2b-plus-scheduled-20261002-0667260c"
+        - row "RADMCS 07dd57d3-35c2-4885-87a3-f71b9cf05a12 phase2b-plus-scheduled-20261002-07dd57d3":
+          - cell "RADMCS"
+          - cell "07dd57d3-35c2-4885-87a3-f71b9cf05a12"
+          - cell "phase2b-plus-scheduled-20261002-07dd57d3"
+        - row "GlassGuard 0ad04cfd-5c0c-4db7-855b-9e58cb60dea5 phase2b-plus-scheduled-20261002-0ad04cfd":
+          - cell "GlassGuard"
+          - cell "0ad04cfd-5c0c-4db7-855b-9e58cb60dea5"
+          - cell "phase2b-plus-scheduled-20261002-0ad04cfd"
+    - button "Copy table":
+    - button "Expand table":
+    - paragraph: 六维评分按指定权重计算：
+    - region "Scrollable table":
+      - table:
+        - rowgroup:
+          - row "文章 / slot industry .25 robotics .20 SoC .20 commercial .15 novelty .10 credibility .10 total":
+            - columnheader "文章 / slot"
+            - columnheader "industry .25"
+            - columnheader "robotics .20"
+            - columnheader "SoC .20"
+            - columnheader "commercial .15"
+            - columnheader "novelty .10"
+            - columnheader "credibility .10"
+            - columnheader "total"
+        - rowgroup:
+          - row "FuncBridge A 75 95 65 35 82 80 72.20":
+            - cell "FuncBridge A"
+            - cell "75"
+            - cell "95"
+            - cell "65"
+            - cell "35"
+            - cell "82"
+            - cell "80"
+            - cell "72.20":
+              - strong: "72.20"
+          - row "FuncBridge B 72 93 60 30 80 78 68.90":
+            - cell "FuncBridge B"
+            - cell "72"
+            - cell "93"
+            - cell "60"
+            - cell "30"
+            - cell "80"
+            - cell "78"
+            - cell "68.90":
+              - strong: "68.90"
+          - row "LRM A 80 96 70 35 85 80 74.95":
+            - cell "LRM A"
+            - cell "80"
+            - cell "96"
+            - cell "70"
+            - cell "35"
+            - cell "85"
+            - cell "80"
+            - cell "74.95":
+              - strong: "74.95"
+          - row "LRM B 77 94 65 30 82 78 71.55":
+            - cell "LRM B"
+            - cell "77"
+            - cell "94"
+            - cell "65"
+            - cell "30"
+            - cell "82"
+            - cell "78"
+            - cell "71.55":
+              - strong: "71.55"
+          - row "RADMCS A 63 90 62 30 78 80 66.45":
+            - cell "RADMCS A"
+            - cell "63"
+            - cell "90"
+            - cell "62"
+            - cell "30"
+            - cell "78"
+            - cell "80"
+            - cell "66.45":
+              - strong: "66.45"
+          - row "RADMCS B 60 88 58 25 75 78 63.25":
+            - cell "RADMCS B"
+            - cell "60"
+            - cell "88"
+            - cell "58"
+            - cell "25"
+            - cell "75"
+            - cell "78"
+            - cell "63.25":
+              - strong: "63.25"
+          - row "GlassGuard A 80 98 78 40 83 85 78.00":
+            - cell "GlassGuard A"
+            - cell "80"
+            - cell "98"
+            - cell "78"
+            - cell "40"
+            - cell "83"
+            - cell "85"
+            - cell "78.00":
+              - strong: "78.00"
+          - row "GlassGuard B 77 96 74 35 80 82 74.70":
+            - cell "GlassGuard B"
+            - cell "77"
+            - cell "96"
+            - cell "74"
+            - cell "35"
+            - cell "80"
+            - cell "82"
+            - cell "74.70":
+              - strong: "74.70"
+    - button:
+    - button:
+    - paragraph: 服务端最终真实返回：
+    - table:
+      - rowgroup:
+        - row "文章 Prefilter final_score selection_status":
+          - columnheader "文章"
+          - columnheader "Prefilter"
+          - columnheader "final_score"
+          - columnheader "selection_status"
+      - rowgroup:
+        - row "FuncBridge PASS 70 selected":
+          - cell "FuncBridge"
+          - cell "PASS"
+          - cell "70"
+          - cell "selected"
+        - row "LRM PASS 73 selected":
+          - cell "LRM"
+          - cell "PASS"
+          - cell "73"
+          - cell "selected"
+        - row "RADMCS PASS 64 near-selected":
+          - cell "RADMCS"
+          - cell "PASS"
+          - cell "64"
+          - cell "near-selected"
+        - row "GlassGuard PASS 76 selected":
+          - cell "GlassGuard"
+          - cell "PASS"
+          - cell "76"
+          - cell "selected"
+    - button:
+    - button:
+    - paragraph: 四个最终分均符合 floor(mean(A,B))；来源均为 T1_5，选择阈值为 65。
+    - paragraph:
+      - text: 下表逐项汇总五阶段真实返回。每格为
+      - strong: 首次 (saved, inserted) → 相同参数重放 (saved, inserted)
+      - text: ：
+    - table:
+      - rowgroup:
+        - row "阶段 FuncBridge LRM RADMCS GlassGuard":
+          - columnheader "阶段"
+          - columnheader "FuncBridge"
+          - columnheader "LRM"
+          - columnheader "RADMCS"
+          - columnheader "GlassGuard"
+      - rowgroup:
+        - row "save_prefilter true,true → true,false true,true → true,false true,true → true,false true,true → true,false":
+          - cell "save_prefilter"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+        - row "save_score A true,true → true,false true,true → true,false true,true → true,false true,true → true,false":
+          - cell "save_score A"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+        - row "save_score B true,true → true,false true,true → true,false true,true → true,false true,true → true,false":
+          - cell "save_score B"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+        - row "save_structure true,true → true,false true,true → true,false true,true → true,false true,true → true,false":
+          - cell "save_structure"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+        - row "finalize_processing true,true → true,false true,true → true,false true,true → true,false true,true → true,false":
+          - cell "finalize_processing"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+          - cell "true,true → true,false"
+    - button:
+    - button:
+    - paragraph:
+      - text: 共
+      - strong: 20 次首次写入、20 次完全相同参数重放
+      - text: ，所有重放均未新增记录。
+    - paragraph:
+      - text: 本次无人值守处理有实际工具调用证据：40 次写调用全部直接返回成功，没有请求人工介入。但
+      - strong: A/B 在同一会话内评估，没有隔离上下文证据，不能声称严格独立性成功
+      - text: ；该限制已写入评分理由。
+    - paragraph: Structure 仅使用规定字段，事实与分析已区分，未披露参数明确标注。依据范围仅为接口返回的摘要。未调用网页搜索、SQL、SDK 或任何付费模型 API，未执行 Event Grouping/Hotness/Daily/Weekly。
+    - button "Show more":
+      - generic: Show more
+    - button "Open chat":
+      - text: Open chat
+    - heading "Previous runs" [level=3]
+    - paragraph: No previous runs
+- status
