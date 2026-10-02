@@ -83,6 +83,13 @@ evidence.checks.read_scope_cannot_write_production={isError:true,oauth_step_up_c
 const policy=await client.callTool({name:'get_processing_policy',arguments:{}});
 assert.equal(policy.structuredContent.prompt_version,'robotics-plus-mcp.phase2b.v1');
 evidence.policy=policy.structuredContent;
+const optional=await client.callTool({name:'get_independent_review_policy',arguments:{}});
+assert.equal(optional.structuredContent.prompt_version,'robotics-plus-agnes-mcp.phase2b.v1');
+assert.ok(tools.tools.some(t=>t.name==='run_independent_score_b'));
+const deniedReview=await client.callTool({name:'run_independent_score_b',arguments:{article_id:'does-not-exist',run_id:'phase2b-hybrid-interactive-scope-negative',prompt_version:'robotics-plus-agnes-mcp.phase2b.v1'}});
+assert.equal(deniedReview.isError,true);assert.ok(deniedReview._meta['mcp/www_authenticate']);
+evidence.optional_policy=optional.structuredContent;
+evidence.checks.read_scope_cannot_call_optional_paid_review={isError:true,oauth_step_up_challenge:true};
 evidence.tools = tools.tools;
 const batch = await client.callTool({ name: 'get_processing_batch', arguments: { limit: 3, statuses: ['new'] } });
 assert.equal(batch.isError, undefined);

@@ -1,9 +1,11 @@
 import { z } from 'zod';
 import { CATEGORIES, CATEGORY_TAGS, TOPIC_TAGS, ENTITY_TAGS } from '../../ingest/src/taxonomy.ts';
 export const PROMPT_VERSION = 'robotics-plus-mcp.phase2b.v1';
+export const HYBRID_PROMPT_VERSION = 'robotics-plus-agnes-mcp.phase2b.v1';
 const id = z.string().min(1).max(128).regex(/^[a-zA-Z0-9_-]+$/);
 const text = z.string().trim().min(1).max(1600);
-const base = { article_id: id, run_id: id, prompt_version: z.literal(PROMPT_VERSION) };
+const base = { article_id: id, run_id: id, prompt_version: z.enum([PROMPT_VERSION,HYBRID_PROMPT_VERSION]) };
+export const independentScoreSchema = z.object({article_id:id,run_id:id,prompt_version:z.literal(HYBRID_PROMPT_VERSION),model:z.enum(['agnes-2.5-flash','agnes-3.0-flash']).optional()}).strict();
 export const prefilterSchema = z.object({...base, status: z.enum(['PASS','UNKNOWN','BLOCK']), reason: text}).strict();
 export const weights = { industry_impact: .25, robotics_relevance: .2, soc_relevance: .2, commercial_signal: .15, technical_novelty: .1, source_credibility: .1 };
 const dimensions = z.object(Object.fromEntries(Object.keys(weights).map(k => [k,z.number().min(0).max(100)]))).strict();
@@ -24,18 +26,21 @@ export async function saveProduction(db:D1Database,tool:keyof typeof processingS
   if(Math.abs(total-args.total)>0.001) return {saved:false,error:'weighted_total_mismatch',expected_total:total};
  }
  const stage=tool==='save_prefilter'?'prefilter':tool==='save_score'?`score_${args.slot.toLowerCase()}`:tool==='save_structure'?'structure':'finalize';
- const version=args.prompt_version??PROMPT_VERSION;
  const payload=canonical(Object.fromEntries(Object.entries(args).filter(([k])=>!['article_id','run_id','prompt_version','slot'].includes(k))));
  const digest=await hash(payload);
  const run=await db.prepare('SELECT * FROM mcp_processing_runs WHERE run_id=?').bind(args.run_id).first<any>();
+ const version=args.prompt_version??run?.prompt_version??PROMPT_VERSION;
  if(run&&(run.article_id!==args.article_id||run.caller_client_id!==clientId||run.prompt_version!==version))return {saved:false,error:'run_id_conflict'};
  const receipt=await db.prepare('SELECT payload_hash FROM mcp_task_receipts WHERE run_id=? AND stage=?').bind(args.run_id,stage).first<any>();
  if(receipt)return receipt.payload_hash===digest?{saved:true,inserted:false,run_id:args.run_id,stage}:{saved:false,error:'receipt_conflict'};
  if(!run&&stage!=='prefilter')return {saved:false,error:'prefilter_required'};
- const provider=run?.provider ?? (args.run_id.startsWith('phase2b-plus-scheduled-') ? 'ChatGPT Plus Scheduled/MCP' : 'ChatGPT Plus interactive/MCP');
+ const hybrid=version===HYBRID_PROMPT_VERSION;
+ if(hybrid&&!/^phase2b-hybrid-(scheduled|interactive)-/.test(args.run_id))return {saved:false,error:'hybrid_run_prefix_required'};
+ const scheduled=args.run_id.startsWith(hybrid?'phase2b-hybrid-scheduled-':'phase2b-plus-scheduled-');
+ const provider=run?.provider ?? `${scheduled?'ChatGPT Plus Scheduled/MCP':'ChatGPT Plus interactive/MCP'}${hybrid?' (AGNES optional)':''}`;
  const statements=[];
  if(!run)statements.push(db.prepare(`INSERT INTO mcp_processing_runs(run_id,article_id,caller_client_id,provider,runtime_claim,prompt_version,input_snapshot)
- SELECT ?,id,?,?,?,?,snapshot FROM mcp_article_facts WHERE id=?`).bind(args.run_id,clientId,provider,args.run_id.startsWith('phase2b-plus-scheduled-')?'ChatGPT Plus Scheduled/MCP (declared)':'ChatGPT Plus interactive/MCP (declared)',version,args.article_id));
+ SELECT ?,id,?,?,?,?,snapshot FROM mcp_article_facts WHERE id=?`).bind(args.run_id,clientId,provider,`${scheduled?'ChatGPT Plus Scheduled/MCP':'ChatGPT Plus interactive/MCP'} (declared)`,version,args.article_id));
  statements.push(db.prepare('INSERT INTO mcp_task_receipts(run_id,stage,payload,payload_hash,provider,prompt_version,caller_client_id) VALUES(?,?,?,?,?,?,?)').bind(args.run_id,stage,payload,digest,provider,version,clientId));
  try {await db.batch(statements);} catch {
   // A competing identical write can win between our read and the transaction.

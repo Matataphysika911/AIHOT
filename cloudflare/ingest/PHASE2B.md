@@ -123,3 +123,13 @@ Machine-readable result: `acceptance/phase2b-2026-10-02.json`, with supporting
 D1 snapshots, runtime output/config, SDK and live-health evidence.
 No Event Grouping/Hotness/Daily/Weekly was started. PR #2 stays Draft/unmerged.
 Official Scheduled guidance consulted: https://learn.chatgpt.com/docs/automations
+
+## Optional AGNES follow-up (2026-10-02)
+
+The user subsequently authorized optional AGNES API as independent score B with
+Plus score A and a Plus fallback. This does not alter the original no-API cohort.
+See [PHASE2B-AGNES.md](./PHASE2B-AGNES.md) and
+[phase2b-optional-agnes-2026-10-02.json](./acceptance/phase2b-optional-agnes-2026-10-02.json).
+Connectivity for AGNES 2.5 passed, but actual frozen-rubric scoring currently
+returns HTTP 429, including after its prior Retry-After elapsed. Independent
+A/B acceptance and new unattended AGNES validation remain incomplete.

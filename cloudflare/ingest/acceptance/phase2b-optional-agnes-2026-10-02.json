@@ -1,0 +1,81 @@
+{
+  "phase": "2B optional AGNES standalone scoring",
+  "accepted": false,
+  "overall_independent_dual_review_accepted": false,
+  "verified_at": "2026-10-02T10:30:32.286Z",
+  "worker": "uprivate-intelligence-api",
+  "worker_version": "84624abe-ebff-43fa-802a-3a5f3621ce88",
+  "model": "agnes-2.5-flash",
+  "stage": "score_b",
+  "article_id": "01e6d863-1fe2-433a-bfb3-2c40c300c228",
+  "prompt": "Frozen industry/robotics/scoring.v1.md via existing provider score_b transport",
+  "provider_execution": "Cloudflare Worker / AGNES API (user-authorized)",
+  "api_key_source": "Cloudflare Secret AGNES_API_KEY; rotated by user",
+  "http_status": 429,
+  "retry_after_seconds": 762,
+  "response_id": null,
+  "usage": null,
+  "score": null,
+  "input_isolation": {
+    "original_source_facts_only": true,
+    "no_score_a_or_reasoning": true,
+    "no_raw_references": true,
+    "no_conversation_history": true
+  },
+  "immutable_checks": {
+    "article_all_fields_unchanged": true,
+    "factual_snapshot_unchanged": true,
+    "production_stage_receipt_count_unchanged": true
+  },
+  "idempotency": {
+    "replay_inserted": false,
+    "same_receipt": true,
+    "extra_model_calls": 0
+  },
+  "budget": {
+    "cumulative_limit": 11,
+    "reviews": 3,
+    "probes": 6,
+    "used": 9,
+    "remaining": 2
+  },
+  "interactive": {
+    "run_id": "phase2b-hybrid-interactive-20261002-round2-01e6d863",
+    "score_a": 77.45,
+    "score_b": 75.15,
+    "score_b_provider": "ChatGPT Plus fallback/MCP",
+    "independence": "not_verified",
+    "final_score": 76,
+    "processing_status": "completed",
+    "tool_confirmation_appeared": true
+  },
+  "new_scheduled_task": {
+    "created": false,
+    "reason": "User requested standalone scoring verification first; scoring remains blocked by 429"
+  },
+  "tests": {
+    "intel_api": 23,
+    "intel_api_typecheck": "passed",
+    "ingest": 18,
+    "ingest_typecheck": "passed",
+    "root_typecheck": "passed",
+    "postgres_backend": "not run; PostgreSQL/Docker unavailable"
+  },
+  "pr": {
+    "number": 2,
+    "draft": true,
+    "merged": false
+  },
+  "unresolved": "AGNES fronting Cloudflare rejects Worker requests with error 1015 (rate limiting). Exact rule, account/key/IP matching and shared egress cause are not proven.",
+  "latest_connectivity": {
+    "verified_at": "2026-10-02T10:38:24.334Z",
+    "model": "agnes-2.5-flash",
+    "http_status": 429,
+    "body": "error code: 1015",
+    "server": "cloudflare",
+    "cf_ray": "a44313cbcfb63167-SEA",
+    "retry_after_seconds": 290,
+    "response_id": null,
+    "score_test_started": false
+  }
+}

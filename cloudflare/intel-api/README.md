@@ -1,8 +1,9 @@
 # uPrivate Intelligence API — Phase 2A
 
 Isolated Cloudflare Worker at https://uprivate-intelligence-api.wdhnlx.workers.dev/mcp.
-It reads the Phase 1.2 D1 database, without touching the ingestion Worker, queues,
-R2, model providers, article processing state or scoring fields.
+It reads the Phase 1.2 D1 database and supports audited Phase 2B processing.
+Ingestion, queues and R2 remain separate. An optional AGNES reviewer is available
+only through the restricted production tool described below.
 
 ## Read tools
 
@@ -95,7 +96,7 @@ article decisions. `PROCESSING_ENABLED` controls tool exposure.
 Migration 0007 adds isolated `mcp_processing_runs`, `mcp_task_receipts` and
 `mcp_ai_runs` (equivalent audit view). SQL triggers enforce exclusive ownership,
 new/processing state, exact immutable factual snapshots, stage order and atomic
-stage writes/finalization. No queue/provider API is used. Provider is stored as
+stage writes/finalization. The original pure Plus path uses no queue/provider API. Provider is stored as
 `ChatGPT Plus Scheduled/MCP` or `ChatGPT Plus interactive/MCP` for new runs; earlier
 immutable rows retain `ChatGPT Plus/MCP`. Runtime labels are declared claims,
 which require external ChatGPT run evidence. Same-stage identical retries create
@@ -106,3 +107,63 @@ automatic takeover of another run or arbitrary reset tool.
 Frozen policy: `industry/robotics/prompts/phase2b.v1.md`. The exact analysis and
 scoring V1 files are returned through the read tool. SDK scope tests are separate
 from actual Plus production processing acceptance. See `../ingest/PHASE2B.md`.
+
+## Optional independent AGNES score B
+
+The original pure Plus policy/version remains available. The optional policy
+`get_independent_review_policy` uses `robotics-plus-agnes-mcp.phase2b.v1` and
+run prefixes `phase2b-hybrid-interactive-` / `phase2b-hybrid-scheduled-`.
+Plus performs prefilter, score A, structure and finalize. Between A and structure,
+`run_independent_score_b(article_id,run_id,prompt_version,model?)` constructs a fresh
+AGNES request using bounded original source evidence and the frozen scoring rubric.
+No A score, reasoning, processing fields, raw references or conversational history
+are sent. It reuses the existing OpenAI-compatible provider transport, validates
+the response and saves B. The fixed AGNES endpoint is not caller-configurable.
+
+AGNES is optional. Missing configuration, disabled calls, a hard lifetime budget
+or provider errors record `fallback_allowed=true`; Plus can then write score B.
+This records `ChatGPT Plus fallback/MCP` and `independence=not_verified` instead
+of claiming that same-conversation dual scoring is independent. A pending call
+whose Worker execution was interrupted remains blocked for investigation;
+unknown billed outcomes are never automatically retried. Successfully received
+responses resume without a new request. Identical completed calls replay receipts.
+
+Migration 0008 adds `mcp_external_reviews` and a trigger that prohibits hybrid B
+without the validated API response or an explicitly recorded fallback. The audit
+view reports per-stage provider, billing path, requested/response model, response
+ID, usage and fallback reason. Original receipts and facts are preserved.
+Wrangler 4.144.0's query-based migration executor returned `incomplete input` for
+the trigger; remote file import succeeds. Use `wrangler d1 execute
+uprivate-intelligence --remote --file ../ingest/migrations/0008_optional_agnes_review.sql
+--yes`, then register the successfully applied name in `d1_migrations`. Do not
+rerun either 0007 or 0008 on a database where the tables already exist.
+
+Local defaults remain disabled. Deployment enables only this bounded MCP review:
+`wrangler deploy --var AGNES_REVIEW_ENABLED:true`. Store `AGNES_API_KEY` using
+`wrangler secret put AGNES_API_KEY`; never commit it. The key was initially uploaded
+from the user's existing local credential and later rotated by the user in the
+API Worker's dashboard; cloud calls read the Worker secret
+and do not require the user's computer to be on. `AGNES_MODEL=agnes-2.5-flash`,
+`AGNES_REVIEW_CALL_LIMIT=5` caps all reserved API calls for this acceptance cohort
+(including failed/unknown calls). Budget increases require an intentional deploy.
+This does not enable the ingest Worker's background API processing.
+
+Migration 0009 adds `mcp_provider_probes`. Owner-authenticated
+`POST /admin/agnes-connectivity` accepts only a fixed probe id and either
+`agnes-2.5-flash` or `agnes-3.0-flash`; it sends synthetic evidence through the same
+cloud transport without reading or changing articles. Probes and B reviews share
+the same permanent budget, including failures/unknown outcomes. Replay reads the
+original receipt, never retries. The owner-only GET returns configuration and a
+SHA-256 key fingerprint for rotation diagnostics, without a model request or key.
+
+On 2026-10-02 the user authorized one additional model-3 probe after the original
+five attempts, then explicitly selected model 2.5 and added five more attempts.
+The live cumulative limit is therefore 11; the checked-in default remains 5 and
+disabled. Deploy with explicit `--var AGNES_REVIEW_CALL_LIMIT:11` only for this
+authorized acceptance cohort. Never delete or reset receipts to regain budget.
+
+Migration 0010 adds stage, source id/input and validated-output fields to the probe
+receipt. An owner can request `stage=score_b` with one `article_id` to diagnose the
+exact frozen production rubric against original facts. It never sends saved A/B
+or writes article fields / production stage receipts. Same probe id is bound to
+model/stage/article; mismatched reuse rejects and identical replay costs nothing.
