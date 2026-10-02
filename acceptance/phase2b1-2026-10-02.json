@@ -1,0 +1,230 @@
+{
+  "phase": "2B.1",
+  "recorded_at": "2026-10-02",
+  "status": "awaiting_cloud_execution",
+  "phase_2_completed": false,
+  "phase_3_started": false,
+  "pr_merged": false,
+  "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+  "worker_version": "61ad77eb-0b74-4408-822e-e9a252f70aef",
+  "reviewer_endpoints": {
+    "A": "/mcp/reviewer-a",
+    "B": "/mcp/reviewer-b"
+  },
+  "scopes": {
+    "A": [
+      "processing:a"
+    ],
+    "B": [
+      "processing:b"
+    ]
+  },
+  "legacy_tools_preserved": true,
+  "paid_model_api_calls_performed": 0,
+  "agnes_enabled": false,
+  "interactive": {
+    "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+    "chat_urls": {
+      "A": "https://chatgpt.com/c/6abfa2e6-68b8-83ea-842c-f711ca5c8554",
+      "B": "https://chatgpt.com/c/6abfa5fe-1658-83e9-9dea-37796a93ebfa"
+    },
+    "independent_contexts_verified": true,
+    "b_response_keys": [
+      "articles",
+      "count",
+      "read_only",
+      "frozen_policy"
+    ],
+    "b_article_keys": [
+      "id",
+      "source_id",
+      "canonical_url",
+      "title",
+      "summary",
+      "author",
+      "published_at",
+      "discovered_at",
+      "is_backfill",
+      "publish_eligible",
+      "source_name",
+      "source_kind",
+      "source_tier",
+      "source_first_party"
+    ],
+    "b_contains_reviewer_outputs": false,
+    "receipt_count": 5,
+    "receipts": [
+      {
+        "reviewer_run_id": "phase2b1_interactive_a_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "A",
+        "scheduled_task_id": "interactive_a_20261002",
+        "context_id": "6abfa2e6-68b8-83ea-842c-f711ca5c8554",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:38:08",
+        "stage": "prefilter",
+        "payload_hash": "6796888836137f03e328a654477f34c1edba7eedefe84085fd7aefd9f4971fc8",
+        "receipt_created_at": "2026-10-02 12:38:09"
+      },
+      {
+        "reviewer_run_id": "phase2b1_interactive_a_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "A",
+        "scheduled_task_id": "interactive_a_20261002",
+        "context_id": "6abfa2e6-68b8-83ea-842c-f711ca5c8554",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:38:08",
+        "stage": "score_a",
+        "payload_hash": "1afe5d5c4dc27c25de93e9d3103d4c93994af2a1ef34ce8d033b6b7b7d68de5a",
+        "receipt_created_at": "2026-10-02 12:38:42"
+      },
+      {
+        "reviewer_run_id": "phase2b1_interactive_b_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "B",
+        "scheduled_task_id": "interactive_b_20261002",
+        "context_id": "6abfa5fe-1658-83e9-9dea-37796a93ebfa",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:40:29",
+        "stage": "score_b",
+        "payload_hash": "c10720f6a72a36942852745cda47424dcd4d8ef071430f7daad4901fc92c8578",
+        "receipt_created_at": "2026-10-02 12:40:30"
+      },
+      {
+        "reviewer_run_id": "phase2b1_interactive_b_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "B",
+        "scheduled_task_id": "interactive_b_20261002",
+        "context_id": "6abfa5fe-1658-83e9-9dea-37796a93ebfa",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:40:29",
+        "stage": "structure",
+        "payload_hash": "3eb2bdd815f2b056fc41abf18b0fb96d5ea791724a8b32374497d1b956419064",
+        "receipt_created_at": "2026-10-02 12:40:41"
+      },
+      {
+        "reviewer_run_id": "phase2b1_interactive_b_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "B",
+        "scheduled_task_id": "interactive_b_20261002",
+        "context_id": "6abfa5fe-1658-83e9-9dea-37796a93ebfa",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:40:29",
+        "stage": "finalize",
+        "payload_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "receipt_created_at": "2026-10-02 12:40:46"
+      }
+    ],
+    "identical_replay_inserted": false,
+    "final_result": {
+      "id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+      "prefilter_status": "PASS",
+      "score_a": 77,
+      "score_b": 70.55,
+      "final_score": 73,
+      "selection_status": "selected",
+      "processing_status": "completed"
+    },
+    "deterministic_final_expected": 73,
+    "threshold": 65,
+    "finalize_contains_client_final_decision": false,
+    "prompt_precision_correction": "Initial A instruction incorrectly requested integer total. Worker rejected mismatch; A adjusted commercial dimension from 35 to 32 and saved 77. The instruction was corrected for B and both cloud tasks to weighted totals at two decimal places. Persisted A receipt was not overwritten."
+  },
+  "immutability": {
+    "before_count": 699,
+    "after_count": 699,
+    "checked_fields": [
+      "id",
+      "source_id",
+      "canonical_url",
+      "url_hash",
+      "external_id",
+      "title",
+      "summary",
+      "author",
+      "published_at",
+      "discovered_at",
+      "raw_r2_key",
+      "is_backfill",
+      "publish_eligible",
+      "content_hash",
+      "created_at",
+      "event_id",
+      "tier",
+      "first_party"
+    ],
+    "changed": [],
+    "all_original_facts_unchanged": true,
+    "before_sha256": "3f1b81bd7f05cea9adc457ded2d3023d6f9280a21a806f9b0fa701957ab97c8f",
+    "after_sha256": "4474f325c4986e020cee5dd73f7125d7ba38aac3963691c74a9437f97c4f1a29"
+  },
+  "cloud_tasks": [
+    {
+      "reviewer": "A",
+      "task_id": "6abfa77b9c748190ad639ee9066c5dd9",
+      "name": "Reviewer A Task — Phase 2B.1",
+      "scheduled_at": "2026-10-02T21:00:00+08:00",
+      "context_label": "phase2b1_cloud_task_a_20261002",
+      "source": "cloud",
+      "one_shot": true,
+      "new_chat_each_run": true,
+      "status": "scheduled",
+      "url": "https://chatgpt.com/scheduled?automationId=6abfa77b9c748190ad639ee9066c5dd9&automationSource=cloud"
+    },
+    {
+      "reviewer": "B",
+      "task_id": "6abfa81650fc8190821fa2202f6edf12",
+      "name": "Reviewer B Task — Phase 2B.1",
+      "scheduled_at": "2026-10-02T21:15:00+08:00",
+      "context_label": "phase2b1_cloud_task_b_20261002",
+      "source": "cloud",
+      "one_shot": true,
+      "new_chat_each_run": true,
+      "status": "scheduled",
+      "url": "https://chatgpt.com/scheduled?automationId=6abfa81650fc8190821fa2202f6edf12&automationSource=cloud"
+    }
+  ],
+  "cohort": [
+    {
+      "id": "0d3d0d83-1c7b-4f6b-a578-0c5180e58e14",
+      "title": "SonarVoxNet: Diver Detection in 3D Bounding Box using 3D Sonar"
+    },
+    {
+      "id": "1623a308-c58f-4afa-bd85-13e6770151d4",
+      "title": "OpenSpace Lab Solution to the IROS 2026 Indoor Exploration Competition"
+    },
+    {
+      "id": "176ed6c4-cd1c-4694-a2cc-301a36e2469b",
+      "title": "Admissibility-Preserving Control for Multi-Input Systems with Joint Capacity Constraints"
+    }
+  ],
+  "cloud_acceptance": {
+    "unattended_execution": "pending",
+    "platform_run_chats": "pending",
+    "d1_independent_receipts": "pending",
+    "repeat_run_idempotency": "pending",
+    "completed_slot_cleanup": "pending"
+  },
+  "validation": {
+    "intel_api_typecheck": "passed",
+    "intel_api_tests": 27,
+    "ingestion_typecheck": "passed",
+    "ingestion_tests": 18,
+    "root_typecheck": "passed",
+    "web_build": "passed",
+    "web_tests": 31,
+    "sdk_live_read_and_scope_checks": "passed (SDK, not model scoring)",
+    "root_database_tests": "blocked: local PostgreSQL unavailable (ECONNREFUSED 127.0.0.1:5432); interrupted after confirming repeated database failures",
+    "site_smoke": "not verified: site/API test runtime requires unavailable PostgreSQL"
+  }
+}
