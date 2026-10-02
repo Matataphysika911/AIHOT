@@ -59,7 +59,8 @@
     "ingest": 18,
     "ingest_typecheck": "passed",
     "root_typecheck": "passed",
-    "postgres_backend": "not run; PostgreSQL/Docker unavailable"
+    "postgres_backend": "not run; PostgreSQL/Docker unavailable",
+    "live_read_sdk": "passed; actual production/review scope denied for read token"
   },
   "pr": {
     "number": 2,
@@ -77,5 +78,15 @@
     "retry_after_seconds": 290,
     "response_id": null,
     "score_test_started": false
+  },
+  "source_commit": "ce4aed59d8da344fc5b2e716abfc5d0698d68c44",
+  "current_worker_version": "e56104e5-dd93-4575-b69e-dd9d50021690",
+  "ci": {
+    "code_commit": "ce4aed59d8da344fc5b2e716abfc5d0698d68c44",
+    "cloud_ingest_run": 36996806955,
+    "cloud_ingest_conclusion": "success",
+    "root_check_run": 36996807022,
+    "root_check_conclusion": "failure",
+    "verified_failure": "Both check and Docker fail at pre-existing UNDEFINED_VALUE in packages/backend/src/publication/topics.ts:43; root typecheck/build/web tests passed; backend/smoke skipped."
   }
 }
