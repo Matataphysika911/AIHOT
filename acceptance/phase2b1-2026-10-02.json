@@ -1,12 +1,12 @@
 {
   "phase": "2B.1",
   "recorded_at": "2026-10-02",
-  "status": "awaiting_cloud_execution",
+  "status": "blocked_cloud_write_safety_check",
   "phase_2_completed": false,
   "phase_3_started": false,
   "pr_merged": false,
   "prompt_version": "robotics-plus-mcp.phase2b1.v1",
-  "worker_version": "61ad77eb-0b74-4408-822e-e9a252f70aef",
+  "worker_version": "e1e2b2d4-bb3a-4228-a444-1586b261e698",
   "reviewer_endpoints": {
     "A": "/mcp/reviewer-a",
     "B": "/mcp/reviewer-b"
@@ -166,7 +166,8 @@
     "changed": [],
     "all_original_facts_unchanged": true,
     "before_sha256": "3f1b81bd7f05cea9adc457ded2d3023d6f9280a21a806f9b0fa701957ab97c8f",
-    "after_sha256": "4474f325c4986e020cee5dd73f7125d7ba38aac3963691c74a9437f97c4f1a29"
+    "after_sha256": "ce75026ecc2801140792c58b7b02122bcf5ad7b3286295c143bb0b0f364efb6a",
+    "after_cloud_a_retry": true
   },
   "cloud_tasks": [
     {
@@ -178,20 +179,36 @@
       "source": "cloud",
       "one_shot": true,
       "new_chat_each_run": true,
-      "status": "scheduled",
-      "url": "https://chatgpt.com/scheduled?automationId=6abfa77b9c748190ad639ee9066c5dd9&automationSource=cloud"
+      "status": "completed_failed",
+      "url": "https://chatgpt.com/scheduled?automationId=6abfa77b9c748190ad639ee9066c5dd9&automationSource=cloud",
+      "run_chat_url": "https://chatgpt.com/c/86927253-e6c4-832e-a3fa-6044a30b681d",
+      "outcome": "Read succeeded; save_prefilter blocked by platform security; 0 D1 writes, independently verified."
     },
     {
       "reviewer": "B",
       "task_id": "6abfa81650fc8190821fa2202f6edf12",
       "name": "Reviewer B Task — Phase 2B.1",
-      "scheduled_at": "2026-10-02T21:15:00+08:00",
+      "scheduled_at": "2026-10-02T21:30:00+08:00",
       "context_label": "phase2b1_cloud_task_b_20261002",
       "source": "cloud",
       "one_shot": true,
       "new_chat_each_run": true,
       "status": "scheduled",
       "url": "https://chatgpt.com/scheduled?automationId=6abfa81650fc8190821fa2202f6edf12&automationSource=cloud"
+    },
+    {
+      "reviewer": "A",
+      "task_id": "6abfac714ddc819093cbf5cc4e420f1c",
+      "name": "Reviewer A Task — Phase 2B.1 retry",
+      "scheduled_at": "2026-10-02T21:15:00+08:00",
+      "context_label": "phase2b1_cloud_task_a_retry_20261002",
+      "source": "cloud",
+      "one_shot": true,
+      "new_chat_each_run": true,
+      "status": "completed_failed",
+      "url": "https://chatgpt.com/scheduled?automationId=6abfac714ddc819093cbf5cc4e420f1c&automationSource=cloud",
+      "run_chat_url": "https://chatgpt.com/c/dcf991ff-b5c0-8331-87a3-71e29f0ad247",
+      "outcome": "All three original-facts reads succeeded; save_prefilter blocked by OpenAI safety checks even after explicit user-approved Allow all tools; zero successful writes. No alternate writer used."
     }
   ],
   "cohort": [
@@ -209,11 +226,16 @@
     }
   ],
   "cloud_acceptance": {
-    "unattended_execution": "pending",
+    "unattended_execution": "failed: A writes blocked by platform; B still scheduled",
     "platform_run_chats": "pending",
-    "d1_independent_receipts": "pending",
-    "repeat_run_idempotency": "pending",
-    "completed_slot_cleanup": "pending"
+    "d1_independent_receipts": "not achieved: zero cloud receipts after both A runs",
+    "repeat_run_idempotency": "not achieved for cloud; interactive identical stage replay passed",
+    "completed_slot_cleanup": "pending",
+    "blocked_action": "Reviewer A save_prefilter",
+    "platform_error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "permission_reconfirmation_needed": false,
+    "no_bypass_attempted": true,
+    "next_requirement": "Platform must permit the existing scoped cloud write tools; more user permission alone is insufficient. Do not mark Phase 2 completed."
   },
   "validation": {
     "intel_api_typecheck": "passed",
@@ -225,6 +247,50 @@
     "web_tests": 31,
     "sdk_live_read_and_scope_checks": "passed (SDK, not model scoring)",
     "root_database_tests": "blocked: local PostgreSQL unavailable (ECONNREFUSED 127.0.0.1:5432); interrupted after confirming repeated database failures",
-    "site_smoke": "not verified: site/API test runtime requires unavailable PostgreSQL"
-  }
+    "site_smoke": "not verified: site/API test runtime requires unavailable PostgreSQL",
+    "cloud_ingest_ci": "passed on f8544dd003a010a467172bc4fc776c93d929b8c3, runs 37009995946 / 37009988835",
+    "root_ci": "typecheck, web build/tests passed; check/docker failed at existing UNDEFINED_VALUE in publication/topics.ts:43 before backend tests/smoke; log verified, run 37009995967"
+  },
+  "plugin_permission": {
+    "A": "Allow all tools (Elevated risk)",
+    "B": "Allow all tools (Elevated risk)",
+    "explicit_user_approval": true,
+    "oauth_scopes_unchanged": true
+  },
+  "cloud_cohort_after_a_retry": [
+    {
+      "id": "0d3d0d83-1c7b-4f6b-a578-0c5180e58e14",
+      "prefilter_status": null,
+      "score_a": null,
+      "score_b": null,
+      "final_score": null,
+      "selection_status": null,
+      "processing_status": "new"
+    },
+    {
+      "id": "1623a308-c58f-4afa-bd85-13e6770151d4",
+      "prefilter_status": null,
+      "score_a": null,
+      "score_b": null,
+      "final_score": null,
+      "selection_status": null,
+      "processing_status": "new"
+    },
+    {
+      "id": "176ed6c4-cd1c-4694-a2cc-301a36e2469b",
+      "prefilter_status": null,
+      "score_a": null,
+      "score_b": null,
+      "final_score": null,
+      "selection_status": null,
+      "processing_status": "new"
+    }
+  ],
+  "evidence_files": [
+    "cloud-after-a-retry-d1.json",
+    "cloud-a-retry-failed-ui.txt",
+    "cloud-a-retry-chat.txt",
+    "interactive-d1.json",
+    "sdk-interactive-b-input.json"
+  ]
 }

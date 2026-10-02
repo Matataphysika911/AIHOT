@@ -1,6 +1,6 @@
 # uPrivate Robotics Intelligence Phase 2B.1
 
-Status: **deployed; interactive independent dual review passed; cloud acceptance pending**.
+Status: **deployed; interactive independent dual review passed; cloud writes blocked by ChatGPT platform safety checks**.
 Phase 2 is not completed. Phase 3 has not started. Draft PR #2 is not merged.
 
 ## Deployed changes
@@ -22,19 +22,25 @@ A saved PASS and score 77 in its own context. The independently created B chat r
 
 The initial interactive A prompt incorrectly requested an integer total. Worker rejected 77 for weighted 77.45; A then adjusted a dimension and saved exact 77. The instruction was corrected to two decimal places for B and both cloud tasks. No persisted receipt was overwritten. This does not constitute blind scoring for the orchestrator; the separate B model received none of A's outputs.
 
-## Cloud tasks awaiting execution
+## Cloud execution evidence and blocker
 
 | Reviewer | Actual cloud task ID | One-shot time (China) | Context |
 |---|---|---|---|
-| A | 6abfa77b9c748190ad639ee9066c5dd9 | Oct 2 21:00 | New chat every run |
-| B | 6abfa81650fc8190821fa2202f6edf12 | Oct 2 21:15 | New chat every run |
+| A retry | 6abfac714ddc819093cbf5cc4e420f1c | Oct 2 21:15; completed with failure | New chat every run |
+| B | 6abfa81650fc8190821fa2202f6edf12 | Oct 2 21:30 | New chat every run |
+
+The initial A one-shot (`6abfa77b9c748190ad639ee9066c5dd9`) auto-ran at 21:00 and completed with failure: original facts read succeeded but platform security blocked save_prefilter. D1 independently confirmed zero cloud writes. Its actual run chat is https://chatgpt.com/c/86927253-e6c4-832e-a3fa-6044a30b681d. The completed task cannot be edited; its evidence is preserved. The user explicitly approved persistent A/B plugin permission. Both dedicated plugins now use the platform’s Allow all tools setting, with server OAuth scopes still exclusively processing:a / processing:b. The separate A retry also automatically ran in a new execution chat https://chatgpt.com/c/dcf991ff-b5c0-8331-87a3-71e29f0ad247. All three reads succeeded, but save_prefilter was again blocked by OpenAI safety checks even with Allow all tools already applied. D1 independently confirmed zero cloud receipts and all three articles remained new. B is independently scheduled for 21:30. No alternate writer, broader scope or API was used to bypass the rejection.
 
 Both prompts are pinned to the same three new articles listed in the acceptance JSON. The role-specific stable audit context labels are explicitly labels; execution chat URLs must be recorded separately after the platform runs. Initial task creation was protected from writes until the actual task IDs were configured. Repeated runs must return no eligible articles and add no receipts. Complete the one-shot tasks after acceptance without modifying Daily/Weekly budget or other scheduled tasks.
 
-Unattended execution, no-confirmation behavior, independent cloud D1 receipts, platform run contexts, repeat-run idempotence and slot cleanup remain pending. Creation alone is not acceptance. Only after these real execution checks pass can Phase 2 be marked completed.
+Cloud unattended write acceptance failed. The platform error was "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending." No more specific reason was provided. The user has already authorized persistent permissions; repeated user confirmation cannot establish that the platform will execute writes. Independent cloud D1 receipts and cloud repeat-run idempotence are not achieved. Phase 2 remains incomplete. Both A one-shot tasks automatically completed and no longer consume active slots; B remains pending. Existing Daily/Weekly tasks were not modified. All 699 pre-existing fact snapshots still compare equal after both A cloud attempts.
 
 ## Validation
 
 Intelligence Worker: typecheck and 27 tests passed. Ingestion: typecheck and 18 tests passed. Root typecheck, web build and 31 web tests passed. Live official MCP SDK read/scope checks passed; SDK does not perform model scoring. Root database tests/site smoke could not be fully verified because local PostgreSQL is unavailable (ECONNREFUSED 127.0.0.1:5432). No model API, AGNES, GLM or paid provider calls were performed. AGNES is disabled in the deployed Worker.
 
 Machine-readable evidence: [acceptance/phase2b1-2026-10-02.json](acceptance/phase2b1-2026-10-02.json).
+
+Cloud Ingest CI passed on `f8544dd003a010a467172bc4fc776c93d929b8c3` (runs 37009995946 / 37009988835). Root Check typecheck/build/web tests passed, then check/docker failed at the existing `UNDEFINED_VALUE` in `packages/backend/src/publication/topics.ts:43` before backend/smoke checks (run 37009995967; actual log verified).
+
+Latest deployment `e1e2b2d4-bb3a-4228-a444-1586b261e698` corrects the frozen A instruction to state that BLOCK closes automatically in the database; no permissions, tools or scoring behavior changed. Typecheck and all 27 intelligence tests passed again.

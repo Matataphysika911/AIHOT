@@ -39,7 +39,7 @@ export function makeReviewerServer(db:D1Database,role:Reviewer,authScopes:string
  const policy=processingPolicy();
  const frozen={prompt_version:REVIEWER_PROMPT_VERSION,scoring:policy.scoring,weights:policy.weights,
   ...(role==='A'?{analysis:policy.analysis,thresholds:policy.thresholds,understand_floor:policy.understand_floor}:{categories:policy.categories,tags:policy.tags}),
-  instructions:role==='A'?'Prefilter then save score A. BLOCK stops; the Worker completes blocked articles through B. Use independent task/context IDs.':
+  instructions:role==='A'?'Prefilter then save score A. BLOCK stops; the database automatically completes blocked articles. Use independent task/context IDs.':
   'Score B from original facts and this frozen rubric only. Save structure then finalize. Never read A or choose final score/selection; Worker does that. Use independent task/context IDs.'};
  const meta={securitySchemes:[{type:'oauth2',scopes:[`processing:${role.toLowerCase()}`]}]};
  const allowed=()=>reviewerAllowed(authScopes,role);
