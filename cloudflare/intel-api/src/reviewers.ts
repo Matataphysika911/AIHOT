@@ -16,14 +16,24 @@ export const factProjection=`a.id,a.source_id,substr(a.canonical_url,1,2048) AS 
 export async function getReviewerBatch(db:D1Database,role:Reviewer,input:unknown,policy:Record<string,unknown>) {
  const args=reviewerBatchSchema.parse(input);
  const predicate=role==='A'?`a.processing_status='new' AND a.intelligence_revision IS NULL AND a.prefilter_status IS NULL AND a.score_a IS NULL AND a.score_b IS NULL`:
- `EXISTS(SELECT 1 FROM mcp_processing_runs p JOIN mcp_task_receipts t USING(run_id)
- WHERE p.article_id=a.id AND p.prompt_version='${REVIEWER_PROMPT_VERSION}' AND p.status='processing'
- AND t.stage='score_a') AND a.score_b IS NULL AND a.processing_status='processing'`;
- const query=`SELECT ${factProjection} FROM articles a JOIN sources s ON s.id=a.source_id WHERE ${predicate}${args.article_id?' AND a.id=?':''} ORDER BY a.discovered_at DESC,a.id ASC LIMIT ?`;
- const rows=await db.prepare(query).bind(...(args.article_id?[args.article_id]:[]),args.limit).all();
- if(role==='A')for(const row of rows.results){
-  const fact=await db.prepare('SELECT snapshot FROM mcp_article_facts WHERE id=?').bind(row.id).first<{snapshot:string}>();
-  if(fact)row.input_snapshot_hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(fact.snapshot)))].map(n=>n.toString(16).padStart(2,'0')).join('');
+ `EXISTS(SELECT 1 FROM review_submissions s JOIN review_submission_applications v ON v.submission_id=s.id
+ JOIN mcp_processing_runs p ON p.run_id=s.reviewer_run_id
+ WHERE s.article_id=a.id AND s.reviewer='A' AND s.prompt_version='${REVIEWER_PROMPT_VERSION}'
+ AND v.validation_status='applied' AND p.status='processing' AND p.input_snapshot=f.snapshot)
+ AND a.prefilter_status IN ('PASS','UNKNOWN') AND a.score_a IS NOT NULL AND a.score_b IS NULL AND a.processing_status='processing'`;
+ // Snapshot equality is the exact preimage of the validated SHA-256 dedup key.
+ // Filter before LIMIT so submitted articles cannot starve the next batch.
+ const query=`SELECT ${factProjection},f.snapshot FROM articles a JOIN sources s ON s.id=a.source_id
+ JOIN mcp_article_facts f ON f.id=a.id WHERE ${predicate}
+ AND NOT EXISTS(SELECT 1 FROM review_submissions submitted WHERE submitted.article_id=a.id
+ AND submitted.reviewer=? AND submitted.prompt_version=? AND submitted.input_snapshot=f.snapshot)
+ ${args.article_id?' AND a.id=?':''} ORDER BY a.discovered_at DESC,a.id ASC LIMIT ?`;
+ const candidates=await db.prepare(query).bind(role,REVIEWER_PROMPT_VERSION,...(args.article_id?[args.article_id]:[]),args.limit).all();
+ const rows:{results:Record<string,any>[]}={results:[]};
+ for(const candidate of candidates.results){
+  const {snapshot,...row}=candidate;
+  row.input_snapshot_hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(String(snapshot))))].map(n=>n.toString(16).padStart(2,'0')).join('');
+  rows.results.push(row);
  }
  return {articles:rows.results,count:rows.results.length,read_only:true,frozen_policy:policy};
 }
