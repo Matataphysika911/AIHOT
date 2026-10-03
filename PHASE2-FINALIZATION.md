@@ -71,7 +71,9 @@ Both actual cloud recurring tasks are active, each run in a new chat; their acce
 - D1 migration 0013 applied. Historical 0012 existed in D1 but lacked a migration-ledger entry; its schema was checked against committed SQL, ledger reconciled, then 0013 applied. No old business/audit rows were replaced semantically.
 - Local root typecheck, web build and 31 web tests passed; ingestion typecheck and 18 tests passed; intel-api typecheck and 36 tests passed. Relevant tests cover dual apply/replay, blindness, dedup-before-LIMIT, rollback, distinct identity, BLOCK/UNKNOWN and historical migration preservation.
 - Cloud Ingest CI on `cd5b6dafb19d574b4b8137a674170654a7c9a75d`: [passed](https://github.com/Matataphysika911/AIHOT/actions/runs/37095089680).
-- Root Check on that commit: [failed](https://github.com/Matataphysika911/AIHOT/actions/runs/37095089681) at the existing topic seed `UNDEFINED_VALUE` issue (topics lacking tags); Docker startup/smoke also failed. Backend/smoke are not claimed passed. Local PostgreSQL was unavailable. PR remains Draft with these limitations visible.
+- Root Check on that commit: [failed](https://github.com/Matataphysika911/AIHOT/actions/runs/37095089681) at the existing topic seed `UNDEFINED_VALUE` issue (topics lacking tags); Docker setup failed at the same seed error; smoke was skipped. Backend/smoke are not claimed passed. Local PostgreSQL was unavailable. PR remains Draft with these limitations visible.
+
+Final code/config commit `ada0cf3fb7cfdbee912f51f0d231d4f7c1276c91`: [Cloud Ingest CI passed](https://github.com/Matataphysika911/AIHOT/actions/runs/37096531742); [Root Check failed](https://github.com/Matataphysika911/AIHOT/actions/runs/37096531732) at the same existing seed defect.
 
 Machine-readable evidence: [acceptance/phase2-finalization-2026-10-03.json](acceptance/phase2-finalization-2026-10-03.json), including cohort before/after rows, immutable A/B payloads, hashes, identities, new task receipts/application audit, apply responses, SDK B response, schedule prompts/config and CI. Separate execution-message snapshots preserve actual A/B/repeat chat evidence without credentials.
 

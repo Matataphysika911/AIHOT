@@ -1518,7 +1518,13 @@
     "root_check_run": 37095089681,
     "root_check": "failure",
     "root_reason": "pre-existing topics seed UNDEFINED_VALUE (topics missing tags), Docker smoke startup failed; backend/smoke not passed",
-    "local": "root typecheck, web build, 31 web tests; ingest typecheck+18 tests; intel-api typecheck+36 tests passed; PostgreSQL backend/smoke unavailable locally"
+    "local": "root typecheck, web build, 31 web tests; ingest typecheck+18 tests; intel-api typecheck+36 tests passed; PostgreSQL backend/smoke unavailable locally",
+    "final_code_config_commit": "ada0cf3fb7cfdbee912f51f0d231d4f7c1276c91",
+    "final_cloud_ingest_run": 37096531742,
+    "final_cloud_ingest": "success",
+    "final_root_check_run": 37096531732,
+    "final_root_check": "failure",
+    "docker_reason": "setup seed UNDEFINED_VALUE, same missing topic tags defect"
   },
   "pending_24h": [
     "timer-triggered 2h recurring runs",
