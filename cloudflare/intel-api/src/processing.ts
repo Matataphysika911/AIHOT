@@ -2,10 +2,11 @@ import { z } from 'zod';
 import { CATEGORIES, CATEGORY_TAGS, TOPIC_TAGS, ENTITY_TAGS } from '../../ingest/src/taxonomy.ts';
 export const PROMPT_VERSION = 'robotics-plus-mcp.phase2b.v1';
 export const REVIEWER_PROMPT_VERSION = 'robotics-plus-mcp.phase2b1.v1';
+export const EVIDENCE_PROMPT_VERSION = 'robotics-plus-mcp.phase2-optimization.v2';
 export const HYBRID_PROMPT_VERSION = 'robotics-plus-agnes-mcp.phase2b.v1';
 const id = z.string().min(1).max(128).regex(/^[a-zA-Z0-9_-]+$/);
 const text = z.string().trim().min(1).max(1600);
-const base = { article_id: id, run_id: id, prompt_version: z.enum([PROMPT_VERSION,HYBRID_PROMPT_VERSION,REVIEWER_PROMPT_VERSION]) };
+const base = { article_id: id, run_id: id, prompt_version: z.enum([PROMPT_VERSION,HYBRID_PROMPT_VERSION,REVIEWER_PROMPT_VERSION,EVIDENCE_PROMPT_VERSION]) };
 export const independentScoreSchema = z.object({article_id:id,run_id:id,prompt_version:z.literal(HYBRID_PROMPT_VERSION),model:z.enum(['agnes-2.5-flash','agnes-3.0-flash']).optional()}).strict();
 export const prefilterSchema = z.object({...base, status: z.enum(['PASS','UNKNOWN','BLOCK']), reason: text}).strict();
 export const weights = { industry_impact: .25, robotics_relevance: .2, soc_relevance: .2, commercial_signal: .15, technical_novelty: .1, source_credibility: .1 };
@@ -15,7 +16,8 @@ const array = z.array(z.string().trim().min(1).max(100)).max(20);
 export const structureSchema = z.object({...base, category: z.string().refine(k=>CATEGORIES.some(c=>c.key===k)),
  tags: array.refine(tags=>tags.every(t=>[...CATEGORY_TAGS,...TOPIC_TAGS,...ENTITY_TAGS].includes(t as never))),
  companies: array, fact_frame: z.object({subject:text, action:text, object:text, evidence:text}).strict(),
- robotics_relevance:text, soc_relevance:text, commercial_signal:text }).strict();
+ robotics_relevance:text, soc_relevance:text, commercial_signal:text,
+ facts:z.array(text).max(12).optional(), inferences:z.array(text).max(12).optional(), unknowns:z.array(text).max(12).optional() }).strict();
 export const finalizeSchema = z.object({article_id:id,run_id:id}).strict();
 export const processingSchemas = {save_prefilter:prefilterSchema,save_score:scoreSchema,save_structure:structureSchema,finalize_processing:finalizeSchema};
 async function hash(s:string) {return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(n=>n.toString(16).padStart(2,'0')).join('');}
@@ -26,13 +28,13 @@ export async function saveProduction(db:D1Database,tool:keyof typeof processingS
   const total=Math.round(Object.entries(weights).reduce((sum,[k,w])=>sum+args.dimension_scores[k]*w,0)*100)/100;
   if(Math.abs(total-args.total)>0.001) return {saved:false,error:'weighted_total_mismatch',expected_total:total};
  }
- if(args.prompt_version===REVIEWER_PROMPT_VERSION && !reviewerAudit)return {saved:false,error:'reviewer_endpoint_required'};
+ if([REVIEWER_PROMPT_VERSION,EVIDENCE_PROMPT_VERSION].includes(args.prompt_version) && !reviewerAudit)return {saved:false,error:'reviewer_endpoint_required'};
  const stage=tool==='save_prefilter'?'prefilter':tool==='save_score'?`score_${args.slot.toLowerCase()}`:tool==='save_structure'?'structure':'finalize';
  const payload=canonical(Object.fromEntries(Object.entries(args).filter(([k])=>!['article_id','run_id','prompt_version','slot'].includes(k))));
  const digest=await hash(payload);
  const run=await db.prepare('SELECT * FROM mcp_processing_runs WHERE run_id=?').bind(args.run_id).first<any>();
  const version=args.prompt_version??run?.prompt_version??PROMPT_VERSION;
- if(version===REVIEWER_PROMPT_VERSION&&!reviewerAudit)return {saved:false,error:'reviewer_endpoint_required'};
+ if([REVIEWER_PROMPT_VERSION,EVIDENCE_PROMPT_VERSION].includes(version)&&!reviewerAudit)return {saved:false,error:'reviewer_endpoint_required'};
  if(run&&(run.article_id!==args.article_id||run.caller_client_id!==clientId||run.prompt_version!==version))return {saved:false,error:'run_id_conflict'};
  const receipt=await db.prepare('SELECT payload_hash FROM mcp_task_receipts WHERE run_id=? AND stage=?').bind(args.run_id,stage).first<any>();
  if(receipt)return receipt.payload_hash===digest?{saved:true,inserted:false,run_id:args.run_id,stage}:{saved:false,error:'receipt_conflict'};

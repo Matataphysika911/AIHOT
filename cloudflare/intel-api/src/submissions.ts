@@ -1,16 +1,17 @@
+import { inputHash } from './evidence.ts';
 import { z } from 'zod';
-import { prefilterSchema, scoreSchema, structureSchema, REVIEWER_PROMPT_VERSION, weights } from './processing.ts';
+import { prefilterSchema, scoreSchema, structureSchema, REVIEWER_PROMPT_VERSION, EVIDENCE_PROMPT_VERSION, weights } from './processing.ts';
 
 const id=z.string().min(1).max(128).regex(/^[a-zA-Z0-9_-]+$/);
 const identity={id,article_id:id,reviewer_run_id:id,scheduled_task_id:id,context_id:id,
- prompt_version:z.literal(REVIEWER_PROMPT_VERSION),input_snapshot_hash:z.string().regex(/^[a-f0-9]{64}$/)};
+ prompt_version:z.enum([REVIEWER_PROMPT_VERSION,EVIDENCE_PROMPT_VERSION]),input_snapshot_hash:z.string().regex(/^[a-f0-9]{64}$/)};
 const scorePayload=scoreSchema.omit({article_id:true,run_id:true,prompt_version:true,slot:true});
 export const submissionSchema=z.object({...identity,reviewer:z.literal('A'),
  payload:z.object({prefilter:prefilterSchema.omit({article_id:true,run_id:true,prompt_version:true}),score:scorePayload.optional()}).strict()}).strict();
 export const bSubmissionSchema=z.object({...identity,reviewer:z.literal('B'),
  payload:z.object({score_b:scorePayload,structure:structureSchema.omit({article_id:true,run_id:true,prompt_version:true})}).strict()}).strict();
 const anySubmissionSchema=z.discriminatedUnion('reviewer',[submissionSchema,bSubmissionSchema]);
-export const receiptLookupSchema=z.object({article_id:id,prompt_version:z.literal(REVIEWER_PROMPT_VERSION),input_snapshot_hash:z.string().regex(/^[a-f0-9]{64}$/)}).strict();
+export const receiptLookupSchema=z.object({article_id:id,prompt_version:z.enum([REVIEWER_PROMPT_VERSION,EVIDENCE_PROMPT_VERSION]),input_snapshot_hash:z.string().regex(/^[a-f0-9]{64}$/)}).strict();
 // Own-role only; B must never receive the A submission or application context.
 export async function getReviewSubmission(db:D1Database,role:'A'|'B',input:unknown,clientId:string) {
  const a=receiptLookupSchema.parse(input);
@@ -31,6 +32,7 @@ export function validateReviewResult(input:unknown) {
  const parsed=anySubmissionSchema.safeParse(input);
  if(!parsed.success)return {valid:false,error:'invalid_submission_schema'};
  const a=parsed.data;
+ if(a.prompt_version===EVIDENCE_PROMPT_VERSION&&a.reviewer==='B'&&['facts','inferences','unknowns'].some(k=>!Array.isArray((a.payload.structure as any)[k])))return {valid:false,error:'evidence_structure_fields_required'};
  if(a.reviewer==='A'&&(a.payload.prefilter.status==='BLOCK')!==!a.payload.score)return {valid:false,error:'score_required_unless_blocked'};
  const score=a.reviewer==='A'?a.payload.score:a.payload.score_b;
  if(score){
@@ -46,7 +48,7 @@ export async function appendReview(db:D1Database,input:unknown,clientId:string,p
  if(existing)return existing.id===a.id&&existing.payload_json===serialized&&existing.caller_client_id===clientId?
   {saved:true,inserted:false,id:a.id,production_articles_modified:false}:{saved:false,error:'submission_conflict'};
  const facts=await db.prepare('SELECT f.snapshot,a.processing_status FROM mcp_article_facts f JOIN articles a ON a.id=f.id WHERE f.id=?').bind(a.article_id).first<any>();
- if(!facts||facts.processing_status!==(a.reviewer==='A'?'new':'processing')||await digest(facts.snapshot)!==a.input_snapshot_hash)return {saved:false,error:'article_not_new_or_snapshot_changed'};
+ if(!facts||facts.processing_status!==(a.reviewer==='A'?'new':'processing')||await inputHash(db,a.article_id,facts.snapshot,a.prompt_version)!==a.input_snapshot_hash)return {saved:false,error:'article_not_new_or_snapshot_changed'};
  if(a.reviewer==='B'){
   const parent=await appliedA(db,a.article_id);
   if(!parent||parent.input_snapshot_hash!==a.input_snapshot_hash||parent.prompt_version!==a.prompt_version||parent.caller_client_id!==clientId)return {saved:false,error:'applied_a_required'};
@@ -78,7 +80,7 @@ export async function applyReviewSubmission(db:D1Database,input:unknown) {
    a=anySubmissionSchema.parse(input);
    if(a.id!==row.id||a.article_id!==row.article_id||a.reviewer!==row.reviewer||a.reviewer_run_id!==row.reviewer_run_id||a.scheduled_task_id!==row.scheduled_task_id||a.context_id!==row.context_id||a.prompt_version!==row.prompt_version||a.input_snapshot_hash!==row.input_snapshot_hash||row.caller_client_id!=='https://chatgpt.com/oauth/client.json')error='reviewer_identity_conflict';
    const facts=await db.prepare('SELECT snapshot FROM mcp_article_facts WHERE id=?').bind(a.article_id).first<any>();
-   if(!facts||facts.snapshot!==row.input_snapshot||await digest(facts.snapshot)!==a.input_snapshot_hash||await digest(row.payload_json)!==row.payload_hash)error='snapshot_or_payload_changed';
+   if(!facts||facts.snapshot!==row.input_snapshot||await inputHash(db,a.article_id,facts.snapshot,a.prompt_version)!==a.input_snapshot_hash||await digest(row.payload_json)!==row.payload_hash)error='snapshot_or_payload_changed';
   }
  }catch{error='invalid_submission_schema';}
  if(error||!a){
@@ -94,8 +96,9 @@ export async function applyReviewSubmission(db:D1Database,input:unknown) {
  const provider='ChatGPT Plus separate reviewers/MCP';
  const processingRun=a.reviewer==='A'?a.reviewer_run_id:parent.reviewer_run_id;
  const stmts=[];
+ const reviewerTable=a.prompt_version===EVIDENCE_PROMPT_VERSION?'mcp_reviewer_runs_v2':'mcp_reviewer_runs';
  if(a.reviewer==='A')stmts.push(db.prepare(`INSERT INTO mcp_processing_runs(run_id,article_id,caller_client_id,provider,runtime_claim,prompt_version,input_snapshot) VALUES(?,?,?,?,?,?,?)`).bind(a.reviewer_run_id,a.article_id,row.caller_client_id,provider,'Submission identity declared; external Scheduled run evidence required',a.prompt_version,row.input_snapshot));
- stmts.push(db.prepare(`INSERT INTO mcp_reviewer_runs(reviewer_run_id,processing_run_id,article_id,reviewer,scheduled_task_id,context_id,caller_client_id,prompt_version,input_snapshot) VALUES(?,?,?,?,?,?,?,?,?)`).bind(a.reviewer_run_id,processingRun,a.article_id,a.reviewer,a.scheduled_task_id,a.context_id,row.caller_client_id,a.prompt_version,row.input_snapshot));
+ stmts.push(db.prepare(`INSERT INTO ${reviewerTable}(reviewer_run_id,processing_run_id,article_id,reviewer,scheduled_task_id,context_id,caller_client_id,prompt_version,input_snapshot) VALUES(?,?,?,?,?,?,?,?,?)`).bind(a.reviewer_run_id,processingRun,a.article_id,a.reviewer,a.scheduled_task_id,a.context_id,row.caller_client_id,a.prompt_version,row.input_snapshot));
  const stages:[string,unknown][]=a.reviewer==='A'?[['prefilter',a.payload.prefilter],...(a.payload.score?[['score_a',a.payload.score] as [string,unknown]]:[])]:[['score_b',a.payload.score_b],['structure',a.payload.structure],['finalize',{}]];
  for(const [stage,payload] of stages){
   const serialized=canonical(payload);

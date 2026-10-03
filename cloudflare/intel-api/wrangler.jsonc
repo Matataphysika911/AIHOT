@@ -11,12 +11,13 @@
     "binding": "DB", "database_name": "uprivate-intelligence",
     "database_id": "796475b7-6819-48fe-b61e-16971d36c985"
   }],
+  "r2_buckets": [{"binding":"RAW_ARCHIVE","bucket_name":"uprivate-intelligence-raw"}],
   "kv_namespaces": [{ "binding": "OAUTH_KV", "id": "ad4b5092f4a6449593e8d916c3ea4586" }],
   "ratelimits": [{
     "name": "REQUEST_LIMITER", "namespace_id": "2001",
     "simple": { "limit": 60, "period": 60 }
   }],
-  "triggers": { "crons": ["5,35 */2 * * *"] },
+  "triggers": { "crons": ["*/10 * * * *"] },
   "observability": { "enabled": true },
   "vars": { "PROBE_ENABLED": "true", "PROCESSING_ENABLED": "true", "AGNES_REVIEW_ENABLED": "false", "AGNES_MODEL": "agnes-2.5-flash", "AGNES_REVIEW_CALL_LIMIT": "5" }
 }
