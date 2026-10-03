@@ -46,7 +46,7 @@ export async function getReviewerBatch(db:D1Database,role:Reviewer,input:unknown
   if(evidenceEnv)row.prompt_version=effectiveVersion;
   rows.results.push(row);
  }
- return {articles:rows.results,count:rows.results.length,read_only:true,frozen_policy:policy};
+ return {articles:rows.results,count:rows.results.length,read_only:role==='B'||!evidenceEnv,frozen_policy:policy};
 }
 export async function saveReviewer(db:D1Database,role:Reviewer,tool:keyof typeof processingSchemas,input:unknown,clientId:string) {
  const args=reviewerSchemas[tool].parse(input) as any;
