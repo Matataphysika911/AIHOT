@@ -1,4 +1,14 @@
-# uPrivate Intelligence API — Phase 2A
+# uPrivate Intelligence API — Phase 2 Finalization
+
+Current production path: isolated Scheduled Reviewer A/B append-only submissions,
+then Cloudflare deterministic apply. Phase 2 is **functional complete / pending
+24h stability acceptance**. See [finalization report](../../PHASE2-FINALIZATION.md).
+Reviewer A runs every 2 hours at minute 0; Reviewer B every 2 hours at minute 25,
+each in a new chat. Worker apply uses `5,35 */2 * * *`; ingestion stays 15 minutes.
+The 2h cadence reduces duplicate-review/trigger noise and Scheduled Task budget
+use, aligns with ingestion, and is sufficiently timely for robotics news.
+The legacy generic production tools described below are historical interfaces;
+neither minimal reviewer endpoint exposes them. AGNES remains disabled.
 
 Isolated Cloudflare Worker at https://uprivate-intelligence-api.wdhnlx.workers.dev/mcp.
 It reads the Phase 1.2 D1 database and supports audited Phase 2B processing.
