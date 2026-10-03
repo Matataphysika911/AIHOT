@@ -1,0 +1,845 @@
+{
+  "observedAt": "2026-10-01T14:56:35.722Z",
+  "mockOnly": true,
+  "liveAIValidated": false,
+  "tasks": [
+    {
+      "id": "ee1d407cb31d19ef12b8ef63339105133b83a7c7525fc8fae0e688e467d274f9",
+      "article_id": "1e1df043-34cf-4da6-9abd-5b4dfdd5a1ac",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 2,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":60,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "e6c4296a1c3668628a44b779567c8e1afaa61074712f36f72546698e7cb7c6d3",
+      "article_id": "b0ebb8b4-6a99-483d-a2cf-b87acdc9bee3",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":60,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "8f6c3c306585b1c8e199b3ad19fd506b6bd0f6c5bf2e5248ef0f55aacb818cfd",
+      "article_id": "c0bbae51-9094-4a02-af59-2f04b3324275",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":60,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "128ed75cf2773c1c37083a14d220d5da8598d7b0399ec5abb07838b30c8ee8c5",
+      "article_id": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":60,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "3ba50d9f68f00d126ee5a54d1c14d5ce944cb78f62516e4fe2f4e50e991f0691",
+      "article_id": "4099687f-f733-4c3e-9f82-8836a2478eaa",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":65,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "04e14a397aee92feee75a6435c83821b5eb4d0c74266198043b90811dbcf4e51",
+      "article_id": "811ca1c7-e919-45f7-993c-b751893dc359",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":65,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "95941998e8d7f46bb813bf0cbe449a6cde0aaffb044c16100290b4d11ac1db4a",
+      "article_id": "45ffe2c8-525e-4b22-bc16-cb3d79ddc6c7",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":65,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "e241070ecd5a3482178e7315bdf161c7b208c909e98fcb95c33089327176acdc",
+      "article_id": "6e779528-cd3f-46a3-8a8b-7ef67acb6c34",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":76,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "246bf60448bf2e5fcd7c984c718329eac0687c04b26f6f2661e05b1b0cd3d6c6",
+      "article_id": "0f725a50-4886-4438-a7ff-409daae7f711",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":76,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    },
+    {
+      "id": "1e6de2fe8ce5dfa00f08f9cefab50199ee2a3ca65729a71eea0f88bd9e002825",
+      "article_id": "e2f2f17e-57e0-4994-8372-642453b701b6",
+      "mode": "mock",
+      "status": "completed",
+      "attempts": 1,
+      "result_json": "{\"score_a\":60,\"score_b\":60,\"final_score\":60,\"threshold\":76,\"selection_status\":\"ineligible\",\"prefilter\":{\"decision\":\"UNKNOWN\",\"reason\":\"Mock fixture; no editorial judgement\"},\"structure\":{\"category\":\"industry\",\"tags\":[],\"companies\":[],\"fact_frame\":{\"subject\":\"未披露\",\"action\":\"未披露\",\"object\":\"未披露\",\"evidence\":\"Mock fixture\"},\"robotics_relevance\":\"mock\",\"soc_relevance\":\"mock\",\"commercial_signal\":\"mock\",\"what_happened\":\"mock\",\"why_it_matters\":\"mock\",\"what_to_watch\":[]}}",
+      "error": null
+    }
+  ],
+  "receipts": [
+    {
+      "id": "72744a5338228b8fa8cca5ff00d285fae0e582eb68f9b627a622a7102e168873",
+      "task_id": "04e14a397aee92feee75a6435c83821b5eb4d0c74266198043b90811dbcf4e51",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "46002b8d8b855b1b612658b1c6cb00f994fe5dee108ec51baaa5c21e3ec56ca7",
+      "task_id": "04e14a397aee92feee75a6435c83821b5eb4d0c74266198043b90811dbcf4e51",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "5115443bf6cc7b3a033c990ab7f8f3458cbdf70b2b2bf7d1e576c754d34082e7",
+      "task_id": "04e14a397aee92feee75a6435c83821b5eb4d0c74266198043b90811dbcf4e51",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "30e381dc853fb1ced8955b91cfffdc70e870cdf9031953e005cfdd80ae7fe659",
+      "task_id": "04e14a397aee92feee75a6435c83821b5eb4d0c74266198043b90811dbcf4e51",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "5b511ffa069c1fba24274ae2a200a7466bb573629835fe28059a07b857b99884",
+      "task_id": "128ed75cf2773c1c37083a14d220d5da8598d7b0399ec5abb07838b30c8ee8c5",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "358da0641bae8e5efa81191c5da96a1df0466a7a96d780fd546a95f85713a449",
+      "task_id": "128ed75cf2773c1c37083a14d220d5da8598d7b0399ec5abb07838b30c8ee8c5",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "484059d0355e22288716d2a79be4e45d99c9a35b32ee108f69c894e5a7f6d7b2",
+      "task_id": "128ed75cf2773c1c37083a14d220d5da8598d7b0399ec5abb07838b30c8ee8c5",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "c0bcd94f777f273bb68951038dca0a4e665640633076151d9944df6e8643b2cc",
+      "task_id": "128ed75cf2773c1c37083a14d220d5da8598d7b0399ec5abb07838b30c8ee8c5",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "c818943a9b1febba738262e39f9f64842b45f915c45b5714008b2828b6e14d11",
+      "task_id": "1e6de2fe8ce5dfa00f08f9cefab50199ee2a3ca65729a71eea0f88bd9e002825",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "eabd5e1c6ed42a4f4f57af780e492a9c6ec078f0f11ec5e394539c0cde190157",
+      "task_id": "1e6de2fe8ce5dfa00f08f9cefab50199ee2a3ca65729a71eea0f88bd9e002825",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "b62e045e368d5dee5303e412830c48d1c0af2e145cb8e06429cb5262ccdfde61",
+      "task_id": "1e6de2fe8ce5dfa00f08f9cefab50199ee2a3ca65729a71eea0f88bd9e002825",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "b165199d4bd4062efadce9cb6df80b5a5a0f25c29584ebc6756e1ea856c18980",
+      "task_id": "1e6de2fe8ce5dfa00f08f9cefab50199ee2a3ca65729a71eea0f88bd9e002825",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "4a2df90666d55e451631063119cda4e246ee76303e49f39e797a63593b2453fc",
+      "task_id": "246bf60448bf2e5fcd7c984c718329eac0687c04b26f6f2661e05b1b0cd3d6c6",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "59a804bca9e4f96519352ce3bb7c83f8aaeafc616b2717443127024d9cca6b4e",
+      "task_id": "246bf60448bf2e5fcd7c984c718329eac0687c04b26f6f2661e05b1b0cd3d6c6",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "f6688a67315f0d53bce96f91b346bf10f5b2a54bb27b06ecc01cb35f8ec06ec6",
+      "task_id": "246bf60448bf2e5fcd7c984c718329eac0687c04b26f6f2661e05b1b0cd3d6c6",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "ea1aaf766e1c467bc57f60605ac95282dc18f1c9582029dc9e2660e0b8a74c45",
+      "task_id": "246bf60448bf2e5fcd7c984c718329eac0687c04b26f6f2661e05b1b0cd3d6c6",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "c855c9aaf03901d339fbb604958d4cbf7adf83c51b99aed4bbee67d2ea5ea072",
+      "task_id": "3ba50d9f68f00d126ee5a54d1c14d5ce944cb78f62516e4fe2f4e50e991f0691",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "aa7bf7c5ce590339250c7682f5d2099941a2e7771617dad6a9698a430e8458f9",
+      "task_id": "3ba50d9f68f00d126ee5a54d1c14d5ce944cb78f62516e4fe2f4e50e991f0691",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "00024af7d8694ae1b45a57b6a94192f10cef137fda1f5d5762e5f4554d7d46b8",
+      "task_id": "3ba50d9f68f00d126ee5a54d1c14d5ce944cb78f62516e4fe2f4e50e991f0691",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "513cedb673ec31c435cfec2b5c236a68084e53026344a90a8b7de0f962c8c7e3",
+      "task_id": "3ba50d9f68f00d126ee5a54d1c14d5ce944cb78f62516e4fe2f4e50e991f0691",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "9cb2f44dc2eb7fd3797794b58c56bf800f46bac0c3eea17772cc711680b8b93a",
+      "task_id": "8f6c3c306585b1c8e199b3ad19fd506b6bd0f6c5bf2e5248ef0f55aacb818cfd",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "29a2754a8e7a7994c0bd0d93bca6f7581a38c6dba2ff97cd673a9f4fc21d83cb",
+      "task_id": "8f6c3c306585b1c8e199b3ad19fd506b6bd0f6c5bf2e5248ef0f55aacb818cfd",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "d52c78a6f18d6eedb295a220e229f6f587c43202f926ba864f920d657afb6872",
+      "task_id": "8f6c3c306585b1c8e199b3ad19fd506b6bd0f6c5bf2e5248ef0f55aacb818cfd",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "b1743edf4b79d9c5882760c7225a83348cd9c478b154c0bdce0882d6dca6b4d4",
+      "task_id": "8f6c3c306585b1c8e199b3ad19fd506b6bd0f6c5bf2e5248ef0f55aacb818cfd",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "8c7b61d951f340f6ca7300d9b14be2b140bbd70ecf973b4363682ea727a63b52",
+      "task_id": "95941998e8d7f46bb813bf0cbe449a6cde0aaffb044c16100290b4d11ac1db4a",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "7865b3e5bbe696e616ba727f6f08a34ded7a87838089483f00aadca4db41cdb3",
+      "task_id": "95941998e8d7f46bb813bf0cbe449a6cde0aaffb044c16100290b4d11ac1db4a",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "98365f8c609650228ce1e3f262e04094eeeda5ef5bc1f856980bdff66ef78638",
+      "task_id": "95941998e8d7f46bb813bf0cbe449a6cde0aaffb044c16100290b4d11ac1db4a",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "77fa775003d1afef391247d73f458bc81c911161761a92c3c9c31ceba6649b56",
+      "task_id": "95941998e8d7f46bb813bf0cbe449a6cde0aaffb044c16100290b4d11ac1db4a",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "4988b60a4d40a5b4a6d2a5498a5dbe9f695bc457453634cd24a3042552d649bc",
+      "task_id": "e241070ecd5a3482178e7315bdf161c7b208c909e98fcb95c33089327176acdc",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "2e2082eaa4fb2b2a5012fdbb962d92ac9e3dec817934fd082bc03951c014046a",
+      "task_id": "e241070ecd5a3482178e7315bdf161c7b208c909e98fcb95c33089327176acdc",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "7dfecf6419514d1bed180fd4988fe0ec44e4977af0cc731ac8203e09ddec3440",
+      "task_id": "e241070ecd5a3482178e7315bdf161c7b208c909e98fcb95c33089327176acdc",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "88c7ed183531d5c07d5df00562497ac67fdeaa808cabbbdc6b90ec3b4f00e6b2",
+      "task_id": "e241070ecd5a3482178e7315bdf161c7b208c909e98fcb95c33089327176acdc",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "30a2688becfd91c199ebd3974c1dd9f83d4c3224bd7167f6e0f13e3ea6649394",
+      "task_id": "e6c4296a1c3668628a44b779567c8e1afaa61074712f36f72546698e7cb7c6d3",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "fe07ee974b2ad2e777b2e3bc12b1ee6711800bc1f87241089afcdc5a475788b6",
+      "task_id": "e6c4296a1c3668628a44b779567c8e1afaa61074712f36f72546698e7cb7c6d3",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "99c78722ff2df3717431daf2d927eabc409add5bba547cdb9e11a0a9196be8ec",
+      "task_id": "e6c4296a1c3668628a44b779567c8e1afaa61074712f36f72546698e7cb7c6d3",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "23d2066786fe6afcd2f0072a65b6fff6c4d1eb8db085dad246bae9b2fb39a7e6",
+      "task_id": "e6c4296a1c3668628a44b779567c8e1afaa61074712f36f72546698e7cb7c6d3",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "99a7d5918a178e8bc3a48ffcaeee3f9287ea8569afd40ab74720fbd823fe5eaa",
+      "task_id": "ee1d407cb31d19ef12b8ef63339105133b83a7c7525fc8fae0e688e467d274f9",
+      "stage": "prefilter",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "db527fbcd138fc8cd98202d7af8e69fb1e0905cac264b3155589a426bacd7ba4",
+      "task_id": "ee1d407cb31d19ef12b8ef63339105133b83a7c7525fc8fae0e688e467d274f9",
+      "stage": "score_a",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "ebf1c02031698317c19669262cffe70978fd36983ec6c92d5229a8dbf34fe1e9",
+      "task_id": "ee1d407cb31d19ef12b8ef63339105133b83a7c7525fc8fae0e688e467d274f9",
+      "stage": "score_b",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    },
+    {
+      "id": "95279b2fa3aecb2b86990a74400226e77673a92e7047cb9758cca34b77e926d6",
+      "task_id": "ee1d407cb31d19ef12b8ef63339105133b83a7c7525fc8fae0e688e467d274f9",
+      "stage": "structure",
+      "status": "succeeded",
+      "provider": "mock",
+      "model": "deterministic-fixture-v1",
+      "latency_ms": 0
+    }
+  ],
+  "runs": [
+    {
+      "receipt_id": "00024af7d8694ae1b45a57b6a94192f10cef137fda1f5d5762e5f4554d7d46b8",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "23d2066786fe6afcd2f0072a65b6fff6c4d1eb8db085dad246bae9b2fb39a7e6",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "29a2754a8e7a7994c0bd0d93bca6f7581a38c6dba2ff97cd673a9f4fc21d83cb",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "2e2082eaa4fb2b2a5012fdbb962d92ac9e3dec817934fd082bc03951c014046a",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "30a2688becfd91c199ebd3974c1dd9f83d4c3224bd7167f6e0f13e3ea6649394",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "30e381dc853fb1ced8955b91cfffdc70e870cdf9031953e005cfdd80ae7fe659",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "358da0641bae8e5efa81191c5da96a1df0466a7a96d780fd546a95f85713a449",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "46002b8d8b855b1b612658b1c6cb00f994fe5dee108ec51baaa5c21e3ec56ca7",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "484059d0355e22288716d2a79be4e45d99c9a35b32ee108f69c894e5a7f6d7b2",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "4988b60a4d40a5b4a6d2a5498a5dbe9f695bc457453634cd24a3042552d649bc",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "4a2df90666d55e451631063119cda4e246ee76303e49f39e797a63593b2453fc",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "5115443bf6cc7b3a033c990ab7f8f3458cbdf70b2b2bf7d1e576c754d34082e7",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "513cedb673ec31c435cfec2b5c236a68084e53026344a90a8b7de0f962c8c7e3",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "59a804bca9e4f96519352ce3bb7c83f8aaeafc616b2717443127024d9cca6b4e",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "5b511ffa069c1fba24274ae2a200a7466bb573629835fe28059a07b857b99884",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "72744a5338228b8fa8cca5ff00d285fae0e582eb68f9b627a622a7102e168873",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "77fa775003d1afef391247d73f458bc81c911161761a92c3c9c31ceba6649b56",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "7865b3e5bbe696e616ba727f6f08a34ded7a87838089483f00aadca4db41cdb3",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "7dfecf6419514d1bed180fd4988fe0ec44e4977af0cc731ac8203e09ddec3440",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "88c7ed183531d5c07d5df00562497ac67fdeaa808cabbbdc6b90ec3b4f00e6b2",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "8c7b61d951f340f6ca7300d9b14be2b140bbd70ecf973b4363682ea727a63b52",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "95279b2fa3aecb2b86990a74400226e77673a92e7047cb9758cca34b77e926d6",
+      "status": "succeeded",
+      "count": 2
+    },
+    {
+      "receipt_id": "98365f8c609650228ce1e3f262e04094eeeda5ef5bc1f856980bdff66ef78638",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "99a7d5918a178e8bc3a48ffcaeee3f9287ea8569afd40ab74720fbd823fe5eaa",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "99c78722ff2df3717431daf2d927eabc409add5bba547cdb9e11a0a9196be8ec",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "9cb2f44dc2eb7fd3797794b58c56bf800f46bac0c3eea17772cc711680b8b93a",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "aa7bf7c5ce590339250c7682f5d2099941a2e7771617dad6a9698a430e8458f9",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "b165199d4bd4062efadce9cb6df80b5a5a0f25c29584ebc6756e1ea856c18980",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "b1743edf4b79d9c5882760c7225a83348cd9c478b154c0bdce0882d6dca6b4d4",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "b62e045e368d5dee5303e412830c48d1c0af2e145cb8e06429cb5262ccdfde61",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "c0bcd94f777f273bb68951038dca0a4e665640633076151d9944df6e8643b2cc",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "c818943a9b1febba738262e39f9f64842b45f915c45b5714008b2828b6e14d11",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "c855c9aaf03901d339fbb604958d4cbf7adf83c51b99aed4bbee67d2ea5ea072",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "d52c78a6f18d6eedb295a220e229f6f587c43202f926ba864f920d657afb6872",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "db527fbcd138fc8cd98202d7af8e69fb1e0905cac264b3155589a426bacd7ba4",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "ea1aaf766e1c467bc57f60605ac95282dc18f1c9582029dc9e2660e0b8a74c45",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "eabd5e1c6ed42a4f4f57af780e492a9c6ec078f0f11ec5e394539c0cde190157",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "ebf1c02031698317c19669262cffe70978fd36983ec6c92d5229a8dbf34fe1e9",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "f6688a67315f0d53bce96f91b346bf10f5b2a54bb27b06ecc01cb35f8ec06ec6",
+      "status": "succeeded",
+      "count": 1
+    },
+    {
+      "receipt_id": "fe07ee974b2ad2e777b2e3bc12b1ee6711800bc1f87241089afcdc5a475788b6",
+      "status": "succeeded",
+      "count": 1
+    }
+  ],
+  "productionArticlesUnchanged": true,
+  "health": {
+    "ok": true,
+    "service": "uprivate-intelligence-ingest",
+    "sources": {
+      "total": 20,
+      "enabled": 19,
+      "healthy": 19,
+      "degraded": 1,
+      "failing": 0
+    },
+    "articles24h": {
+      "count": 205
+    },
+    "failedRuns24h": {
+      "count": 2
+    },
+    "storage": {
+      "policy": {
+        "retentionDays": 60,
+        "freeBytes": 10000000000,
+        "warning": 70,
+        "critical": 85,
+        "cleanup": 90,
+        "maxPages": 20,
+        "maxDeletes": 100
+      },
+      "latest": {
+        "id": "29d18830-cb96-470f-b752-cf63ff259802",
+        "measured_at": "2026-10-01T14:26:03.518Z",
+        "provider_json": "{\"available\":false,\"configured\":true,\"querySucceeded\":true,\"reason\":\"analytics_no_samples\",\"billingGbMonth\":null}",
+        "inventory_bytes": 4893882,
+        "inventory_objects": 28,
+        "inventory_complete": 1,
+        "status": "ok",
+        "usage_percent": 0.048938819999999994
+      },
+      "lastMaintenance": {
+        "id": "cfa22e02-a597-45f4-84a2-e0580ea8ae4e",
+        "started_at": "2026-10-01T14:26:02.154Z",
+        "finished_at": "2026-10-01T14:26:03.640Z",
+        "status": "success",
+        "retention_days": 60,
+        "before_bytes": 4893882,
+        "before_objects": 28,
+        "after_bytes": 4893882,
+        "after_objects": 28,
+        "deleted_count": 0,
+        "deleted_bytes": 0,
+        "details_json": "{\"dryRun\":false,\"eligibleObjects\":0,\"inventoryComplete\":true,\"afterInventoryComplete\":true,\"provider\":{\"available\":false,\"configured\":true,\"querySucceeded\":true,\"reason\":\"analytics_no_samples\",\"billingGbMonth\":null},\"metric\":{\"status\":\"ok\",\"percent\":0.048938819999999994},\"pressureCleanup\":false,\"cleanupTargetPercent\":85,\"pressureUnresolved\":false,\"deletionLimitReached\":false}",
+        "error": null
+      },
+      "stale": false,
+      "quotaScope": "account-wide GB-month; inventory is current bucket payload bytes",
+      "accountBillingQuotaStatus": "unknown; current bytes do not establish monthly billing or other-bucket coverage",
+      "notifications": "D1 status and Worker warning logs; Dashboard must poll /admin/storage/status"
+    },
+    "intelligence": {
+      "providerConfigured": false,
+      "liveEnabled": false,
+      "promptVersion": "robotics-intelligence.v1",
+      "states": [
+        {
+          "mode": "mock",
+          "status": "completed",
+          "count": 20
+        }
+      ],
+      "runs": [
+        {
+          "mode": "mock",
+          "status": "succeeded",
+          "count": 81,
+          "latency_ms": 0
+        }
+      ]
+    },
+    "lastScheduled": {
+      "cron": "*/15 * * * *",
+      "scheduled_at": "2026-10-01T14:45:50.000Z",
+      "finished_at": "2026-10-01T14:45:50.959Z",
+      "status": "success",
+      "error": null
+    }
+  },
+  "protectedStatus": 401,
+  "workerVersion": "3320a135-defd-44e8-b3d8-78477c4d3817",
+  "localTestsPassed": 18,
+  "sample": [
+    {
+      "articleId": "1e1df043-34cf-4da6-9abd-5b4dfdd5a1ac",
+      "tier": "T1",
+      "title": "v2.0.2",
+      "url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/2.0.2"
+    },
+    {
+      "articleId": "b0ebb8b4-6a99-483d-a2cf-b87acdc9bee3",
+      "tier": "T1",
+      "title": "v2.0.1-Go2融合运控版本-修复Go2的HandStand调用失败接口",
+      "url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/2.0.1"
+    },
+    {
+      "articleId": "c0bbae51-9094-4a02-af59-2f04b3324275",
+      "tier": "T1",
+      "title": "v2.0.0-Go2融合运控版本",
+      "url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/2.0.0"
+    },
+    {
+      "articleId": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+      "tier": "T1",
+      "title": "v1.0.0-Go2非融合运控版本",
+      "url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/1.0.0"
+    },
+    {
+      "articleId": "4099687f-f733-4c3e-9f82-8836a2478eaa",
+      "tier": "T1_5",
+      "title": "Optimize, Learn, Refine: Whole-Body Grasping and Pick-and-Throw with a Spiral Soft Robot",
+      "url": "https://arxiv.org/abs/2609.38202"
+    },
+    {
+      "articleId": "811ca1c7-e919-45f7-993c-b751893dc359",
+      "tier": "T1_5",
+      "title": "Fiatlux: A Long-Horizon Benchmark for Humanoid Ladder Climbing and Light-Bulb Replacement",
+      "url": "https://arxiv.org/abs/2609.38216"
+    },
+    {
+      "articleId": "45ffe2c8-525e-4b22-bc16-cb3d79ddc6c7",
+      "tier": "T1_5",
+      "title": "SynIL: Leveraging Synergy for Offline Imitation Learning from Imperfect Demonstration Datasets",
+      "url": "https://arxiv.org/abs/2609.38225"
+    },
+    {
+      "articleId": "6e779528-cd3f-46a3-8a8b-7ef67acb6c34",
+      "tier": "T2",
+      "title": "The Hidden Challenges of Edge AI Design",
+      "url": "https://semiengineering.com/the-hidden-challenges-of-edge-ai-design"
+    },
+    {
+      "articleId": "0f725a50-4886-4438-a7ff-409daae7f711",
+      "tier": "T2",
+      "title": "AI-Defined Vehicles Push Compute, Memory, And Validation Limits",
+      "url": "https://semiengineering.com/ai-defined-vehicles-push-compute-memory-and-validation-limits"
+    },
+    {
+      "articleId": "e2f2f17e-57e0-4994-8372-642453b701b6",
+      "tier": "T2",
+      "title": "Turning Edge AI Data Into Real-Time Action",
+      "url": "https://semiengineering.com/turning-edge-ai-data-into-real-time-action"
+    }
+  ],
+  "scenarios": {
+    "baseline": {
+      "at": "2026-10-01T14:54:48.138Z",
+      "runs": 40
+    },
+    "duplicate10Messages": {
+      "at": "2026-10-01T14:55:24.082Z",
+      "runs": 40,
+      "unchanged": true
+    },
+    "controlledStructureStageReset": {
+      "at": "2026-10-01T14:56:35.722Z",
+      "runs": 41,
+      "onlyOneAdditionalAttempt": true,
+      "taskId": "ee1d407cb31d19ef12b8ef63339105133b83a7c7525fc8fae0e688e467d274f9"
+    }
+  },
+  "ci": {
+    "codeCommit": "9ee0f64fc8eb3b0cdabdd1a10d2ad24d8993ce51",
+    "cloudIngest": {
+      "result": "success",
+      "runId": 36880730410
+    },
+    "rootCheck": {
+      "result": "failure",
+      "runId": 36880730371,
+      "rootTypecheck": "success",
+      "webBuild": "success",
+      "webTests": "success",
+      "failure": "pre-existing UNDEFINED_VALUE topic seed at publication/topics.ts:43; Docker setup same failure",
+      "backendTests": "skipped",
+      "smokeTests": "skipped"
+    }
+  }
+}

@@ -1,0 +1,375 @@
+{
+  "recorded_at": "2026-10-01T15:45:44.173Z",
+  "client": "official MCP SDK (not ChatGPT)",
+  "origin": "https://uprivate-intelligence-api.wdhnlx.workers.dev",
+  "checks": {
+    "/health": {
+      "status": 200,
+      "body": {
+        "ok": true,
+        "service": "uprivate-intelligence-api",
+        "phase": "2A",
+        "production_articles_read_only": true,
+        "probe_enabled": true
+      },
+      "challenge": null
+    },
+    "/metadata": {
+      "status": 200,
+      "body": {
+        "name": "uPrivate Robotics Intelligence",
+        "phase": "2A",
+        "mcp_url": "https://uprivate-intelligence-api.wdhnlx.workers.dev/mcp",
+        "transport": "streamable-http",
+        "auth": "OAuth 2.1 + PKCE S256",
+        "tools": [
+          "get_processing_batch",
+          "get_article",
+          "save_processing_probe"
+        ],
+        "limits": {
+          "max_batch": 20,
+          "max_summary_chars": 2000,
+          "max_result_json_bytes": 120000,
+          "max_mcp_body_bytes": 8192,
+          "requests_per_minute_per_ip": 60
+        },
+        "write_probe": "isolated_test_table_only"
+      },
+      "challenge": null
+    },
+    "/manifest.json": {
+      "status": 200,
+      "body": {
+        "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+        "name": "uprivate-robotics-intelligence",
+        "version": "0.2.0",
+        "description": "Read collected robotics news through two bounded, authenticated MCP tools."
+      },
+      "challenge": null
+    },
+    "/.well-known/oauth-protected-resource": {
+      "status": 200,
+      "body": {
+        "resource": "https://uprivate-intelligence-api.wdhnlx.workers.dev/mcp",
+        "authorization_servers": [
+          "https://uprivate-intelligence-api.wdhnlx.workers.dev"
+        ],
+        "scopes_supported": [
+          "articles:read"
+        ],
+        "bearer_methods_supported": [
+          "header"
+        ]
+      },
+      "challenge": null
+    },
+    "/.well-known/oauth-authorization-server": {
+      "status": 200,
+      "body": {
+        "issuer": "https://uprivate-intelligence-api.wdhnlx.workers.dev",
+        "authorization_endpoint": "https://uprivate-intelligence-api.wdhnlx.workers.dev/authorize",
+        "token_endpoint": "https://uprivate-intelligence-api.wdhnlx.workers.dev/oauth/token",
+        "protected_resources": [
+          "https://uprivate-intelligence-api.wdhnlx.workers.dev/mcp"
+        ],
+        "registration_endpoint": "https://uprivate-intelligence-api.wdhnlx.workers.dev/oauth/register",
+        "scopes_supported": [
+          "articles:read",
+          "probes:write"
+        ],
+        "response_types_supported": [
+          "code"
+        ],
+        "response_modes_supported": [
+          "query"
+        ],
+        "grant_types_supported": [
+          "authorization_code",
+          "refresh_token"
+        ],
+        "token_endpoint_auth_methods_supported": [
+          "client_secret_basic",
+          "client_secret_post",
+          "none"
+        ],
+        "revocation_endpoint": "https://uprivate-intelligence-api.wdhnlx.workers.dev/oauth/token",
+        "code_challenge_methods_supported": [
+          "S256"
+        ],
+        "authorization_response_iss_parameter_supported": true,
+        "client_id_metadata_document_supported": true
+      },
+      "challenge": null
+    },
+    "/mcp": {
+      "status": 401,
+      "body": null,
+      "challenge": "Bearer realm=\"OAuth\", resource_metadata=\"https://uprivate-intelligence-api.wdhnlx.workers.dev/.well-known/oauth-protected-resource/mcp\", scope=\"articles:read\""
+    },
+    "invalid_bearer": {
+      "status": 401
+    },
+    "hostile_origin": {
+      "status": 403
+    },
+    "read_scope_cannot_write": {
+      "isError": true,
+      "oauth_step_up_challenge": true
+    },
+    "missing_article": {
+      "found": false
+    },
+    "oversized_batch": {
+      "isError": true
+    },
+    "arbitrary_sql": {
+      "isError": true
+    },
+    "oversized_body": {
+      "status": 413
+    }
+  },
+  "oauth": {
+    "dynamic_registration": 201,
+    "consent": 200,
+    "approval": 302,
+    "pkce_exchange": 200,
+    "scope": "articles:read",
+    "expires_in": 3600,
+    "refresh_token_issued": true
+  },
+  "tools": [
+    {
+      "name": "get_processing_batch",
+      "title": "Read processing batch",
+      "description": "Read at most 20 actual D1 articles joined with source metadata. Defaults to five newest articles with status new; includes backfill so first-import data can be inspected. Does not claim or mutate work.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "default": 5,
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "statuses": {
+            "minItems": 1,
+            "maxItems": 6,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "new",
+                "processing",
+                "selected",
+                "near_selected",
+                "rejected",
+                "failed"
+              ]
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "articles:read"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_article",
+      "title": "Read article",
+      "description": "Read a single D1 article and source metadata by id returned by get_processing_batch. A missing id returns found=false. Summary capped at 2000 characters; no raw full text.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "articles:read"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "save_processing_probe",
+      "title": "Save test probe",
+      "description": "Phase 2A only. Append one idempotent receipt to the dedicated processing_probes test table for an existing article. Never changes articles, scoring or processing status. Reused run_id with different content is rejected. Needs probes:write OAuth consent.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "article_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z0-9_-]+$"
+          },
+          "note": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256
+          },
+          "run_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128,
+            "pattern": "^[a-zA-Z0-9_-]+$"
+          }
+        },
+        "required": [
+          "article_id",
+          "note",
+          "run_id"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "articles:read",
+              "probes:write"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "batch": {
+    "articles": [
+      {
+        "id": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+        "source_id": "robotics-unitree-sdk",
+        "canonical_url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/1.0.0",
+        "title": "v1.0.0-Go2非融合运控版本",
+        "summary": "该版本中的Go2 运控高层接口适用于非融合运控版本。",
+        "author": "liuchuan19971008",
+        "published_at": "2025-06-03T04:20:46.000Z",
+        "discovered_at": "2026-10-01T14:16:09.171Z",
+        "is_backfill": 1,
+        "publish_eligible": 0,
+        "processing_status": "new",
+        "source_name": "Unitree SDK2 Releases",
+        "source_kind": "json_list",
+        "source_tier": "T1",
+        "source_first_party": 1
+      },
+      {
+        "id": "1e1df043-34cf-4da6-9abd-5b4dfdd5a1ac",
+        "source_id": "robotics-unitree-sdk",
+        "canonical_url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/2.0.2",
+        "title": "v2.0.2",
+        "summary": "B2添加Euler接口",
+        "author": "liuchuan19971008",
+        "published_at": "2025-07-07T07:51:56.000Z",
+        "discovered_at": "2026-10-01T14:16:09.171Z",
+        "is_backfill": 1,
+        "publish_eligible": 0,
+        "processing_status": "new",
+        "source_name": "Unitree SDK2 Releases",
+        "source_kind": "json_list",
+        "source_tier": "T1",
+        "source_first_party": 1
+      },
+      {
+        "id": "b0ebb8b4-6a99-483d-a2cf-b87acdc9bee3",
+        "source_id": "robotics-unitree-sdk",
+        "canonical_url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/2.0.1",
+        "title": "v2.0.1-Go2融合运控版本-修复Go2的HandStand调用失败接口",
+        "summary": "该版本支持Go2融合运控版本，并且修复了v2.0.0中Go2的HandStand接口调用失败的问题",
+        "author": "liuchuan19971008",
+        "published_at": "2025-06-12T04:06:15.000Z",
+        "discovered_at": "2026-10-01T14:16:09.171Z",
+        "is_backfill": 1,
+        "publish_eligible": 0,
+        "processing_status": "new",
+        "source_name": "Unitree SDK2 Releases",
+        "source_kind": "json_list",
+        "source_tier": "T1",
+        "source_first_party": 1
+      }
+    ],
+    "count": 3,
+    "statuses": [
+      "new"
+    ],
+    "limit": 3,
+    "read_only": true,
+    "summaries_truncated_at": 2000
+  },
+  "article": {
+    "article": {
+      "id": "0dbb5c75-4b81-43b8-8602-e48f593aed26",
+      "source_id": "robotics-unitree-sdk",
+      "canonical_url": "https://github.com/unitreerobotics/unitree_sdk2/releases/tag/1.0.0",
+      "title": "v1.0.0-Go2非融合运控版本",
+      "summary": "该版本中的Go2 运控高层接口适用于非融合运控版本。",
+      "author": "liuchuan19971008",
+      "published_at": "2025-06-03T04:20:46.000Z",
+      "discovered_at": "2026-10-01T14:16:09.171Z",
+      "is_backfill": 1,
+      "publish_eligible": 0,
+      "processing_status": "new",
+      "source_name": "Unitree SDK2 Releases",
+      "source_kind": "json_list",
+      "source_tier": "T1",
+      "source_first_party": 1
+    },
+    "found": true,
+    "read_only": true,
+    "summaries_truncated_at": 2000
+  }
+}

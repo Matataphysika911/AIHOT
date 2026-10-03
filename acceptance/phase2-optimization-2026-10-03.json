@@ -1,0 +1,441 @@
+{
+  "recorded_at": "2026-10-03T06:48:56.842567+00:00",
+  "status": "functional_complete_pending_24h_stability",
+  "repository": "Matataphysika911/AIHOT",
+  "branch": "feat/cloudflare-ingestion-v1",
+  "pr": {
+    "number": 2,
+    "draft": true,
+    "merged": false
+  },
+  "implementation_ci_sha": "c22f655e47620c9ec596969789089d43fa7baef1",
+  "deployment": {
+    "worker": "uprivate-intelligence-api",
+    "initial_version": "4253c312-3e0a-4879-a86f-7f09cf691c43",
+    "version": "27123e31-7ce3-4c62-8115-85e31e006f4c",
+    "last_change": "honest batch read_only metadata only; same scoring/evidence hashes",
+    "migration": "0014_phase2_evidence.sql",
+    "migration_result": "remote normal migration runner success; 11 commands in 3.79ms; purely additive"
+  },
+  "schedules": {
+    "ingestion": "*/15 * * * *",
+    "apply_before": "5,35 */2 * * *",
+    "apply_after": "*/10 * * * *",
+    "old_max_scheduling_wait_minutes": 90,
+    "new_max_scheduling_wait_minutes": 10,
+    "reviewer_a_every_hours": 2,
+    "reviewer_b_every_hours": 2,
+    "reviewer_b_minute": 25,
+    "reviewer_batch_limit": 5,
+    "existing_apply_batch_cap": 10,
+    "new_reviewer_tasks_created": false,
+    "production_prompts_restored": true
+  },
+  "prompt_version": "robotics-plus-mcp.phase2-optimization.v2",
+  "evidence_max_chars": 12000,
+  "health_observation": {
+    "ok": true,
+    "processing": {
+      "reviewer_a_pending_count": 696,
+      "reviewer_b_pending_count": 0,
+      "oldest_pending_age_minutes": 2424.095999971032,
+      "pending_apply_count": 0,
+      "oldest_unapplied_age_minutes": 0,
+      "status": "critical",
+      "thresholds_minutes": {
+        "warning": 120,
+        "degraded_above": 360,
+        "critical_above": 720
+      },
+      "reviewer_batch_limit": 5
+    },
+    "service": "uprivate-intelligence-api",
+    "phase": "2B",
+    "production_articles_read_only": false,
+    "processing_enabled": true,
+    "probe_enabled": true,
+    "optional_agnes_enabled": false
+  },
+  "reviewer_execution": {
+    "a_chat": "https://chatgpt.com/c/6ac09107-4008-83e9-9847-3414fd339aec",
+    "b_chat": "https://chatgpt.com/c/7b29e64d-584c-832c-9ef7-6950568cc1aa",
+    "mode": "Run now of existing separate Scheduled A/B tasks; B Run now attached to existing B-only conversation",
+    "identity_limit": "context IDs are declared claims, actual separate conversation URLs are observed; no signed platform attestation"
+  },
+  "cohort": [
+    {
+      "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+      "title": "Diffusion Policy Improvement with Proposal-Conditioned Refinement Flows",
+      "source_tier": "T1_5",
+      "summary_chars": 1421,
+      "evidence": {
+        "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+        "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+        "error": null,
+        "extraction_method": "arxiv_abstract",
+        "fetched_at": "2026-10-03T05:15:22.124Z",
+        "ingestion_raw_r2_key": "raw/2026/10/02/robotics-arxiv-robotics/2026-10-02T04-00-56-312Z.xml",
+        "original_chars": 1421,
+        "raw_r2_key": null,
+        "source_url": "https://arxiv.org/abs/2609.36812",
+        "status": "fallback",
+        "truncated": false,
+        "truncation_limit_chars": 12000,
+        "evidence_snapshot_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262"
+      },
+      "evidence_chars": 1421,
+      "input_snapshot_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+      "score_a": 63.55,
+      "score_b": 64.35,
+      "final_score": 63,
+      "unrounded_mean": 63.949999999999996,
+      "tier_threshold": 65,
+      "selection_status": "near-selected",
+      "processing_status": "completed",
+      "submissions": [
+        {
+          "id": "A-reg-21557a04-20261003T1322",
+          "reviewer": "A",
+          "reviewer_run_id": "A-run-21557a04-20261003T1322",
+          "scheduled_task_id": "6ac07c07cb5c8190b8238e9d95c8b10c",
+          "context_id_claim": "A-phase2opt-regression-20261003T1322p0800",
+          "created_at": "2026-10-03 05:22:52",
+          "applied_at": "2026-10-03 05:31:05"
+        },
+        {
+          "id": "Bsub_21557a04_239de342_20261003_1416",
+          "reviewer": "B",
+          "reviewer_run_id": "Brun_21557a04_239de342_20261003_1416",
+          "scheduled_task_id": "6ac07cb2412c81908345a3e2b801d90f",
+          "context_id_claim": "B_phase2opt_regression_20261003_1416_p0800",
+          "created_at": "2026-10-03 06:17:38",
+          "applied_at": "2026-10-03 06:20:47"
+        }
+      ],
+      "submit_to_cron_apply_seconds": {
+        "A": 493.0,
+        "B": 189.0
+      },
+      "b_structure": {
+        "category": "paper",
+        "commercial_signal": "No product launch, design win, deployment, pricing, customer, funding, or production-scale commercial signal is disclosed.",
+        "companies": [],
+        "fact_frame": {
+          "action": "combines critic-based proposal selection with a conditional refinement flow for policy extraction",
+          "evidence": "Bounded arXiv abstract states the method, KL-regularized objective, Gaussian-smoothed behavior prior, closed-form adjoint matching, 50 OGBench tasks, and 91% aggregate after 500K environment steps.",
+          "object": "offline reinforcement-learning policies and subsequent online fine-tuning",
+          "subject": "PReFlow (Proposal-Conditioned Refinement Flows)"
+        },
+        "facts": [
+          "Explicit disclosure: PReFlow combines critic-based proposal selection with a conditional refinement flow.",
+          "Explicit disclosure: the objective is KL-regularized and induces a Gibbs policy over final actions under a Gaussian-smoothed behavior prior.",
+          "Explicit disclosure: the method uses simulation-free, closed-form adjoint matching targets and a single velocity-regression loss without a backward adjoint solve.",
+          "Explicit disclosure: evaluation covers 50 OGBench tasks; after online fine-tuning the abstract reports the highest aggregate score among compared methods, reaching 91% after 500K environment steps."
+        ],
+        "inferences": [
+          "Inference: the method may be relevant to embodied-agent control stacks that learn multimodal action policies, but no physical-robot deployment is disclosed.",
+          "Inference: conditional refinement-flow inference may affect edge compute/runtime requirements, but no implementation measurements are supplied."
+        ],
+        "robotics_relevance": "Directly relevant to robot policy learning/control research because it refines behavior-policy proposals toward high-value actions and evaluates offline-to-online policy improvement.",
+        "soc_relevance": "Inference: deployment of learned flow/diffusion-style policies could create inference/runtime requirements, but the bounded evidence provides no hardware mapping, latency, operator, precision, memory, or accelerator measurements.",
+        "tags": [
+          "论文/研究",
+          "运动控制",
+          "数据/训练",
+          "arXiv"
+        ],
+        "unknowns": [
+          "Physical robot platform or real-world deployment: 未披露.",
+          "SoC TOPS/throughput and numerical compute requirements: 未披露.",
+          "Power/thermal envelope: 未披露.",
+          "Memory capacity/bandwidth: 未披露.",
+          "ASP/pricing or commercial deployment: 未披露."
+        ]
+      }
+    },
+    {
+      "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+      "title": "Boston Dynamics drops pinkie on new humanoid hand",
+      "source_tier": "T2",
+      "summary_chars": 370,
+      "evidence": {
+        "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+        "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+        "error": "source_http_403_or_non_html",
+        "extraction_method": "summary",
+        "fetched_at": "2026-10-03T05:18:04.108Z",
+        "ingestion_raw_r2_key": "raw/2026/10/01/robotics-robot-report/2026-10-01T20-45-58-927Z.xml",
+        "original_chars": 370,
+        "raw_r2_key": null,
+        "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+        "status": "fallback",
+        "truncated": false,
+        "truncation_limit_chars": 12000,
+        "evidence_snapshot_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd"
+      },
+      "evidence_chars": 370,
+      "input_snapshot_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+      "score_a": 46.5,
+      "score_b": 57.25,
+      "final_score": 51,
+      "unrounded_mean": 51.875,
+      "tier_threshold": 76,
+      "selection_status": "near-selected",
+      "processing_status": "completed",
+      "submissions": [
+        {
+          "id": "A-reg-1f9fd3e9-20261003T1322",
+          "reviewer": "A",
+          "reviewer_run_id": "A-run-1f9fd3e9-20261003T1322",
+          "scheduled_task_id": "6ac07c07cb5c8190b8238e9d95c8b10c",
+          "context_id_claim": "A-phase2opt-regression-20261003T1322p0800",
+          "created_at": "2026-10-03 05:22:54",
+          "applied_at": "2026-10-03 05:31:06"
+        },
+        {
+          "id": "Bsub_1f9fd3e9_bddb6691_20261003_1416",
+          "reviewer": "B",
+          "reviewer_run_id": "Brun_1f9fd3e9_bddb6691_20261003_1416",
+          "scheduled_task_id": "6ac07cb2412c81908345a3e2b801d90f",
+          "context_id_claim": "B_phase2opt_regression_20261003_1416_p0800",
+          "created_at": "2026-10-03 06:17:48",
+          "applied_at": "2026-10-03 06:20:48"
+        }
+      ],
+      "submit_to_cron_apply_seconds": {
+        "A": 492.0,
+        "B": 180.0
+      },
+      "b_structure": {
+        "category": "robotics-products",
+        "commercial_signal": "The bounded summary indicates a new humanoid-hand design topic but provides no release schedule, production volume, customer, pricing, order, or design-win disclosure.",
+        "companies": [
+          "Boston Dynamics"
+        ],
+        "fact_frame": {
+          "action": "taped their pinkies and ring fingers together for a day to test what functions were lost",
+          "evidence": "Bounded fallback summary from The Robot Report; extraction status=fallback because source returned HTTP 403/non-HTML. No additional article body is available.",
+          "object": "design understanding associated with a new humanoid hand that the article title says drops the pinkie",
+          "subject": "Boston Dynamics engineers"
+        },
+        "facts": [
+          "Explicit disclosure: Boston Dynamics engineers taped their pinkies and ring fingers together for a day to learn what they were unable to do.",
+          "Explicit disclosure from title: the new humanoid hand drops the pinkie.",
+          "Evidence metadata: source fetch returned HTTP 403/non-HTML; extraction used the summary, status=fallback, truncated=false."
+        ],
+        "inferences": [
+          "Inference: the experiment was intended to inform finger-count/morphology tradeoffs for humanoid manipulation; the bounded evidence does not provide the detailed engineering conclusion."
+        ],
+        "robotics_relevance": "Directly relevant to humanoid hand morphology and dexterous manipulation design, but bounded evidence does not disclose performance metrics or full design rationale.",
+        "soc_relevance": "No SoC, compute, sensing, control-loop, accelerator, latency, memory, or power details are disclosed.",
+        "tags": [
+          "机器人产品",
+          "人形机器人",
+          "灵巧操作",
+          "Boston Dynamics"
+        ],
+        "unknowns": [
+          "Exact humanoid platform/model associated with the hand: 未披露 in bounded evidence.",
+          "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: 未披露.",
+          "SoC TOPS/throughput and compute architecture: 未披露.",
+          "Power/thermal envelope: 未披露.",
+          "Memory capacity/bandwidth: 未披露.",
+          "ASP/pricing, production timing, order volume and customer deployment: 未披露."
+        ]
+      }
+    },
+    {
+      "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+      "title": "Ambarella at the AI Infrastructure Summit in Santa Clara",
+      "source_tier": "T1",
+      "summary_chars": 674,
+      "evidence": {
+        "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+        "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+        "error": null,
+        "extraction_method": "html_article_paragraphs.v1",
+        "fetched_at": "2026-10-03T05:16:42.255Z",
+        "ingestion_raw_r2_key": "raw/2026/10/01/robotics-ambarella/2026-10-01T22-15-59-783Z.xml",
+        "original_chars": 6598,
+        "raw_r2_key": "evidence/5baa5d53-15ec-44a5-b054-1058752304fe/a2f11be1e9bb13dbb9ace298f7bb08311f8e43441f8257be429d9426c848b6bc.html",
+        "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+        "status": "extracted",
+        "truncated": false,
+        "truncation_limit_chars": 12000,
+        "evidence_snapshot_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d"
+      },
+      "evidence_chars": 6598,
+      "input_snapshot_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+      "score_a": 90.55,
+      "score_b": 92.9,
+      "final_score": 91,
+      "unrounded_mean": 91.725,
+      "tier_threshold": 60,
+      "selection_status": "selected",
+      "processing_status": "completed",
+      "submissions": [
+        {
+          "id": "A-reg-5baa5d53-20261003T1322",
+          "reviewer": "A",
+          "reviewer_run_id": "A-run-5baa5d53-20261003T1322",
+          "scheduled_task_id": "6ac07c07cb5c8190b8238e9d95c8b10c",
+          "context_id_claim": "A-phase2opt-regression-20261003T1322p0800",
+          "created_at": "2026-10-03 05:22:56",
+          "applied_at": "2026-10-03 05:31:07"
+        },
+        {
+          "id": "Bsub_5baa5d53_9117df35_20261003_1416",
+          "reviewer": "B",
+          "reviewer_run_id": "Brun_5baa5d53_9117df35_20261003_1416",
+          "scheduled_task_id": "6ac07cb2412c81908345a3e2b801d90f",
+          "context_id_claim": "B_phase2opt_regression_20261003_1416_p0800",
+          "created_at": "2026-10-03 06:18:00",
+          "applied_at": "2026-10-03 06:20:49"
+        }
+      ],
+      "submit_to_cron_apply_seconds": {
+        "A": 491.0,
+        "B": 169.0
+      },
+      "b_structure": {
+        "category": "edge-ai-soc",
+        "commercial_signal": "Strong first-party ecosystem and deployment signal: Ambarella states an installed base of more than 50 million AI processors/AI SoC units and announces multiple partnerships/tooling expansions aimed at production and fleet-scale Physical AI.",
+        "companies": [
+          "Ambarella",
+          "AMD",
+          "AWS",
+          "HCLTech",
+          "Intel",
+          "Oracle",
+          "Qualcomm",
+          "Unitree",
+          "ZEDEDA",
+          "Roboflow",
+          "Liquid AI",
+          "Thinkware",
+          "Ultralytics",
+          "Google Cloud",
+          "Bedrock Robotics",
+          "Samsara",
+          "GrayMatter Robotics",
+          "Samsung"
+        ],
+        "fact_frame": {
+          "action": "demonstrated and announced Physical-AI silicon, robotics workloads, developer tooling and ecosystem integrations",
+          "evidence": "First-party Ambarella article, status=extracted and untruncated, states N1-655 runs SmolVLA/SLAM/navigation/pick-and-place on one chip; describes Unitree on-device loop; announces X7, Ultralytics and ZEDEDA collaborations, Developer Zone expansion, and >50M deployed AI processors/AI SoC units.",
+          "object": "N1-655 single-chip robotics workloads, Unitree on-device vision-to-action, X7 standalone AI accelerator, CVflow ecosystem and fleet/cloud orchestration",
+          "subject": "Ambarella"
+        },
+        "facts": [
+          "Explicit disclosure: N1-655 powered an autonomous mobile manipulator running SmolVLA, SLAM, navigation and pick-and-place workloads on a single chip.",
+          "Explicit disclosure: a Unitree humanoid demo performed intelligent vision, perception and voice-driven interaction with an AI-driven vision-to-action loop directly on-device.",
+          "Explicit disclosure: a warehouse demo combined Dify, Liquid AI models, live video and RAG on N1-655.",
+          "Explicit disclosure: Thinkware Harmony QXD1 Plus dashcam uses Ambarella CV25 Edge AI SoC.",
+          "Explicit disclosure: Ambarella introduced X7 as its first standalone AI accelerator and said it can add AI processing alongside existing host computers without necessarily replacing installed equipment.",
+          "Explicit disclosure: Ambarella announced an Ultralytics collaboration for YOLO on CVflow devices, expanded Developer Zone with remote live-silicon/agentic-AI development on Google Cloud Platform, and announced a ZEDEDA partnership for cloud-orchestrated physical-edge AI.",
+          "Explicit disclosure: Ambarella states more than 50 million AI processors/AI SoC units are already deployed."
+        ],
+        "inferences": [
+          "Inference: Ambarella is positioning its stack for heterogeneous Physical-AI deployment from silicon through models, developer tooling and fleet orchestration.",
+          "Inference: the N1-655 demo suggests consolidation of multiple robotics workloads onto one edge device can be a platform value proposition; the evidence does not quantify utilization or performance headroom.",
+          "Inference: X7's add-on positioning may target retrofit/upgrade architectures where an existing host remains in place."
+        ],
+        "robotics_relevance": "High: the evidence directly covers autonomous mobile manipulation, humanoid vision/perception/voice interaction, SLAM, navigation, pick-and-place and broader physical-edge robotic deployments.",
+        "soc_relevance": "Very high: evidence directly ties robotics and multimodal edge workloads to N1-655 and CVflow, introduces X7 as a standalone AI accelerator, and emphasizes efficient models, sensor-aware architectures, real-time inference, power/memory efficiency and host-side accelerator addition. Exact silicon specifications are not disclosed here.",
+        "tags": [
+          "边缘AI SoC",
+          "NPU",
+          "机器人产品",
+          "人形机器人",
+          "VLA",
+          "感知/SLAM",
+          "导航/规划",
+          "运动控制",
+          "端侧",
+          "部署/工程",
+          "开源生态",
+          "量产/订单",
+          "Ambarella",
+          "Qualcomm"
+        ],
+        "unknowns": [
+          "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: 未披露.",
+          "N1-655 and X7 power/TDP and thermal envelope: 未披露.",
+          "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: 未披露.",
+          "ASP/pricing for N1-655 or X7: 未披露.",
+          "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: 未披露."
+        ]
+      }
+    }
+  ],
+  "checks": {
+    "immutable_facts_preserved": 711,
+    "existing_article_fact_fields_preserved": 711,
+    "legacy_stage_receipts_preserved": 65,
+    "legacy_reviewer_audits_preserved": 10,
+    "legacy_submissions_preserved": 8,
+    "legacy_applications_preserved": 8,
+    "same_ab_evidence_input_hash": true,
+    "b_projection_has_no_a_outputs": true,
+    "cross_role_and_legacy_paths_http_403": true,
+    "b_submission_before_apply_no_production_score_structure_final": true,
+    "weighted_totals_recomputed": true,
+    "final_policy_unchanged": true,
+    "six_submit_replays_inserted_false": "observed in separate ChatGPT A/B run reports; D1 has one submission per role/article",
+    "six_apply_replays_inserted_false": true,
+    "all_cohort_ab_batches_count_zero": true,
+    "r2_html_digest_verified": true,
+    "post_apply_replays_production_unchanged": true,
+    "legacy_replay": "covered by SQLite regression; historical production rows unchanged"
+  },
+  "ci": {
+    "root_typecheck": "passed local and GitHub",
+    "web_build": "passed local and GitHub",
+    "web_tests": {
+      "passed": 31
+    },
+    "ingest_tests": {
+      "passed": 18
+    },
+    "intel_tests": {
+      "passed": 40
+    },
+    "cloudflare_ingest": {
+      "run_id": 37099331384,
+      "conclusion": "success"
+    },
+    "root_check": {
+      "run_id": 37099331372,
+      "job_id": 111135596858,
+      "conclusion": "cancelled at 25-minute timeout",
+      "topic_seed": "passed; previous UNDEFINED_VALUE resolved",
+      "smoke": "passed",
+      "backend_tests": "NOT GREEN: existing assertion failures and repeated 120-second timeouts; diagnostics preserved",
+      "log_excerpt": "phase2-optimization/root-check-excerpt.log"
+    },
+    "docker": {
+      "job_id": 111135596742,
+      "conclusion": "success",
+      "build_start_seed_smoke": "passed"
+    },
+    "final_docs_commit_ci": "new run may be pending; implementation results above are tied to explicit SHA"
+  },
+  "issues_observed": [
+    "ChatGPT cached v1 tool schema rejected v2 receipt on first A run; refreshed existing A/B plugin tools without permission changes, successful rerun.",
+    "B invalid tag was rejected before insert; corrected to frozen taxonomy, unchanged score, then succeeded.",
+    "Early D1 migration parser errors rolled back; normal migration succeeded after eliminating nested CASE END in trigger guards. No manual migration ledger/import/schema rewrite used."
+  ],
+  "limitations": [
+    "24h recurring/OAuth/unattended stability is pending; manual functional runs do not prove it.",
+    "Real oldest pending age is critical; preserved limit=5 and two-hour Reviewer schedules. No automatic backlog expansion.",
+    "HTML regex paragraph extraction does not execute JavaScript, read PDFs/paywalls, reliably preserve tables, or guarantee perfect boilerplate removal.",
+    "403/failed extraction remains immutable summary fallback for this v2 snapshot; future refresh requires a new version/snapshot design.",
+    "First concurrent immutable evidence write wins; losing raw HTML objects may remain in R2.",
+    "No raw internal ChatGPT MCP trace export was available; run reports, live SDK projections and D1 durable submissions/receipts are combined as evidence.",
+    "Root backend tests remain blocked; local PostgreSQL/Docker unavailable. No unrelated backend/prompt refactor was made."
+  ],
+  "no_paid_model_api_calls": true,
+  "agnes_enabled": false,
+  "phase3_started": false,
+  "stability_24h": "pending"
+}

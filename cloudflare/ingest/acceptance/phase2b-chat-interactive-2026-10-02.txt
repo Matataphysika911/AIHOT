@@ -1,0 +1,180 @@
+- link "Skip to content":
+  - /url: "#_r_6t_"
+- complementary:
+  - navigation "Show sidebar":
+    - button "Show sidebar"
+    - button "Show sidebar":
+    - button "New chat":
+      - generic: New chat
+    - button "Search":
+      - generic: Search
+    - button "Recents":
+      - generic: Recents
+    - button "Library":
+      - generic: Library
+    - button "Open profile menu"
+- main:
+  - button "执行交互式验收"
+  - button "Share":
+    - text: Share
+  - button "More":
+  - button "Toggle pinned summary" [pressed]:
+  - heading "You said:" [level=4]
+  - paragraph:
+    - link "uPrivate Robotics Intelligence Phase 2A":
+      - /url: /plugins/plugin_asdk_app_6abe77e5dfa88191bfee276a2deed423
+      - text: uPrivate Robotics Intelligence Phase 2A
+    - text: 执行 Phase 2B 交互式验收，仅处理一条文章。先实际调用 get_processing_policy 和 get_processing_batch(limit=5,statuses=["new"])，再 get_article(id="02f5e9d8-1bcc-4ad3-95ae-2901c52e4ed9")。遵守返回的原版 analysis/scoring，使用你当前 ChatGPT Plus 模型做判断，禁止任何付费模型 API、网页搜索、任意 SQL。固定 run_id=phase2b-plus-interactive-20261002-02f5e9d8，prompt_version=robotics-plus-mcp.phase2b.v1。按顺序实际 MCP 写 save_prefilter、save_score slot A、save_score slot B、save_structure、finalize_processing。A/B 都从原始文章和 rubric 独立评估，不把 A 结果当 B 输入；若当前执行环境不能隔离评分上下文，在验收中明确限制，不要声称实现了上下文隔离。评分六维加权：industry_impact .25, robotics_relevance .20, soc_relevance .20, commercial_signal .15, technical_novelty .10, source_credibility .10，total 精确到两位小数。Structure 仅填 schema 规定字段，未披露参数写未披露，事实与分析区分。写入成功后使用完全相同参数重复五次写调用，要求 inserted=false，逐项报告真实返回。若缺少 processing:write，发起正常 OAuth 授权，不得改用 SDK 或假造成功。暂不创建 Scheduled Task，不做 Event/Hotness/Daily/Weekly。
+  - button "Copy message":
+  - button "Worked for 1m 33s":
+    - generic: Worked for 1m 33s
+  - heading "ChatGPT said:" [level=4]
+  - paragraph:
+    - strong: 单篇 MCP 写入与幂等验收通过；上下文隔离双评未通过验收。
+  - paragraph: 已实际调用 policy、batch（5 条 new）及指定 get_article，仅处理文章 02f5e9d8-1bcc-4ad3-95ae-2901c52e4ed9。正常 OAuth 授权已接受。
+  - paragraph: 固定参数：
+  - list:
+    - listitem: run_id=phase2b-plus-interactive-20261002-02f5e9d8
+    - listitem: prompt_version=robotics-plus-mcp.phase2b.v1
+  - paragraph: 五次首次写入及相同参数重放的真实返回：
+  - table:
+    - rowgroup:
+      - row "调用 首次 saved / inserted 重放 saved / inserted":
+        - columnheader "调用"
+        - columnheader "首次 saved / inserted"
+        - columnheader "重放 saved / inserted"
+    - rowgroup:
+      - row "save_prefilter true / true true / false":
+        - cell "save_prefilter"
+        - cell "true / true"
+        - cell "true / false"
+      - row "save_score A true / true true / false":
+        - cell "save_score A"
+        - cell "true / true"
+        - cell "true / false"
+      - row "save_score B true / true true / false":
+        - cell "save_score B"
+        - cell "true / true"
+        - cell "true / false"
+      - row "save_structure true / true true / false":
+        - cell "save_structure"
+        - cell "true / true"
+        - cell "true / false"
+      - row "finalize_processing true / true true / false":
+        - cell "finalize_processing"
+        - cell "true / true"
+        - cell "true / false"
+  - button "Copy table":
+  - button "Expand table":
+  - table:
+    - rowgroup:
+      - row "评分维度 权重 A B":
+        - columnheader "评分维度"
+        - columnheader "权重"
+        - columnheader "A"
+        - columnheader "B"
+    - rowgroup:
+      - row "industry_impact .25 68 65":
+        - cell "industry_impact"
+        - cell ".25"
+        - cell "68"
+        - cell "65"
+      - row "robotics_relevance .20 92 90":
+        - cell "robotics_relevance"
+        - cell ".20"
+        - cell "92"
+        - cell "90"
+      - row "soc_relevance .20 48 45":
+        - cell "soc_relevance"
+        - cell ".20"
+        - cell "48"
+        - cell "45"
+      - row "commercial_signal .15 35 30":
+        - cell "commercial_signal"
+        - cell ".15"
+        - cell "35"
+        - cell "30"
+      - row "technical_novelty .10 78 75":
+        - cell "technical_novelty"
+        - cell ".10"
+        - cell "78"
+        - cell "75"
+      - row "source_credibility .10 80 78":
+        - cell "source_credibility"
+        - cell ".10"
+        - cell "80"
+        - cell "78"
+      - row "加权 total 66.05 63.05":
+        - cell "加权 total":
+          - strong: 加权 total
+        - cell
+        - cell "66.05":
+          - strong: "66.05"
+        - cell "63.05":
+          - strong: "63.05"
+  - button "Copy table":
+  - button "Expand table":
+  - paragraph:
+    - text: 最终服务端返回：processing_status=completed、selection_status=near-selected、final_score=64。两评分均值为
+    - strong: "64.55"
+    - text: ；规则返回未说明最终分聚合算法，因此该差异尚待核对。
+  - paragraph:
+    - text: 限制：A/B 分别依据原始摘要和 rubric 判断，但处于同一会话，
+    - strong: 没有实现上下文隔离，不能证明严格独立性
+    - text: 。接口只提供摘要；Structure 仅写 schema 字段，已区分事实与分析，缺失参数标注“未披露”。
+  - paragraph: 判断由当前会话模型完成；未调用付费模型 API、网页搜索或 SQL，未创建定时任务，未执行 Event/Hotness/Daily/Weekly。
+  - button "repeat":
+    - img "repeat"
+  - button "download audio":
+    - img "download audio"
+  - button "Copy":
+  - button "Rate response":
+  - button "Share":
+  - button "Read aloud":
+  - button "More actions":
+  - heading "You said:" [level=4]
+  - generic: 单篇 D1 验证已确认五个阶段各一条回执、重复写入未新增回执，final_score=64 是既有 floor(mean) 显示规则。现在创建一个真正的 ChatGPT Plus Cloud one-shot Scheduled Task，名称“Phase 2B 四篇无人值守验收”，仅在 2026-10-02 12:35:00 Asia/Shanghai（04:35:00 UTC）运行一次，不要立即执行，不要改成 Codex 本地 automation。任务必须带现有 uPrivate Robotics Intelligence Phase 2A 插件。保存以下完整任务逻辑：实际 MCP 调用 get_processing_policy（冻结 robotics-plus-mcp.phase2b.v1）、get_processing_batch(limit=20,statuses=["new"])；仅处理固定四条 ID：05c19d36-266e-4869-928c-2a06994b77b8、0667260c-e339-4f40-9f8f-ad619da85f08、07dd57d3-35c2-4885-87a3-f71b9cf05a12、0ad04cfd-5c0c-4db7-855b-9e58cb60dea5。每条逐一 get_article，确认仍 new，然后按原始 scoring/analysis 通过当前 Plus 模型进行 Prefilter、A/B 两次评分、Structure；实际逐条 MCP save_prefilter、save_score(A)、save_score(B)、save_structure、finalize_processing。每条固定 run_id=phase2b-plus-scheduled-20261002-加该 ID 前八位，prompt_version=robotics-plus-mcp.phase2b.v1。加权总分精确到两位小数，服务器按 T1=60/T1_5=65/T2=76 和 floor(mean) finalize。对 A/B 用原始文章/rubric 分别评估，尽可能使用隔离评审上下文；若环境不支持，必须如实说明严格独立性未通过，不能把该项包装为成功。Structure 不虚构事实，未披露参数明确写未披露。每条完成后，用完全相同参数重放所有五阶段并验证 saved=true、inserted=false。不得询问人工确认；如平台要求确认或 OAuth 错误则停止、记录真实阻塞，不得绕过。禁止 OpenAI API、GLM API、任何付费模型 API、SDK替代实际MCP、网页搜索、任意SQL、Event Grouping/Hotness/Daily/Weekly。最终报告每条 article_id/run_id/Prefilter/A/B/final_score/selection_status/五阶段首次与重复返回，说明是否无人值守、是否无人工确认，以及严格双评独立性是否有证据。现在只创建该一次性任务并返回实际 task id、触发时间与下一次运行，不要宣称任务已完成。
+  - generic: …
+  - button "Show more":
+    - generic: Show more
+  - button "Copy message":
+  - generic: Working for 20s
+  - heading "ChatGPT said:" [level=4]
+  - status: "Response: 我会检查是否能创建带该插件的 ChatGPT 云端一次性任务，并保存完整验收逻辑；现在不执行文章处理。"
+  - paragraph: 我会检查是否能创建带该插件的 ChatGPT 云端一次性任务，并保存完整验收逻辑；现在不执行文章处理。
+  - generic: Retrieving Frozen Analysis and Scoring Policies
+  - generic: ChatGPT can make mistakes. Check important info.
+  - button "Scroll to bottom"
+  - heading "Latest response" [level=4]
+  - status
+  - textbox "Work with ChatGPT":
+    - paragraph: Work with ChatGPT
+  - button "Open Grammarly."
+  - button "Add files and more":
+  - button "Select ChatGPT model":
+    - generic: GPT-6.1 Sol
+    - generic: Medium
+    - generic: None
+    - generic: Minimal
+    - generic: Light
+    - generic: Medium
+    - generic: High
+    - generic: Extra High
+    - generic: Max
+    - generic: Ultra
+    - generic: Persistent
+  - button "Dictate":
+  - button "Stop":
+  - heading "Outputs" [level=3]
+  - button "Create file or site":
+  - button "Create file or site":
+    - generic: Create file or site
+- status
+- status
+- toolbar "Voice Control":
+  - button "Read latest reply aloud":
+  - button "Talk":
+    - generic: Talk
+  - 'button "Talk language: English (US)"':
+    - generic: EN
+  - button "Voice Control settings":

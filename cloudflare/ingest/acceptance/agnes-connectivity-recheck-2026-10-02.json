@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-02T10:38:24.334Z",
+  "caller": "standalone verification client; model request runs in Cloudflare Worker",
+  "worker_http_status": 200,
+  "ok": false,
+  "inserted": true,
+  "receipt": {
+    "probe_id": "agnes-connectivity-20261002-recheck-25",
+    "model": "agnes-2.5-flash",
+    "status": "failed",
+    "request_started_at": "2026-10-02 10:38:24",
+    "finished_at": "2026-10-02 10:38:24",
+    "response_id": null,
+    "response_model": null,
+    "http_status": 429,
+    "output": "{\"http_status\":429,\"retry_after\":\"290\",\"content-type\":\"text/plain; charset=UTF-8\",\"server\":\"cloudflare\",\"cf-ray\":\"a44313cbcfb63167-SEA\",\"message\":\"error code: 1015\"}",
+    "usage_json": null,
+    "error": "provider_http_429",
+    "stage": "prefilter",
+    "article_id": null,
+    "input_json": "{\"title\":\"Connectivity probe: routine weather forecast\",\"summary\":\"This is a synthetic connectivity probe about routine weather, unrelated to robotics or edge SoC. It is not a real article or production processing.\"}",
+    "validated_output": null
+  }
+}

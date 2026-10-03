@@ -1,0 +1,25 @@
+# Phase 2B optional AGNES acceptance — 2026-10-02
+
+Acceptance remains partial. AGNES 2.5 connected successfully for a synthetic Prefilter probe at 18:09 (Asia/Shanghai), but no successful independent AGNES article score B has been demonstrated. Model 3.0 returned HTTP 429 using the rotated key.
+
+The user later selected model 2.5 and authorized five additional attempts (cumulative cap 11). Plus actually processed PhasePlan through MCP: Prefilter PASS, A=77.45, AGNES B failed HTTP 429, Plus fallback B=75.15, final score 76, selected/completed. All successful operations replayed with inserted=false. An incorrect total was rejected before write. ChatGPT displayed a scoring-tool approval, which was handled under existing user authorization; this interactive run does not prove no-confirmation unattended operation.
+
+At 18:30:32, after the previous Retry-After elapsed, a separate owner-authenticated cloud scoring probe used original PhasePlan facts and the exact frozen scoring V1 rubric. It again returned HTTP 429 / Retry-After 762 seconds, with no score, response ID or usage. No A result, reasoning, raw references or conversation history was supplied. Same-id replay returned inserted=false without another API call. Independent D1 comparison confirms all article fields, factual snapshot and production receipt count unchanged by the diagnostic.
+
+Budget: 3 article-review reservations plus 5 standalone probes = 8 used / 11 authorized, 3 remaining. Failed and unknown attempts are retained; no reset/delete or automatic retry is allowed. The key runs entirely in Cloudflare and does not depend on the local machine remaining on. Earlier dashboard rotation was made to the ingest Worker first; correcting the API Worker changed the actual cloud key fingerprint. Exact AGNES 429 cause remains unresolved.
+
+The user requested standalone scoring verification before resuming the batch. No new optional-AGNES Scheduled Task was created. Original pure-Plus Scheduled evidence remains intact; it does not prove optional AGNES unattended success. Next gates remain: successful real-article independent B, one-shot Plus Scheduled/MCP processing of 3–5 new articles, no interactive confirmation, stage/fact/budget/idempotency checks and durable OAuth renewal beyond 24 hours.
+
+Implementation retains the same MCP Worker, original reads/probe/production tools and prompt version. Optional run_independent_score_b is scope/client/run/state bound, uses permanent atomic API reservations and records stage-specific actual providers. Migrations 0008/0009/0010 add external review/probe audit and standalone scoring diagnosis. No arbitrary SQL, caller-selected endpoint or prompt is exposed. The checked-in optional API valve defaults disabled with cap 5; the explicitly authorized deployed override is cap 11 / model agnes-2.5-flash. Ingest background paid API processing remains disabled.
+
+Validation: intel-api 23 tests and typecheck passed; ingest 18 tests and typecheck passed; root typecheck passed. PostgreSQL backend/smoke remain unavailable locally; earlier pre-existing root CI failure was documented in PHASE2B.md. Original prompts/weights/taxonomy/source-tier thresholds remain unchanged. No Event Grouping, Hotness, Daily/Weekly or publication work. PR #2 remains Draft and unmerged.
+
+## Gateway diagnosis at 18:38:24 (Asia/Shanghai)
+
+The user explicitly requested immediate reconnection verification. A new standalone AGNES 2.5 probe returned HTTP 429, Content-Type text/plain, Server cloudflare, CF-Ray a44313cbcfb63167-SEA, body `error code: 1015`, Retry-After 290. This identifies Cloudflare rate limiting in front of the AGNES endpoint, before a successful model result. The exact rate-limit rule/key/account/egress-IP match is not exposed. Do not assume the API credential is invalid or the model account quota is exhausted. Other software succeeds against the same base URL according to the user.
+
+AGNES platform API Keys showed the AI HOT key last used at UTC 10:09:46, matching the successful synthetic Prefilter response; later rejected requests did not advance that timestamp. This independently corroborates the earlier 2.5 success, without claiming a successful production score. Latest cumulative budget: 3 review attempts + 6 probes = 9 of 11; 2 remaining. No scoring call followed the failed connectivity test.
+
+## Code and CI verification
+
+Source commit ce4aed59d8da344fc5b2e716abfc5d0698d68c44 matches the local code and deployment. Cloud Ingest CI run 36996806955 passed both intel-api and ingest checks. Live official SDK read/discovery and read-token denial of production/optional paid review passed. Root Check run 36996807022 passed root typecheck, web build and web tests, then failed check and Docker with the pre-existing UNDEFINED_VALUE at packages/backend/src/publication/topics.ts:43. Actual job logs were inspected; backend/smoke were skipped.

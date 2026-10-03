@@ -1,0 +1,84 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "uprivate-intelligence-ingest",
+  "main": "src/index.ts",
+  "workers_dev": true,
+  "preview_urls": false,
+  "compatibility_date": "2026-10-01",
+  "triggers": {
+    "crons": [
+      "*/15 * * * *",
+      "20 20 * * *",
+      "35 20 * * *"
+    ]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "uprivate-intelligence",
+      "database_id": "796475b7-6819-48fe-b61e-16971d36c985",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "RAW_ARCHIVE",
+      "bucket_name": "uprivate-intelligence-raw"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "SOURCE_QUEUE",
+        "queue": "uprivate-source-jobs"
+      },
+      {
+        "binding": "PROCESSING_QUEUE",
+        "queue": "uprivate-processing-jobs"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "uprivate-source-jobs",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 3,
+        "dead_letter_queue": "uprivate-source-jobs-dlq"
+      },
+      {
+        "queue": "uprivate-processing-jobs",
+        "max_batch_size": 1,
+        "max_batch_timeout": 5,
+        "max_concurrency": 1,
+        "max_retries": 3,
+        "dead_letter_queue": "uprivate-processing-jobs-dlq"
+      }
+    ]
+  },
+  "vars": {
+    "OLD_NEWS_HOURS": "48",
+    "DEFAULT_FETCH_MINUTES": "120",
+    "CF_ACCOUNT_ID": "8681f9abc29572d2ea09be866b251519",
+    "R2_BUCKET_NAME": "uprivate-intelligence-raw",
+    "RAW_RETENTION_DAYS": "60",
+    "R2_FREE_BYTES": "10000000000",
+    "R2_WARNING_PERCENT": "70",
+    "R2_CRITICAL_PERCENT": "85",
+    "R2_CLEANUP_PERCENT": "90",
+    "R2_SCAN_MAX_PAGES": "20",
+    "R2_DELETE_MAX_OBJECTS": "100",
+    "MODEL_CALLS_ENABLED": "false",
+    "INTELLIGENCE_DAILY_CALL_LIMIT": "100",
+    "INTELLIGENCE_HOURLY_CALL_LIMIT": "20"
+  },
+  "account_id": "8681f9abc29572d2ea09be866b251519",
+  "rules": [
+    {
+      "type": "Text",
+      "globs": [
+        "**/*.txt"
+      ],
+      "fallthrough": false
+    }
+  ]
+}

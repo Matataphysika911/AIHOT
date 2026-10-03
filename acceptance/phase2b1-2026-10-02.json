@@ -1,0 +1,303 @@
+{
+  "phase": "2B.1",
+  "recorded_at": "2026-10-02",
+  "status": "blocked_cloud_write_safety_check",
+  "phase_2_completed": false,
+  "phase_3_started": false,
+  "pr_merged": false,
+  "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+  "worker_version": "e1e2b2d4-bb3a-4228-a444-1586b261e698",
+  "reviewer_endpoints": {
+    "A": "/mcp/reviewer-a",
+    "B": "/mcp/reviewer-b"
+  },
+  "scopes": {
+    "A": [
+      "processing:a"
+    ],
+    "B": [
+      "processing:b"
+    ]
+  },
+  "legacy_tools_preserved": true,
+  "paid_model_api_calls_performed": 0,
+  "agnes_enabled": false,
+  "interactive": {
+    "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+    "chat_urls": {
+      "A": "https://chatgpt.com/c/6abfa2e6-68b8-83ea-842c-f711ca5c8554",
+      "B": "https://chatgpt.com/c/6abfa5fe-1658-83e9-9dea-37796a93ebfa"
+    },
+    "independent_contexts_verified": true,
+    "b_response_keys": [
+      "articles",
+      "count",
+      "read_only",
+      "frozen_policy"
+    ],
+    "b_article_keys": [
+      "id",
+      "source_id",
+      "canonical_url",
+      "title",
+      "summary",
+      "author",
+      "published_at",
+      "discovered_at",
+      "is_backfill",
+      "publish_eligible",
+      "source_name",
+      "source_kind",
+      "source_tier",
+      "source_first_party"
+    ],
+    "b_contains_reviewer_outputs": false,
+    "receipt_count": 5,
+    "receipts": [
+      {
+        "reviewer_run_id": "phase2b1_interactive_a_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "A",
+        "scheduled_task_id": "interactive_a_20261002",
+        "context_id": "6abfa2e6-68b8-83ea-842c-f711ca5c8554",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:38:08",
+        "stage": "prefilter",
+        "payload_hash": "6796888836137f03e328a654477f34c1edba7eedefe84085fd7aefd9f4971fc8",
+        "receipt_created_at": "2026-10-02 12:38:09"
+      },
+      {
+        "reviewer_run_id": "phase2b1_interactive_a_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "A",
+        "scheduled_task_id": "interactive_a_20261002",
+        "context_id": "6abfa2e6-68b8-83ea-842c-f711ca5c8554",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:38:08",
+        "stage": "score_a",
+        "payload_hash": "1afe5d5c4dc27c25de93e9d3103d4c93994af2a1ef34ce8d033b6b7b7d68de5a",
+        "receipt_created_at": "2026-10-02 12:38:42"
+      },
+      {
+        "reviewer_run_id": "phase2b1_interactive_b_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "B",
+        "scheduled_task_id": "interactive_b_20261002",
+        "context_id": "6abfa5fe-1658-83e9-9dea-37796a93ebfa",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:40:29",
+        "stage": "score_b",
+        "payload_hash": "c10720f6a72a36942852745cda47424dcd4d8ef071430f7daad4901fc92c8578",
+        "receipt_created_at": "2026-10-02 12:40:30"
+      },
+      {
+        "reviewer_run_id": "phase2b1_interactive_b_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "B",
+        "scheduled_task_id": "interactive_b_20261002",
+        "context_id": "6abfa5fe-1658-83e9-9dea-37796a93ebfa",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:40:29",
+        "stage": "structure",
+        "payload_hash": "3eb2bdd815f2b056fc41abf18b0fb96d5ea791724a8b32374497d1b956419064",
+        "receipt_created_at": "2026-10-02 12:40:41"
+      },
+      {
+        "reviewer_run_id": "phase2b1_interactive_b_20261002_uav",
+        "processing_run_id": "phase2b1_interactive_a_20261002_uav",
+        "article_id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+        "reviewer": "B",
+        "scheduled_task_id": "interactive_b_20261002",
+        "context_id": "6abfa5fe-1658-83e9-9dea-37796a93ebfa",
+        "caller_client_id": "https://chatgpt.com/oauth/client.json",
+        "prompt_version": "robotics-plus-mcp.phase2b1.v1",
+        "created_at": "2026-10-02 12:40:29",
+        "stage": "finalize",
+        "payload_hash": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+        "receipt_created_at": "2026-10-02 12:40:46"
+      }
+    ],
+    "identical_replay_inserted": false,
+    "final_result": {
+      "id": "119b15ae-bdb8-41fc-8650-a60944eb958b",
+      "prefilter_status": "PASS",
+      "score_a": 77,
+      "score_b": 70.55,
+      "final_score": 73,
+      "selection_status": "selected",
+      "processing_status": "completed"
+    },
+    "deterministic_final_expected": 73,
+    "threshold": 65,
+    "finalize_contains_client_final_decision": false,
+    "prompt_precision_correction": "Initial A instruction incorrectly requested integer total. Worker rejected mismatch; A adjusted commercial dimension from 35 to 32 and saved 77. The instruction was corrected for B and both cloud tasks to weighted totals at two decimal places. Persisted A receipt was not overwritten."
+  },
+  "immutability": {
+    "before_count": 699,
+    "after_count": 699,
+    "checked_fields": [
+      "id",
+      "source_id",
+      "canonical_url",
+      "url_hash",
+      "external_id",
+      "title",
+      "summary",
+      "author",
+      "published_at",
+      "discovered_at",
+      "raw_r2_key",
+      "is_backfill",
+      "publish_eligible",
+      "content_hash",
+      "created_at",
+      "event_id",
+      "tier",
+      "first_party"
+    ],
+    "changed": [],
+    "all_original_facts_unchanged": true,
+    "before_sha256": "3f1b81bd7f05cea9adc457ded2d3023d6f9280a21a806f9b0fa701957ab97c8f",
+    "after_sha256": "f6720e7fd31f4aed8c8df2e9b51688915c95ed0a9ceaafdae67992b658e2d50c",
+    "after_cloud_a_retry": true,
+    "after_cloud_final": true
+  },
+  "cloud_tasks": [
+    {
+      "reviewer": "A",
+      "task_id": "6abfa77b9c748190ad639ee9066c5dd9",
+      "name": "Reviewer A Task — Phase 2B.1",
+      "scheduled_at": "2026-10-02T21:00:00+08:00",
+      "context_label": "phase2b1_cloud_task_a_20261002",
+      "source": "cloud",
+      "one_shot": true,
+      "new_chat_each_run": true,
+      "status": "completed_failed",
+      "url": "https://chatgpt.com/scheduled?automationId=6abfa77b9c748190ad639ee9066c5dd9&automationSource=cloud",
+      "run_chat_url": "https://chatgpt.com/c/86927253-e6c4-832e-a3fa-6044a30b681d",
+      "outcome": "Read succeeded; save_prefilter blocked by platform security; 0 D1 writes, independently verified."
+    },
+    {
+      "reviewer": "B",
+      "task_id": "6abfa81650fc8190821fa2202f6edf12",
+      "name": "Reviewer B Task — Phase 2B.1",
+      "scheduled_at": "2026-10-02T21:30:00+08:00",
+      "context_label": "phase2b1_cloud_task_b_20261002",
+      "source": "cloud",
+      "one_shot": true,
+      "new_chat_each_run": true,
+      "status": "completed_no_update",
+      "url": "https://chatgpt.com/scheduled?automationId=6abfa81650fc8190821fa2202f6edf12&automationSource=cloud",
+      "outcome": "Platform shows Completed / Last run Today / No update from this run. No execution chat or successful B tool trace could be retrieved. D1 has zero B receipts; do not infer successful unattended reads/writes.",
+      "run_chat_url": null
+    },
+    {
+      "reviewer": "A",
+      "task_id": "6abfac714ddc819093cbf5cc4e420f1c",
+      "name": "Reviewer A Task — Phase 2B.1 retry",
+      "scheduled_at": "2026-10-02T21:15:00+08:00",
+      "context_label": "phase2b1_cloud_task_a_retry_20261002",
+      "source": "cloud",
+      "one_shot": true,
+      "new_chat_each_run": true,
+      "status": "completed_failed",
+      "url": "https://chatgpt.com/scheduled?automationId=6abfac714ddc819093cbf5cc4e420f1c&automationSource=cloud",
+      "run_chat_url": "https://chatgpt.com/c/dcf991ff-b5c0-8331-87a3-71e29f0ad247",
+      "outcome": "All three original-facts reads succeeded; save_prefilter blocked by OpenAI safety checks even after explicit user-approved Allow all tools; zero successful writes. No alternate writer used."
+    }
+  ],
+  "cohort": [
+    {
+      "id": "0d3d0d83-1c7b-4f6b-a578-0c5180e58e14",
+      "title": "SonarVoxNet: Diver Detection in 3D Bounding Box using 3D Sonar"
+    },
+    {
+      "id": "1623a308-c58f-4afa-bd85-13e6770151d4",
+      "title": "OpenSpace Lab Solution to the IROS 2026 Indoor Exploration Competition"
+    },
+    {
+      "id": "176ed6c4-cd1c-4694-a2cc-301a36e2469b",
+      "title": "Admissibility-Preserving Control for Multi-Input Systems with Joint Capacity Constraints"
+    }
+  ],
+  "cloud_acceptance": {
+    "unattended_execution": "failed: both A runs blocked at writes; B completed with no update and zero receipts",
+    "platform_run_chats": "A first and retry chats recorded; B chat unavailable; cloud dual independence not established",
+    "d1_independent_receipts": "not achieved: zero cloud receipts after both A runs",
+    "repeat_run_idempotency": "not achieved for cloud; interactive identical stage replay passed",
+    "completed_slot_cleanup": "passed: all three one-shot tests show Completed and absent from active tasks; only pre-existing monitor remains",
+    "blocked_action": "Reviewer A save_prefilter",
+    "platform_error": "This tool call was blocked by OpenAI's safety checks. Please double check what you are sending.",
+    "permission_reconfirmation_needed": false,
+    "no_bypass_attempted": true,
+    "next_requirement": "Platform must permit the existing scoped cloud write tools; more user permission alone is insufficient. Do not mark Phase 2 completed."
+  },
+  "validation": {
+    "intel_api_typecheck": "passed",
+    "intel_api_tests": 27,
+    "ingestion_typecheck": "passed",
+    "ingestion_tests": 18,
+    "root_typecheck": "passed",
+    "web_build": "passed",
+    "web_tests": 31,
+    "sdk_live_read_and_scope_checks": "passed (SDK, not model scoring)",
+    "root_database_tests": "blocked: local PostgreSQL unavailable (ECONNREFUSED 127.0.0.1:5432); interrupted after confirming repeated database failures",
+    "site_smoke": "not verified: site/API test runtime requires unavailable PostgreSQL",
+    "cloud_ingest_ci": "passed on f8544dd003a010a467172bc4fc776c93d929b8c3, runs 37009995946 / 37009988835",
+    "root_ci": "typecheck, web build/tests passed; check/docker failed at existing UNDEFINED_VALUE in publication/topics.ts:43 before backend tests/smoke; log verified, run 37009995967",
+    "latest_intel_api_ci": "passed on 1258675f90e1c7b8d266a3f31bd680a1f6317e33"
+  },
+  "plugin_permission": {
+    "A": "Allow all tools (Elevated risk)",
+    "B": "Allow all tools (Elevated risk)",
+    "explicit_user_approval": true,
+    "oauth_scopes_unchanged": true
+  },
+  "cloud_cohort_after_a_retry": [
+    {
+      "id": "0d3d0d83-1c7b-4f6b-a578-0c5180e58e14",
+      "prefilter_status": null,
+      "score_a": null,
+      "score_b": null,
+      "final_score": null,
+      "selection_status": null,
+      "processing_status": "new"
+    },
+    {
+      "id": "1623a308-c58f-4afa-bd85-13e6770151d4",
+      "prefilter_status": null,
+      "score_a": null,
+      "score_b": null,
+      "final_score": null,
+      "selection_status": null,
+      "processing_status": "new"
+    },
+    {
+      "id": "176ed6c4-cd1c-4694-a2cc-301a36e2469b",
+      "prefilter_status": null,
+      "score_a": null,
+      "score_b": null,
+      "final_score": null,
+      "selection_status": null,
+      "processing_status": "new"
+    }
+  ],
+  "evidence_files": [
+    "cloud-after-a-retry-d1.json",
+    "cloud-a-retry-failed-ui.txt",
+    "cloud-a-retry-chat.txt",
+    "interactive-d1.json",
+    "sdk-interactive-b-input.json",
+    "cloud-final-d1.json",
+    "cloud-b-final-ui.txt",
+    "cloud-b-config-ui.txt"
+  ]
+}

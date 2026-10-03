@@ -36,13 +36,13 @@ const countsCache = cached(() => queryTopicCounts(new Date()), {
  */
 export async function seedTopics(): Promise<number> {
   const data = JSON.parse(readFileSync(path.join(REPO_ROOT, "industry/topics.json"), "utf8")) as {
-    topics: Array<{ slug: string; name: string; group: string; entityId?: string | null; tags: string[]; definition: string; related?: string[] }>;
+    topics: Array<{ slug: string; name: string; group: string; entityId?: string | null; tags?: string[]; definition: string; related?: string[] }>;
   };
   let position = 0;
   for (const t of data.topics) {
     await sql`
       INSERT INTO topics (slug, name, grp, entity_id, tags, definition, related, position)
-      VALUES (${t.slug}, ${t.name}, ${t.group}, ${t.entityId ?? null}, ${t.tags}, ${t.definition}, ${t.related ?? []}, ${position++})
+      VALUES (${t.slug}, ${t.name}, ${t.group}, ${t.entityId ?? null}, ${t.tags ?? []}, ${t.definition}, ${t.related ?? []}, ${position++})
       ON CONFLICT (slug) DO UPDATE SET name = EXCLUDED.name, grp = EXCLUDED.grp, entity_id = EXCLUDED.entity_id,
         tags = EXCLUDED.tags, definition = EXCLUDED.definition, related = EXCLUDED.related, position = EXCLUDED.position`;
   }

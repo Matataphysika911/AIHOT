@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-02T10:31:15.148Z",
+  "caller": "standalone scoring verification; API execution on Cloudflare Worker",
+  "worker_http_status": 200,
+  "ok": false,
+  "inserted": false,
+  "receipt": {
+    "probe_id": "agnes-connectivity-20261002-score-25-aftercooldown",
+    "model": "agnes-2.5-flash",
+    "status": "failed",
+    "request_started_at": "2026-10-02 10:30:32",
+    "finished_at": "2026-10-02 10:30:32",
+    "response_id": null,
+    "response_model": null,
+    "http_status": 429,
+    "output": "{\"http_status\":429,\"retry_after\":\"762\"}",
+    "usage_json": null,
+    "error": "provider_http_429",
+    "stage": "score_b",
+    "article_id": "01e6d863-1fe2-433a-bfb3-2c40c300c228",
+    "input_json": "{\"id\":\"01e6d863-1fe2-433a-bfb3-2c40c300c228\",\"title\":\"PhasePlan: Ordered Future-Phase Planning for Robot Brain Models\",\"summary\":\"arXiv:2609.39970v1 Announce Type: new \\nAbstract: Robot brain models integrate vision, language, and robot state to generate actions for complex manipulation tasks. Most predict fixed-length action chunks that may span multiple task phases. This can obscure phase transitions and favor frequent action patterns, compromising action timing in dynamic environments. We propose \\\\method, an ordered future-phase planning method for robot brain models. From current multimodal observations, it predicts the task phase at each future action position. The resulting planning representations condition the corresponding actions, preserving temporal alignment between task progress and action generation. Training first learns the planner, then freezes it during action-model adaptation to maintain stable phase representations. We instantiate \\\\method on pretrained $\\\\pi_{0.5}$ and AcrossWAM1.0 robot brain models. Detailed quantitative evaluation uses the $\\\\pi_{0.5}$ implementation. On conveyor-belt manipulation, \\\\method reduces offline joint-action error by approximately 22.5\\\\% relative to the original $\\\\pi_{0.5}$ model. It also improves phase-transition modeling and cross-phase action prediction. These results demonstrate the value of ordered future-phase planning for continuous action generation.\",\"canonical_url\":\"https://arxiv.org/abs/2609.39970\",\"author\":\"Xiaoyu Yang, Yafei Zhang, Wensheng Li, Qing Zhan, Nan Wu\",\"published_at\":\"2026-10-01T04:00:00.000Z\",\"source_tier\":\"T1_5\",\"source_first_party\":0}",
+    "validated_output": null
+  }
+}
