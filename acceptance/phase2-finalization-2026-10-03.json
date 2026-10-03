@@ -66,13 +66,15 @@
     "BLOCK": "unit/integration: A terminal apply, no B eligible",
     "UNKNOWN": "frozen policy retains score; cohort UNKNOWN legitimately runs B; no B without applied A score",
     "platform_safety_blocks": [],
-    "paid_model_API_calls": 0
+    "paid_model_API_calls": 0,
+    "platform_safety_blocks_observation_scope": "completed A/B and successful dedup executions; one earlier unlinked UI error has unclassified cause"
   },
   "observability_limits": [
     "First runs initiated with native Run now on recurring cloud tasks, then executed unattended. This does not prove timer-triggered recurrence or 24h stability.",
     "context_id is declared model claim, not platform-signed chat identity; external actual chat URLs independently recorded.",
     "ChatGPT read_thread exposes execution summaries/messages, not raw tool traces. Full raw B response was captured through official MCP SDK on a separate existing applied-A article; do not label SDK as cloud execution.",
-    "B first weighted total 62.25 rejected before insertion, corrected to 62.75 with identical dimensions. Schema arithmetic rejection is not platform safety rejection."
+    "B first weighted total 62.25 rejected before insertion, corrected to 62.75 with identical dimensions. Schema arithmetic rejection is not platform safety rejection.",
+    "An earlier native A repeat trigger left an unlinked sidebar error indicator with no exposed error text/chat ID; not counted as successful, cause unclassified. Later independent repeat chat successfully read and skipped all 3. No permission widening or alternate write path."
   ],
   "counts": {
     "before": {
