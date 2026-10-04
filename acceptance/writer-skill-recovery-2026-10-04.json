@@ -36,7 +36,7 @@
     "Facts immutable, Analysis derived, Opinion explicit",
     "Daily/Weekly do not use writer skill; Insights only"
   ],
-  "production_note": "Phase 3 generated Insight artifacts still bound to 1.1-reconstructed.1 until the next controlled rebuild/rebind; this recovery record establishes the authoritative skill for subsequent pure-cloud validation.",
+  "production_note": "Controlled rebind completed in phase3-writer-skill-rebind-2026-10-04.json. Active sample, writer packet and generated Insight now bind recovered version/hash; cloud acceptance tracked separately.",
   "deployment": false,
   "blog_publish": false
 }

@@ -1,18 +1,22 @@
 import { hash } from './core.mjs';
 
+export const WRITER_SKILL={version:'1.1-recovered.20261001',sha256:'98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815',
+  provenance:'recovered_from_conversation_context; historically confirmed rules; not byte-identical original',
+  path:'industry/robotics/skills/uprivate-writer-v1.1/SKILL.md',library_path:'/uPrivate/skills/uprivate-writer-v1.1/SKILL.md'};
+
 export function writerPacket(skillText, candidate, events, snapshotHash) {
-  if (!skillText.includes('scope: insight-draft-only') || !skillText.includes('version: 1.1-reconstructed.1')) throw new Error('Unrecognized writer skill');
+  if (!/^scope: insight-draft-only$/m.test(skillText) || !/^version: 1\.1-recovered\.20261001$/m.test(skillText) || hash(skillText)!==WRITER_SKILL.sha256) throw new Error('Unrecognized writer skill');
   const evidence=events.filter(e=>candidate.event_ids.includes(e.id));
   if (!evidence.length || candidate.article_ids.some(id=>!evidence.some(e=>e.article_ids.includes(id)))) throw new Error('Unbound candidate');
   const input={candidate,evidence,snapshot_hash:snapshotHash};
-  return {schema_version:'insight-writer-packet.v1',skill:{version:'1.1-reconstructed.1',sha256:hash(skillText),provenance:'confirmed-rule reconstruction; original unavailable'},
+  return {schema_version:'insight-writer-packet.v1',skill:{...WRITER_SKILL},
     input_sha256:hash(input),input,skill_text:skillText,execution_policy:'Read skill_text and evidence in current ChatGPT/Codex session; no model API; return draft JSON only',
     instruction:'Apply the skill only to this candidate. Every fact must bind a fact ID. Inferences and proposed personal judgment must be labeled. Missing SoC numbers stay 未披露. Candidate watchlist may produce an explicitly exploratory sample, never publication-ready content.'};
 }
 
 export function validateDraft(draft, packet) {
   if (draft.status!=='draft' || draft.publish!==false || draft.candidate_id!==packet.input.candidate.id || draft.language!=='zh-CN') throw new Error('Draft-only candidate contract');
-  if (draft.skill_sha256!==packet.skill.sha256 || draft.input_sha256!==packet.input_sha256) throw new Error('Writer receipt does not bind skill/input');
+  if (draft.skill_version!==packet.skill.version || draft.skill_sha256!==packet.skill.sha256 || draft.skill_provenance!==packet.skill.provenance || draft.input_sha256!==packet.input_sha256) throw new Error('Writer receipt does not bind skill/input');
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(draft.slug) || !draft.title || !draft.deck || !draft.summary || !draft.sections?.length) throw new Error('Missing article metadata');
   const facts=new Map(packet.input.evidence.flatMap(e=>e.facts.map(f=>[f.id,f]))),claims=new Map();
   for (const c of draft.claims ?? []) {
@@ -27,7 +31,7 @@ export function validateDraft(draft, packet) {
   for (const kind of ['fact','inference','personal_judgment']) if (![...claims.values()].some(c=>c.kind===kind)) throw new Error('Missing epistemic layer');
   if (!draft.unknowns?.length) throw new Error('Unknown disclosures required');
   return {...draft,source_mapping:[...claims.values()].map(c=>({claim_id:c.id,kind:c.kind,facts:c.fact_ids.map(id=>({fact_id:id,citation:facts.get(id).citation}))})),
-    writer_receipt:{execution:'current Codex session, skill read and applied; no model API',skill:packet.skill,input_sha256:packet.input_sha256,
+    writer_receipt:{execution:'committed session-authored draft; deterministic structural/provenance validation; no model API',skill:packet.skill,input_sha256:packet.input_sha256,
       candidate_status:packet.input.candidate.status,editorial_status:'pending-user-review',validation_scope:'structural/provenance checks; semantic grounding reviewed separately'}};
 }
 

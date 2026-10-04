@@ -1,0 +1,118 @@
+{
+  "schema_version": "phase3-writer-rebind.v1",
+  "date": "2026-10-04",
+  "baseline_commit": "72337dac9c5c6c6a68ab44177e062e298a4ab3db",
+  "old_skill": {
+    "version": "1.1-reconstructed.1",
+    "sha256": "13c7a74306cfa450c7c3d4326a7d31af41dad77e8d1df11603ed9dcf72f86a76"
+  },
+  "recovered_skill": {
+    "version": "1.1-recovered.20261001",
+    "sha256": "98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815",
+    "provenance": "recovered_from_conversation_context; historically confirmed rules; not byte-identical original",
+    "path": "industry/robotics/skills/uprivate-writer-v1.1/SKILL.md",
+    "library_path": "/uPrivate/skills/uprivate-writer-v1.1/SKILL.md"
+  },
+  "old_reference_files": [
+    "PHASE3-MVP.md",
+    "acceptance/phase3-mvp-2026-10-04.json",
+    "acceptance/writer-skill-recovery-2026-10-04.json",
+    "cloudflare/phase3/samples/insight-draft.json",
+    "cloudflare/phase3/src/writer.mjs",
+    "content/generated/insights/ambarella-physical-ai-workload-integration.json",
+    "content/generated/insights/ambarella-physical-ai-workload-integration.md",
+    "content/generated/insights/writer-packet.json"
+  ],
+  "candidate_id": "candidate-event-52d906008bce9df7",
+  "input_sha256": "d8cf0fb7c863a99de0c2a9dd6cc2a1c473990c66ef27e157d4d1e043623c12a6",
+  "snapshot_sha256": "4ac0db3fc36245839ce38e5f79556a5ab548ebd8a743e13d3235a27720f8737d",
+  "preserved": {
+    "fact_claims_sha256": "385044b6888cc9de61503496daa3aee44eb23f24bf7cb02b2a66e4104cb9568f",
+    "claim_bindings_sha256": "7f765dd5cfe5c43a4a5cadc8eef49e7d15b5a3ae79399427962778ab427c3d78",
+    "unknowns_sha256": "1596b1c440e9bc37f90ff42e9d77b3574441bb26dc636e009796963dabf10c7f",
+    "editorial_context_sha256": "a7d5a181028e2372af4d7e5762c0a7b1620ef73d5e7c9081b51702eb22c393e2",
+    "sections_sha256": "483c9ef56b150a93a6f730da345c79c1736395e89dcb284460937eb116f383c2",
+    "files": [
+      {
+        "path": "cloudflare/phase3/samples/completed.json",
+        "sha256": "9e8a91431ab0d6b921afc9389a0b62d651e2e05e769349c6286c01d9c4fb0ec4"
+      },
+      {
+        "path": "acceptance/phase2-optimization-2026-10-03.json",
+        "sha256": "45615dad3eb3b3b7e892685d3c8ed3f7594aac7888abaff28a874156f09fe0af"
+      },
+      {
+        "path": "acceptance/phase2-optimization/sdk-evidence-arxiv.json",
+        "sha256": "b3bfea65ef0f94b5c08f96819c84624e0ba5815fc09795f1947fd380ad7e5769"
+      },
+      {
+        "path": "acceptance/phase2-optimization/sdk-evidence-news.json",
+        "sha256": "519426c9f07f1591b9322b6f6a8cc8249e4412f89cf575d44118e1279415361e"
+      },
+      {
+        "path": "acceptance/phase2-optimization/sdk-evidence-company.json",
+        "sha256": "048df368b001ae8eafb308ab76e571864bd99db8f1d0b31e8f3297855a5e119c"
+      }
+    ],
+    "generated_files": [
+      {
+        "path": "daily/2026-10-02.json",
+        "sha256": "80d9edf913b79f276128835e0ffa286e387084e0264a299dd3bcf148d3c1eb82"
+      },
+      {
+        "path": "daily/2026-10-02.md",
+        "sha256": "fff4a7167d33a7443f8b3bb9c3c8edcaf4ba6101a04955924b215022ddaf19ed"
+      },
+      {
+        "path": "weekly/2026-W40.json",
+        "sha256": "e6deed6eefeaf9e121156008a33ed74197199f6e21c4a6e95758b87a734438ad"
+      },
+      {
+        "path": "weekly/2026-W40.md",
+        "sha256": "5d5b625468dc4d717c970dc8fc32c6c4ccb5ef7b19f72c211199eef18998ee9b"
+      },
+      {
+        "path": "insights/candidates.json",
+        "sha256": "2f63911668b13830b8f443ef4229e133172bf399de151315ffc829bef30378be"
+      },
+      {
+        "path": "soc/index.json",
+        "sha256": "849fee764e171ef3ea7a341817701eacce136976c836b7eee3b40242a4a50727"
+      },
+      {
+        "path": "soc/index.md",
+        "sha256": "d7feedcd5dffe79aa6b288ace7a2a14fa634453bbe0ef5c42ee406fb53285c41"
+      },
+      {
+        "path": "events/index.json",
+        "sha256": "40debd4d108c80717ca37b348c133221bcfa4603fbe2d3912a25fbe0159ba425"
+      },
+      {
+        "path": "source-map.json",
+        "sha256": "32e120dbe92285ae26d671286ab9870d87e88c9e8b1eec2c79aafdbad53d2184"
+      }
+    ]
+  },
+  "changes": {
+    "metadata": [
+      "title",
+      "deck",
+      "summary",
+      "skill_version",
+      "skill_sha256",
+      "skill_provenance"
+    ],
+    "analysis_claim_ids": [
+      "I2",
+      "I3"
+    ],
+    "personal_judgment_claim_ids": [
+      "J1"
+    ],
+    "style_note": "Restores What Actually Changed and Does it actually ship? framing; makes workload integration constraints and customer migration questions explicit. No new factual or specification claim.",
+    "facts_note": "F1-F4 text and fact IDs are byte-equivalent JSON values. All claim IDs/kinds/citations, sections, unknowns, candidate/evidence input, article/event IDs, Phase2 scores/receipts and all non-writer generated artifacts stay unchanged."
+  },
+  "publish": false,
+  "paid_model_api_calls": 0,
+  "phase2_mutation": false
+}

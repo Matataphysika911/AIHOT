@@ -95,15 +95,15 @@
     },
     {
       "path": "insights/writer-packet.json",
-      "sha256": "4eea32e836bed682bf56ece081b86cb8eafdbc2ae3ce2a8ddfdcd87bef8726b7"
+      "sha256": "2e0b13849badb1438a6fb07135281e690a47e0955a314b9a4d919a4deb60eeb8"
     },
     {
       "path": "insights/ambarella-physical-ai-workload-integration.json",
-      "sha256": "64b3182aecb30c4c19315af20ac3b45fc1016e066f6fddd61e53bda7650ecd18"
+      "sha256": "1e3d55d5bab1e8d6ad831b2f5fef3d6ff41193279c5caa2737b6d02e693b6ca8"
     },
     {
       "path": "insights/ambarella-physical-ai-workload-integration.md",
-      "sha256": "3965f1c81f725dc405362aa1fe2d6b1e6754e52fc2c134d26eddebfd18258230"
+      "sha256": "b833a0bcdcf8a9b8115c517488e7052c49533e82b9d4cdb8e96d7bf6debc9200"
     },
     {
       "path": "source-map.json",

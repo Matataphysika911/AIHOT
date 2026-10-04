@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import {hash,canonicalJson,validateSnapshot} from '../../cloudflare/phase3/src/core.mjs';
+import {writerPacket,validateDraft} from '../../cloudflare/phase3/src/writer.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const out='content/generated',m=read(out+'/manifest.json');
 assert.equal(m.publish,false);
@@ -27,7 +28,20 @@ for(const r of [read(out+'/daily/2026-10-02.json'),read(out+'/weekly/2026-W40.js
 }
 for(const c of read(out+'/insights/candidates.json')){assert.ok(c.why_now.text&&c.angle&&c.risks.length&&c.unknowns.length);c.event_ids.forEach(id=>assert.ok(eventIds.has(id)));}
 const draft=read(out+'/insights/ambarella-physical-ai-workload-integration.json');
+const skill=fs.readFileSync('industry/robotics/skills/uprivate-writer-v1.1/SKILL.md','utf8');
+const packet=read(out+'/insights/writer-packet.json');
+assert.deepEqual(packet,writerPacket(skill,read(out+'/insights/candidates.json')[0],events,hash(snapshot)));
+assert.deepEqual(draft,validateDraft(read('cloudflare/phase3/samples/insight-draft.json'),packet));
+const rebind=read('acceptance/phase3-writer-skill-rebind-2026-10-04.json');
+assert.equal(packet.input_sha256,rebind.input_sha256);
+assert.equal(draft.candidate_id,rebind.candidate_id);
+assert.equal(m.input_sha256,rebind.snapshot_sha256);
+assert.equal(hash(draft.claims.filter(c=>c.kind==='fact')),rebind.preserved.fact_claims_sha256);
+assert.equal(hash(draft.claims.map(({id,kind,fact_ids,user_approved})=>({id,kind,fact_ids,user_approved}))),rebind.preserved.claim_bindings_sha256);
+for(const key of ['unknowns','editorial_context','sections'])assert.equal(hash(draft[key]),rebind.preserved[key+'_sha256']);
+for(const f of rebind.preserved.files)assert.equal(hash(fs.readFileSync(f.path,'utf8')),f.sha256,f.path);
+for(const f of rebind.preserved.generated_files)assert.equal(hash(fs.readFileSync(path.join(out,f.path),'utf8')),f.sha256,f.path);
 assert.equal(draft.skill_sha256,hash(fs.readFileSync('industry/robotics/skills/uprivate-writer-v1.1/SKILL.md','utf8')));
 assert.equal(draft.publish,false);
 for(const map of draft.source_mapping)for(const f of map.facts)assert.deepEqual(f.citation,facts.get(f.fact_id).citation);
-console.log('PASS: all output digests, real Phase2 provenance/structure/evidence, report citations, candidate gates and skill mapping');
+console.log('PASS: all output digests, real Phase2 provenance/structure/evidence, report citations, candidate gates, recovered skill binding and controlled-rebind invariants');

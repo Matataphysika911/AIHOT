@@ -28,13 +28,13 @@ Candidates prioritize robotics/embodied AI/edge AI SoC. High score (≥75), inde
 
 ## Writer skill and Insight draft
 
-Original complete personal skill was not found in current/prior local workspaces, AIHOT, available skills or browser Library search. Referenced conversation also recorded that the full original was unavailable. The versioned reconstruction is `industry/robotics/skills/uprivate-writer-v1.1/SKILL.md`, version **1.1-reconstructed.1**, pending later author refinement. It contains only confirmed rules; it does not pretend to reproduce unseen original instructions.
+Authoritative skill: `industry/robotics/skills/uprivate-writer-v1.1/SKILL.md`, version **1.1-recovered.20261001**. Recovered from historically confirmed conversation rules; not claimed byte-identical to the original. Library mirror: `/uPrivate/skills/uprivate-writer-v1.1/SKILL.md`. Independent Library readback and cloud CI are tracked in the cloud acceptance record.
 
-SHA-256: `13c7a74306cfa450c7c3d4326a7d31af41dad77e8d1df11603ed9dcf72f86a76`.
+SHA-256: `98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815`.
 
 The skill was read and applied in this Codex session to the Ambarella evidence and candidate packet. Chinese-first, natural technical English, event→constraint→mechanism→silicon→reality/commercialization→personal judgment; optional headings are used selectively. Daily/Weekly have `writer_skill:null` and do not apply it.
 
-Draft: **把 SmolVLA 放进机器人之后，SoC 还要回答什么**. Includes title/deck/summary/slug/sections, facts vs inferences vs proposed personal judgment, citation mapping and explicit unknowns. Proposed judgments have `user_approved:false`. Missing TOPS/Memory/Bandwidth/Latency/Power/BOM figures remain 未披露. Vendor demos are not treated as production deployment; Ambarella's broad >50M processor statement is not robotic-chip shipment evidence. The writer validator checks structure/hash/provenance, not semantic entailment; the draft was separately reviewed against actual bounded evidence.
+Draft: **SmolVLA 跑在一颗 SoC 上，离真实交付还有多远**. Includes title/deck/summary/slug/sections, facts vs inferences vs proposed personal judgment, citation mapping and explicit unknowns. Proposed judgments have `user_approved:false`. Missing TOPS/Memory/Bandwidth/Latency/Power/BOM figures remain 未披露. Vendor demos are not treated as production deployment; Ambarella's broad >50M processor statement is not robotic-chip shipment evidence. The writer validator checks structure/hash/provenance, not semantic entailment; the draft was separately reviewed against actual bounded evidence.
 
 ## AI SoC and blog contract
 
@@ -52,7 +52,7 @@ node scripts/phase3/build.mjs --input cloudflare/phase3/samples/completed.json -
 
 Defaults generate one Daily (2026-10-02), one partial Weekly (2026-W40), three Insight Candidates, one skill-based Insight draft, SoC index, events, source map and manifest. A different corpus needs a newly composed hash-bound draft; never reuse the sample draft with different evidence. No model API is called by the builder. Sample historical evidence is not refreshed through browsing.
 
-Validation: 26 Phase 3 unit/integration tests (including the real migrated SQLite query); root typecheck; web production build; 31 web tests. PostgreSQL-backed root suite and full running-site smoke remain unrun because this workspace has no PostgreSQL/docker runtime; no backend/publication layer changed. D1 adapter passes mock contract and migrated SQLite query tests; remote query and scheduled export remain unverified.
+Validation: 28 Phase 3 unit/integration tests (including the real migrated SQLite query); root typecheck; web production build; 31 web tests. PostgreSQL-backed root suite and full running-site smoke remain unrun because this workspace has no PostgreSQL/docker runtime; no backend/publication layer changed. D1 adapter passes mock contract and migrated SQLite query tests; remote query and scheduled export remain unverified.
 
 ## Phase 2 read-only sanity (2026-10-04)
 
@@ -95,7 +95,7 @@ Candidates include why-now/as-of, angle, risk/unknowns and full source/evidence/
 mapping. Ready requires score >=75, >=2 publisher hosts, >=2 related-topic events across distinct Shanghai publication days (or an evidence-supported same-story link),
 and focus relevance; topical continuity is a heuristic, not causal proof. All three
 real samples stay watchlist. One exploratory Ambarella draft was reviewed using the
-read reconstructed skill in this session; proposed judgment remains unapproved.
+read recovered skill in this session; proposed judgment remains unapproved.
 
 SoC Markdown accompanies JSON. Application entries are source-described demos/uses,
 not production qualification. Benchmark/review arrays stay empty. Nine vendor seed
@@ -106,7 +106,7 @@ frontend. Astro may import the manifest and load only listed JSON/Markdown files
 build time; reject `publish:false` for public deployment. This contract does not wire
 or deploy an Astro site in this iteration.
 
-Remaining limits: original writer skill reconciliation; broader independently
+Remaining limits: broader independently
 corroborated corpus; live semantic orchestration; remote D1 export (internal read
 adapter tested locally only); recurring static export; full English translation and
 frontend binding; verified benchmark/review catalog. No schema migration needed.
@@ -116,6 +116,19 @@ See `acceptance/phase3-mvp-2026-10-04.json` for bounded acceptance and
 
 Event IDs hash cluster membership. Adding a new report to an occurrence changes its ID; a future durable D1 event registry/alias layer is needed before ongoing public permalinks. Publisher hostname dedup does not resolve corporate ownership or syndication automatically.
 
-## Review delivery
+## Controlled writer rebind and cloud reproduction
 
-Draft [PR #3](https://github.com/Matataphysika911/AIHOT/pull/3) targets the Phase 2 feature branch, leaving PR #2 untouched. Dedicated [Phase 3 CI](https://github.com/Matataphysika911/AIHOT/actions/runs/37184088618) passed on implementation commit `282998e333a757c450aaeaffd52e429ffb3d7cc2`. Root Check was still in progress when this record was written and is not claimed green. No merge or deployment.
+Baseline: `72337dac9c5c6c6a68ab44177e062e298a4ab3db`. The rebind record inventories every old version/hash reference. Facts F1–F4 remain unchanged, as do all claim bindings, unknowns, sections, candidate/event/article IDs, scores, evidence, Phase2 receipts and non-writer exports. Title/deck/summary and I2/I3/J1 restore system constraints, customer migration and “Does it actually ship?” framing. J1/J2 remain `user_approved:false`. Historical old references remain only as supersession/baseline information and a rejection test.
+
+Use a fresh GitHub checkout with Node 24, without private local files:
+
+```sh
+node --test cloudflare/phase3/tests/*.test.mjs
+node scripts/phase3/build.mjs --draft cloudflare/phase3/samples/insight-draft.json
+node scripts/phase3/verify.mjs
+git diff --exit-code -- content/generated
+```
+
+The committed recovered skill, candidate/evidence snapshot, draft and Phase2 acceptance/evidence are sufficient for deterministic writer validation and artifact rebuild. Re-authoring prose is a separate author/session activity; no deterministic model generation or automated semantic entailment claim is made. A Library readback must match the pinned hash before claiming the two-cloud copy condition. CI uses only GitHub and Node, with no paid model API, Mac paths or old chats. See `acceptance/phase3-writer-skill-cloud-acceptance-2026-10-04.json` for current CI and Library evidence and verdict.
+
+Draft [PR #3](https://github.com/Matataphysika911/AIHOT/pull/3) still targets the Phase2 feature branch. PR #2 is untouched. No merge or deployment. Earlier CI run 37184088618 validated the old implementation only; recovered rebind CI is tracked separately.

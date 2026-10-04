@@ -76,6 +76,18 @@ test('grouping is invariant to input order and makes no mutation',()=>{
   const original=JSON.stringify(snapshot);assert.deepEqual(group(snapshot.articles),group([...snapshot.articles].reverse()));assert.equal(JSON.stringify(snapshot),original);
 });
 
+test('recovered writer pin rejects old version and edited bytes',()=>{
+ const g=group(snapshot.articles),candidate=candidates(buildWeekly(snapshot,g,'2026-09-28'))[0];
+ assert.throws(()=>writerPacket(skill.replace('1.1-recovered.20261001','1.1-reconstructed.1'),candidate,g.events,hash(snapshot)),/Unrecognized/);
+ assert.throws(()=>writerPacket(skill+'\n',candidate,g.events,hash(snapshot)),/Unrecognized/);
+});
+test('writer validation rejects wrong version, provenance, input and approved judgment',()=>{
+ const g=group(snapshot.articles),candidate=candidates(buildWeekly(snapshot,g,'2026-09-28'))[0],p=writerPacket(skill,candidate,g.events,hash(snapshot));
+ const draft=JSON.parse(fs.readFileSync(new URL('../samples/insight-draft.json',import.meta.url)));
+ for(const key of ['skill_version','skill_provenance','skill_sha256','input_sha256']){const d=copy(draft);d[key]='stale';assert.throws(()=>validateDraft(d,p),/does not bind/);}
+ const d=copy(draft);d.claims.find(c=>c.kind==='personal_judgment').user_approved=true;assert.throws(()=>validateDraft(d,p),/user review/);
+});
+
 test('period metadata excludes next-day publishers and future publications',()=>{
  const a=fixture('a','one.example','2026-10-01T15:00:00Z'),b=fixture('b','two.example','2026-10-01T17:00:00Z');
  b.canonical_url=a.canonical_url;b.source_id='second-feed';b.final_score=99;b.structure.companies=['OtherCo'];
