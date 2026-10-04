@@ -16,7 +16,9 @@
   "chatgpt_library": {
     "path": "/uPrivate/skills/uprivate-writer-v1.1/SKILL.md",
     "library_file_id": "libfile_94c9fbe6897c8191a5a20e5125320039",
-    "persisted": true
+    "persisted": true,
+    "independent_readback": "2026-10-04 Library UI exists and prose matches recovered rules; raw-byte hash not verified",
+    "byte_hash_verified": false
   },
   "sha256": "98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815",
   "recovery_fidelity": {
