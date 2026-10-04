@@ -1,0 +1,558 @@
+{
+  "status": "draft",
+  "publish": false,
+  "language": "zh-CN",
+  "candidate_id": "candidate-event-52d906008bce9df7",
+  "skill_sha256": "13c7a74306cfa450c7c3d4326a7d31af41dad77e8d1df11603ed9dcf72f86a76",
+  "input_sha256": "d8cf0fb7c863a99de0c2a9dd6cc2a1c473990c66ef27e157d4d1e043623c12a6",
+  "slug": "ambarella-physical-ai-workload-integration",
+  "title": "把 SmolVLA 放进机器人之后，SoC 还要回答什么",
+  "deck": "从 Ambarella 的 single-chip 展示出发，追问 workload integration 到真实 Deployment 之间还缺哪些证据。",
+  "summary": "Ambarella 描述了 N1-655 的多 workload 展示与 X7 的增量加速路径。草稿从系统资源、工程验证和商业边界展开，区分厂商披露、推断与待作者确认的个人判断，不把展会展示写成量产结论。",
+  "sections": [
+    {
+      "heading": "一次展示，把几个问题放到了一起",
+      "claim_ids": [
+        "F1",
+        "F2"
+      ]
+    },
+    {
+      "heading": "从 SoC 这一侧看",
+      "claim_ids": [
+        "I1",
+        "I2"
+      ]
+    },
+    {
+      "heading": "回到真实场景",
+      "claim_ids": [
+        "F3",
+        "I3",
+        "F4"
+      ]
+    },
+    {
+      "heading": "我的判断",
+      "claim_ids": [
+        "J1",
+        "J2"
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "id": "F1",
+      "kind": "fact",
+      "text": "Ambarella 在自己的 AI Infrastructure Summit 文章中称，N1-655 驱动了一台 autonomous mobile manipulator，把 SmolVLA、SLAM、navigation 和 pick-and-place 放到同一颗芯片上运行。这里能确认的是厂商描述的一次展示，真实系统的余量仍未披露。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0"
+      ]
+    },
+    {
+      "id": "F2",
+      "kind": "fact",
+      "text": "同一篇文章还介绍了 Unitree humanoid 的 on-device vision-to-action 展示，以及 N1-655 上结合 Dify、Liquid AI models、live video 和 RAG 的 warehouse demo。这些都来自同一家厂商，不能算成三份独立验证。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:1",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:2"
+      ]
+    },
+    {
+      "id": "I1",
+      "kind": "inference",
+      "text": "从系统约束推下去，这类组合值得追问的，是多种 workload 同时运行时，感知与 action 是否争抢 Memory、Bandwidth 和调度时间。VLA 能跑起来，只回答了可执行性的一部分；在传感器持续输入、导航持续更新时还能否维持可预测的 Latency，需要另外的测量。当前 evidence 没有给出答案。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:1"
+      ]
+    },
+    {
+      "id": "I2",
+      "kind": "inference",
+      "text": "从 SoC 这一侧看，我会把它理解成一张 workload integration 的线索。模型、SLAM 与 navigation 放到同一颗芯片上，可能减少跨设备的数据搬运，也可能把资源竞争集中到芯片内部。CPU、GPU、NPU 如何分工，数据经过哪些路径，runtime 是否能控制优先级，都需要具体实现才能判断；不能从 single-chip 这句话反推出采用了什么架构。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0"
+      ]
+    },
+    {
+      "id": "F3",
+      "kind": "fact",
+      "text": "Ambarella 同时介绍了 X7，称其是公司的第一款 standalone AI accelerator，可以在既有 host computer 旁边增加 AI processing，而不一定替换原有设备；文章也提到 Ultralytics、Developer Zone 和 ZEDEDA 的合作与工具扩展。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5"
+      ]
+    },
+    {
+      "id": "I3",
+      "kind": "inference",
+      "text": "回到真实场景，这给出了两种值得继续验证的路径：新系统把 workload 收进一颗 SoC；存量系统在 host 旁增加 accelerator。后者可能让 Deployment 保留原有控制链，但也增加了 host 与 accelerator 的协同问题。接口、模型更新、监控、维护和 BOM 是否真正划算，不能由一次展会 demo 决定。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5"
+      ]
+    },
+    {
+      "id": "F4",
+      "kind": "fact",
+      "text": "文章中“超过 5,000 万”的数字，是 Ambarella 对已部署 AI processors／AI SoC 总体装机量的自述，覆盖多种端侧用途。这不是 N1-655、X7 或机器人产品的出货量。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:6"
+      ]
+    },
+    {
+      "id": "J1",
+      "kind": "personal_judgment",
+      "text": "我的判断是，这条消息值得继续看：它把讨论从一个模型能不能跑，推进到机器人多种 workload 能不能一起跑。现阶段我更愿意把它放在平台能力观察名单里。要判断它是否已成为可复制的商业方案，我还需要持续 workload、真实 Power 条件和客户 Deployment 的证据。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5"
+      ],
+      "user_approved": false
+    },
+    {
+      "id": "J2",
+      "kind": "personal_judgment",
+      "text": "下一步我会优先找同一配置下的端到端 Latency、长时间运行的 Power 与 thermal 行为、Memory／Bandwidth 使用情况，以及 compiler 和 runtime 对模型迁移的支持。若能看到第三方复现或客户应用，再去讨论它对平台竞争的意义。现在没有足够 evidence 做 NVIDIA、Qualcomm 或其它 SoC 的胜负比较。",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4"
+      ],
+      "user_approved": false
+    }
+  ],
+  "unknowns": [
+    "ASP/pricing for N1-655 or X7: 未披露.",
+    "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: 未披露.",
+    "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: 未披露.",
+    "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: 未披露.",
+    "N1-655 and X7 power/TDP and thermal envelope: 未披露."
+  ],
+  "editorial_context": {
+    "mode": "exploratory-watchlist-draft",
+    "why_now": {
+      "as_of": "2026-10-03T06:48:56.842567Z",
+      "text": "本期出现 1 个关联样本、1 个来源；最高 Phase2 分数 91。这支持提出验证问题，未满足的证据门槛见 missing_gates。",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ]
+    },
+    "angle": "多 workload integration 如何走向可验证的机器人 Deployment？",
+    "risks": [
+      "样本覆盖不完整；共享公司或 topic 不是同一事件或独立验证。",
+      "单一独立来源；厂商声明与第三方复现须区分。",
+      "未建立同一分析主线的连续事件证据。"
+    ]
+  },
+  "source_mapping": [
+    {
+      "claim_id": "F1",
+      "kind": "fact",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "F2",
+      "kind": "fact",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:1",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:2",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "I1",
+      "kind": "inference",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:1",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "I2",
+      "kind": "inference",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "F3",
+      "kind": "fact",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "I3",
+      "kind": "inference",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "F4",
+      "kind": "fact",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:6",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "J1",
+      "kind": "personal_judgment",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    },
+    {
+      "claim_id": "J2",
+      "kind": "personal_judgment",
+      "facts": [
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "fact_id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ]
+    }
+  ],
+  "writer_receipt": {
+    "execution": "current Codex session, skill read and applied; no model API",
+    "skill": {
+      "version": "1.1-reconstructed.1",
+      "sha256": "13c7a74306cfa450c7c3d4326a7d31af41dad77e8d1df11603ed9dcf72f86a76",
+      "provenance": "confirmed-rule reconstruction; original unavailable"
+    },
+    "input_sha256": "d8cf0fb7c863a99de0c2a9dd6cc2a1c473990c66ef27e157d4d1e043623c12a6",
+    "candidate_status": "watchlist",
+    "editorial_status": "pending-user-review",
+    "validation_scope": "structural/provenance checks; semantic grounding reviewed separately"
+  }
+}

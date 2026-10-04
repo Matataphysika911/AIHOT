@@ -1,0 +1,512 @@
+[
+  {
+    "id": "candidate-event-52d906008bce9df7",
+    "title": "Ambarella at the AI Infrastructure Summit in Santa Clara",
+    "status": "watchlist",
+    "rank_score": 91,
+    "criteria": {
+      "high_score": true,
+      "multi_source": false,
+      "multi_event_continuity": false,
+      "user_focus": true
+    },
+    "missing_gates": [
+      "independent-sources",
+      "event-continuity"
+    ],
+    "event_ids": [
+      "event-52d906008bce9df7"
+    ],
+    "article_ids": [
+      "5baa5d53-15ec-44a5-b054-1058752304fe"
+    ],
+    "primary_event_id": "event-52d906008bce9df7",
+    "citations": [
+      {
+        "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+        "source_id": "robotics-ambarella",
+        "source_name": "Ambarella Blog",
+        "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+        "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+        "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+        "evidence_status": "extracted",
+        "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+        "extraction_method": "html_article_paragraphs.v1",
+        "submission_ids": [
+          "A-reg-5baa5d53-20261003T1322",
+          "Bsub_5baa5d53_9117df35_20261003_1416"
+        ],
+        "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+        "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+      }
+    ],
+    "evidence_links": [
+      {
+        "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+        "text": "Explicit disclosure: N1-655 powered an autonomous mobile manipulator running SmolVLA, SLAM, navigation and pick-and-place workloads on a single chip.",
+        "citation": {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      },
+      {
+        "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:1",
+        "text": "Explicit disclosure: a Unitree humanoid demo performed intelligent vision, perception and voice-driven interaction with an AI-driven vision-to-action loop directly on-device.",
+        "citation": {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      },
+      {
+        "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:2",
+        "text": "Explicit disclosure: a warehouse demo combined Dify, Liquid AI models, live video and RAG on N1-655.",
+        "citation": {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      },
+      {
+        "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:3",
+        "text": "Explicit disclosure: Thinkware Harmony QXD1 Plus dashcam uses Ambarella CV25 Edge AI SoC.",
+        "citation": {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      },
+      {
+        "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+        "text": "Explicit disclosure: Ambarella introduced X7 as its first standalone AI accelerator and said it can add AI processing alongside existing host computers without necessarily replacing installed equipment.",
+        "citation": {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      },
+      {
+        "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5",
+        "text": "Explicit disclosure: Ambarella announced an Ultralytics collaboration for YOLO on CVflow devices, expanded Developer Zone with remote live-silicon/agentic-AI development on Google Cloud Platform, and announced a ZEDEDA partnership for cloud-orchestrated physical-edge AI.",
+        "citation": {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      },
+      {
+        "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:6",
+        "text": "Explicit disclosure: Ambarella states more than 50 million AI processors/AI SoC units are already deployed.",
+        "citation": {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      }
+    ],
+    "unknowns": [
+      "ASP/pricing for N1-655 or X7: 未披露.",
+      "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: 未披露.",
+      "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: 未披露.",
+      "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: 未披露.",
+      "N1-655 and X7 power/TDP and thermal envelope: 未披露."
+    ],
+    "why_now": {
+      "as_of": "2026-10-03T06:48:56.842567Z",
+      "text": "本期出现 1 个关联样本、1 个来源；最高 Phase2 分数 91。这支持提出验证问题，未满足的证据门槛见 missing_gates。",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ]
+    },
+    "angle": "多 workload integration 如何走向可验证的机器人 Deployment？",
+    "risks": [
+      "样本覆盖不完整；共享公司或 topic 不是同一事件或独立验证。",
+      "单一独立来源；厂商声明与第三方复现须区分。",
+      "未建立同一分析主线的连续事件证据。"
+    ],
+    "publish": false,
+    "writer_skill_required": "uPrivate Writer Skill v1.1",
+    "independent_sources": 1,
+    "observation_days": [
+      "2026-10-02"
+    ],
+    "continuity_basis": "distinct-Shanghai-publication-days"
+  },
+  {
+    "id": "candidate-event-f26adc63fb32017b",
+    "title": "Diffusion Policy Improvement with Proposal-Conditioned Refinement Flows",
+    "status": "watchlist",
+    "rank_score": 63,
+    "criteria": {
+      "high_score": false,
+      "multi_source": false,
+      "multi_event_continuity": false,
+      "user_focus": true
+    },
+    "missing_gates": [
+      "high-score",
+      "independent-sources",
+      "event-continuity"
+    ],
+    "event_ids": [
+      "event-f26adc63fb32017b"
+    ],
+    "article_ids": [
+      "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+    ],
+    "primary_event_id": "event-f26adc63fb32017b",
+    "citations": [
+      {
+        "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+        "source_id": "robotics-arxiv-robotics",
+        "source_name": "arXiv cs.RO",
+        "source_url": "https://arxiv.org/abs/2609.36812",
+        "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+        "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+        "evidence_status": "fallback",
+        "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+        "extraction_method": "arxiv_abstract",
+        "submission_ids": [
+          "A-reg-21557a04-20261003T1322",
+          "Bsub_21557a04_239de342_20261003_1416"
+        ],
+        "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+        "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+      }
+    ],
+    "evidence_links": [
+      {
+        "id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:0",
+        "text": "Explicit disclosure: PReFlow combines critic-based proposal selection with a conditional refinement flow.",
+        "citation": {
+          "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+          "source_id": "robotics-arxiv-robotics",
+          "source_name": "arXiv cs.RO",
+          "source_url": "https://arxiv.org/abs/2609.36812",
+          "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+          "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+          "evidence_status": "fallback",
+          "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+          "extraction_method": "arxiv_abstract",
+          "submission_ids": [
+            "A-reg-21557a04-20261003T1322",
+            "Bsub_21557a04_239de342_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+        }
+      },
+      {
+        "id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:1",
+        "text": "Explicit disclosure: the objective is KL-regularized and induces a Gibbs policy over final actions under a Gaussian-smoothed behavior prior.",
+        "citation": {
+          "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+          "source_id": "robotics-arxiv-robotics",
+          "source_name": "arXiv cs.RO",
+          "source_url": "https://arxiv.org/abs/2609.36812",
+          "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+          "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+          "evidence_status": "fallback",
+          "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+          "extraction_method": "arxiv_abstract",
+          "submission_ids": [
+            "A-reg-21557a04-20261003T1322",
+            "Bsub_21557a04_239de342_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+        }
+      },
+      {
+        "id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:2",
+        "text": "Explicit disclosure: the method uses simulation-free, closed-form adjoint matching targets and a single velocity-regression loss without a backward adjoint solve.",
+        "citation": {
+          "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+          "source_id": "robotics-arxiv-robotics",
+          "source_name": "arXiv cs.RO",
+          "source_url": "https://arxiv.org/abs/2609.36812",
+          "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+          "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+          "evidence_status": "fallback",
+          "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+          "extraction_method": "arxiv_abstract",
+          "submission_ids": [
+            "A-reg-21557a04-20261003T1322",
+            "Bsub_21557a04_239de342_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+        }
+      },
+      {
+        "id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:3",
+        "text": "Explicit disclosure: evaluation covers 50 OGBench tasks; after online fine-tuning the abstract reports the highest aggregate score among compared methods, reaching 91% after 500K environment steps.",
+        "citation": {
+          "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+          "source_id": "robotics-arxiv-robotics",
+          "source_name": "arXiv cs.RO",
+          "source_url": "https://arxiv.org/abs/2609.36812",
+          "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+          "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+          "evidence_status": "fallback",
+          "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+          "extraction_method": "arxiv_abstract",
+          "submission_ids": [
+            "A-reg-21557a04-20261003T1322",
+            "Bsub_21557a04_239de342_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+        }
+      }
+    ],
+    "unknowns": [
+      "ASP/pricing or commercial deployment: 未披露.",
+      "Memory capacity/bandwidth: 未披露.",
+      "Physical robot platform or real-world deployment: 未披露.",
+      "Power/thermal envelope: 未披露.",
+      "SoC TOPS/throughput and numerical compute requirements: 未披露."
+    ],
+    "why_now": {
+      "as_of": "2026-10-03T06:48:56.842567Z",
+      "text": "本期出现 1 个关联样本、1 个来源；最高 Phase2 分数 63。这支持提出验证问题，未满足的证据门槛见 missing_gates。",
+      "event_ids": [
+        "event-f26adc63fb32017b"
+      ]
+    },
+    "angle": "policy 改进的研究结果距真实机器人与端侧 runtime 还有哪些验证？",
+    "risks": [
+      "样本覆盖不完整；共享公司或 topic 不是同一事件或独立验证。",
+      "单一独立来源；厂商声明与第三方复现须区分。",
+      "未建立同一分析主线的连续事件证据。"
+    ],
+    "publish": false,
+    "writer_skill_required": "uPrivate Writer Skill v1.1",
+    "independent_sources": 1,
+    "observation_days": [
+      "2026-10-02"
+    ],
+    "continuity_basis": "distinct-Shanghai-publication-days"
+  },
+  {
+    "id": "candidate-event-06479c80094b8e3d",
+    "title": "Boston Dynamics drops pinkie on new humanoid hand",
+    "status": "watchlist",
+    "rank_score": 51,
+    "criteria": {
+      "high_score": false,
+      "multi_source": false,
+      "multi_event_continuity": false,
+      "user_focus": true
+    },
+    "missing_gates": [
+      "high-score",
+      "independent-sources",
+      "event-continuity"
+    ],
+    "event_ids": [
+      "event-06479c80094b8e3d"
+    ],
+    "article_ids": [
+      "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+    ],
+    "primary_event_id": "event-06479c80094b8e3d",
+    "citations": [
+      {
+        "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+        "source_id": "robotics-robot-report",
+        "source_name": "The Robot Report",
+        "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+        "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+        "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+        "evidence_status": "fallback",
+        "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+        "extraction_method": "summary",
+        "submission_ids": [
+          "A-reg-1f9fd3e9-20261003T1322",
+          "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+        ],
+        "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+        "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+      }
+    ],
+    "evidence_links": [
+      {
+        "id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
+        "text": "Explicit disclosure: Boston Dynamics engineers taped their pinkies and ring fingers together for a day to learn what they were unable to do.",
+        "citation": {
+          "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+          "source_id": "robotics-robot-report",
+          "source_name": "The Robot Report",
+          "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+          "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+          "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+          "evidence_status": "fallback",
+          "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+          "extraction_method": "summary",
+          "submission_ids": [
+            "A-reg-1f9fd3e9-20261003T1322",
+            "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+        }
+      },
+      {
+        "id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:1",
+        "text": "Explicit disclosure from title: the new humanoid hand drops the pinkie.",
+        "citation": {
+          "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+          "source_id": "robotics-robot-report",
+          "source_name": "The Robot Report",
+          "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+          "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+          "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+          "evidence_status": "fallback",
+          "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+          "extraction_method": "summary",
+          "submission_ids": [
+            "A-reg-1f9fd3e9-20261003T1322",
+            "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+        }
+      },
+      {
+        "id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:2",
+        "text": "Evidence metadata: source fetch returned HTTP 403/non-HTML; extraction used the summary, status=fallback, truncated=false.",
+        "citation": {
+          "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+          "source_id": "robotics-robot-report",
+          "source_name": "The Robot Report",
+          "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+          "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+          "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+          "evidence_status": "fallback",
+          "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+          "extraction_method": "summary",
+          "submission_ids": [
+            "A-reg-1f9fd3e9-20261003T1322",
+            "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+        }
+      }
+    ],
+    "unknowns": [
+      "ASP/pricing, production timing, order volume and customer deployment: 未披露.",
+      "Exact humanoid platform/model associated with the hand: 未披露 in bounded evidence.",
+      "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: 未披露.",
+      "Memory capacity/bandwidth: 未披露.",
+      "Power/thermal envelope: 未披露.",
+      "SoC TOPS/throughput and compute architecture: 未披露."
+    ],
+    "why_now": {
+      "as_of": "2026-10-03T06:48:56.842567Z",
+      "text": "本期出现 1 个关联样本、1 个来源；最高 Phase2 分数 51。这支持提出验证问题，未满足的证据门槛见 missing_gates。",
+      "event_ids": [
+        "event-06479c80094b8e3d"
+      ]
+    },
+    "angle": "手部设计取舍如何影响操作能力，现有摘要能支持什么判断？",
+    "risks": [
+      "样本覆盖不完整；共享公司或 topic 不是同一事件或独立验证。",
+      "单一独立来源；厂商声明与第三方复现须区分。",
+      "未建立同一分析主线的连续事件证据。"
+    ],
+    "publish": false,
+    "writer_skill_required": "uPrivate Writer Skill v1.1",
+    "independent_sources": 1,
+    "observation_days": [
+      "2026-10-02"
+    ],
+    "continuity_basis": "distinct-Shanghai-publication-days"
+  }
+]

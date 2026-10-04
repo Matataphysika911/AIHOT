@@ -1,0 +1,113 @@
+{
+  "schema_version": "phase3-mvp.v1",
+  "publication": "shadow-only",
+  "publish": false,
+  "as_of": "2026-10-03T06:48:56.842567Z",
+  "input_sha256": "4ac0db3fc36245839ce38e5f79556a5ab548ebd8a743e13d3235a27720f8737d",
+  "design_contract": {
+    "navigation": [
+      "Daily",
+      "Weekly",
+      "Insights",
+      "AI SoC",
+      "Others"
+    ],
+    "locales": [
+      "zh-CN",
+      "en"
+    ],
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "english_translation_status": "not-generated; never label Chinese text as English"
+  },
+  "localized_metadata": {
+    "daily": {
+      "zh-CN": {
+        "title": "Daily Intelligence · 2026-10-02",
+        "summary": "已验证样本的事实日报"
+      },
+      "en": {
+        "title": "Daily Intelligence · 2026-10-02",
+        "summary": null,
+        "status": "translation-pending"
+      }
+    },
+    "weekly": {
+      "zh-CN": {
+        "title": "Weekly Intelligence · 2026-W40",
+        "summary": "已验证样本的部分周报"
+      },
+      "en": {
+        "title": "Weekly Intelligence · 2026-W40",
+        "summary": null,
+        "status": "translation-pending"
+      }
+    },
+    "insights": {
+      "en": {
+        "title": "From SmolVLA demo to robot deployment",
+        "summary": null,
+        "status": "editorial-placeholder"
+      }
+    },
+    "soc": {
+      "en": {
+        "title": "Edge AI SoC Index",
+        "summary": null,
+        "status": "translation-pending"
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "daily/2026-10-02.json",
+      "sha256": "80d9edf913b79f276128835e0ffa286e387084e0264a299dd3bcf148d3c1eb82"
+    },
+    {
+      "path": "daily/2026-10-02.md",
+      "sha256": "fff4a7167d33a7443f8b3bb9c3c8edcaf4ba6101a04955924b215022ddaf19ed"
+    },
+    {
+      "path": "weekly/2026-W40.json",
+      "sha256": "e6deed6eefeaf9e121156008a33ed74197199f6e21c4a6e95758b87a734438ad"
+    },
+    {
+      "path": "weekly/2026-W40.md",
+      "sha256": "5d5b625468dc4d717c970dc8fc32c6c4ccb5ef7b19f72c211199eef18998ee9b"
+    },
+    {
+      "path": "insights/candidates.json",
+      "sha256": "2f63911668b13830b8f443ef4229e133172bf399de151315ffc829bef30378be"
+    },
+    {
+      "path": "soc/index.json",
+      "sha256": "849fee764e171ef3ea7a341817701eacce136976c836b7eee3b40242a4a50727"
+    },
+    {
+      "path": "soc/index.md",
+      "sha256": "d7feedcd5dffe79aa6b288ace7a2a14fa634453bbe0ef5c42ee406fb53285c41"
+    },
+    {
+      "path": "events/index.json",
+      "sha256": "40debd4d108c80717ca37b348c133221bcfa4603fbe2d3912a25fbe0159ba425"
+    },
+    {
+      "path": "insights/writer-packet.json",
+      "sha256": "4eea32e836bed682bf56ece081b86cb8eafdbc2ae3ce2a8ddfdcd87bef8726b7"
+    },
+    {
+      "path": "insights/ambarella-physical-ai-workload-integration.json",
+      "sha256": "64b3182aecb30c4c19315af20ac3b45fc1016e066f6fddd61e53bda7650ecd18"
+    },
+    {
+      "path": "insights/ambarella-physical-ai-workload-integration.md",
+      "sha256": "3965f1c81f725dc405362aa1fe2d6b1e6754e52fc2c134d26eddebfd18258230"
+    },
+    {
+      "path": "source-map.json",
+      "sha256": "32e120dbe92285ae26d671286ab9870d87e88c9e8b1eec2c79aafdbad53d2184"
+    }
+  ]
+}
