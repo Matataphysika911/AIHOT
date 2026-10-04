@@ -210,10 +210,21 @@
   "branch": "phase3/blog-mvp-20261004",
   "ci": {
     "workflow": ".github/workflows/phase3-ci.yml",
-    "remote_status": "pending-first-PR-run",
-    "root_status": "Inherited backend CI limitations; no Phase2 refactor"
+    "validated_implementation_sha": "282998e333a757c450aaeaffd52e429ffb3d7cc2",
+    "remote_status": "success",
+    "phase3_run_url": "https://github.com/Matataphysika911/AIHOT/actions/runs/37184088618",
+    "root_run_url": "https://github.com/Matataphysika911/AIHOT/actions/runs/37184088578",
+    "root_status": "in_progress at observation; not claimed green",
+    "scope": "This acceptance record update does not change implementation; final-head CI tracked separately"
   },
   "no_model_api_calls": true,
   "phase2_changes": false,
-  "schema_migration": null
+  "schema_migration": null,
+  "pr": {
+    "number": 3,
+    "url": "https://github.com/Matataphysika911/AIHOT/pull/3",
+    "draft": true,
+    "merged": false,
+    "base": "feat/cloudflare-ingestion-v1"
+  }
 }

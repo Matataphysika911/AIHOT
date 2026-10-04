@@ -115,3 +115,7 @@ See `acceptance/phase3-mvp-2026-10-04.json` for bounded acceptance and
 `acceptance/phase2-stability-2026-10-04.json` for this iteration's read-only sanity.
 
 Event IDs hash cluster membership. Adding a new report to an occurrence changes its ID; a future durable D1 event registry/alias layer is needed before ongoing public permalinks. Publisher hostname dedup does not resolve corporate ownership or syndication automatically.
+
+## Review delivery
+
+Draft [PR #3](https://github.com/Matataphysika911/AIHOT/pull/3) targets the Phase 2 feature branch, leaving PR #2 untouched. Dedicated [Phase 3 CI](https://github.com/Matataphysika911/AIHOT/actions/runs/37184088618) passed on implementation commit `282998e333a757c450aaeaffd52e429ffb3d7cc2`. Root Check was still in progress when this record was written and is not claimed green. No merge or deployment.
