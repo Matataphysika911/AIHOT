@@ -1,0 +1,541 @@
+{
+  "schema_version": "phase3-bilingual.v1",
+  "sourceLanguage": "en",
+  "editorialOriginalLanguage": "zh-CN",
+  "adaptation_note": "Approved Chinese round-two editorial was retained and adapted into English, then both versions reviewed against the existing English primary evidence. No change to evidence or publication approval.",
+  "review_status": "session-reviewed",
+  "reviewed_at": "2026-10-05",
+  "english": {
+    "daily": {
+      "mode": "quick-industry-brief",
+      "highlights": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "article_ids": [
+            "5baa5d53-15ec-44a5-b054-1058752304fe"
+          ],
+          "title": "Ambarella runs SmolVLA, SLAM and navigation on one chip",
+          "text": "Ambarella says its N1-655 ran SmolVLA, SLAM, navigation and pick-and-place in a mobile-manipulator demo. It also introduced the X7 standalone accelerator. The demo offers a workload-integration signal; sustained performance, power and customer production evidence were not disclosed.",
+          "kind": "fact-summary",
+          "fact_ids": [
+            "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+            "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4"
+          ],
+          "score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          },
+          "citations": [
+            {
+              "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+              "source_id": "robotics-ambarella",
+              "source_name": "Ambarella Blog",
+              "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+              "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+              "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+              "evidence_status": "extracted",
+              "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+              "extraction_method": "html_article_paragraphs.v1",
+              "submission_ids": [
+                "A-reg-5baa5d53-20261003T1322",
+                "Bsub_5baa5d53_9117df35_20261003_1416"
+              ],
+              "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+              "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+            }
+          ]
+        },
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "article_ids": [
+            "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+          ],
+          "title": "PReFlow reports progress in offline-to-online policy learning",
+          "text": "The paper’s abstract describes critic-based proposal selection and a conditional refinement flow, with results on OGBench. It offers a lead in policy learning; real-robot deployment and SoC measurements were not disclosed.",
+          "kind": "fact-summary",
+          "fact_ids": [
+            "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:0",
+            "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:3"
+          ],
+          "score": 63,
+          "hotness": {
+            "value": 0.460948,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "arxiv.org",
+                "value": 0.46094784878584505
+              }
+            ]
+          },
+          "citations": [
+            {
+              "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+              "source_id": "robotics-arxiv-robotics",
+              "source_name": "arXiv cs.RO",
+              "source_url": "https://arxiv.org/abs/2609.36812",
+              "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+              "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+              "evidence_status": "fallback",
+              "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+              "extraction_method": "arxiv_abstract",
+              "submission_ids": [
+                "A-reg-21557a04-20261003T1322",
+                "Bsub_21557a04_239de342_20261003_1416"
+              ],
+              "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+              "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+            }
+          ]
+        },
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "article_ids": [
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+          ],
+          "title": "Boston Dynamics drops the little finger from its new hand; the trade-offs still need verification",
+          "text": "The report’s headline says the new humanoid hand drops the little finger; its short summary describes engineers trying tasks with their little and ring fingers tied together. The design trade-off is worth following, but this thin evidence cannot establish hand specifications or performance.",
+          "kind": "fact-summary",
+          "fact_ids": [
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:1",
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:2"
+          ],
+          "score": 51,
+          "hotness": {
+            "value": 0.344134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "therobotreport.com",
+                "value": 0.3441342754400144
+              }
+            ]
+          },
+          "citations": [
+            {
+              "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+              "source_id": "robotics-robot-report",
+              "source_name": "The Robot Report",
+              "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+              "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+              "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+              "evidence_status": "fallback",
+              "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+              "extraction_method": "summary",
+              "submission_ids": [
+                "A-reg-1f9fd3e9-20261003T1322",
+                "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+              ],
+              "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+              "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+            }
+          ]
+        }
+      ],
+      "briefs": [],
+      "watch_items": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "article_ids": [
+            "5baa5d53-15ec-44a5-b054-1058752304fe"
+          ],
+          "kind": "research-question",
+          "text": "Look for latency, power, memory/bandwidth and independent or customer validation under the same configuration; a demo is not production deployment.",
+          "unknowns": [
+            "ASP/pricing for N1-655 or X7: not disclosed.",
+            "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: not disclosed.",
+            "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: not disclosed.",
+            "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: not disclosed.",
+            "N1-655 and X7 power/TDP and thermal envelope: not disclosed."
+          ]
+        },
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "article_ids": [
+            "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+          ],
+          "kind": "research-question",
+          "text": "Follow real-robot validation, implementation details and end-to-end runtime measurements; research benchmarks do not establish deployment performance.",
+          "unknowns": [
+            "ASP/pricing or commercial deployment: not disclosed.",
+            "Memory capacity/bandwidth: not disclosed.",
+            "Physical robot platform or real-world deployment: not disclosed.",
+            "Power/thermal envelope: not disclosed.",
+            "SoC TOPS/throughput and numerical compute requirements: not disclosed."
+          ]
+        },
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "article_ids": [
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+          ],
+          "kind": "research-question",
+          "text": "Obtain more accessible evidence on the hand design before judging degrees of freedom, grasping ability or the specific trade-offs; do not infer performance from the current summary.",
+          "unknowns": [
+            "ASP/pricing, production timing, order volume and customer deployment: not disclosed.",
+            "Exact humanoid platform/model associated with the hand: not disclosed in bounded evidence.",
+            "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: not disclosed.",
+            "Memory capacity/bandwidth: not disclosed.",
+            "Power/thermal envelope: not disclosed.",
+            "SoC TOPS/throughput and compute architecture: not disclosed."
+          ]
+        }
+      ],
+      "coverage_note": "The sample is too small to fill an additional brief section; coverage is limited to verified historical material."
+    },
+    "weekly": {
+      "mode": "seven-day-editorial-synthesis",
+      "editor_note": "These three verified samples bring this week’s attention beyond the model: workload coordination on silicon, the path from policy learning to deployment, and trade-offs in hand design. Reading them together helps identify what needs testing next. Coverage is incomplete and the previous-period baseline is insufficient, so they cannot establish an industry turning point.",
+      "themes": [
+        {
+          "heading": "Compute questions are becoming questions about workloads running together",
+          "paragraphs": [
+            "Ambarella says its N1-655 ran SmolVLA, SLAM, navigation and pick-and-place in a mobile-manipulator demo. It also introduced the X7 standalone accelerator. The demo offers a workload-integration signal; sustained performance, power and customer production evidence were not disclosed.",
+            "The demo places the model, perception and navigation in the same configuration. The next question is how they share resources. Without sustained measurements or customer production data, an integration demo cannot be treated as a mature product."
+          ],
+          "event_ids": [
+            "event-52d906008bce9df7"
+          ],
+          "fact_ids": [
+            "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+            "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4"
+          ],
+          "citations": [
+            {
+              "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+              "source_id": "robotics-ambarella",
+              "source_name": "Ambarella Blog",
+              "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+              "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+              "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+              "evidence_status": "extracted",
+              "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+              "extraction_method": "html_article_paragraphs.v1",
+              "submission_ids": [
+                "A-reg-5baa5d53-20261003T1322",
+                "Bsub_5baa5d53_9117df35_20261003_1416"
+              ],
+              "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+              "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+            }
+          ],
+          "interpretation": "editorial synthesis / verification question; not established trend"
+        },
+        {
+          "heading": "Policy learning advances, while deployment remains a separate test",
+          "paragraphs": [
+            "The paper’s abstract describes critic-based proposal selection and a conditional refinement flow, with results on OGBench. It offers a lead in policy learning; real-robot deployment and SoC measurements were not disclosed.",
+            "Algorithm benchmarks and real robots face different constraints. Read alongside the chip demo, this raises a shared verification question: how can a learned capability remain usable in a concrete system? It is still a question, not evidence that the two announcements form an established trend."
+          ],
+          "event_ids": [
+            "event-f26adc63fb32017b"
+          ],
+          "fact_ids": [
+            "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:0",
+            "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:3"
+          ],
+          "citations": [
+            {
+              "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+              "source_id": "robotics-arxiv-robotics",
+              "source_name": "arXiv cs.RO",
+              "source_url": "https://arxiv.org/abs/2609.36812",
+              "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+              "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+              "evidence_status": "fallback",
+              "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+              "extraction_method": "arxiv_abstract",
+              "submission_ids": [
+                "A-reg-21557a04-20261003T1322",
+                "Bsub_21557a04_239de342_20261003_1416"
+              ],
+              "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+              "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+            }
+          ],
+          "interpretation": "editorial synthesis / verification question; not established trend"
+        },
+        {
+          "heading": "Hand design brings manipulation trade-offs into view, with thin evidence",
+          "paragraphs": [
+            "The report’s headline says the new humanoid hand drops the little finger; its short summary describes engineers trying tasks with their little and ring fingers tied together. The design trade-off is worth following, but this thin evidence cannot establish hand specifications or performance.",
+            "The available headline and short summary justify attention to design trade-offs, but do not support comparisons of degrees of freedom or grasping performance. They add a mechanical perspective to the week’s observations without proving a shift across the humanoid industry."
+          ],
+          "event_ids": [
+            "event-06479c80094b8e3d"
+          ],
+          "fact_ids": [
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:1",
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:2"
+          ],
+          "citations": [
+            {
+              "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+              "source_id": "robotics-robot-report",
+              "source_name": "The Robot Report",
+              "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+              "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+              "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+              "evidence_status": "fallback",
+              "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+              "extraction_method": "summary",
+              "submission_ids": [
+                "A-reg-1f9fd3e9-20261003T1322",
+                "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+              ],
+              "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+              "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+            }
+          ],
+          "interpretation": "editorial synthesis / verification question; not established trend"
+        }
+      ],
+      "watch_items": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "article_ids": [
+            "5baa5d53-15ec-44a5-b054-1058752304fe"
+          ],
+          "kind": "research-question",
+          "text": "Look for latency, power, memory/bandwidth and independent or customer validation under the same configuration; a demo is not production deployment.",
+          "unknowns": [
+            "ASP/pricing for N1-655 or X7: not disclosed.",
+            "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: not disclosed.",
+            "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: not disclosed.",
+            "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: not disclosed.",
+            "N1-655 and X7 power/TDP and thermal envelope: not disclosed."
+          ]
+        },
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "article_ids": [
+            "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+          ],
+          "kind": "research-question",
+          "text": "Follow real-robot validation, implementation details and end-to-end runtime measurements; research benchmarks do not establish deployment performance.",
+          "unknowns": [
+            "ASP/pricing or commercial deployment: not disclosed.",
+            "Memory capacity/bandwidth: not disclosed.",
+            "Physical robot platform or real-world deployment: not disclosed.",
+            "Power/thermal envelope: not disclosed.",
+            "SoC TOPS/throughput and numerical compute requirements: not disclosed."
+          ]
+        },
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "article_ids": [
+            "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+          ],
+          "kind": "research-question",
+          "text": "Obtain more accessible evidence on the hand design before judging degrees of freedom, grasping ability or the specific trade-offs; do not infer performance from the current summary.",
+          "unknowns": [
+            "ASP/pricing, production timing, order volume and customer deployment: not disclosed.",
+            "Exact humanoid platform/model associated with the hand: not disclosed in bounded evidence.",
+            "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: not disclosed.",
+            "Memory capacity/bandwidth: not disclosed.",
+            "Power/thermal envelope: not disclosed.",
+            "SoC TOPS/throughput and compute architecture: not disclosed."
+          ]
+        }
+      ],
+      "partial": true,
+      "baseline": "insufficient-baseline",
+      "coverage_note": "A partial view of a seven-day window, not a complete industry weekly report."
+    },
+    "insight": {
+      "body": [
+        {
+          "heading": null,
+          "paragraphs": [
+            {
+              "text": "Putting SmolVLA on a chip is enough to draw attention to a robotics story. What interests me more here is the company it keeps: SLAM, navigation and pick-and-place.",
+              "claim_ids": [
+                "F1",
+                "J1"
+              ]
+            },
+            {
+              "text": "In its own AI Infrastructure Summit article, Ambarella says the N1-655 powered an autonomous mobile manipulator running SmolVLA, SLAM, navigation and pick-and-place on a single chip. What this confirms is a vendor-described demonstration; the real system’s operating headroom remains undisclosed.",
+              "claim_ids": [
+                "F1"
+              ]
+            },
+            {
+              "text": "Several tasks working on one chip move the question a step beyond whether a model can run. A moving robot still needs to sense its surroundings, update its position and prepare its next action. Those tasks do not take turns clocking out.",
+              "claim_ids": [
+                "I1",
+                "I2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "What changes when workloads run together",
+          "paragraphs": [
+            {
+              "text": "That brings me to a fairly ordinary engineering question. Sensors keep sending data while the model produces an action, and navigation does not wait for it to finish. Workloads running together may compete for memory, bandwidth and scheduling time. What needs measuring is whether end-to-end latency remains predictable after those interactions. The available evidence does not answer that.",
+              "claim_ids": [
+                "I1"
+              ]
+            },
+            {
+              "text": "This is why one compute figure tells us so little about the question this demo raises.",
+              "claim_ids": [
+                "I1",
+                "I2"
+              ]
+            },
+            {
+              "text": "Single-chip changes the integration boundary. Less movement between devices could simplify the system; resource contention could also become concentrated inside the chip. How the CPU, GPU and NPU divide the work, and how the runtime assigns priorities, depends on the implementation. I would be cautious here: the demo’s resource allocation is still unknown. One chip does not reveal the architecture, or establish that coordination has been solved.",
+              "claim_ids": [
+                "I2"
+              ]
+            },
+            {
+              "text": "The same article describes a Unitree humanoid demonstration with an on-device vision-to-action loop, and a warehouse demo combining Dify, Liquid AI models, live video and RAG on the N1-655. They all come from one vendor source. They are not three independent validations.",
+              "claim_ids": [
+                "F2"
+              ]
+            }
+          ]
+        },
+        {
+          "heading": "Customers do not buy a demonstration",
+          "paragraphs": [
+            {
+              "text": "Ambarella also describes the X7 as its first standalone AI accelerator, saying it can add AI processing alongside an existing host computer without necessarily replacing installed equipment. The article mentions collaborations and tooling involving Ultralytics, Developer Zone and ZEDEDA.",
+              "claim_ids": [
+                "F3"
+              ]
+            },
+            {
+              "text": "Read together, the N1-655 and X7 descriptions suggest two integration approaches that still need validation: a new system brings workloads into the SoC, while an installed system adds an accelerator alongside its host. The latter may preserve the existing control chain, while leaving new coordination problems between host and accelerator. Lower migration costs, easier model updates and maintenance, and a worthwhile BOM all require engineering and customer validation.",
+              "claim_ids": [
+                "I3"
+              ]
+            },
+            {
+              "text": "The article’s figure of more than 50 million refers to Ambarella’s own claim about its overall installed base of AI processors or AI SoCs across different edge applications. It is not a shipment figure for the N1-655, the X7 or robotics products.",
+              "claim_ids": [
+                "F4"
+              ]
+            },
+            {
+              "text": "For now, I would keep this on the platform-capability watchlist. It deserves attention because it brings the discussion to how several workloads operate together. I would not yet call it a repeatable commercial solution. Sustained operation and a customer choosing to put it into a product are still some distance apart. Does it actually ship? Here, that remains a question.",
+              "claim_ids": [
+                "J1"
+              ]
+            },
+            {
+              "text": "The next material I would like to see is end-to-end latency under the same configuration, power and thermal behavior over sustained operation, memory/bandwidth use, and support for model migration. Independent reproduction or a customer application would make the discussion much firmer. Until that evidence arrives, I would not use this demo to rank NVIDIA, Qualcomm or other SoCs.",
+              "claim_ids": [
+                "J2"
+              ]
+            }
+          ]
+        }
+      ],
+      "unknowns": [
+        "ASP/pricing for N1-655 or X7: not disclosed.",
+        "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: not disclosed.",
+        "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: not disclosed.",
+        "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: not disclosed.",
+        "N1-655 and X7 power/TDP and thermal envelope: not disclosed."
+      ],
+      "title_candidates": [
+        {
+          "title": "VLA is running, but the harder robotics SoC questions are just beginning",
+          "scores": {
+            "curiosity": 5,
+            "tension": 5,
+            "specificity": 4,
+            "technical_relevance": 5,
+            "evidence_fidelity": 5
+          },
+          "rationale": "The essay examines workload coordination and sustained operation without claiming performance or a competitive winner.",
+          "claim_ids": [
+            "F1",
+            "I1",
+            "I2",
+            "J1"
+          ],
+          "evidence_review": "pass"
+        },
+        {
+          "title": "VLA, SLAM and navigation on one SoC: the questions are just beginning",
+          "scores": {
+            "curiosity": 5,
+            "tension": 5,
+            "specificity": 5,
+            "technical_relevance": 5,
+            "evidence_fidelity": 5
+          },
+          "rationale": "The title identifies the disclosed workload combination; the essay addresses resource sharing and delivery validation.",
+          "claim_ids": [
+            "F1",
+            "I1",
+            "I2",
+            "J1"
+          ],
+          "evidence_review": "pass"
+        },
+        {
+          "title": "SmolVLA is on-chip. What takes it from a demo to delivery?",
+          "scores": {
+            "curiosity": 4,
+            "tension": 4,
+            "specificity": 5,
+            "technical_relevance": 5,
+            "evidence_fidelity": 5
+          },
+          "rationale": "The question follows the vendor demo toward real deployment while preserving the evidence boundary.",
+          "claim_ids": [
+            "F1",
+            "I1",
+            "I2",
+            "J1"
+          ],
+          "evidence_review": "pass"
+        },
+        {
+          "title": "Before looking at TOPS, what should we ask about this robot demo?",
+          "scores": {
+            "curiosity": 4,
+            "tension": 4,
+            "specificity": 4,
+            "technical_relevance": 5,
+            "evidence_fidelity": 5
+          },
+          "rationale": "The title focuses on measurement questions in this demo without claiming an industry-wide competitive shift.",
+          "claim_ids": [
+            "F1",
+            "I1",
+            "I2",
+            "J1"
+          ],
+          "evidence_review": "pass"
+        }
+      ],
+      "title": "VLA, SLAM and navigation on one SoC: the questions are just beginning",
+      "deck": "Ambarella has put SmolVLA, SLAM and navigation on the N1-655. The more useful question now is whether these tasks can keep working together, reliably and over time.",
+      "summary": "Putting several robotics workloads on one chip opens integration possibilities while leaving resource-sharing and sustained-operation questions. From the N1-655 demo to the X7’s incremental acceleration approach, this essay asks how a platform capability becomes something a customer can ship."
+    }
+  },
+  "source_sha256": "6aeb3f25dab00d6582e07bade4a99300b0cd0d28563e0a08b988281116da24d7",
+  "english_sha256": "33f80084d2123e9e69212c71a9a67b5f82da588a9689421fabb8eaf0fb309dd7"
+}

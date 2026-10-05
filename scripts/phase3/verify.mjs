@@ -1,3 +1,4 @@
+import {validateBilingual,translatedOutputs} from '../../cloudflare/phase3/src/bilingual.mjs';
 import {EDITORIAL} from '../../cloudflare/phase3/src/editorial.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -32,7 +33,8 @@ const draft=read(out+'/insights/ambarella-physical-ai-workload-integration.json'
 const skill=fs.readFileSync('industry/robotics/skills/uprivate-writer-v1.1/SKILL.md','utf8');
 const packet=read(out+'/insights/writer-packet.json');
 assert.deepEqual(packet,writerPacket(skill,read(out+'/insights/candidates.json')[0],events,hash(snapshot)));
-assert.deepEqual(draft,validateDraft(read('cloudflare/phase3/samples/insight-draft.json'),packet));
+const {translation:zhReceipt,...draftWithoutTranslation}=draft;
+assert.deepEqual(draftWithoutTranslation,validateDraft(read('cloudflare/phase3/samples/insight-draft.json'),packet));
 const rebind=read('acceptance/phase3-writer-skill-rebind-2026-10-04.json');
 assert.equal(packet.input_sha256,rebind.input_sha256);
 assert.equal(draft.candidate_id,rebind.candidate_id);
@@ -49,6 +51,14 @@ assert.equal(draft.publish,false);
 for(const map of draft.source_mapping)for(const f of map.facts)assert.deepEqual(f.citation,facts.get(f.fact_id).citation);
 const editorialAcceptance=read('acceptance/phase3-editorial-preview-2026-10-05.json');
 assert.deepEqual(editorialAcceptance.editorial_spec,EDITORIAL);
-assert.equal(editorialAcceptance.generated_manifest_sha256,hash(fs.readFileSync(out+'/manifest.json','utf8')));
-assert.deepEqual(editorialAcceptance.generated_files,m.files);
+// Round-two acceptance remains an immutable historical record; current bilingual export has a new acceptance.
+const translations=read('cloudflare/phase3/samples/bilingual-editorial.json');
+const english=translatedOutputs(translations,read(out+'/daily/2026-10-02.json'),read(out+'/weekly/2026-W40.json'),draft);
+assert.deepEqual(zhReceipt,english.insight.translation);
+assert.deepEqual(english.daily,read(out+'/en/daily/2026-10-02.json'));
+assert.deepEqual(english.weekly,read(out+'/en/weekly/2026-W40.json'));
+assert.deepEqual(english.insight,read(out+'/en/insights/'+draft.slug+'.json'));
+const bilingualAcceptance=read('acceptance/phase3-bilingual-preview-2026-10-05.json');
+assert.equal(bilingualAcceptance.generated_manifest_sha256,hash(fs.readFileSync(out+'/manifest.json','utf8')));
+assert.deepEqual(bilingualAcceptance.generated_files,m.files);
 console.log('PASS: all output digests, real Phase2 provenance/structure/evidence, report citations, candidate gates, recovered skill binding and controlled-rebind invariants');

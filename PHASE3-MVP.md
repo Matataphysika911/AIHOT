@@ -138,3 +138,7 @@ Cloud rebind CI: [run 37205021898](https://github.com/Matataphysika911/AIHOT/act
 ## Round two editorial preview · 2026-10-05
 
 Current presentation is governed by `industry/robotics/editorial/PHASE3-CONTENT-SPEC.md` version `1.2-editorial-preview.20261005`, hashed into manifest, reports, writer packet and draft. Recovered skill bytes stay unchanged. Daily uses 3 priorities without fabricated filler; Weekly uses evidence-bound theme observations in a partial seven-day window; Insight uses a separate mapped reading body with two H2, session-reviewed headline rubric and collapsed epistemic mapping. Historical rebind acceptance remains an earlier checkpoint; new editorial acceptance records intentional presentation changes. No Phase2 mutation, no production publication, PR #3 stays Draft.
+
+## Paired bilingual preview · 2026-10-05
+
+`PHASE3-BILINGUAL-SPEC.md` extends round-two presentation without modifying the recovered writer skill. Nonempty exports require a session-reviewed bilingual packet bound to a canonical reader-content hash. Chinese draft prose is preserved; full English titles, decks, summaries, paragraphs, watch items, unknowns and candidate titles are exported under `content/generated/en/`. Missing/stale English copy blocks build instead of silently falling back. Source language is English; the retained, user-approved Chinese editorial is explicitly recorded as the migration's editorial original. No translation API or unattended prose service is claimed. New acceptance records current paired exports; prior acceptance remains historical.

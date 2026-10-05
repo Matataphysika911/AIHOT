@@ -1,0 +1,11 @@
+# Phase3 bilingual extension · phase3-bilingual.v1
+
+Daily, Weekly and Insight are a paired zh-CN/en editorial deliverable. Generate both titles, summaries, prose, descriptive headings, watch items and unknowns in one session and export both in one build/commit. Do not ship an English interface around Chinese prose. Missing or stale translations fail closed for nonempty content; empty periods may have an honest bilingual empty state.
+
+Dominant primary evidence is English (sourceLanguage=en). The existing user-approved Chinese editorial is the retained original for this migration (editorialOriginalLanguage=zh-CN); English adaptation is reviewed against that copy and the immutable English source facts, and the paired Chinese is cross-reviewed. Future English-primary stories should draft English first and then Chinese. Both language versions remain draft, publish=false, and judgments await author review. This adds no publication authorization.
+
+Bind the pair to the exact current reader content, time period, claim/evidence mappings, unknowns and headline candidates with a canonical SHA-256. Review status is recorded only after actual prose review. A changed Chinese body invalidates the English receipt. The English payload receives its own hash. Keep translationKey stable, dates/issues/source URLs/evidence roots/claim IDs and epistemic strength identical. Preserve vendor attribution, model identifiers and quantitative caveats. No translation API, paid model call or unattended semantic generation is claimed: committed session-authored bilingual copy is deterministically validated/exported.
+
+The English UI reads the English export for home cards, Daily, Weekly, Insight listing/details, source notes and headline candidates. Chinese routes stay at root and English routes under /en/ with matching language switches and independent metadata. Never fall back to another language when a pair is missing. Preview stays noindex; production remains unchanged. RSS/sitemap publication gates continue excluding exploratory drafts.
+
+Tests must mutate source prose, evidence bindings, claim IDs and paragraph counts, remove a locale, and insert untranslated text to verify fail-closed behavior. Semantic review remains an editor's responsibility; hashes and structural checks do not prove translation quality.

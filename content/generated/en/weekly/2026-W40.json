@@ -2,7 +2,7 @@
   "schema_version": "phase3-mvp.v1",
   "type": "weekly",
   "status": "shadow",
-  "language": "zh-CN",
+  "language": "en",
   "timezone": "Asia/Shanghai",
   "period": {
     "start": "2026-09-28T00:00:00+08:00",
@@ -1488,8 +1488,8 @@
       "article_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe"
       ],
-      "title": "Ambarella 把 SmolVLA、SLAM 和 navigation 放到同一颗芯片上",
-      "text": "Ambarella 自述：N1-655 在移动操作机器人展示中运行 SmolVLA、SLAM、navigation 与 pick-and-place；另介绍 X7 standalone accelerator。展示未披露持续运行性能、功耗或客户量产证据。",
+      "title": "Ambarella runs SmolVLA, SLAM and navigation on one chip",
+      "text": "Ambarella says its N1-655 ran SmolVLA, SLAM, navigation and pick-and-place in a mobile-manipulator demo. It also introduced the X7 standalone accelerator. The demo offers a workload-integration signal; sustained performance, power and customer production evidence were not disclosed.",
       "kind": "fact-summary",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
@@ -1533,8 +1533,8 @@
       "article_ids": [
         "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
       ],
-      "title": "PReFlow 报告 offline-to-online policy 改进结果",
-      "text": "论文摘要介绍 critic-based proposal selection 与 conditional refinement flow，并报告 OGBench 评估结果。它提供 policy 学习线索，未披露真实机器人 Deployment 或 SoC 测量。",
+      "title": "PReFlow reports progress in offline-to-online policy learning",
+      "text": "The paper’s abstract describes critic-based proposal selection and a conditional refinement flow, with results on OGBench. It offers a lead in policy learning; real-robot deployment and SoC measurements were not disclosed.",
       "kind": "fact-summary",
       "fact_ids": [
         "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:0",
@@ -1578,8 +1578,8 @@
       "article_ids": [
         "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
       ],
-      "title": "Boston Dynamics 新手部设计去掉小指，具体取舍还待核验",
-      "text": "报道标题提及新 humanoid hand 去掉小指；摘要仅描述工程师把小指与无名指绑在一起进行体验。操作设计的取舍值得关注，但当前证据很薄，不能判断手部规格或性能。",
+      "title": "Boston Dynamics drops the little finger from its new hand; the trade-offs still need verification",
+      "text": "The report’s headline says the new humanoid hand drops the little finger; its short summary describes engineers trying tasks with their little and ring fingers tied together. The design trade-off is worth following, but this thin evidence cannot establish hand specifications or performance.",
       "kind": "fact-summary",
       "fact_ids": [
         "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
@@ -1674,13 +1674,13 @@
         "5baa5d53-15ec-44a5-b054-1058752304fe"
       ],
       "kind": "research-question",
-      "text": "跟进同一配置下的 Latency、Power、Memory/Bandwidth 和第三方或客户验证；不将 demo 视为量产。",
+      "text": "Look for latency, power, memory/bandwidth and independent or customer validation under the same configuration; a demo is not production deployment.",
       "unknowns": [
-        "ASP/pricing for N1-655 or X7: 未披露.",
-        "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: 未披露.",
-        "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: 未披露.",
-        "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: 未披露.",
-        "N1-655 and X7 power/TDP and thermal envelope: 未披露."
+        "ASP/pricing for N1-655 or X7: not disclosed.",
+        "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: not disclosed.",
+        "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: not disclosed.",
+        "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: not disclosed.",
+        "N1-655 and X7 power/TDP and thermal envelope: not disclosed."
       ]
     },
     {
@@ -1689,13 +1689,13 @@
         "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
       ],
       "kind": "research-question",
-      "text": "跟进真实机器人、模型实现与端到端 runtime 测量；研究 benchmark 不代表机器人部署效果。",
+      "text": "Follow real-robot validation, implementation details and end-to-end runtime measurements; research benchmarks do not establish deployment performance.",
       "unknowns": [
-        "ASP/pricing or commercial deployment: 未披露.",
-        "Memory capacity/bandwidth: 未披露.",
-        "Physical robot platform or real-world deployment: 未披露.",
-        "Power/thermal envelope: 未披露.",
-        "SoC TOPS/throughput and numerical compute requirements: 未披露."
+        "ASP/pricing or commercial deployment: not disclosed.",
+        "Memory capacity/bandwidth: not disclosed.",
+        "Physical robot platform or real-world deployment: not disclosed.",
+        "Power/thermal envelope: not disclosed.",
+        "SoC TOPS/throughput and numerical compute requirements: not disclosed."
       ]
     },
     {
@@ -1704,14 +1704,14 @@
         "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
       ],
       "kind": "research-question",
-      "text": "取得更多可访问的手部设计证据，再确认自由度、抓取能力与具体取舍；当前不推断性能。",
+      "text": "Obtain more accessible evidence on the hand design before judging degrees of freedom, grasping ability or the specific trade-offs; do not infer performance from the current summary.",
       "unknowns": [
-        "ASP/pricing, production timing, order volume and customer deployment: 未披露.",
-        "Exact humanoid platform/model associated with the hand: 未披露 in bounded evidence.",
-        "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: 未披露.",
-        "Memory capacity/bandwidth: 未披露.",
-        "Power/thermal envelope: 未披露.",
-        "SoC TOPS/throughput and compute architecture: 未披露."
+        "ASP/pricing, production timing, order volume and customer deployment: not disclosed.",
+        "Exact humanoid platform/model associated with the hand: not disclosed in bounded evidence.",
+        "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: not disclosed.",
+        "Memory capacity/bandwidth: not disclosed.",
+        "Power/thermal envelope: not disclosed.",
+        "SoC TOPS/throughput and compute architecture: not disclosed."
       ]
     }
   ],
@@ -2123,13 +2123,13 @@
   },
   "reading": {
     "mode": "seven-day-editorial-synthesis",
-    "editor_note": "本周这 3 条已验证样本，把关注点带到了模型之外：芯片上的多任务协同、策略学习怎样走到部署，以及手部操作的设计取舍。把它们放在一起，是为了找出下一步该验证什么。当前覆盖不完整，也没有足够的上期基线，不能据此宣布行业拐点。",
+    "editor_note": "These three verified samples bring this week’s attention beyond the model: workload coordination on silicon, the path from policy learning to deployment, and trade-offs in hand design. Reading them together helps identify what needs testing next. Coverage is incomplete and the previous-period baseline is insufficient, so they cannot establish an industry turning point.",
     "themes": [
       {
-        "heading": "算力的问题，开始落到多种 workload 怎么一起跑",
+        "heading": "Compute questions are becoming questions about workloads running together",
         "paragraphs": [
-          "Ambarella 自述：N1-655 在移动操作机器人展示中运行 SmolVLA、SLAM、navigation 与 pick-and-place；另介绍 X7 standalone accelerator。展示未披露持续运行性能、功耗或客户量产证据。",
-          "这条展示把模型、感知和导航放进同一配置，值得继续看的是它们如何共享资源。当前没有持续运行测量，也没有客户量产数据，不能把集成演示解释为产品成熟。"
+          "Ambarella says its N1-655 ran SmolVLA, SLAM, navigation and pick-and-place in a mobile-manipulator demo. It also introduced the X7 standalone accelerator. The demo offers a workload-integration signal; sustained performance, power and customer production evidence were not disclosed.",
+          "The demo places the model, perception and navigation in the same configuration. The next question is how they share resources. Without sustained measurements or customer production data, an integration demo cannot be treated as a mature product."
         ],
         "event_ids": [
           "event-52d906008bce9df7"
@@ -2160,10 +2160,10 @@
         "interpretation": "editorial synthesis / verification question; not established trend"
       },
       {
-        "heading": "学习策略有了新进展，部署验证仍是另一道题",
+        "heading": "Policy learning advances, while deployment remains a separate test",
         "paragraphs": [
-          "论文摘要介绍 critic-based proposal selection 与 conditional refinement flow，并报告 OGBench 评估结果。它提供 policy 学习线索，未披露真实机器人 Deployment 或 SoC 测量。",
-          "算法 benchmark 与真实机器人的约束并不相同。把它和芯片展示放在一起看，可以提出一个共同的验证问题：学习到的能力，怎样在具体系统里维持可用？这仍是问题，尚不是两条消息已经形成的趋势。"
+          "The paper’s abstract describes critic-based proposal selection and a conditional refinement flow, with results on OGBench. It offers a lead in policy learning; real-robot deployment and SoC measurements were not disclosed.",
+          "Algorithm benchmarks and real robots face different constraints. Read alongside the chip demo, this raises a shared verification question: how can a learned capability remain usable in a concrete system? It is still a question, not evidence that the two announcements form an established trend."
         ],
         "event_ids": [
           "event-f26adc63fb32017b"
@@ -2194,10 +2194,10 @@
         "interpretation": "editorial synthesis / verification question; not established trend"
       },
       {
-        "heading": "手部取舍把操作问题带到台前，但证据还很薄",
+        "heading": "Hand design brings manipulation trade-offs into view, with thin evidence",
         "paragraphs": [
-          "报道标题提及新 humanoid hand 去掉小指；摘要仅描述工程师把小指与无名指绑在一起进行体验。操作设计的取舍值得关注，但当前证据很薄，不能判断手部规格或性能。",
-          "现有标题和短摘要支持关注设计取舍，无法支持自由度或抓取性能比较。它给本周观察补上了机械端的一角，但不够证明整个人形机器人行业已经转向。"
+          "The report’s headline says the new humanoid hand drops the little finger; its short summary describes engineers trying tasks with their little and ring fingers tied together. The design trade-off is worth following, but this thin evidence cannot establish hand specifications or performance.",
+          "The available headline and short summary justify attention to design trade-offs, but do not support comparisons of degrees of freedom or grasping performance. They add a mechanical perspective to the week’s observations without proving a shift across the humanoid industry."
         ],
         "event_ids": [
           "event-06479c80094b8e3d"
@@ -2236,13 +2236,13 @@
           "5baa5d53-15ec-44a5-b054-1058752304fe"
         ],
         "kind": "research-question",
-        "text": "跟进同一配置下的 Latency、Power、Memory/Bandwidth 和第三方或客户验证；不将 demo 视为量产。",
+        "text": "Look for latency, power, memory/bandwidth and independent or customer validation under the same configuration; a demo is not production deployment.",
         "unknowns": [
-          "ASP/pricing for N1-655 or X7: 未披露.",
-          "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: 未披露.",
-          "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: 未披露.",
-          "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: 未披露.",
-          "N1-655 and X7 power/TDP and thermal envelope: 未披露."
+          "ASP/pricing for N1-655 or X7: not disclosed.",
+          "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: not disclosed.",
+          "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: not disclosed.",
+          "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: not disclosed.",
+          "N1-655 and X7 power/TDP and thermal envelope: not disclosed."
         ]
       },
       {
@@ -2251,13 +2251,13 @@
           "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
         ],
         "kind": "research-question",
-        "text": "跟进真实机器人、模型实现与端到端 runtime 测量；研究 benchmark 不代表机器人部署效果。",
+        "text": "Follow real-robot validation, implementation details and end-to-end runtime measurements; research benchmarks do not establish deployment performance.",
         "unknowns": [
-          "ASP/pricing or commercial deployment: 未披露.",
-          "Memory capacity/bandwidth: 未披露.",
-          "Physical robot platform or real-world deployment: 未披露.",
-          "Power/thermal envelope: 未披露.",
-          "SoC TOPS/throughput and numerical compute requirements: 未披露."
+          "ASP/pricing or commercial deployment: not disclosed.",
+          "Memory capacity/bandwidth: not disclosed.",
+          "Physical robot platform or real-world deployment: not disclosed.",
+          "Power/thermal envelope: not disclosed.",
+          "SoC TOPS/throughput and numerical compute requirements: not disclosed."
         ]
       },
       {
@@ -2266,20 +2266,20 @@
           "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
         ],
         "kind": "research-question",
-        "text": "取得更多可访问的手部设计证据，再确认自由度、抓取能力与具体取舍；当前不推断性能。",
+        "text": "Obtain more accessible evidence on the hand design before judging degrees of freedom, grasping ability or the specific trade-offs; do not infer performance from the current summary.",
         "unknowns": [
-          "ASP/pricing, production timing, order volume and customer deployment: 未披露.",
-          "Exact humanoid platform/model associated with the hand: 未披露 in bounded evidence.",
-          "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: 未披露.",
-          "Memory capacity/bandwidth: 未披露.",
-          "Power/thermal envelope: 未披露.",
-          "SoC TOPS/throughput and compute architecture: 未披露."
+          "ASP/pricing, production timing, order volume and customer deployment: not disclosed.",
+          "Exact humanoid platform/model associated with the hand: not disclosed in bounded evidence.",
+          "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: not disclosed.",
+          "Memory capacity/bandwidth: not disclosed.",
+          "Power/thermal envelope: not disclosed.",
+          "SoC TOPS/throughput and compute architecture: not disclosed."
         ]
       }
     ],
     "partial": true,
     "baseline": "insufficient-baseline",
-    "coverage_note": "七天窗口的部分样本观察；并非完整行业周报。"
+    "coverage_note": "A partial view of a seven-day window, not a complete industry weekly report."
   },
   "translation": {
     "translationKey": "weekly-2026-09-28",

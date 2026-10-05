@@ -1,31 +1,34 @@
 {
   "status": "draft",
   "publish": false,
-  "language": "zh-CN",
+  "language": "en",
   "candidate_id": "candidate-event-52d906008bce9df7",
   "skill_sha256": "98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815",
   "input_sha256": "d8cf0fb7c863a99de0c2a9dd6cc2a1c473990c66ef27e157d4d1e043623c12a6",
   "slug": "ambarella-physical-ai-workload-integration",
-  "title": "当 VLA、SLAM 和 navigation 挤进一颗 SoC，问题才刚开始",
-  "deck": "Ambarella 把 SmolVLA、SLAM 和 navigation 放到了 N1-655 上。接下来更值得追问的，是这些任务能否持续、稳定地一起工作。",
-  "summary": "一颗芯片承载多种机器人 workload，带来了新的集成可能，也留下了资源共享和持续运行的问题。从 N1-655 的展示到 X7 的增量加速路径，追问平台能力怎样走到客户交付。",
+  "title": "VLA, SLAM and navigation on one SoC: the questions are just beginning",
+  "deck": "Ambarella has put SmolVLA, SLAM and navigation on the N1-655. The more useful question now is whether these tasks can keep working together, reliably and over time.",
+  "summary": "Putting several robotics workloads on one chip opens integration possibilities while leaving resource-sharing and sustained-operation questions. From the N1-655 demo to the X7’s incremental acceleration approach, this essay asks how a platform capability becomes something a customer can ship.",
   "sections": [
     {
       "heading": null,
       "claim_ids": [
         "F1",
-        "F2"
-      ]
-    },
-    {
-      "heading": "一起跑，比单独跑多了什么",
-      "claim_ids": [
+        "J1",
         "I1",
         "I2"
       ]
     },
     {
-      "heading": "客户不会只买一场演示",
+      "heading": "What changes when workloads run together",
+      "claim_ids": [
+        "I1",
+        "I2",
+        "F2"
+      ]
+    },
+    {
+      "heading": "Customers do not buy a demonstration",
       "claim_ids": [
         "F3",
         "I3",
@@ -39,7 +42,7 @@
     {
       "id": "F1",
       "kind": "fact",
-      "text": "Ambarella 在自己的 AI Infrastructure Summit 文章中称，N1-655 驱动了一台 autonomous mobile manipulator，把 SmolVLA、SLAM、navigation 和 pick-and-place 放到同一颗芯片上运行。这里能确认的是厂商描述的一次展示，真实系统的余量仍未披露。",
+      "text": "In its own AI Infrastructure Summit article, Ambarella says the N1-655 powered an autonomous mobile manipulator running SmolVLA, SLAM, navigation and pick-and-place on a single chip. What this confirms is a vendor-described demonstration; the real system’s operating headroom remains undisclosed.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0"
       ]
@@ -47,7 +50,7 @@
     {
       "id": "F2",
       "kind": "fact",
-      "text": "同一篇文章还介绍了 Unitree humanoid 的 on-device vision-to-action 展示，以及 N1-655 上结合 Dify、Liquid AI models、live video 和 RAG 的 warehouse demo。这些都来自同一家厂商，不能算成三份独立验证。",
+      "text": "The same article describes a Unitree humanoid demonstration with an on-device vision-to-action loop, and a warehouse demo combining Dify, Liquid AI models, live video and RAG on the N1-655. They all come from one vendor source. They are not three independent validations.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:1",
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:2"
@@ -56,7 +59,7 @@
     {
       "id": "I1",
       "kind": "inference",
-      "text": "这让我更在意一个很普通的工程问题：模型在输出 action 的时候，传感器不会停止送数据，导航也不会等它忙完。几种 workload 一起运行，可能争抢 Memory、Bandwidth 和调度时间。真正需要测量的，是这些任务互相影响之后，端到端 Latency 还能不能保持可预测。当前公开 evidence 没有给出答案。",
+      "text": "That brings me to a fairly ordinary engineering question. Sensors keep sending data while the model produces an action, and navigation does not wait for it to finish. Workloads running together may compete for memory, bandwidth and scheduling time. What needs measuring is whether end-to-end latency remains predictable after those interactions. The available evidence does not answer that.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:1"
@@ -65,7 +68,7 @@
     {
       "id": "I2",
       "kind": "inference",
-      "text": "single-chip 改变的是集成边界。少了跨设备的数据搬运，可能让系统更简洁；资源竞争也可能因此集中到芯片内部。CPU、GPU、NPU 怎样分工，runtime 如何安排优先级，都要看实现。这里我会稍微保守一点：我们还不知道这次展示的具体资源分配，不能由“一颗芯片”反推出芯片架构，更不能认定它已经解决了协同问题。",
+      "text": "Single-chip changes the integration boundary. Less movement between devices could simplify the system; resource contention could also become concentrated inside the chip. How the CPU, GPU and NPU divide the work, and how the runtime assigns priorities, depends on the implementation. I would be cautious here: the demo’s resource allocation is still unknown. One chip does not reveal the architecture, or establish that coordination has been solved.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0"
       ]
@@ -73,7 +76,7 @@
     {
       "id": "F3",
       "kind": "fact",
-      "text": "Ambarella 同时介绍了 X7，称其是公司的第一款 standalone AI accelerator，可以在既有 host computer 旁边增加 AI processing，而不一定替换原有设备；文章也提到 Ultralytics、Developer Zone 和 ZEDEDA 的合作与工具扩展。",
+      "text": "Ambarella also describes the X7 as its first standalone AI accelerator, saying it can add AI processing alongside an existing host computer without necessarily replacing installed equipment. The article mentions collaborations and tooling involving Ultralytics, Developer Zone and ZEDEDA.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5"
@@ -82,7 +85,7 @@
     {
       "id": "I3",
       "kind": "inference",
-      "text": "把 N1-655 和 X7 的描述放在一起，能看出两种待验证的集成思路：新系统把 workload 收进 SoC，存量系统则在 host 旁增加 accelerator。后者可能保留既有控制链，也会把新的协同问题留给 host 和 accelerator。客户是否少付了迁移成本，模型更新和维护是否容易，BOM 是否划算，都需要工程与客户验证。",
+      "text": "Read together, the N1-655 and X7 descriptions suggest two integration approaches that still need validation: a new system brings workloads into the SoC, while an installed system adds an accelerator alongside its host. The latter may preserve the existing control chain, while leaving new coordination problems between host and accelerator. Lower migration costs, easier model updates and maintenance, and a worthwhile BOM all require engineering and customer validation.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
@@ -92,7 +95,7 @@
     {
       "id": "F4",
       "kind": "fact",
-      "text": "文章中“超过 5,000 万”的数字，是 Ambarella 对已部署 AI processors／AI SoC 总体装机量的自述，覆盖多种端侧用途。这不是 N1-655、X7 或机器人产品的出货量。",
+      "text": "The article’s figure of more than 50 million refers to Ambarella’s own claim about its overall installed base of AI processors or AI SoCs across different edge applications. It is not a shipment figure for the N1-655, the X7 or robotics products.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:6"
       ]
@@ -100,7 +103,7 @@
     {
       "id": "J1",
       "kind": "personal_judgment",
-      "text": "我现在会把这条消息留在平台能力观察名单里。它值得关注的地方，是把讨论带到了几种 workload 如何共同工作；但我还不会判断它已经是一套可以复制的商业方案。能持续运行，和客户愿意把它放进产品里，中间还有一段路。Does it actually ship? 到这里仍然是一个问题。",
+      "text": "For now, I would keep this on the platform-capability watchlist. It deserves attention because it brings the discussion to how several workloads operate together. I would not yet call it a repeatable commercial solution. Sustained operation and a customer choosing to put it into a product are still some distance apart. Does it actually ship? Here, that remains a question.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
@@ -111,7 +114,7 @@
     {
       "id": "J2",
       "kind": "personal_judgment",
-      "text": "我更想看到的下一份材料，是同一配置下的端到端 Latency、长时间运行的 Power 和 thermal 行为，再加上 Memory／Bandwidth 使用情况与模型迁移支持。第三方复现或客户应用会让讨论扎实很多。在这些证据出现之前，我不会拿这次展示去排 NVIDIA、Qualcomm 或其他 SoC 的名次。",
+      "text": "The next material I would like to see is end-to-end latency under the same configuration, power and thermal behavior over sustained operation, memory/bandwidth use, and support for model migration. Independent reproduction or a customer application would make the discussion much firmer. Until that evidence arrives, I would not use this demo to rank NVIDIA, Qualcomm or other SoCs.",
       "fact_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
         "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4"
@@ -120,11 +123,11 @@
     }
   ],
   "unknowns": [
-    "ASP/pricing for N1-655 or X7: 未披露.",
-    "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: 未披露.",
-    "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: 未披露.",
-    "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: 未披露.",
-    "N1-655 and X7 power/TDP and thermal envelope: 未披露."
+    "ASP/pricing for N1-655 or X7: not disclosed.",
+    "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: not disclosed.",
+    "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: not disclosed.",
+    "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: not disclosed.",
+    "N1-655 and X7 power/TDP and thermal envelope: not disclosed."
   ],
   "editorial_context": {
     "mode": "exploratory-watchlist-draft",
@@ -146,7 +149,7 @@
   "skill_provenance": "recovered_from_conversation_context; historically confirmed rules; not byte-identical original",
   "title_candidates": [
     {
-      "title": "VLA 跑起来了，但机器人 SoC 真正难的才刚开始",
+      "title": "VLA is running, but the harder robotics SoC questions are just beginning",
       "scores": {
         "curiosity": 5,
         "tension": 5,
@@ -154,7 +157,7 @@
         "technical_relevance": 5,
         "evidence_fidelity": 5
       },
-      "rationale": "正文追问多任务资源协同与持续运行，未断言芯片性能或竞争胜负。",
+      "rationale": "The essay examines workload coordination and sustained operation without claiming performance or a competitive winner.",
       "claim_ids": [
         "F1",
         "I1",
@@ -164,7 +167,7 @@
       "evidence_review": "pass"
     },
     {
-      "title": "当 VLA、SLAM 和 navigation 挤进一颗 SoC，问题才刚开始",
+      "title": "VLA, SLAM and navigation on one SoC: the questions are just beginning",
       "scores": {
         "curiosity": 5,
         "tension": 5,
@@ -172,7 +175,7 @@
         "technical_relevance": 5,
         "evidence_fidelity": 5
       },
-      "rationale": "明确点出已披露的组合，悬念由正文的资源共享与交付验证回答。",
+      "rationale": "The title identifies the disclosed workload combination; the essay addresses resource sharing and delivery validation.",
       "claim_ids": [
         "F1",
         "I1",
@@ -182,7 +185,7 @@
       "evidence_review": "pass"
     },
     {
-      "title": "SmolVLA 上芯之后，怎样才能从展示走到交付",
+      "title": "SmolVLA is on-chip. What takes it from a demo to delivery?",
       "scores": {
         "curiosity": 4,
         "tension": 4,
@@ -190,7 +193,7 @@
         "technical_relevance": 5,
         "evidence_fidelity": 5
       },
-      "rationale": "从厂商展示追问真实部署，与证据边界一致。",
+      "rationale": "The question follows the vendor demo toward real deployment while preserving the evidence boundary.",
       "claim_ids": [
         "F1",
         "I1",
@@ -200,7 +203,7 @@
       "evidence_review": "pass"
     },
     {
-      "title": "别急着看 TOPS：这次机器人展示更值得问什么",
+      "title": "Before looking at TOPS, what should we ask about this robot demo?",
       "scores": {
         "curiosity": 4,
         "tension": 4,
@@ -208,7 +211,7 @@
         "technical_relevance": 5,
         "evidence_fidelity": 5
       },
-      "rationale": "强调这次展示的测量问题，未宣称全行业竞争已经转向。",
+      "rationale": "The title focuses on measurement questions in this demo without claiming an industry-wide competitive shift.",
       "claim_ids": [
         "F1",
         "I1",
@@ -223,20 +226,20 @@
       "heading": null,
       "paragraphs": [
         {
-          "text": "把 SmolVLA 放到芯片上，已经足够让一条机器人新闻被看见。但这次更吸引我的，是它身边还坐着 SLAM、navigation 和 pick-and-place。",
+          "text": "Putting SmolVLA on a chip is enough to draw attention to a robotics story. What interests me more here is the company it keeps: SLAM, navigation and pick-and-place.",
           "claim_ids": [
             "F1",
             "J1"
           ]
         },
         {
-          "text": "Ambarella 在自己的 AI Infrastructure Summit 文章中称，N1-655 驱动了一台 autonomous mobile manipulator，把 SmolVLA、SLAM、navigation 和 pick-and-place 放到同一颗芯片上运行。这里能确认的是厂商描述的一次展示，真实系统的余量仍未披露。",
+          "text": "In its own AI Infrastructure Summit article, Ambarella says the N1-655 powered an autonomous mobile manipulator running SmolVLA, SLAM, navigation and pick-and-place on a single chip. What this confirms is a vendor-described demonstration; the real system’s operating headroom remains undisclosed.",
           "claim_ids": [
             "F1"
           ]
         },
         {
-          "text": "几个任务在同一颗芯片上工作，问题也就从“这个模型能不能跑”往前走了一步。机器人移动时还要感知环境、更新位置、准备下一次动作，它们不会轮流下班。",
+          "text": "Several tasks working on one chip move the question a step beyond whether a model can run. A moving robot still needs to sense its surroundings, update its position and prepare its next action. Those tasks do not take turns clocking out.",
           "claim_ids": [
             "I1",
             "I2"
@@ -245,29 +248,29 @@
       ]
     },
     {
-      "heading": "一起跑，比单独跑多了什么",
+      "heading": "What changes when workloads run together",
       "paragraphs": [
         {
-          "text": "这让我更在意一个很普通的工程问题：模型在输出 action 的时候，传感器不会停止送数据，导航也不会等它忙完。几种 workload 一起运行，可能争抢 Memory、Bandwidth 和调度时间。真正需要测量的，是这些任务互相影响之后，端到端 Latency 还能不能保持可预测。当前公开 evidence 没有给出答案。",
+          "text": "That brings me to a fairly ordinary engineering question. Sensors keep sending data while the model produces an action, and navigation does not wait for it to finish. Workloads running together may compete for memory, bandwidth and scheduling time. What needs measuring is whether end-to-end latency remains predictable after those interactions. The available evidence does not answer that.",
           "claim_ids": [
             "I1"
           ]
         },
         {
-          "text": "这也是为什么，单看一个算力数字，很难回答这次展示提出的问题。",
+          "text": "This is why one compute figure tells us so little about the question this demo raises.",
           "claim_ids": [
             "I1",
             "I2"
           ]
         },
         {
-          "text": "single-chip 改变的是集成边界。少了跨设备的数据搬运，可能让系统更简洁；资源竞争也可能因此集中到芯片内部。CPU、GPU、NPU 怎样分工，runtime 如何安排优先级，都要看实现。这里我会稍微保守一点：我们还不知道这次展示的具体资源分配，不能由“一颗芯片”反推出芯片架构，更不能认定它已经解决了协同问题。",
+          "text": "Single-chip changes the integration boundary. Less movement between devices could simplify the system; resource contention could also become concentrated inside the chip. How the CPU, GPU and NPU divide the work, and how the runtime assigns priorities, depends on the implementation. I would be cautious here: the demo’s resource allocation is still unknown. One chip does not reveal the architecture, or establish that coordination has been solved.",
           "claim_ids": [
             "I2"
           ]
         },
         {
-          "text": "同一篇文章还介绍了 Unitree humanoid 的 on-device vision-to-action 展示，以及 N1-655 上结合 Dify、Liquid AI models、live video 和 RAG 的 warehouse demo。这些都来自同一家厂商，不能算成三份独立验证。",
+          "text": "The same article describes a Unitree humanoid demonstration with an on-device vision-to-action loop, and a warehouse demo combining Dify, Liquid AI models, live video and RAG on the N1-655. They all come from one vendor source. They are not three independent validations.",
           "claim_ids": [
             "F2"
           ]
@@ -275,34 +278,34 @@
       ]
     },
     {
-      "heading": "客户不会只买一场演示",
+      "heading": "Customers do not buy a demonstration",
       "paragraphs": [
         {
-          "text": "Ambarella 同时介绍了 X7，称其是公司的第一款 standalone AI accelerator，可以在既有 host computer 旁边增加 AI processing，而不一定替换原有设备；文章也提到 Ultralytics、Developer Zone 和 ZEDEDA 的合作与工具扩展。",
+          "text": "Ambarella also describes the X7 as its first standalone AI accelerator, saying it can add AI processing alongside an existing host computer without necessarily replacing installed equipment. The article mentions collaborations and tooling involving Ultralytics, Developer Zone and ZEDEDA.",
           "claim_ids": [
             "F3"
           ]
         },
         {
-          "text": "把 N1-655 和 X7 的描述放在一起，能看出两种待验证的集成思路：新系统把 workload 收进 SoC，存量系统则在 host 旁增加 accelerator。后者可能保留既有控制链，也会把新的协同问题留给 host 和 accelerator。客户是否少付了迁移成本，模型更新和维护是否容易，BOM 是否划算，都需要工程与客户验证。",
+          "text": "Read together, the N1-655 and X7 descriptions suggest two integration approaches that still need validation: a new system brings workloads into the SoC, while an installed system adds an accelerator alongside its host. The latter may preserve the existing control chain, while leaving new coordination problems between host and accelerator. Lower migration costs, easier model updates and maintenance, and a worthwhile BOM all require engineering and customer validation.",
           "claim_ids": [
             "I3"
           ]
         },
         {
-          "text": "文章中“超过 5,000 万”的数字，是 Ambarella 对已部署 AI processors／AI SoC 总体装机量的自述，覆盖多种端侧用途。这不是 N1-655、X7 或机器人产品的出货量。",
+          "text": "The article’s figure of more than 50 million refers to Ambarella’s own claim about its overall installed base of AI processors or AI SoCs across different edge applications. It is not a shipment figure for the N1-655, the X7 or robotics products.",
           "claim_ids": [
             "F4"
           ]
         },
         {
-          "text": "我现在会把这条消息留在平台能力观察名单里。它值得关注的地方，是把讨论带到了几种 workload 如何共同工作；但我还不会判断它已经是一套可以复制的商业方案。能持续运行，和客户愿意把它放进产品里，中间还有一段路。Does it actually ship? 到这里仍然是一个问题。",
+          "text": "For now, I would keep this on the platform-capability watchlist. It deserves attention because it brings the discussion to how several workloads operate together. I would not yet call it a repeatable commercial solution. Sustained operation and a customer choosing to put it into a product are still some distance apart. Does it actually ship? Here, that remains a question.",
           "claim_ids": [
             "J1"
           ]
         },
         {
-          "text": "我更想看到的下一份材料，是同一配置下的端到端 Latency、长时间运行的 Power 和 thermal 行为，再加上 Memory／Bandwidth 使用情况与模型迁移支持。第三方复现或客户应用会让讨论扎实很多。在这些证据出现之前，我不会拿这次展示去排 NVIDIA、Qualcomm 或其他 SoC 的名次。",
+          "text": "The next material I would like to see is end-to-end latency under the same configuration, power and thermal behavior over sustained operation, memory/bandwidth use, and support for model migration. Independent reproduction or a customer application would make the discussion much firmer. Until that evidence arrives, I would not use this demo to rank NVIDIA, Qualcomm or other SoCs.",
           "claim_ids": [
             "J2"
           ]
@@ -316,7 +319,7 @@
     "path": "industry/robotics/editorial/PHASE3-CONTENT-SPEC.md"
   },
   "headline_selection": {
-    "title": "当 VLA、SLAM 和 navigation 挤进一颗 SoC，问题才刚开始",
+    "title": "VLA, SLAM and navigation on one SoC: the questions are just beginning",
     "index": 1,
     "total": 25,
     "rule": "fidelity=5/pass; total desc; specificity desc; input order",

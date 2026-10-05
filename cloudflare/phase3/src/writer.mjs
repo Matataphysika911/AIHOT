@@ -12,7 +12,8 @@ export function writerPacket(skillText, candidate, events, snapshotHash) {
   const input={candidate,evidence,snapshot_hash:snapshotHash};
   return {schema_version:'insight-writer-packet.v1',skill:{...WRITER_SKILL},
     editorial_spec:EDITORIAL,input_sha256:hash(input),input,skill_text:skillText,execution_policy:'Read skill_text and evidence in current ChatGPT/Codex session; no model API; return draft JSON only',
-    instruction:'Apply the skill only to this candidate. Every fact must bind a fact ID. Inferences and proposed personal judgment must be labeled. Missing SoC numbers stay 未披露. Candidate watchlist may produce an explicitly exploratory sample, never publication-ready content.'};
+    bilingual_policy:{locales:['zh-CN','en'],pair_required:true,spec_path:'industry/robotics/editorial/PHASE3-BILINGUAL-SPEC.md',generation:'session-authored; paired review; no translation API'},
+    instruction:'Generate and review complete English and Chinese editorial versions together. Apply the skill only to this candidate. Every fact must bind a fact ID. Inferences and proposed personal judgment must be labeled. Missing SoC numbers stay 未披露. Candidate watchlist may produce an explicitly exploratory sample, never publication-ready content.'};
 }
 
 export function validateDraft(draft, packet) {
