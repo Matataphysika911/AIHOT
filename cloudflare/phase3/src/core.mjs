@@ -1,3 +1,4 @@
+import { editorialReport } from './editorial.mjs';
 import { createHash } from 'node:crypto';
 
 export const VERSION = 'phase3-mvp.v1';
@@ -131,11 +132,11 @@ function reportEvents(events, rows, start, end, asOf) {
 export function buildDaily(snapshot, grouped, date) {
   const start=`${date}T00:00:00+08:00`,end=new Date(millis(start)+86400000).toISOString();
   const events=reportEvents(grouped.events,snapshot.articles,start,end,snapshot.snapshot_at);
-  return {schema_version:VERSION,type:'daily',status:'shadow',language:'zh-CN',date,timezone:'Asia/Shanghai',period:{start,end},
+  return editorialReport({schema_version:VERSION,type:'daily',status:'shadow',language:'zh-CN',date,timezone:'Asia/Shanghai',period:{start,end},
     as_of:snapshot.snapshot_at,data_mode:snapshot.mode,writer_skill:null,events,
     publish:false,counts:{events:events.length,articles:unique(events.flatMap(e=>e.article_ids)).length},
     executive_summary:events.slice(0,3).map(signal),top_signals:events.slice(0,3).map(signal),what_to_watch:events.map(watch),
-    sections:['robotics','embodied-ai','edge-ai-soc','commercial-signals'].map(key=>({key,event_ids:events.filter(e=>key==='commercial-signals'?e.topics.some(t=>/量产|部署|工程|合作/.test(t)):key==='edge-ai-soc'?e.topics.includes(key):key==='embodied-ai'?e.topics.some(t=>/VLA|数据|训练|运动控制/.test(t)):e.topics.some(t=>/机器人/.test(t))).map(e=>e.id)}))};
+    sections:['robotics','embodied-ai','edge-ai-soc','commercial-signals'].map(key=>({key,event_ids:events.filter(e=>key==='commercial-signals'?e.topics.some(t=>/量产|部署|工程|合作/.test(t)):key==='edge-ai-soc'?e.topics.includes(key):key==='embodied-ai'?e.topics.some(t=>/VLA|数据|训练|运动控制/.test(t)):e.topics.some(t=>/机器人/.test(t))).map(e=>e.id)}))});
 }
 
 export function buildWeekly(snapshot, grouped, startDate) {
@@ -150,7 +151,7 @@ export function buildWeekly(snapshot, grouped, startDate) {
       independent_publishers:unique(current.flatMap(e=>e.independent_publishers)),
       score_inputs:current.map(e=>({event_id:e.id,phase2_final_score:e.score,hotness:e.hotness}))};
   });
-  return {schema_version:VERSION,type:'weekly',status:'shadow',language:'zh-CN',timezone:'Asia/Shanghai',period:{start,end},story_links:grouped.story_links.filter(r=>r.event_ids.every(id=>events.some(e=>e.id===id))),
+  return editorialReport({schema_version:VERSION,type:'weekly',status:'shadow',language:'zh-CN',timezone:'Asia/Shanghai',period:{start,end},story_links:grouped.story_links.filter(r=>r.event_ids.every(id=>events.some(e=>e.id===id))),
     as_of:snapshot.snapshot_at,data_mode:snapshot.mode,writer_skill:null,partial:millis(snapshot.snapshot_at)<millis(end),
     publish:false,coverage:'verified cohort only; not a complete weekly corpus',events,topic_trend:topics,
     executive_summary:events.slice(0,3).map(signal),edge_ai_soc:events.filter(e=>e.topics.includes('edge-ai-soc')).map(signal),
@@ -159,7 +160,7 @@ export function buildWeekly(snapshot, grouped, startDate) {
       note:'仅比较已验证样本；没有上期完整覆盖，不能把新增样本解释为行业增长。'},
     key_shifts:topics.filter(t=>t.current_events>=2).map(t=>({...t,label:`${t.topic}: ${t.current_events} 个已验证事件`,interpretation:'sample concentration; not established industry trend'})),
     company_watch:unique(events.flatMap(e=>e.companies)).map(company=>({company,event_ids:events.filter(e=>e.companies.includes(company)).map(e=>e.id),role:'mentioned; customer relationship not implied'})),
-    commercial_signal:snapshot.articles.filter(a=>events.some(e=>e.article_ids.includes(a.id))).map(a=>({text:a.structure.commercial_signal,attribution:'Phase2 source-grounded structure',article_id:a.id,event_id:events.find(e=>e.article_ids.includes(a.id)).id,citation:citation(a)}))};
+    commercial_signal:snapshot.articles.filter(a=>events.some(e=>e.article_ids.includes(a.id))).map(a=>({text:a.structure.commercial_signal,attribution:'Phase2 source-grounded structure',article_id:a.id,event_id:events.find(e=>e.article_ids.includes(a.id)).id,citation:citation(a)}))});
 }
 
 export function candidates(weekly) {
@@ -203,7 +204,7 @@ export function buildSoc(snapshot, events) {
 
 const chineseSignals={
  '5baa5d53-15ec-44a5-b054-1058752304fe':{
-  title:'Ambarella 展示 N1-655 多 workload 集成，并介绍 X7 与生态合作',
+  title:'Ambarella 把 SmolVLA、SLAM 和 navigation 放到同一颗芯片上',
   evidence_hash:'56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d',text:'Ambarella 自述：N1-655 在移动操作机器人展示中运行 SmolVLA、SLAM、navigation 与 pick-and-place；另介绍 X7 standalone accelerator。展示未披露持续运行性能、功耗或客户量产证据。',fact_indexes:[0,4],
   watch:'跟进同一配置下的 Latency、Power、Memory/Bandwidth 和第三方或客户验证；不将 demo 视为量产。'},
  '21557a04-bf5f-4de9-bc62-738fdeb03ceb':{
@@ -211,8 +212,8 @@ const chineseSignals={
   evidence_hash:'4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262',text:'论文摘要介绍 critic-based proposal selection 与 conditional refinement flow，并报告 OGBench 评估结果。它提供 policy 学习线索，未披露真实机器人 Deployment 或 SoC 测量。',fact_indexes:[0,3],
   watch:'跟进真实机器人、模型实现与端到端 runtime 测量；研究 benchmark 不代表机器人部署效果。'},
  '1f9fd3e9-0e21-413d-8bb7-b2d16b3be070':{
-  title:'Boston Dynamics 手部设计报道：当前只有短 RSS 摘要',
-  evidence_hash:'82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd',text:'报道标题提及新 humanoid hand 去掉小指；摘要仅描述工程师把小指与无名指绑在一起进行体验。正文抓取为 403，不能补写手部规格或性能结论。',fact_indexes:[0,1,2],
+  title:'Boston Dynamics 新手部设计去掉小指，具体取舍还待核验',
+  evidence_hash:'82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd',text:'报道标题提及新 humanoid hand 去掉小指；摘要仅描述工程师把小指与无名指绑在一起进行体验。操作设计的取舍值得关注，但当前证据很薄，不能判断手部规格或性能。',fact_indexes:[0,1,2],
   watch:'取得更多可访问的手部设计证据，再确认自由度、抓取能力与具体取舍；当前不推断性能。'}
 };
 export function signal(e){

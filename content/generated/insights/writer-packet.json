@@ -7,6 +7,11 @@
     "path": "industry/robotics/skills/uprivate-writer-v1.1/SKILL.md",
     "library_path": "/uPrivate/skills/uprivate-writer-v1.1/SKILL.md"
   },
+  "editorial_spec": {
+    "version": "1.2-editorial-preview.20261005",
+    "sha256": "e697ffd95c3a923161fb81f1a6bc5b9b7ce848e9dffa8d968d7d3eb741798782",
+    "path": "industry/robotics/editorial/PHASE3-CONTENT-SPEC.md"
+  },
   "input_sha256": "d8cf0fb7c863a99de0c2a9dd6cc2a1c473990c66ef27e157d4d1e043623c12a6",
   "input": {
     "candidate": {

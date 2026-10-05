@@ -26,7 +26,7 @@ test('real three-article export preserves every citation and rebuilds determinis
  assert.equal(report.writer_skill,null);assert.ok(report.what_to_watch.length);
  for(const s of report.executive_summary)for(const id of s.fact_ids)assert.ok(facts.has(id));
  const md=fs.readFileSync(path.join(dir,file.path.replace('.json','.md')),'utf8');
- assert.match(md,/Executive summary/);assert.match(md,/What to watch/);assert.match(md,/不是完整新闻覆盖/);
+ assert.match(md,kind==='daily'?/今天值得看/:/算力的问题/);assert.match(md,/还在看|继续看/);assert.match(md,/不是完整新闻覆盖/);
  }
  assert.ok(manifest.files.some(f=>f.path==='soc/index.md'));
  execFileSync(process.execPath,args,{cwd:root});assert.equal(fs.readFileSync(path.join(dir,'manifest.json'),'utf8'),before);

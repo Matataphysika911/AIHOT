@@ -6,6 +6,7 @@ on:
       - 'scripts/phase3/**'
       - 'content/generated/**'
       - 'industry/robotics/skills/**'
+      - 'industry/robotics/editorial/**'
       - 'acceptance/phase3-mvp-2026-10-04.json'
       - '.github/workflows/phase3-ci.yml'
   workflow_dispatch:

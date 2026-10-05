@@ -134,3 +134,7 @@ The committed recovered skill, candidate/evidence snapshot, draft and Phase2 acc
 Draft [PR #3](https://github.com/Matataphysika911/AIHOT/pull/3) still targets the Phase2 feature branch. PR #2 is untouched. No merge or deployment. Earlier CI run 37184088618 validated the old implementation only; recovered rebind CI is tracked separately.
 
 Cloud rebind CI: [run 37205021898](https://github.com/Matataphysika911/AIHOT/actions/runs/37205021898), PASS on `a419e60852ded5513bd1ebb95af7ed15f437b189` (28 tests, build, verify and drift clean). Local root typecheck, web production build and 31 web tests PASS. Overall pure-cloud acceptance is **PARTIAL** only because Library raw-byte/hash readback is unavailable: its named path and recovered prose were independently opened, but Download returned no export. GitHub validation has no Mac/private-chat dependency.
+
+## Round two editorial preview · 2026-10-05
+
+Current presentation is governed by `industry/robotics/editorial/PHASE3-CONTENT-SPEC.md` version `1.2-editorial-preview.20261005`, hashed into manifest, reports, writer packet and draft. Recovered skill bytes stay unchanged. Daily uses 3 priorities without fabricated filler; Weekly uses evidence-bound theme observations in a partial seven-day window; Insight uses a separate mapped reading body with two H2, session-reviewed headline rubric and collapsed epistemic mapping. Historical rebind acceptance remains an earlier checkpoint; new editorial acceptance records intentional presentation changes. No Phase2 mutation, no production publication, PR #3 stays Draft.

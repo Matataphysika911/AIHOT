@@ -1,3 +1,4 @@
+import {EDITORIAL} from '../../cloudflare/phase3/src/editorial.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -32,8 +33,8 @@ await save('insights/candidates.json',queue);await save('soc/index.json',soc);aw
 if(packet) await save('insights/writer-packet.json',packet);
 if(opts['--draft']){if(!packet) throw new Error('No insight candidate for draft');const draft=validateDraft(await read(opts['--draft']),packet);await save('insights/'+draft.slug+'.json',draft);await save('insights/'+draft.slug+'.md',draftMarkdown(draft));}
 await save('source-map.json',snapshot.articles.map(a=>({article_id:a.id,source_url:a.canonical_url,evidence_hash:a.evidence.evidence_snapshot_hash,input_hash:a.input_snapshot_hash,acceptance:a.provenance.acceptance,evidence_file:a.provenance.evidence_file,submission_ids:a.submission_ids})));
-await save('manifest.json',{schema_version:VERSION,publication:'shadow-only',publish:false,as_of:snapshot.snapshot_at,input_sha256:hash(snapshot),
+await save('manifest.json',{editorial_spec:EDITORIAL,schema_version:VERSION,publication:'shadow-only',publish:false,as_of:snapshot.snapshot_at,input_sha256:hash(snapshot),
   design_contract:{navigation:['Daily','Weekly','Insights','AI SoC','Others'],locales:['zh-CN','en'],themes:['dark','light'],english_translation_status:'not-generated; never label Chinese text as English'},
-  localized_metadata:{daily:{'zh-CN':{title:'Daily Intelligence · '+daily.date,summary:'已验证样本的事实日报'},en:{title:'Daily Intelligence · '+daily.date,summary:null,status:'translation-pending'}},weekly:{'zh-CN':{title:'Weekly Intelligence · '+weekKey,summary:'已验证样本的部分周报'},en:{title:'Weekly Intelligence · '+weekKey,summary:null,status:'translation-pending'}},insights:{en:{title:'From SmolVLA demo to robot deployment',summary:null,status:'editorial-placeholder'}},soc:{en:{title:'Edge AI SoC Index',summary:null,status:'translation-pending'}}},
+  localized_metadata:{daily:{'zh-CN':{title:'Daily Intelligence · '+daily.date,summary:'快速可读的行业情报'},en:{title:'Daily Intelligence · '+daily.date,summary:null,status:'translation-pending'}},weekly:{'zh-CN':{title:'Weekly Intelligence · '+weekKey,summary:'七天窗口的编辑观察 · 部分覆盖'},en:{title:'Weekly Intelligence · '+weekKey,summary:null,status:'translation-pending'}},insights:{en:{title:'From SmolVLA demo to robot deployment',summary:null,status:'editorial-placeholder'}},soc:{en:{title:'Edge AI SoC Index',summary:null,status:'translation-pending'}}},
   files:[...files]});
 console.log(JSON.stringify({output,events:grouped.events.length,daily:daily.counts,candidates:queue.map(c=>({id:c.id,status:c.status,missing:c.missing_gates})),skill_sha256:hash(skill),input_sha256:packet?.input_sha256??null},null,2));

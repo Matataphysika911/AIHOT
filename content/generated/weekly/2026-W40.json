@@ -1488,7 +1488,7 @@
       "article_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe"
       ],
-      "title": "Ambarella 展示 N1-655 多 workload 集成，并介绍 X7 与生态合作",
+      "title": "Ambarella 把 SmolVLA、SLAM 和 navigation 放到同一颗芯片上",
       "text": "Ambarella 自述：N1-655 在移动操作机器人展示中运行 SmolVLA、SLAM、navigation 与 pick-and-place；另介绍 X7 standalone accelerator。展示未披露持续运行性能、功耗或客户量产证据。",
       "kind": "fact-summary",
       "fact_ids": [
@@ -1578,8 +1578,8 @@
       "article_ids": [
         "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
       ],
-      "title": "Boston Dynamics 手部设计报道：当前只有短 RSS 摘要",
-      "text": "报道标题提及新 humanoid hand 去掉小指；摘要仅描述工程师把小指与无名指绑在一起进行体验。正文抓取为 403，不能补写手部规格或性能结论。",
+      "title": "Boston Dynamics 新手部设计去掉小指，具体取舍还待核验",
+      "text": "报道标题提及新 humanoid hand 去掉小指；摘要仅描述工程师把小指与无名指绑在一起进行体验。操作设计的取舍值得关注，但当前证据很薄，不能判断手部规格或性能。",
       "kind": "fact-summary",
       "fact_ids": [
         "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
@@ -1626,7 +1626,7 @@
       "article_ids": [
         "5baa5d53-15ec-44a5-b054-1058752304fe"
       ],
-      "title": "Ambarella 展示 N1-655 多 workload 集成，并介绍 X7 与生态合作",
+      "title": "Ambarella 把 SmolVLA、SLAM 和 navigation 放到同一颗芯片上",
       "text": "Ambarella 自述：N1-655 在移动操作机器人展示中运行 SmolVLA、SLAM、navigation 与 pick-and-place；另介绍 X7 standalone accelerator。展示未披露持续运行性能、功耗或客户量产证据。",
       "kind": "fact-summary",
       "fact_ids": [
@@ -2115,5 +2115,170 @@
         "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
       }
     }
-  ]
+  ],
+  "editorial_spec": {
+    "version": "1.2-editorial-preview.20261005",
+    "sha256": "e697ffd95c3a923161fb81f1a6bc5b9b7ce848e9dffa8d968d7d3eb741798782",
+    "path": "industry/robotics/editorial/PHASE3-CONTENT-SPEC.md"
+  },
+  "reading": {
+    "mode": "seven-day-editorial-synthesis",
+    "editor_note": "本周这 3 条已验证样本，把关注点带到了模型之外：芯片上的多任务协同、策略学习怎样走到部署，以及手部操作的设计取舍。把它们放在一起，是为了找出下一步该验证什么。当前覆盖不完整，也没有足够的上期基线，不能据此宣布行业拐点。",
+    "themes": [
+      {
+        "heading": "算力的问题，开始落到多种 workload 怎么一起跑",
+        "paragraphs": [
+          "Ambarella 自述：N1-655 在移动操作机器人展示中运行 SmolVLA、SLAM、navigation 与 pick-and-place；另介绍 X7 standalone accelerator。展示未披露持续运行性能、功耗或客户量产证据。",
+          "这条展示把模型、感知和导航放进同一配置，值得继续看的是它们如何共享资源。当前没有持续运行测量，也没有客户量产数据，不能把集成演示解释为产品成熟。"
+        ],
+        "event_ids": [
+          "event-52d906008bce9df7"
+        ],
+        "fact_ids": [
+          "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4"
+        ],
+        "citations": [
+          {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        ],
+        "interpretation": "editorial synthesis / verification question; not established trend"
+      },
+      {
+        "heading": "学习策略有了新进展，部署验证仍是另一道题",
+        "paragraphs": [
+          "论文摘要介绍 critic-based proposal selection 与 conditional refinement flow，并报告 OGBench 评估结果。它提供 policy 学习线索，未披露真实机器人 Deployment 或 SoC 测量。",
+          "算法 benchmark 与真实机器人的约束并不相同。把它和芯片展示放在一起看，可以提出一个共同的验证问题：学习到的能力，怎样在具体系统里维持可用？这仍是问题，尚不是两条消息已经形成的趋势。"
+        ],
+        "event_ids": [
+          "event-f26adc63fb32017b"
+        ],
+        "fact_ids": [
+          "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:0",
+          "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:3"
+        ],
+        "citations": [
+          {
+            "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+            "source_id": "robotics-arxiv-robotics",
+            "source_name": "arXiv cs.RO",
+            "source_url": "https://arxiv.org/abs/2609.36812",
+            "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+            "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+            "evidence_status": "fallback",
+            "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+            "extraction_method": "arxiv_abstract",
+            "submission_ids": [
+              "A-reg-21557a04-20261003T1322",
+              "Bsub_21557a04_239de342_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+          }
+        ],
+        "interpretation": "editorial synthesis / verification question; not established trend"
+      },
+      {
+        "heading": "手部取舍把操作问题带到台前，但证据还很薄",
+        "paragraphs": [
+          "报道标题提及新 humanoid hand 去掉小指；摘要仅描述工程师把小指与无名指绑在一起进行体验。操作设计的取舍值得关注，但当前证据很薄，不能判断手部规格或性能。",
+          "现有标题和短摘要支持关注设计取舍，无法支持自由度或抓取性能比较。它给本周观察补上了机械端的一角，但不够证明整个人形机器人行业已经转向。"
+        ],
+        "event_ids": [
+          "event-06479c80094b8e3d"
+        ],
+        "fact_ids": [
+          "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
+          "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:1",
+          "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:2"
+        ],
+        "citations": [
+          {
+            "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+            "source_id": "robotics-robot-report",
+            "source_name": "The Robot Report",
+            "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+            "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+            "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+            "evidence_status": "fallback",
+            "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+            "extraction_method": "summary",
+            "submission_ids": [
+              "A-reg-1f9fd3e9-20261003T1322",
+              "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+          }
+        ],
+        "interpretation": "editorial synthesis / verification question; not established trend"
+      }
+    ],
+    "watch_items": [
+      {
+        "event_id": "event-52d906008bce9df7",
+        "article_ids": [
+          "5baa5d53-15ec-44a5-b054-1058752304fe"
+        ],
+        "kind": "research-question",
+        "text": "跟进同一配置下的 Latency、Power、Memory/Bandwidth 和第三方或客户验证；不将 demo 视为量产。",
+        "unknowns": [
+          "ASP/pricing for N1-655 or X7: 未披露.",
+          "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: 未披露.",
+          "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: 未披露.",
+          "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: 未披露.",
+          "N1-655 and X7 power/TDP and thermal envelope: 未披露."
+        ]
+      },
+      {
+        "event_id": "event-f26adc63fb32017b",
+        "article_ids": [
+          "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+        ],
+        "kind": "research-question",
+        "text": "跟进真实机器人、模型实现与端到端 runtime 测量；研究 benchmark 不代表机器人部署效果。",
+        "unknowns": [
+          "ASP/pricing or commercial deployment: 未披露.",
+          "Memory capacity/bandwidth: 未披露.",
+          "Physical robot platform or real-world deployment: 未披露.",
+          "Power/thermal envelope: 未披露.",
+          "SoC TOPS/throughput and numerical compute requirements: 未披露."
+        ]
+      },
+      {
+        "event_id": "event-06479c80094b8e3d",
+        "article_ids": [
+          "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+        ],
+        "kind": "research-question",
+        "text": "取得更多可访问的手部设计证据，再确认自由度、抓取能力与具体取舍；当前不推断性能。",
+        "unknowns": [
+          "ASP/pricing, production timing, order volume and customer deployment: 未披露.",
+          "Exact humanoid platform/model associated with the hand: 未披露 in bounded evidence.",
+          "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: 未披露.",
+          "Memory capacity/bandwidth: 未披露.",
+          "Power/thermal envelope: 未披露.",
+          "SoC TOPS/throughput and compute architecture: 未披露."
+        ]
+      }
+    ],
+    "partial": true,
+    "baseline": "insufficient-baseline",
+    "coverage_note": "七天窗口的部分样本观察；并非完整行业周报。"
+  }
 }

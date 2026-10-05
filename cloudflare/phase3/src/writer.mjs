@@ -1,3 +1,4 @@
+import {EDITORIAL,selectHeadline} from './editorial.mjs';
 import { hash } from './core.mjs';
 
 export const WRITER_SKILL={version:'1.1-recovered.20261001',sha256:'98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815',
@@ -10,7 +11,7 @@ export function writerPacket(skillText, candidate, events, snapshotHash) {
   if (!evidence.length || candidate.article_ids.some(id=>!evidence.some(e=>e.article_ids.includes(id)))) throw new Error('Unbound candidate');
   const input={candidate,evidence,snapshot_hash:snapshotHash};
   return {schema_version:'insight-writer-packet.v1',skill:{...WRITER_SKILL},
-    input_sha256:hash(input),input,skill_text:skillText,execution_policy:'Read skill_text and evidence in current ChatGPT/Codex session; no model API; return draft JSON only',
+    editorial_spec:EDITORIAL,input_sha256:hash(input),input,skill_text:skillText,execution_policy:'Read skill_text and evidence in current ChatGPT/Codex session; no model API; return draft JSON only',
     instruction:'Apply the skill only to this candidate. Every fact must bind a fact ID. Inferences and proposed personal judgment must be labeled. Missing SoC numbers stay 未披露. Candidate watchlist may produce an explicitly exploratory sample, never publication-ready content.'};
 }
 
@@ -26,19 +27,24 @@ export function validateDraft(draft, packet) {
     claims.set(c.id,c);
   }
   for (const s of draft.sections) {
-    if (!s.heading || !s.claim_ids?.length || s.claim_ids.some(id=>!claims.has(id))) throw new Error('Unmapped section');
+    if (!(s.heading===null||typeof s.heading==='string') || !s.claim_ids?.length || s.claim_ids.some(id=>!claims.has(id))) throw new Error('Unmapped section');
   }
   for (const kind of ['fact','inference','personal_judgment']) if (![...claims.values()].some(c=>c.kind===kind)) throw new Error('Missing epistemic layer');
   if (!draft.unknowns?.length) throw new Error('Unknown disclosures required');
-  return {...draft,source_mapping:[...claims.values()].map(c=>({claim_id:c.id,kind:c.kind,facts:c.fact_ids.map(id=>({fact_id:id,citation:facts.get(id).citation}))})),
+  if (JSON.stringify(draft.editorial_spec)!==JSON.stringify(EDITORIAL)) throw new Error('Stale editorial overlay');
+  if (!Array.isArray(draft.body)||draft.body.filter(s=>s.heading).length>3 || draft.body.some(s=>['从 SoC 这一侧看','回到真实场景','我的判断','接下来，我会盯什么'].includes(s.heading))) throw new Error('Visible editorial outline');
+  for(const s of draft.body) for(const p of s.paragraphs??[]) if(!p.text||!p.claim_ids?.length||p.claim_ids.some(id=>!claims.has(id)))throw new Error('Unmapped reading paragraph');
+  if(!draft.body.every(s=>s.paragraphs?.length))throw new Error('Empty reading section');
+  for(const c of draft.title_candidates??[])if(c.claim_ids?.some(id=>!claims.has(id)))throw new Error('Unmapped headline');
+  const headline_selection=selectHeadline(draft.title_candidates);
+  if(draft.title!==headline_selection.title)throw new Error('Headline selection mismatch');
+  return {...draft,headline_selection,source_mapping:[...claims.values()].map(c=>({claim_id:c.id,kind:c.kind,facts:c.fact_ids.map(id=>({fact_id:id,citation:facts.get(id).citation}))})),
     writer_receipt:{execution:'committed session-authored draft; deterministic structural/provenance validation; no model API',skill:packet.skill,input_sha256:packet.input_sha256,
-      candidate_status:packet.input.candidate.status,editorial_status:'pending-user-review',validation_scope:'structural/provenance checks; semantic grounding reviewed separately'}};
+      editorial_spec:EDITORIAL,candidate_status:packet.input.candidate.status,editorial_status:'pending-user-review',validation_scope:'structural/provenance checks; semantic grounding reviewed separately'}};
 }
 
 export function draftMarkdown(d) {
-  const claims=new Map(d.claims.map(c=>[c.id,c]));
-  const label={fact:'事实',inference:'推断',personal_judgment:'个人判断草稿'};
-  return `---\ntitle: ${JSON.stringify(d.title)}\ndeck: ${JSON.stringify(d.deck)}\nslug: ${d.slug}\nsummary: ${JSON.stringify(d.summary)}\nlang: zh-CN\ndraft: true\npublish: false\nskill_version: ${d.writer_receipt.skill.version}\nskill_sha256: ${d.skill_sha256}\n---\n\n# ${d.title}\n\n${d.deck}\n\n> 探索性草稿，候选证据门槛未齐；个人判断待作者审阅。\n\n`+
-    d.sections.map(s=>`## ${s.heading}\n\n`+s.claim_ids.map(id=>{const c=claims.get(id);return `**${label[c.kind]}** · ${c.text} [${id}]`;}).join('\n\n')).join('\n\n')+
-    '\n\n## 尚未披露\n\n'+d.unknowns.map(x=>'- '+x).join('\n')+'\n\n## 来源映射\n\n'+d.source_mapping.map(m=>`- ${m.claim_id} (${m.kind}): `+m.facts.map(f=>`[${f.fact_id}](${f.citation.source_url}) · evidence ${f.citation.evidence_hash}`).join('; ')).join('\n')+'\n';
+ return `---\ntitle: ${JSON.stringify(d.title)}\nslug: ${d.slug}\nlang: zh-CN\ndraft: true\npublish: false\neditorial_version: ${EDITORIAL.version}\neditorial_sha256: ${EDITORIAL.sha256}\n---\n\n# ${d.title}\n\n${d.deck}\n\n`+
+ d.body.map(s=>(s.heading?`## ${s.heading}\n\n`:'')+s.paragraphs.map(p=>p.text).join('\n\n')).join('\n\n')+
+ '\n\n<details>\n<summary>来源、证据边界与写作依据</summary>\n\n探索性草稿，个人判断待作者审阅。\n\n'+d.unknowns.map(x=>'- '+x).join('\n')+'\n\n'+d.source_mapping.map(m=>`- ${m.claim_id} (${m.kind}): `+m.facts.map(f=>`[原始来源](${f.citation.source_url}) · ${f.fact_id}`).join('; ')).join('\n')+'\n\n</details>\n';
 }

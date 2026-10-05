@@ -1,71 +1,54 @@
 {
+  "schema_version": "phase3-editorial-preview.v1",
+  "date": "2026-10-05",
+  "baseline_commit": "bf071032cb873a2711fe933a1c2fb3f8c1a2b901",
+  "spec_path": "industry/robotics/editorial/PHASE3-CONTENT-SPEC.md",
+  "spec_version": "1.2-editorial-preview.20261005",
+  "round": 2,
+  "intentional_changes": [
+    "Daily/Weekly reading structure and Markdown",
+    "Insight title/deck/summary/inference and judgment prose, sections, mapped reading body",
+    "writer packet overlay metadata",
+    "manifest hashes"
+  ],
+  "preserved": [
+    "Phase2 completed snapshot/evidence/facts/scoring/receipts",
+    "event IDs",
+    "candidate gates and IDs",
+    "fact claim text and all claim bindings",
+    "unknowns",
+    "recovered skill bytes",
+    "AI SoC outputs"
+  ],
+  "checks": {
+    "phase3_tests": 33,
+    "phase3_build": "pass",
+    "provenance": "pass",
+    "deterministic_drift": "pass",
+    "root_typecheck": "pass",
+    "web_build": "pass",
+    "blog_pages_build": "pass; 78 pages; noindex; links/meta/hreflang; translation and weekly gate mutation tests",
+    "web_tests": 31
+  },
+  "limitations": [
+    "Only 3 historical verified samples; no filler Daily briefs",
+    "Weekly partial and insufficient baseline",
+    "Candidate stays watchlist, personal judgment remains user_approved=false",
+    "English UI has Chinese draft prose explicitly translation-pending",
+    "Library raw-byte equality still unverified",
+    "No PostgreSQL-backed integration suite or backend smoke in this editorial/static preview change"
+  ],
+  "publish": false,
+  "production_deployment": false,
+  "phase2_mutation": false,
+  "paid_model_api_calls": 0,
   "editorial_spec": {
     "version": "1.2-editorial-preview.20261005",
     "sha256": "e697ffd95c3a923161fb81f1a6bc5b9b7ce848e9dffa8d968d7d3eb741798782",
     "path": "industry/robotics/editorial/PHASE3-CONTENT-SPEC.md"
   },
-  "schema_version": "phase3-mvp.v1",
-  "publication": "shadow-only",
-  "publish": false,
-  "as_of": "2026-10-03T06:48:56.842567Z",
-  "input_sha256": "4ac0db3fc36245839ce38e5f79556a5ab548ebd8a743e13d3235a27720f8737d",
-  "design_contract": {
-    "navigation": [
-      "Daily",
-      "Weekly",
-      "Insights",
-      "AI SoC",
-      "Others"
-    ],
-    "locales": [
-      "zh-CN",
-      "en"
-    ],
-    "themes": [
-      "dark",
-      "light"
-    ],
-    "english_translation_status": "not-generated; never label Chinese text as English"
-  },
-  "localized_metadata": {
-    "daily": {
-      "zh-CN": {
-        "title": "Daily Intelligence · 2026-10-02",
-        "summary": "快速可读的行业情报"
-      },
-      "en": {
-        "title": "Daily Intelligence · 2026-10-02",
-        "summary": null,
-        "status": "translation-pending"
-      }
-    },
-    "weekly": {
-      "zh-CN": {
-        "title": "Weekly Intelligence · 2026-W40",
-        "summary": "七天窗口的编辑观察 · 部分覆盖"
-      },
-      "en": {
-        "title": "Weekly Intelligence · 2026-W40",
-        "summary": null,
-        "status": "translation-pending"
-      }
-    },
-    "insights": {
-      "en": {
-        "title": "From SmolVLA demo to robot deployment",
-        "summary": null,
-        "status": "editorial-placeholder"
-      }
-    },
-    "soc": {
-      "en": {
-        "title": "Edge AI SoC Index",
-        "summary": null,
-        "status": "translation-pending"
-      }
-    }
-  },
-  "files": [
+  "generated_manifest_sha256": "f7295481f7ecb1fad958ce8aea9332e974778f862473549ecefa1c7b71696ba9",
+  "generated_files": [
     {
       "path": "daily/2026-10-02.json",
       "sha256": "89516cb3135ad622b9047a95c082d08b9982108375e57f6fe04e70595ce5f4e4"
