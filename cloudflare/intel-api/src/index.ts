@@ -1,3 +1,4 @@
+import { AUTH_POLICY, AUTH_CONSENT } from './auth-policy.ts';
 import evidenceInstructions from './prompts/evidence.v2.txt';
 import { processingBacklog } from './health';
 import { materializePendingEvidence, type EvidenceEnv } from './evidence';
@@ -215,7 +216,7 @@ const defaultHandler = {
             <p>Redirect destination: <strong>${escape(details.redirectHost)}</strong></p>
             ${details.redirectIsLoopback ? '<p>This sends access to an application on this computer.</p>' : ''}
             <p>Requested scopes: ${details.scope.map(escape).join(', ')}</p>
-            <p>Read collected article summaries and source metadata.${details.scope.includes(writeScope) ? ' Also append test receipts to processing_probes.' : ''} ${details.scope.includes(productionScope) ? ' Also save production prefilter, scores, structure and final selection with audited run ownership. Ingestion facts cannot be edited.' : details.scope.some(s=>reviewerScopes.includes(s)) ? ' Reviewer A may save prefilter and A only; Reviewer B may save B, structure and request deterministic finalize only. Choose one reviewer. Ingestion facts cannot be edited.' : ' No article edits or scoring.'} Grant expires after 24 hours.</p>
+            <p>Read collected article summaries and source metadata.${details.scope.includes(writeScope) ? ' Also append test receipts to processing_probes.' : ''} ${details.scope.includes(productionScope) ? ' Also save production prefilter, scores, structure and final selection with audited run ownership. Ingestion facts cannot be edited.' : details.scope.some(s=>reviewerScopes.includes(s)) ? ' Reviewer A may save prefilter and A only; Reviewer B may save B, structure and request deterministic finalize only. Choose one reviewer. Ingestion facts cannot be edited.' : ' No article edits or scoring.'} ${AUTH_CONSENT}</p>
             <form method="post" enctype="multipart/form-data"><input type="hidden" name="handle" value="${escape(consent.handle)}">
             ${details.scope.some(s=>reviewerScopes.includes(s))?'<label>Access mode <select name="reviewer_role"><option value="A">Reviewer A only</option><option value="B">Reviewer B only</option><option value="legacy">Existing production tools</option></select></label>':''}
             <label>Owner login key <input type="password" name="owner_key" autocomplete="off" maxlength="256"></label>
@@ -297,7 +298,7 @@ const provider = new OAuthProvider<Env>({
   apiRoute: '/mcp', apiHandler, defaultHandler,
   authorizeEndpoint: '/authorize', tokenEndpoint: '/oauth/token', clientRegistrationEndpoint: '/oauth/register',
   scopesSupported: [scope, writeScope, productionScope,...reviewerScopes], requiredScopes: [],
-  accessTokenTTL: 3600, refreshTokenTTL: 86400,
+  ...AUTH_POLICY,
   resourceMetadata: { resource, authorization_servers: [origin], resource_name: 'uPrivate Robotics Intelligence' },
   clientIdMetadataDocumentEnabled: true,
 });
