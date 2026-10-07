@@ -9,6 +9,7 @@ export async function freezeDaily(db:D1Database,date:string){
  const now=await db.prepare("SELECT strftime('%Y-%m-%dT%H:%M:%fZ','now') now").first<any>();const window=dailyWindow(date);
  const today=new Date(Date.parse(now.now)+8*3600000).toISOString().slice(0,10);
  if(date!==today||Date.parse(now.now)<Date.parse(date+'T08:40:00+08:00'))throw new Error('outside_daily_export_time');
+ if(Date.parse(now.now)-Date.parse(window.end)>4*3600000)throw new Error('outside_daily_export_freshness_window');
  const fresh=await db.prepare("SELECT max(v.applied_at) t FROM review_submissions s JOIN review_submission_applications v ON v.submission_id=s.id WHERE s.reviewer='B' AND v.validation_status='applied'").first<any>();
  if(!fresh?.t||Date.parse(now.now)-Date.parse(fresh.t.replace(' ','T')+'Z')>4*3600000)throw new Error('stale_finalized_data');
  const q=`SELECT a.id,a.source_id,a.canonical_url,a.title,a.summary,a.author,a.published_at,a.discovered_at,a.is_backfill,a.publish_eligible,a.processing_status,a.selection_status,a.final_score,a.structure_json,s.name source_name,s.tier source_tier,s.kind source_kind,s.first_party source_first_party,e.snapshot_json evidence_json,e.evidence_snapshot_hash evidence_hash,b.prompt_version,b.input_snapshot_hash,b.id b_submission_id,ra.id a_submission_id,ba.applied_at completed_at,

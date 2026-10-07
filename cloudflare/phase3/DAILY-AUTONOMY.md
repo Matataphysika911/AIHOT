@@ -13,8 +13,8 @@ All user times are Asia/Shanghai; GitHub and Cloudflare cron expressions use UTC
 ```mermaid
 flowchart LR
   C[Cloudflare ingest / 15 min] --> D[D1 facts and evidence]
-  D --> A[ChatGPT A / 2h :00]
-  D --> B[ChatGPT B / 2h :25]
+  D --> A[ChatGPT A / 2h; :00 target]
+  D --> B[ChatGPT B / 2h; :25 target]
   A --> F[Cloudflare apply / 10 min]
   B --> F
   F --> S[08:40 frozen export]
@@ -67,3 +67,11 @@ Required deployed pieces: migration 0015, updated Worker, dedicated `DAILY_PUBLI
 Only after the deterministic path is implemented and verified should the failing build/deploy ChatGPT task be retired/replaced with editorial-only execution. Keep A/B independent and intact. If any required secret, permission or connector tool refresh is unavailable, report the exact activation blocker. Do not describe unconfigured schedules as active autonomy.
 
 Run a full 24-hour observation crossing the old OAuth-expiry boundary: role tasks stay enabled, grants refresh, A/B independently submit, finalize runs, source health/backlog stay bounded, Daily original/translation receipts are produced, GitHub builds once per date, both public locales and feeds are current, and an injected build failure alerts and safely retries. Unit tests and one manual publication do not replace this acceptance observation.
+
+## Current activation status — 2026-10-07
+
+Both reviewer tasks are enabled at a two-hour interval. The editor currently aligns their next run; the intended :00/:25 separation is not verified and must not be reported as configured. Reviewer A prompt defects (colon-containing context claims and arithmetic-only failed submission recovery) were fixed; a real subsequent run saved two independent A receipts before its execution budget ended. General Phase 2A OAuth was reconnected with explicitly approved articles:read, processing:write and probes:write.
+
+The GitHub publisher secret is intentionally pending user configuration. Do not activate or claim the full unattended path until the matching secret and editorial-only task are verified. The general once-daily editorial connection also needs a verified sub-24-hour read-only heartbeat to avoid the 24-hour idle refresh expiry. A/B activity does not prove the separate general connection stays live. Old Daily build/deploy task remains disabled pending replacement acceptance.
+
+Initial exports more than four hours after the reporting window closes are rejected before creating a permanent date snapshot; retries cannot rescue stale evidence by relabeling its age.
