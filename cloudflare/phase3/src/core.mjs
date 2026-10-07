@@ -129,8 +129,9 @@ function reportEvents(events, rows, start, end, asOf) {
   }).sort((a,b)=>b.score-a.score || a.id.localeCompare(b.id));
 }
 
-export function buildDaily(snapshot, grouped, date) {
-  const start=`${date}T00:00:00+08:00`,end=new Date(millis(start)+86400000).toISOString();
+export function buildDaily(snapshot, grouped, date, window) {
+  const start=window?.start??`${date}T00:00:00+08:00`,end=window?.end??new Date(millis(start)+86400000).toISOString();
+  if(millis(end)-millis(start)!==86400000)throw new Error('Daily window must span exactly 24 hours');
   const events=reportEvents(grouped.events,snapshot.articles,start,end,snapshot.snapshot_at);
   return editorialReport({schema_version:VERSION,type:'daily',status:'shadow',language:'zh-CN',date,timezone:'Asia/Shanghai',period:{start,end},
     as_of:snapshot.snapshot_at,data_mode:snapshot.mode,writer_skill:null,events,

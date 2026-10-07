@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'cloudflare/phase3/**'
+      - 'cloudflare/intel-api/src/daily-policy.ts'
       - 'scripts/phase3/**'
       - 'content/generated/**'
       - 'industry/robotics/skills/**'
