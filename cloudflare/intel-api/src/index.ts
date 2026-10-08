@@ -1,3 +1,4 @@
+import {dailyExportDue} from './daily-policy.ts';
 import {dailyBatchSchema,dailyCopySchema,dailyOriginalSchema,appendDailyOriginal,getDailyBatch,appendDailyCopy,dailyPublishRequest,dailyWatchdog,freezeDaily} from './daily.ts';
 import { AUTH_POLICY, AUTH_CONSENT } from './auth-policy.ts';
 import evidenceInstructions from './prompts/evidence.v2.txt';
@@ -322,7 +323,7 @@ const provider = new OAuthProvider<Env>({
 
 export default {
   async scheduled(_event:ScheduledController,env:Env,ctx:ExecutionContext) {
-    ctx.waitUntil((async()=>{const results=await applyPendingReviews(env.DB);console.log(JSON.stringify({event:'review_apply_cron',results}));const evidence=await materializePendingEvidence(env.DB,env);console.log(JSON.stringify({event:'evidence_cron',evidence}));await dailyWatchdog(env.DB);const now=new Date();const date=new Date(now.valueOf()+8*3600000).toISOString().slice(0,10);if(now.getUTCHours()===0&&now.getUTCMinutes()>=40){try{await freezeDaily(env.DB,date);}catch(e){console.error(JSON.stringify({event:'daily_export_failed',date,error:String(e)}));}}})());
+    ctx.waitUntil((async()=>{const results=await applyPendingReviews(env.DB);console.log(JSON.stringify({event:'review_apply_cron',results}));const evidence=await materializePendingEvidence(env.DB,env);console.log(JSON.stringify({event:'evidence_cron',evidence}));await dailyWatchdog(env.DB);const now=new Date();const date=new Date(now.valueOf()+8*3600000).toISOString().slice(0,10);if(dailyExportDue(now)){try{await freezeDaily(env.DB,date);}catch(e){console.error(JSON.stringify({event:'daily_export_failed',date,error:String(e)}));}}})());
   },
   async fetch(request: Request, env: Env, ctx: ExecutionContext) {
     const url = new URL(request.url);

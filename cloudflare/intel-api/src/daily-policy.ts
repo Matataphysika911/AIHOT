@@ -1,3 +1,4 @@
+export function dailyExportDue(at:Date){const minute=at.getUTCHours()*60+at.getUTCMinutes();return minute>=40&&minute<=110;}
 export function dailyWindow(date:string){
  if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||new Date(date).toISOString().slice(0,10)!==date)throw new Error('invalid_date');
  const end=new Date(date+'T08:30:00+08:00').toISOString();
