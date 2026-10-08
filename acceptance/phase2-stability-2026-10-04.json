@@ -1,0 +1,35 @@
+{
+  "recorded_at": "2026-10-04T06:40:11Z",
+  "status": "read-only-sanity-pass-with-history-limitations",
+  "verification_basis": "Scheduled UI + read_thread latest completed messages; not raw MCP/database traces",
+  "mutations_this_iteration": false,
+  "acceptance_24h": false,
+  "new_acceptance_window_opened": false,
+  "reviewers": [
+    {
+      "role": "A",
+      "task_id": "6ac07c07cb5c8190b8238e9d95c8b10c",
+      "ui_status": "Scheduled / Running now",
+      "table_next_run": "2026-10-04 16:00 Asia/Shanghai",
+      "latest_completed_chat": "https://chatgpt.com/c/232ff1a5-8d30-8327-8518-4a7980b27540",
+      "reported_submissions": 5
+    },
+    {
+      "role": "B",
+      "task_id": "6ac07cb2412c81908345a3e2b801d90f",
+      "ui_status": "Next run; Custom in table, Daily in detail header",
+      "table_next_run": "2026-10-04 16:25 Asia/Shanghai",
+      "latest_completed_chat": "https://chatgpt.com/c/d0235620-b2fc-832f-abe9-5e45c1e51250",
+      "reported_submissions": 5
+    }
+  ],
+  "blockers": [],
+  "historical_blockers": [
+    "Earlier B runs show User input required but current turn is running in a non-interactive mode and auto-pause; later successful executions/next run visible."
+  ],
+  "limitations": [
+    "Current completion summaries are self-reported; no raw tool trace export",
+    "No 24h refresh/grant stability claim",
+    "B detail Daily/Custom UI mismatch recorded; no schedule mutation"
+  ]
+}

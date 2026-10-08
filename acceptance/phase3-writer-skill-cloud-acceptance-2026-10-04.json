@@ -1,0 +1,246 @@
+{
+  "schema_version": "phase3-writer-skill-cloud-acceptance.v1",
+  "date": "2026-10-04",
+  "repo": "Matataphysika911/AIHOT",
+  "branch": "phase3/blog-mvp-20261004",
+  "verdict": "PARTIAL",
+  "verdict_reason": "GitHub-only deterministic writer validation, rebuild and drift check PASS on a clean Linux CI runner. Library mirror independently exists and its recovered prose is readable, but exact byte hash equality is unverified; full two-cloud-copy acceptance cannot be claimed.",
+  "github_skill": {
+    "version": "1.1-recovered.20261001",
+    "sha256": "98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815",
+    "provenance": "recovered_from_conversation_context; historically confirmed rules; not byte-identical original",
+    "path": "industry/robotics/skills/uprivate-writer-v1.1/SKILL.md",
+    "library_path": "/uPrivate/skills/uprivate-writer-v1.1/SKILL.md",
+    "ref": "a419e60852ded5513bd1ebb95af7ed15f437b189",
+    "hash_verified": true
+  },
+  "chatgpt_library": {
+    "path": "/uPrivate/skills/uprivate-writer-v1.1/SKILL.md",
+    "prior_record": "acceptance/writer-skill-recovery-2026-10-04.json",
+    "reported_file_id": "libfile_94c9fbe6897c8191a5a20e5125320039",
+    "folder_url": "https://chatgpt.com/library/d/6ac24eb639b88191a0fac0989d36bc2d?tab=all",
+    "independent_ui_readback": {
+      "exists": true,
+      "filename": "SKILL.md",
+      "type": "MD",
+      "displayed_size": "8.7 kB",
+      "displayed_updated": "October 4, 2026 at 9:03 PM",
+      "body_read": true,
+      "title": "uPrivate Writer Skill v1.1 — recovered historical version",
+      "confirmed_sections": [
+        "Core Analysis Stack",
+        "From the SoC Side",
+        "Reality Check",
+        "Evidence and Judgment Contract",
+        "Commercialization Lens",
+        "Pipeline Boundary"
+      ]
+    },
+    "byte_hash_verified": false,
+    "observed_sha256": null,
+    "expected_sha256": "98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815",
+    "download_result": "Viewer Download produced no file; documented browser download event timed out after 15000ms. No raw file export was available for independent hashing. UI-rendered prose is not byte-level evidence."
+  },
+  "candidate": {
+    "id": "candidate-event-52d906008bce9df7",
+    "input_sha256": "d8cf0fb7c863a99de0c2a9dd6cc2a1c473990c66ef27e157d4d1e043623c12a6",
+    "snapshot_sha256": "4ac0db3fc36245839ce38e5f79556a5ab548ebd8a743e13d3235a27720f8737d",
+    "status": "watchlist",
+    "article_ids": [
+      "5baa5d53-15ec-44a5-b054-1058752304fe"
+    ],
+    "event_ids": [
+      "event-52d906008bce9df7"
+    ]
+  },
+  "phase2_provenance_refs": [
+    {
+      "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+      "source_url": "https://arxiv.org/abs/2609.36812",
+      "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+      "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+      "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+      "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json",
+      "submission_ids": [
+        "A-reg-21557a04-20261003T1322",
+        "Bsub_21557a04_239de342_20261003_1416"
+      ]
+    },
+    {
+      "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+      "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+      "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+      "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+      "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+      "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json",
+      "submission_ids": [
+        "A-reg-1f9fd3e9-20261003T1322",
+        "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+      ]
+    },
+    {
+      "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+      "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+      "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+      "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+      "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+      "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json",
+      "submission_ids": [
+        "A-reg-5baa5d53-20261003T1322",
+        "Bsub_5baa5d53_9117df35_20261003_1416"
+      ]
+    }
+  ],
+  "controlled_rebind_record": "acceptance/phase3-writer-skill-rebind-2026-10-04.json",
+  "insight_draft": {
+    "sample": "cloudflare/phase3/samples/insight-draft.json",
+    "json": "content/generated/insights/ambarella-physical-ai-workload-integration.json",
+    "markdown": "content/generated/insights/ambarella-physical-ai-workload-integration.md",
+    "title": "SmolVLA 跑在一颗 SoC 上，离真实交付还有多远",
+    "personal_judgment_user_approved": false
+  },
+  "generated_artifacts": [
+    {
+      "path": "content/generated/daily/2026-10-02.json",
+      "sha256": "80d9edf913b79f276128835e0ffa286e387084e0264a299dd3bcf148d3c1eb82"
+    },
+    {
+      "path": "content/generated/daily/2026-10-02.md",
+      "sha256": "fff4a7167d33a7443f8b3bb9c3c8edcaf4ba6101a04955924b215022ddaf19ed"
+    },
+    {
+      "path": "content/generated/weekly/2026-W40.json",
+      "sha256": "e6deed6eefeaf9e121156008a33ed74197199f6e21c4a6e95758b87a734438ad"
+    },
+    {
+      "path": "content/generated/weekly/2026-W40.md",
+      "sha256": "5d5b625468dc4d717c970dc8fc32c6c4ccb5ef7b19f72c211199eef18998ee9b"
+    },
+    {
+      "path": "content/generated/insights/candidates.json",
+      "sha256": "2f63911668b13830b8f443ef4229e133172bf399de151315ffc829bef30378be"
+    },
+    {
+      "path": "content/generated/soc/index.json",
+      "sha256": "849fee764e171ef3ea7a341817701eacce136976c836b7eee3b40242a4a50727"
+    },
+    {
+      "path": "content/generated/soc/index.md",
+      "sha256": "d7feedcd5dffe79aa6b288ace7a2a14fa634453bbe0ef5c42ee406fb53285c41"
+    },
+    {
+      "path": "content/generated/events/index.json",
+      "sha256": "40debd4d108c80717ca37b348c133221bcfa4603fbe2d3912a25fbe0159ba425"
+    },
+    {
+      "path": "content/generated/insights/writer-packet.json",
+      "sha256": "2e0b13849badb1438a6fb07135281e690a47e0955a314b9a4d919a4deb60eeb8"
+    },
+    {
+      "path": "content/generated/insights/ambarella-physical-ai-workload-integration.json",
+      "sha256": "1e3d55d5bab1e8d6ad831b2f5fef3d6ff41193279c5caa2737b6d02e693b6ca8"
+    },
+    {
+      "path": "content/generated/insights/ambarella-physical-ai-workload-integration.md",
+      "sha256": "b833a0bcdcf8a9b8115c517488e7052c49533e82b9d4cdb8e96d7bf6debc9200"
+    },
+    {
+      "path": "content/generated/source-map.json",
+      "sha256": "32e120dbe92285ae26d671286ab9870d87e88c9e8b1eec2c79aafdbad53d2184"
+    },
+    {
+      "path": "content/generated/manifest.json",
+      "sha256": "ac25789a45b14b523ab577912b443ac5128f7473e1aff368fbbecf56d5cebd84"
+    }
+  ],
+  "sample_draft_sha256": "80dab00af66113ad1b624ba07d4239d40d3f2c567a87b7b399d7c8a168f1fe42",
+  "checks": {
+    "phase3_tests": {
+      "passed": 28,
+      "failed": 0
+    },
+    "verify": "PASS",
+    "root_typecheck": "PASS",
+    "web_production_build": "PASS",
+    "web_tests": {
+      "passed": 31,
+      "failed": 0,
+      "sandbox_note": "Temporary localhost test listeners required sandbox exception"
+    },
+    "generated_drift": "CLEAN; local and GitHub CI",
+    "facts_and_phase2_invariants": "PASS; fact claims, IDs/bindings, unknowns, evidence, scores, receipts, source map and non-writer exports unchanged",
+    "backend_postgres_tests": "NOT RUN locally: inherited PostgreSQL/Docker runtime limitation; no scope expansion",
+    "site_smoke": "NOT RUN locally; cloud root smoke check succeeded as of observation"
+  },
+  "ci": {
+    "workflow": ".github/workflows/phase3-ci.yml",
+    "implementation_commit": "a419e60852ded5513bd1ebb95af7ed15f437b189",
+    "implementation_tree": "cd6a5d4c303e9d222c2d295a253c4f13b2d8cca4",
+    "run_id": 37205021898,
+    "run_url": "https://github.com/Matataphysika911/AIHOT/actions/runs/37205021898",
+    "job_id": 111444300814,
+    "status": "completed",
+    "conclusion": "success",
+    "checks": [
+      "28 Phase3 tests",
+      "recovered skill build",
+      "Phase2 provenance and controlled-rebind verification",
+      "git diff --exit-code -- content/generated"
+    ],
+    "scope": "This record-only commit preserves the validated implementation and generated bytes. Its new head CI is tracked through PR checks separately."
+  },
+  "root_ci": {
+    "run_id": 37205021879,
+    "run_url": "https://github.com/Matataphysika911/AIHOT/actions/runs/37205021879",
+    "status": "in_progress at observation",
+    "docker": "success",
+    "typecheck": "success",
+    "web_build": "success",
+    "web_tests": "success",
+    "smoke": "success",
+    "backend_tests": "in_progress; not claimed green"
+  },
+  "reproducibility": {
+    "github_runner": "ubuntu-latest; Node 24; no dependency installation needed for Phase3",
+    "committed_dependencies": [
+      "industry/robotics/skills/uprivate-writer-v1.1/SKILL.md",
+      "cloudflare/phase3/samples/completed.json",
+      "cloudflare/phase3/samples/insight-draft.json",
+      "acceptance/phase2-optimization-2026-10-03.json",
+      "acceptance/phase2-optimization/sdk-evidence-arxiv.json",
+      "acceptance/phase2-optimization/sdk-evidence-news.json",
+      "acceptance/phase2-optimization/sdk-evidence-company.json",
+      "acceptance/phase3-writer-skill-rebind-2026-10-04.json",
+      "cloudflare/phase3/src",
+      "scripts/phase3"
+    ],
+    "commands": [
+      "node --test cloudflare/phase3/tests/*.test.mjs",
+      "node scripts/phase3/build.mjs --draft cloudflare/phase3/samples/insight-draft.json",
+      "node scripts/phase3/verify.mjs",
+      "git diff --exit-code -- content/generated"
+    ],
+    "local_mac_dependency": false,
+    "private_chat_dependency": false,
+    "local_private_file_dependency": false,
+    "deterministic_validation": true,
+    "deterministic_prose_regeneration_claimed": false,
+    "semantic_entailment_automated": false,
+    "scope": "Replay committed draft validation and static exports. Authoring future prose needs a session/author and evidence review. Library raw-byte readback remains the only blocker to full dual-copy acceptance."
+  },
+  "blockers": [
+    "Independently export the existing Library SKILL.md raw bytes and verify SHA-256 equality. Do not infer equality from rendered text or the historical persisted=true assertion."
+  ],
+  "publish": false,
+  "deployment": false,
+  "merged": false,
+  "pr": {
+    "number": 3,
+    "draft": true,
+    "url": "https://github.com/Matataphysika911/AIHOT/pull/3"
+  },
+  "no_paid_model_api": true,
+  "paid_model_api_calls": 0,
+  "no_phase2_mutation": true,
+  "phase2_mutations": 0
+}

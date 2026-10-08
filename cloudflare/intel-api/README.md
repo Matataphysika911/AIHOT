@@ -48,7 +48,9 @@ access tokens, refresh and browser-bound one-use consent forms.
 For this single-owner experiment, `/authorize` authenticates against a dedicated
 Worker secret `OWNER_LOGIN_KEY` (random 256-bit key), then grants `articles:read` and, only after explicit consent, `probes:write`.
 This is independent of ingestion's ADMIN_TOKEN. Tokens expire after one hour;
-the refresh grant expires after 24 hours. Replace single-owner key login with an
+the refresh grant expires after 24 hours of inactivity. Successful refreshes rotate
+the refresh token and renew the 24-hour idle lease (refreshTokenIdleTTL). Expired or
+revoked grants cannot be revived; those clients must sign in again. Replace single-owner key login with an
 established identity provider before broader distribution. Do not publish the key,
 tokens or consent cookies. Rotate the key with `wrangler secret`; use provider
 grant revocation/KV administration to revoke an issued grant (key rotation alone

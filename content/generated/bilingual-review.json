@@ -1,0 +1,45 @@
+{
+  "policy": {
+    "version": "phase3-bilingual.v1",
+    "locales": [
+      "zh-CN",
+      "en"
+    ],
+    "policy": "paired-session-authored-content; fail closed on missing/stale translation; no automatic translation API"
+  },
+  "source_sha256": "6aeb3f25dab00d6582e07bade4a99300b0cd0d28563e0a08b988281116da24d7",
+  "review_status": "session-reviewed",
+  "reviewed_at": "2026-10-05",
+  "pairs": [
+    {
+      "translationKey": "daily-2026-10-02",
+      "sourceLanguage": "en",
+      "editorialOriginalLanguage": "zh-CN",
+      "status": "session-reviewed-draft",
+      "reviewed_at": "2026-10-05",
+      "source_sha256": "6aeb3f25dab00d6582e07bade4a99300b0cd0d28563e0a08b988281116da24d7",
+      "english_sha256": "88e29aa99e80da1fcd843995574bd72827c371b239ad735498a97d0d5ce08dfd",
+      "publication": "draft; publish=false; author approval pending"
+    },
+    {
+      "translationKey": "weekly-2026-09-28",
+      "sourceLanguage": "en",
+      "editorialOriginalLanguage": "zh-CN",
+      "status": "session-reviewed-draft",
+      "reviewed_at": "2026-10-05",
+      "source_sha256": "6aeb3f25dab00d6582e07bade4a99300b0cd0d28563e0a08b988281116da24d7",
+      "english_sha256": "a9f11fe7e660ad516ed8d2d28e1ba0ada9e39373653f5b47ee525498151ecf7e",
+      "publication": "draft; publish=false; author approval pending"
+    },
+    {
+      "translationKey": "ambarella-physical-ai-workload-integration",
+      "sourceLanguage": "en",
+      "editorialOriginalLanguage": "zh-CN",
+      "status": "session-reviewed-draft",
+      "reviewed_at": "2026-10-05",
+      "source_sha256": "6aeb3f25dab00d6582e07bade4a99300b0cd0d28563e0a08b988281116da24d7",
+      "english_sha256": "8493383630cecee946012cafe9e92d05141476fdf1f9d479dd95f995ccb13237",
+      "publication": "draft; publish=false; author approval pending"
+    }
+  ]
+}

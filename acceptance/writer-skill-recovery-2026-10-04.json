@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-04",
+  "artifact": "uPrivate Writer Skill v1.1",
+  "status": "recovered_from_conversation_context_and_cloud_persisted",
+  "version": "1.1-recovered.20261001",
+  "scope": "insight-draft-only",
+  "github": {
+    "repo": "Matataphysika911/AIHOT",
+    "branch": "phase3/blog-mvp-20261004",
+    "path": "industry/robotics/skills/uprivate-writer-v1.1/SKILL.md",
+    "update_commit": "858087ac75159e74ca2ee33904a14418b352a97e",
+    "pr": 3,
+    "pr_draft": true,
+    "merged": false
+  },
+  "chatgpt_library": {
+    "path": "/uPrivate/skills/uprivate-writer-v1.1/SKILL.md",
+    "library_file_id": "libfile_94c9fbe6897c8191a5a20e5125320039",
+    "persisted": true,
+    "independent_readback": "2026-10-04 Library UI exists and prose matches recovered rules; raw-byte hash not verified",
+    "byte_hash_verified": false
+  },
+  "sha256": "98ec657ae89ab91070cc6f0f94e4b1f598eb9ce77f53a5f96e09cb2786fd0815",
+  "recovery_fidelity": {
+    "byte_identical_original_claimed": false,
+    "confidence": "high for editorial rules and structures; exact original wording is only claimed where explicitly recovered",
+    "source": "confirmed 2026-10-01 conversation content plus later user-confirmed v1.1 section naming",
+    "supersedes_for_future_cloud_validation": "1.1-reconstructed.1"
+  },
+  "confirmed_rules": [
+    "uPrivate Robotics Intelligence identity and Robotics, Embodied AI and the Compute Behind Them positioning",
+    "technology + commercialization practitioner perspective with Does it actually ship? test",
+    "constraint-driven, framework-driven, thinking-in-public, why-it-matters, reality-check, story-first editorial DNA",
+    "event -> constraint -> mechanism -> silicon -> reality/commercialization -> personal judgment",
+    "What Happened -> What Actually Changed -> From the SoC Side -> Does It Ship? -> My Take",
+    "Chinese-first with natural technical English",
+    "optional 从 SoC 这一侧看 / 回到真实场景 / 我的判断 / 接下来，我会盯什么 sections",
+    "Facts immutable, Analysis derived, Opinion explicit",
+    "Daily/Weekly do not use writer skill; Insights only"
+  ],
+  "production_note": "Controlled rebind completed in phase3-writer-skill-rebind-2026-10-04.json. Active sample, writer packet and generated Insight now bind recovered version/hash; cloud acceptance tracked separately.",
+  "deployment": false,
+  "blog_publish": false
+}

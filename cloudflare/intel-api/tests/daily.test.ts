@@ -1,0 +1,36 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {dailyWindow,dailyHash,validateDailyCopy,publicationDecision} from '../src/daily-policy.ts';
+const snapshot={articles:[{id:'a',selection_status:'selected',structure:{facts:['Source fact']}}]};
+const copy={schema_version:'daily-editorial.v1',date:'2026-10-07',review_status:'session-reviewed',original_language:'en',title:{zh:'标题',en:'Title'},coverage_note:{zh:'仅一条已完成证据，覆盖不足',en:'One finalized source; partial coverage.'},highlights:[{article_id:'a',fact_indices:[0],zh:{title:'事实',text:'完整事实'},en:{title:'Fact',text:'Complete fact'}}],briefs:[],watch_items:[]};
+test('rolling window date identity has no daily gaps',()=>{const a=dailyWindow('2026-10-06'),b=dailyWindow('2026-10-07');assert.equal(a.end,b.start);assert.throws(()=>dailyWindow('2026-02-30'));});
+test('paired low-volume coverage allowed; missing locale and invalid evidence rejected',()=>{assert.equal(validateDailyCopy(copy,snapshot,copy.date),copy);for(const change of [c=>delete c.highlights[0].en,c=>c.highlights[0].fact_indices=[10],c=>c.highlights.push(c.highlights[0]),c=>c.highlights[0].en.text='未翻译']){const c=structuredClone(copy);change(c);assert.throws(()=>validateDailyCopy(c,snapshot,c.date));}});
+test('canonical replay stable, altered payload changes hash',async()=>{assert.equal(await dailyHash(copy),await dailyHash(structuredClone(copy)));assert.notEqual(await dailyHash(copy),await dailyHash({...copy,date:'2026-10-08'}));});
+test('date hash idempotency, active lease and retry after expiration',()=>{const row={state:'ready',copy_sha256:'a',lease_until:'2026-10-07T01:00:00Z'};assert.equal(publicationDecision(row,'a',Date.parse('2026-10-07T00:50Z')),'busy');assert.equal(publicationDecision(row,'a',Date.parse('2026-10-07T01:01Z')),'claim');assert.equal(publicationDecision({...row,state:'published'},'a',0),'already_published');assert.throws(()=>publicationDecision(row,'b',0));});
+import {originalFromCopy,validateOriginal,validateTranslation} from '../src/daily-policy.ts';
+test('original-first translation freezes original; changed original and incomplete review rejected',async()=>{const c:any={...structuredClone(copy),snapshot_sha256:'a'};const original=originalFromCopy(c),h=await dailyHash(original);validateOriginal(original,snapshot,c.date);c.translation={translated_from_sha256:h,review_checks:{facts:true,numbers_units_names:true,uncertainty:true,complete_sections:true}};assert.equal(await validateTranslation(c,original,h),true);const changed=structuredClone(c);changed.highlights[0].en.text+=' Changed original';await assert.rejects(()=>validateTranslation(changed,original,h),/stale/);const missing=structuredClone(c);missing.translation.review_checks.uncertainty=false;await assert.rejects(()=>validateTranslation(missing,original,h),/incomplete/);});
+test('numeric drift fails in either translation direction',async()=>{for(const lang of ['en','zh-CN']){const c:any={...structuredClone(copy),snapshot_sha256:'a',original_language:lang};c.highlights[0].en.text='Reports 80.7% on 4 tasks';c.highlights[0].zh.text='报告 80.7% 和 4 项任务';const original=originalFromCopy(c),h=await dailyHash(original);c.translation={translated_from_sha256:h,review_checks:{facts:true,numbers_units_names:true,uncertainty:true,complete_sections:true}};assert.equal(await validateTranslation(c,original,h),true);c.highlights[0][lang==='en'?'zh':'en'].text+=' 99%';await assert.rejects(()=>validateTranslation(c,original,h),/numeric/);}});
+import {numericTokens} from '../src/daily-policy.ts';
+test('equivalent percentage ranges and Chinese/English large units normalize without masking changed values',()=>{assert.deepEqual(numericTokens('增加 490 万参数，成功率 79%–97%'),numericTokens('Adds 4.9 million parameters; 79–97% success'));assert.notDeepEqual(numericTokens('490 万参数'),numericTokens('4.8 million parameters'));});
+
+test('bilingual calendar dates normalize without accepting a different day or month',()=>{
+ const english=numericTokens('Daily Intelligence · October 8, 2026');
+ assert.deepEqual(english,numericTokens('日报 · 2026年10月8日'));
+ assert.deepEqual(english,numericTokens('Daily · 2026-10-08'));
+ assert.deepEqual(english,numericTokens('Daily · 8 October 2026'));
+ assert.notDeepEqual(english,numericTokens('日报 · 2026年11月8日'));
+ assert.notDeepEqual(english,numericTokens('日报 · 2026年10月9日'));
+ assert.notDeepEqual(numericTokens('80.7%'),numericTokens('80.8%'));
+});
+test('locked original bilingual title date passes while changed translation date fails',async()=>{
+ const c:any={...structuredClone(copy),snapshot_sha256:'a',title:{en:'Daily · October 8, 2026',zh:'日报 · 2026年10月8日'}};
+ const original=originalFromCopy(c),h=await dailyHash(original);
+ c.translation={translated_from_sha256:h,review_checks:{facts:true,numbers_units_names:true,uncertainty:true,complete_sections:true}};
+ assert.equal(await validateTranslation(c,original,h),true);
+ c.title.zh='日报 · 2026年11月8日';await assert.rejects(()=>validateTranslation(c,original,h),/header_numeric_drift/);
+});
+
+import {dailyExportDue} from '../src/daily-policy.ts';
+test('morning export retries through 09:50 Shanghai without freezing late snapshots',()=>{
+ for(const minute of ['00:40','00:50','01:00','01:30','01:50'])assert.equal(dailyExportDue(new Date('2026-10-08T'+minute+':00Z')),true);
+ for(const minute of ['00:30','02:00','16:40','23:50'])assert.equal(dailyExportDue(new Date('2026-10-08T'+minute+':00Z')),false);
+});

@@ -1,3 +1,6 @@
+import {dailyExportDue} from './daily-policy.ts';
+import {dailyBatchSchema,dailyCopySchema,dailyOriginalSchema,appendDailyOriginal,getDailyBatch,appendDailyCopy,dailyPublishRequest,dailyWatchdog,freezeDaily} from './daily.ts';
+import { AUTH_POLICY, AUTH_CONSENT } from './auth-policy.ts';
 import evidenceInstructions from './prompts/evidence.v2.txt';
 import { processingBacklog } from './health';
 import { materializePendingEvidence, type EvidenceEnv } from './evidence';
@@ -23,6 +26,7 @@ export interface Env extends ReviewEnv, EvidenceEnv {
   OAUTH_PROVIDER: OAuthHelpers;
   REQUEST_LIMITER: RateLimit;
   OWNER_LOGIN_KEY: string;
+  DAILY_PUBLISH_KEY?: string;
   PROBE_ENABLED?: string;
   PROCESSING_ENABLED?: string;
 }
@@ -80,6 +84,10 @@ export function makeServer(db: D1Database, authScopes: string[] = [], clientId =
     }
     return { content: [{ type: 'text' as const, text }], structuredContent: data };
   };
+  // Daily editorial only appends paired copy. Build/deploy remains outside ChatGPT.
+  server.registerTool('get_daily_editorial_batch',{title:'Read frozen Daily editorial sources',description:'Bounded immutable rolling-24h finalized sources for this Shanghai issue date. Export starts at 08:40; request one complete article at a time. Never republishes historical samples.',inputSchema:dailyBatchSchema,annotations:{...annotations,readOnlyHint:false},_meta:toolMeta},async args=>{try{return result(await getDailyBatch(db,args));}catch(e){return {isError:true,content:[{type:'text' as const,text:String(e)}]};}});
+  server.registerTool('submit_daily_editorial_original',{title:'Freeze Daily original before translation',description:'First editorial stage. Submit complete original with evidence mapping, date, snapshot_sha256 and language en or zh-CN. Immutable original hash returned. Never translate an unfinalized or changing original. Requires processing:write.',inputSchema:dailyOriginalSchema,annotations:{...annotations,readOnlyHint:false},_meta:{securitySchemes:[{type:'oauth2',scopes:[scope,productionScope]}]}},async args=>{if(!processingEnabled||!authScopes.includes(productionScope))return {isError:true,content:[{type:'text' as const,text:'Enabled processing:write authorization required'}]};try{return result(await appendDailyOriginal(db,args));}catch(e){return {isError:true,content:[{type:'text' as const,text:String(e)}]};}});
+  server.registerTool('submit_daily_editorial_copy',{title:'Append paired Daily editorial copy',description:'Requires existing processing:write Owner consent. Append immutable complete zh/en factual Daily copy tied to frozen snapshot and exact fact indices. No build, deploy, Weekly or Insight publication. Hash replay is idempotent; changed copy conflicts.',inputSchema:dailyCopySchema,annotations:{...annotations,readOnlyHint:false},_meta:{securitySchemes:[{type:'oauth2',scopes:[scope,productionScope]}]}},async args=>{if(!processingEnabled||!authScopes.includes(productionScope))return {isError:true,content:[{type:'text' as const,text:'Enabled processing:write authorization required'}]};try{return result(await appendDailyCopy(db,args));}catch(e){return {isError:true,content:[{type:'text' as const,text:String(e)}]};}});
   server.registerTool('get_processing_batch', {
     title: 'Read processing batch', description: 'Read at most 20 actual D1 articles joined with source metadata. Defaults to five newest articles with status new; includes backfill so first-import data can be inspected. Does not claim or mutate work.',
     inputSchema: batchSchema, annotations, _meta: toolMeta,
@@ -163,7 +171,7 @@ const apiHandler = {
     if(role&&env.PROCESSING_ENABLED!=='true')return json({error:'processing_disabled'},503);
     const server = role?makeReviewerServer(env.DB,role,ctx.auth.scope,ctx.auth.clientId??'',env):makeServer(env.DB, ctx.auth.scope, ctx.auth.clientId ?? '', env.PROBE_ENABLED === 'true', env.PROCESSING_ENABLED === 'true',env);
     const transport = new WebStandardStreamableHTTPServerTransport({
-      sessionIdGenerator: undefined, enableJsonResponse: true, maxRequestBodySize: 8192,
+      sessionIdGenerator: undefined, enableJsonResponse: true, maxRequestBodySize: role?8192:64000,
     });
     await server.connect(transport);
     try {
@@ -191,6 +199,17 @@ async function validOwnerKey(value: string, expected: string | undefined) {
 const defaultHandler = {
   async fetch(request: Request, env: Env) {
     const url = new URL(request.url);
+    if(url.pathname==='/production/daily'){
+      if(!env.DAILY_PUBLISH_KEY)return json({error:'daily_publisher_not_configured'},503);
+      if(!await validOwnerKey((request.headers.get('Authorization')??'').replace(/^Bearer /,''),env.DAILY_PUBLISH_KEY))return json({error:'publisher_authentication_failed'},401);
+      if(!['GET','POST'].includes(request.method))return json({error:'method_not_allowed'},405);
+      if(Number(request.headers.get('Content-Length')??0)>4096)return json({error:'request_too_large'},413);
+      try{return await dailyPublishRequest(request,env.DB);}catch{return json({error:'daily_request_failed'},409);}
+    }
+    if(url.pathname==='/production/health'){
+      if(!env.DAILY_PUBLISH_KEY||!await validOwnerKey((request.headers.get('Authorization')??'').replace(/^Bearer /,''),env.DAILY_PUBLISH_KEY))return json({error:'publisher_authentication_failed'},401);
+      const row=await env.DB.prepare('SELECT health_json,checked_at FROM phase3_daily_health WHERE id=1').first<any>();return json(row?{...JSON.parse(row.health_json),checked_at:row.checked_at}:{error:'health_not_ready'},row?200:503);
+    }
     if(url.pathname==='/admin/apply-review-submission') {
       if(request.method!=='POST')return json({error:'method_not_allowed'},405);
       if(!await validOwnerKey((request.headers.get('Authorization')??'').replace(/^Bearer /,''),env.OWNER_LOGIN_KEY))return json({error:'owner_authentication_failed'},401);
@@ -215,7 +234,7 @@ const defaultHandler = {
             <p>Redirect destination: <strong>${escape(details.redirectHost)}</strong></p>
             ${details.redirectIsLoopback ? '<p>This sends access to an application on this computer.</p>' : ''}
             <p>Requested scopes: ${details.scope.map(escape).join(', ')}</p>
-            <p>Read collected article summaries and source metadata.${details.scope.includes(writeScope) ? ' Also append test receipts to processing_probes.' : ''} ${details.scope.includes(productionScope) ? ' Also save production prefilter, scores, structure and final selection with audited run ownership. Ingestion facts cannot be edited.' : details.scope.some(s=>reviewerScopes.includes(s)) ? ' Reviewer A may save prefilter and A only; Reviewer B may save B, structure and request deterministic finalize only. Choose one reviewer. Ingestion facts cannot be edited.' : ' No article edits or scoring.'} Grant expires after 24 hours.</p>
+            <p>Read collected article summaries and source metadata.${details.scope.includes(writeScope) ? ' Also append test receipts to processing_probes.' : ''} ${details.scope.includes(productionScope) ? ' Also save production prefilter, scores, structure and final selection with audited run ownership. Ingestion facts cannot be edited.' : details.scope.some(s=>reviewerScopes.includes(s)) ? ' Reviewer A may save prefilter and A only; Reviewer B may save B, structure and request deterministic finalize only. Choose one reviewer. Ingestion facts cannot be edited.' : ' No article edits or scoring.'} ${AUTH_CONSENT}</p>
             <form method="post" enctype="multipart/form-data"><input type="hidden" name="handle" value="${escape(consent.handle)}">
             ${details.scope.some(s=>reviewerScopes.includes(s))?'<label>Access mode <select name="reviewer_role"><option value="A">Reviewer A only</option><option value="B">Reviewer B only</option><option value="legacy">Existing production tools</option></select></label>':''}
             <label>Owner login key <input type="password" name="owner_key" autocomplete="off" maxlength="256"></label>
@@ -297,14 +316,14 @@ const provider = new OAuthProvider<Env>({
   apiRoute: '/mcp', apiHandler, defaultHandler,
   authorizeEndpoint: '/authorize', tokenEndpoint: '/oauth/token', clientRegistrationEndpoint: '/oauth/register',
   scopesSupported: [scope, writeScope, productionScope,...reviewerScopes], requiredScopes: [],
-  accessTokenTTL: 3600, refreshTokenTTL: 86400,
+  ...AUTH_POLICY,
   resourceMetadata: { resource, authorization_servers: [origin], resource_name: 'uPrivate Robotics Intelligence' },
   clientIdMetadataDocumentEnabled: true,
 });
 
 export default {
   async scheduled(_event:ScheduledController,env:Env,ctx:ExecutionContext) {
-    ctx.waitUntil((async()=>{const results=await applyPendingReviews(env.DB);console.log(JSON.stringify({event:'review_apply_cron',results}));const evidence=await materializePendingEvidence(env.DB,env);console.log(JSON.stringify({event:'evidence_cron',evidence}));})());
+    ctx.waitUntil((async()=>{const results=await applyPendingReviews(env.DB);console.log(JSON.stringify({event:'review_apply_cron',results}));const evidence=await materializePendingEvidence(env.DB,env);console.log(JSON.stringify({event:'evidence_cron',evidence}));await dailyWatchdog(env.DB);const now=new Date();const date=new Date(now.valueOf()+8*3600000).toISOString().slice(0,10);if(dailyExportDue(now)){try{await freezeDaily(env.DB,date);}catch(e){console.error(JSON.stringify({event:'daily_export_failed',date,error:String(e)}));}}})());
   },
   async fetch(request: Request, env: Env, ctx: ExecutionContext) {
     const url = new URL(request.url);

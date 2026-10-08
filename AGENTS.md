@@ -39,3 +39,6 @@
 ## 写代码
 
 匹配周围代码的写法、命名和注释密度。选能清楚解决问题的简单方案，只定义正在使用的抽象。验证改动涉及的重要行为，不为简单的样式改动写测试。
+
+## 用户长期内容要求 · 2026-10-05
+所有生成文章（Daily、Weekly、Insight 及其它文章）必须同时生成完整中文和英文版，同批复核、同批更新；缺失或过期译文不得发布。沿用 industry/robotics/editorial/PHASE3-BILINGUAL-SPEC.md 的证据一致性与配对哈希规则。用户于 2026-10-05 只授权将当前已确认快照发布到独立博客生产站；AIHOT Phase3 Draft PR #3 仍不合并，Phase2 facts/evidence/scoring 与 recovered writer skill 原始字节保持不变。博客发布确认记录由 blog 仓库 content/production-release.json 固定，后续内容仍需新的发布确认。

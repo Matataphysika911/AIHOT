@@ -1,0 +1,2294 @@
+{
+  "schema_version": "phase3-mvp.v1",
+  "type": "weekly",
+  "status": "shadow",
+  "language": "en",
+  "timezone": "Asia/Shanghai",
+  "period": {
+    "start": "2026-09-28T00:00:00+08:00",
+    "end": "2026-10-04T16:00:00.000Z"
+  },
+  "story_links": [],
+  "as_of": "2026-10-03T06:48:56.842567Z",
+  "data_mode": "historical_verified_acceptance_snapshot",
+  "writer_skill": null,
+  "partial": true,
+  "publish": false,
+  "coverage": "verified cohort only; not a complete weekly corpus",
+  "events": [
+    {
+      "id": "event-52d906008bce9df7",
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "title": "Ambarella at the AI Infrastructure Summit in Santa Clara",
+      "published_at": "2026-10-01T21:08:35.000Z",
+      "latest_at": "2026-10-01T21:08:35.000Z",
+      "source_ids": [
+        "robotics-ambarella"
+      ],
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "products": [
+        "n1-655",
+        "x7"
+      ],
+      "companies": [
+        "AMD",
+        "AWS",
+        "Ambarella",
+        "Bedrock Robotics",
+        "Google Cloud",
+        "GrayMatter Robotics",
+        "HCLTech",
+        "Intel",
+        "Liquid AI",
+        "Oracle",
+        "Qualcomm",
+        "Roboflow",
+        "Samsara",
+        "Samsung",
+        "Thinkware",
+        "Ultralytics",
+        "Unitree",
+        "ZEDEDA"
+      ],
+      "topics": [
+        "Ambarella",
+        "NPU",
+        "Qualcomm",
+        "VLA",
+        "edge-ai-soc",
+        "人形机器人",
+        "导航/规划",
+        "开源生态",
+        "感知/SLAM",
+        "机器人产品",
+        "端侧",
+        "边缘AI SoC",
+        "运动控制",
+        "部署/工程",
+        "量产/订单"
+      ],
+      "score": 91,
+      "facts": [
+        {
+          "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "text": "Explicit disclosure: N1-655 powered an autonomous mobile manipulator running SmolVLA, SLAM, navigation and pick-and-place workloads on a single chip.",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:1",
+          "text": "Explicit disclosure: a Unitree humanoid demo performed intelligent vision, perception and voice-driven interaction with an AI-driven vision-to-action loop directly on-device.",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:2",
+          "text": "Explicit disclosure: a warehouse demo combined Dify, Liquid AI models, live video and RAG on N1-655.",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:3",
+          "text": "Explicit disclosure: Thinkware Harmony QXD1 Plus dashcam uses Ambarella CV25 Edge AI SoC.",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4",
+          "text": "Explicit disclosure: Ambarella introduced X7 as its first standalone AI accelerator and said it can add AI processing alongside existing host computers without necessarily replacing installed equipment.",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:5",
+          "text": "Explicit disclosure: Ambarella announced an Ultralytics collaboration for YOLO on CVflow devices, expanded Developer Zone with remote live-silicon/agentic-AI development on Google Cloud Platform, and announced a ZEDEDA partnership for cloud-orchestrated physical-edge AI.",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        },
+        {
+          "id": "5baa5d53-15ec-44a5-b054-1058752304fe:fact:6",
+          "text": "Explicit disclosure: Ambarella states more than 50 million AI processors/AI SoC units are already deployed.",
+          "citation": {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        }
+      ],
+      "unknowns": [
+        "ASP/pricing for N1-655 or X7: 未披露.",
+        "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: 未披露.",
+        "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: 未披露.",
+        "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: 未披露.",
+        "N1-655 and X7 power/TDP and thermal envelope: 未披露."
+      ],
+      "citations": [
+        {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      ],
+      "hotness": {
+        "value": 0.378134,
+        "window_hours": 48,
+        "half_life_hours": 24,
+        "independent_publishers": 1,
+        "contributions": [
+          {
+            "publisher": "ambarella.com",
+            "value": 0.3781339844812042
+          }
+        ]
+      }
+    },
+    {
+      "id": "event-f26adc63fb32017b",
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+      ],
+      "title": "Diffusion Policy Improvement with Proposal-Conditioned Refinement Flows",
+      "published_at": "2026-10-02T04:00:00.000Z",
+      "latest_at": "2026-10-02T04:00:00.000Z",
+      "source_ids": [
+        "robotics-arxiv-robotics"
+      ],
+      "independent_publishers": [
+        "arxiv.org"
+      ],
+      "products": [
+        "preflow"
+      ],
+      "companies": [],
+      "topics": [
+        "arXiv",
+        "paper",
+        "数据/训练",
+        "论文/研究",
+        "运动控制"
+      ],
+      "score": 63,
+      "facts": [
+        {
+          "id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:0",
+          "text": "Explicit disclosure: PReFlow combines critic-based proposal selection with a conditional refinement flow.",
+          "citation": {
+            "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+            "source_id": "robotics-arxiv-robotics",
+            "source_name": "arXiv cs.RO",
+            "source_url": "https://arxiv.org/abs/2609.36812",
+            "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+            "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+            "evidence_status": "fallback",
+            "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+            "extraction_method": "arxiv_abstract",
+            "submission_ids": [
+              "A-reg-21557a04-20261003T1322",
+              "Bsub_21557a04_239de342_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+          }
+        },
+        {
+          "id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:1",
+          "text": "Explicit disclosure: the objective is KL-regularized and induces a Gibbs policy over final actions under a Gaussian-smoothed behavior prior.",
+          "citation": {
+            "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+            "source_id": "robotics-arxiv-robotics",
+            "source_name": "arXiv cs.RO",
+            "source_url": "https://arxiv.org/abs/2609.36812",
+            "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+            "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+            "evidence_status": "fallback",
+            "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+            "extraction_method": "arxiv_abstract",
+            "submission_ids": [
+              "A-reg-21557a04-20261003T1322",
+              "Bsub_21557a04_239de342_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+          }
+        },
+        {
+          "id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:2",
+          "text": "Explicit disclosure: the method uses simulation-free, closed-form adjoint matching targets and a single velocity-regression loss without a backward adjoint solve.",
+          "citation": {
+            "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+            "source_id": "robotics-arxiv-robotics",
+            "source_name": "arXiv cs.RO",
+            "source_url": "https://arxiv.org/abs/2609.36812",
+            "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+            "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+            "evidence_status": "fallback",
+            "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+            "extraction_method": "arxiv_abstract",
+            "submission_ids": [
+              "A-reg-21557a04-20261003T1322",
+              "Bsub_21557a04_239de342_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+          }
+        },
+        {
+          "id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:3",
+          "text": "Explicit disclosure: evaluation covers 50 OGBench tasks; after online fine-tuning the abstract reports the highest aggregate score among compared methods, reaching 91% after 500K environment steps.",
+          "citation": {
+            "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+            "source_id": "robotics-arxiv-robotics",
+            "source_name": "arXiv cs.RO",
+            "source_url": "https://arxiv.org/abs/2609.36812",
+            "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+            "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+            "evidence_status": "fallback",
+            "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+            "extraction_method": "arxiv_abstract",
+            "submission_ids": [
+              "A-reg-21557a04-20261003T1322",
+              "Bsub_21557a04_239de342_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+          }
+        }
+      ],
+      "unknowns": [
+        "ASP/pricing or commercial deployment: 未披露.",
+        "Memory capacity/bandwidth: 未披露.",
+        "Physical robot platform or real-world deployment: 未披露.",
+        "Power/thermal envelope: 未披露.",
+        "SoC TOPS/throughput and numerical compute requirements: 未披露."
+      ],
+      "citations": [
+        {
+          "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+          "source_id": "robotics-arxiv-robotics",
+          "source_name": "arXiv cs.RO",
+          "source_url": "https://arxiv.org/abs/2609.36812",
+          "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+          "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+          "evidence_status": "fallback",
+          "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+          "extraction_method": "arxiv_abstract",
+          "submission_ids": [
+            "A-reg-21557a04-20261003T1322",
+            "Bsub_21557a04_239de342_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+        }
+      ],
+      "hotness": {
+        "value": 0.460948,
+        "window_hours": 48,
+        "half_life_hours": 24,
+        "independent_publishers": 1,
+        "contributions": [
+          {
+            "publisher": "arxiv.org",
+            "value": 0.46094784878584505
+          }
+        ]
+      }
+    },
+    {
+      "id": "event-06479c80094b8e3d",
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+      ],
+      "title": "Boston Dynamics drops pinkie on new humanoid hand",
+      "published_at": "2026-10-01T17:52:51.000Z",
+      "latest_at": "2026-10-01T17:52:51.000Z",
+      "source_ids": [
+        "robotics-robot-report"
+      ],
+      "independent_publishers": [
+        "therobotreport.com"
+      ],
+      "products": [],
+      "companies": [
+        "Boston Dynamics"
+      ],
+      "topics": [
+        "Boston Dynamics",
+        "robotics-products",
+        "人形机器人",
+        "机器人产品",
+        "灵巧操作"
+      ],
+      "score": 51,
+      "facts": [
+        {
+          "id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
+          "text": "Explicit disclosure: Boston Dynamics engineers taped their pinkies and ring fingers together for a day to learn what they were unable to do.",
+          "citation": {
+            "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+            "source_id": "robotics-robot-report",
+            "source_name": "The Robot Report",
+            "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+            "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+            "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+            "evidence_status": "fallback",
+            "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+            "extraction_method": "summary",
+            "submission_ids": [
+              "A-reg-1f9fd3e9-20261003T1322",
+              "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+          }
+        },
+        {
+          "id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:1",
+          "text": "Explicit disclosure from title: the new humanoid hand drops the pinkie.",
+          "citation": {
+            "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+            "source_id": "robotics-robot-report",
+            "source_name": "The Robot Report",
+            "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+            "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+            "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+            "evidence_status": "fallback",
+            "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+            "extraction_method": "summary",
+            "submission_ids": [
+              "A-reg-1f9fd3e9-20261003T1322",
+              "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+          }
+        },
+        {
+          "id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:2",
+          "text": "Evidence metadata: source fetch returned HTTP 403/non-HTML; extraction used the summary, status=fallback, truncated=false.",
+          "citation": {
+            "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+            "source_id": "robotics-robot-report",
+            "source_name": "The Robot Report",
+            "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+            "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+            "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+            "evidence_status": "fallback",
+            "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+            "extraction_method": "summary",
+            "submission_ids": [
+              "A-reg-1f9fd3e9-20261003T1322",
+              "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+          }
+        }
+      ],
+      "unknowns": [
+        "ASP/pricing, production timing, order volume and customer deployment: 未披露.",
+        "Exact humanoid platform/model associated with the hand: 未披露 in bounded evidence.",
+        "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: 未披露.",
+        "Memory capacity/bandwidth: 未披露.",
+        "Power/thermal envelope: 未披露.",
+        "SoC TOPS/throughput and compute architecture: 未披露."
+      ],
+      "citations": [
+        {
+          "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+          "source_id": "robotics-robot-report",
+          "source_name": "The Robot Report",
+          "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+          "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+          "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+          "evidence_status": "fallback",
+          "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+          "extraction_method": "summary",
+          "submission_ids": [
+            "A-reg-1f9fd3e9-20261003T1322",
+            "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+        }
+      ],
+      "hotness": {
+        "value": 0.344134,
+        "window_hours": 48,
+        "half_life_hours": 24,
+        "independent_publishers": 1,
+        "contributions": [
+          {
+            "publisher": "therobotreport.com",
+            "value": 0.3441342754400144
+          }
+        ]
+      }
+    }
+  ],
+  "topic_trend": [
+    {
+      "topic": "Ambarella",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "Boston Dynamics",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-06479c80094b8e3d"
+      ],
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "therobotreport.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "phase2_final_score": 51,
+          "hotness": {
+            "value": 0.344134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "therobotreport.com",
+                "value": 0.3441342754400144
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "NPU",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "Qualcomm",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "VLA",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "arXiv",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-f26adc63fb32017b"
+      ],
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "arxiv.org"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "phase2_final_score": 63,
+          "hotness": {
+            "value": 0.460948,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "arxiv.org",
+                "value": 0.46094784878584505
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "edge-ai-soc",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "paper",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-f26adc63fb32017b"
+      ],
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "arxiv.org"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "phase2_final_score": 63,
+          "hotness": {
+            "value": 0.460948,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "arxiv.org",
+                "value": 0.46094784878584505
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "robotics-products",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-06479c80094b8e3d"
+      ],
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "therobotreport.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "phase2_final_score": 51,
+          "hotness": {
+            "value": 0.344134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "therobotreport.com",
+                "value": 0.3441342754400144
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "人形机器人",
+      "current_events": 2,
+      "previous_events": 0,
+      "delta": 2,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7",
+        "event-06479c80094b8e3d"
+      ],
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com",
+        "therobotreport.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        },
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "phase2_final_score": 51,
+          "hotness": {
+            "value": 0.344134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "therobotreport.com",
+                "value": 0.3441342754400144
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "导航/规划",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "开源生态",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "感知/SLAM",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "数据/训练",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-f26adc63fb32017b"
+      ],
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "arxiv.org"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "phase2_final_score": 63,
+          "hotness": {
+            "value": 0.460948,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "arxiv.org",
+                "value": 0.46094784878584505
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "机器人产品",
+      "current_events": 2,
+      "previous_events": 0,
+      "delta": 2,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7",
+        "event-06479c80094b8e3d"
+      ],
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com",
+        "therobotreport.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        },
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "phase2_final_score": 51,
+          "hotness": {
+            "value": 0.344134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "therobotreport.com",
+                "value": 0.3441342754400144
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "灵巧操作",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-06479c80094b8e3d"
+      ],
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "therobotreport.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "phase2_final_score": 51,
+          "hotness": {
+            "value": 0.344134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "therobotreport.com",
+                "value": 0.3441342754400144
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "端侧",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "论文/研究",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-f26adc63fb32017b"
+      ],
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "arxiv.org"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "phase2_final_score": 63,
+          "hotness": {
+            "value": 0.460948,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "arxiv.org",
+                "value": 0.46094784878584505
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "边缘AI SoC",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "运动控制",
+      "current_events": 2,
+      "previous_events": 0,
+      "delta": 2,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7",
+        "event-f26adc63fb32017b"
+      ],
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com",
+        "arxiv.org"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        },
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "phase2_final_score": 63,
+          "hotness": {
+            "value": 0.460948,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "arxiv.org",
+                "value": 0.46094784878584505
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "部署/工程",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "topic": "量产/订单",
+      "current_events": 1,
+      "previous_events": 0,
+      "delta": 1,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "executive_summary": [
+    {
+      "event_id": "event-52d906008bce9df7",
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "title": "Ambarella runs SmolVLA, SLAM and navigation on one chip",
+      "text": "Ambarella says its N1-655 ran SmolVLA, SLAM, navigation and pick-and-place in a mobile-manipulator demo. It also introduced the X7 standalone accelerator. The demo offers a workload-integration signal; sustained performance, power and customer production evidence were not disclosed.",
+      "kind": "fact-summary",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4"
+      ],
+      "score": 91,
+      "hotness": {
+        "value": 0.378134,
+        "window_hours": 48,
+        "half_life_hours": 24,
+        "independent_publishers": 1,
+        "contributions": [
+          {
+            "publisher": "ambarella.com",
+            "value": 0.3781339844812042
+          }
+        ]
+      },
+      "citations": [
+        {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      ]
+    },
+    {
+      "event_id": "event-f26adc63fb32017b",
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+      ],
+      "title": "PReFlow reports progress in offline-to-online policy learning",
+      "text": "The paper’s abstract describes critic-based proposal selection and a conditional refinement flow, with results on OGBench. It offers a lead in policy learning; real-robot deployment and SoC measurements were not disclosed.",
+      "kind": "fact-summary",
+      "fact_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:0",
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:3"
+      ],
+      "score": 63,
+      "hotness": {
+        "value": 0.460948,
+        "window_hours": 48,
+        "half_life_hours": 24,
+        "independent_publishers": 1,
+        "contributions": [
+          {
+            "publisher": "arxiv.org",
+            "value": 0.46094784878584505
+          }
+        ]
+      },
+      "citations": [
+        {
+          "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+          "source_id": "robotics-arxiv-robotics",
+          "source_name": "arXiv cs.RO",
+          "source_url": "https://arxiv.org/abs/2609.36812",
+          "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+          "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+          "evidence_status": "fallback",
+          "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+          "extraction_method": "arxiv_abstract",
+          "submission_ids": [
+            "A-reg-21557a04-20261003T1322",
+            "Bsub_21557a04_239de342_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+        }
+      ]
+    },
+    {
+      "event_id": "event-06479c80094b8e3d",
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+      ],
+      "title": "Boston Dynamics drops the little finger from its new hand; the trade-offs still need verification",
+      "text": "The report’s headline says the new humanoid hand drops the little finger; its short summary describes engineers trying tasks with their little and ring fingers tied together. The design trade-off is worth following, but this thin evidence cannot establish hand specifications or performance.",
+      "kind": "fact-summary",
+      "fact_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:1",
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:2"
+      ],
+      "score": 51,
+      "hotness": {
+        "value": 0.344134,
+        "window_hours": 48,
+        "half_life_hours": 24,
+        "independent_publishers": 1,
+        "contributions": [
+          {
+            "publisher": "therobotreport.com",
+            "value": 0.3441342754400144
+          }
+        ]
+      },
+      "citations": [
+        {
+          "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+          "source_id": "robotics-robot-report",
+          "source_name": "The Robot Report",
+          "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+          "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+          "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+          "evidence_status": "fallback",
+          "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+          "extraction_method": "summary",
+          "submission_ids": [
+            "A-reg-1f9fd3e9-20261003T1322",
+            "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+        }
+      ]
+    }
+  ],
+  "edge_ai_soc": [
+    {
+      "event_id": "event-52d906008bce9df7",
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "title": "Ambarella 把 SmolVLA、SLAM 和 navigation 放到同一颗芯片上",
+      "text": "Ambarella 自述：N1-655 在移动操作机器人展示中运行 SmolVLA、SLAM、navigation 与 pick-and-place；另介绍 X7 standalone accelerator。展示未披露持续运行性能、功耗或客户量产证据。",
+      "kind": "fact-summary",
+      "fact_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+        "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4"
+      ],
+      "score": 91,
+      "hotness": {
+        "value": 0.378134,
+        "window_hours": 48,
+        "half_life_hours": 24,
+        "independent_publishers": 1,
+        "contributions": [
+          {
+            "publisher": "ambarella.com",
+            "value": 0.3781339844812042
+          }
+        ]
+      },
+      "citations": [
+        {
+          "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+          "source_id": "robotics-ambarella",
+          "source_name": "Ambarella Blog",
+          "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+          "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+          "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+          "evidence_status": "extracted",
+          "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+          "extraction_method": "html_article_paragraphs.v1",
+          "submission_ids": [
+            "A-reg-5baa5d53-20261003T1322",
+            "Bsub_5baa5d53_9117df35_20261003_1416"
+          ],
+          "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+          "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+        }
+      ]
+    }
+  ],
+  "what_to_watch": [
+    {
+      "event_id": "event-52d906008bce9df7",
+      "article_ids": [
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "kind": "research-question",
+      "text": "Look for latency, power, memory/bandwidth and independent or customer validation under the same configuration; a demo is not production deployment.",
+      "unknowns": [
+        "ASP/pricing for N1-655 or X7: not disclosed.",
+        "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: not disclosed.",
+        "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: not disclosed.",
+        "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: not disclosed.",
+        "N1-655 and X7 power/TDP and thermal envelope: not disclosed."
+      ]
+    },
+    {
+      "event_id": "event-f26adc63fb32017b",
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+      ],
+      "kind": "research-question",
+      "text": "Follow real-robot validation, implementation details and end-to-end runtime measurements; research benchmarks do not establish deployment performance.",
+      "unknowns": [
+        "ASP/pricing or commercial deployment: not disclosed.",
+        "Memory capacity/bandwidth: not disclosed.",
+        "Physical robot platform or real-world deployment: not disclosed.",
+        "Power/thermal envelope: not disclosed.",
+        "SoC TOPS/throughput and numerical compute requirements: not disclosed."
+      ]
+    },
+    {
+      "event_id": "event-06479c80094b8e3d",
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+      ],
+      "kind": "research-question",
+      "text": "Obtain more accessible evidence on the hand design before judging degrees of freedom, grasping ability or the specific trade-offs; do not infer performance from the current summary.",
+      "unknowns": [
+        "ASP/pricing, production timing, order volume and customer deployment: not disclosed.",
+        "Exact humanoid platform/model associated with the hand: not disclosed in bounded evidence.",
+        "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: not disclosed.",
+        "Memory capacity/bandwidth: not disclosed.",
+        "Power/thermal envelope: not disclosed.",
+        "SoC TOPS/throughput and compute architecture: not disclosed."
+      ]
+    }
+  ],
+  "what_changed": {
+    "status": "insufficient-baseline",
+    "current_event_ids": [
+      "event-52d906008bce9df7",
+      "event-f26adc63fb32017b",
+      "event-06479c80094b8e3d"
+    ],
+    "previous_event_ids": [],
+    "note": "仅比较已验证样本；没有上期完整覆盖，不能把新增样本解释为行业增长。"
+  },
+  "key_shifts": [
+    {
+      "topic": "人形机器人",
+      "current_events": 2,
+      "previous_events": 0,
+      "delta": 2,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7",
+        "event-06479c80094b8e3d"
+      ],
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com",
+        "therobotreport.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        },
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "phase2_final_score": 51,
+          "hotness": {
+            "value": 0.344134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "therobotreport.com",
+                "value": 0.3441342754400144
+              }
+            ]
+          }
+        }
+      ],
+      "label": "人形机器人: 2 个已验证事件",
+      "interpretation": "sample concentration; not established industry trend"
+    },
+    {
+      "topic": "机器人产品",
+      "current_events": 2,
+      "previous_events": 0,
+      "delta": 2,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7",
+        "event-06479c80094b8e3d"
+      ],
+      "article_ids": [
+        "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com",
+        "therobotreport.com"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        },
+        {
+          "event_id": "event-06479c80094b8e3d",
+          "phase2_final_score": 51,
+          "hotness": {
+            "value": 0.344134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "therobotreport.com",
+                "value": 0.3441342754400144
+              }
+            ]
+          }
+        }
+      ],
+      "label": "机器人产品: 2 个已验证事件",
+      "interpretation": "sample concentration; not established industry trend"
+    },
+    {
+      "topic": "运动控制",
+      "current_events": 2,
+      "previous_events": 0,
+      "delta": 2,
+      "trend_status": "insufficient-baseline",
+      "event_ids": [
+        "event-52d906008bce9df7",
+        "event-f26adc63fb32017b"
+      ],
+      "article_ids": [
+        "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+        "5baa5d53-15ec-44a5-b054-1058752304fe"
+      ],
+      "continuity": 1,
+      "period": {
+        "start": "2026-09-28T00:00:00+08:00",
+        "end": "2026-10-04T16:00:00.000Z"
+      },
+      "source_dedup": "publisher-hostname maximum per event",
+      "independent_publishers": [
+        "ambarella.com",
+        "arxiv.org"
+      ],
+      "score_inputs": [
+        {
+          "event_id": "event-52d906008bce9df7",
+          "phase2_final_score": 91,
+          "hotness": {
+            "value": 0.378134,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "ambarella.com",
+                "value": 0.3781339844812042
+              }
+            ]
+          }
+        },
+        {
+          "event_id": "event-f26adc63fb32017b",
+          "phase2_final_score": 63,
+          "hotness": {
+            "value": 0.460948,
+            "window_hours": 48,
+            "half_life_hours": 24,
+            "independent_publishers": 1,
+            "contributions": [
+              {
+                "publisher": "arxiv.org",
+                "value": 0.46094784878584505
+              }
+            ]
+          }
+        }
+      ],
+      "label": "运动控制: 2 个已验证事件",
+      "interpretation": "sample concentration; not established industry trend"
+    }
+  ],
+  "company_watch": [
+    {
+      "company": "AMD",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "AWS",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Ambarella",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Bedrock Robotics",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Boston Dynamics",
+      "event_ids": [
+        "event-06479c80094b8e3d"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Google Cloud",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "GrayMatter Robotics",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "HCLTech",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Intel",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Liquid AI",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Oracle",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Qualcomm",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Roboflow",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Samsara",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Samsung",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Thinkware",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Ultralytics",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "Unitree",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    },
+    {
+      "company": "ZEDEDA",
+      "event_ids": [
+        "event-52d906008bce9df7"
+      ],
+      "role": "mentioned; customer relationship not implied"
+    }
+  ],
+  "commercial_signal": [
+    {
+      "text": "No product launch, design win, deployment, pricing, customer, funding, or production-scale commercial signal is disclosed.",
+      "attribution": "Phase2 source-grounded structure",
+      "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+      "event_id": "event-f26adc63fb32017b",
+      "citation": {
+        "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+        "source_id": "robotics-arxiv-robotics",
+        "source_name": "arXiv cs.RO",
+        "source_url": "https://arxiv.org/abs/2609.36812",
+        "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+        "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+        "evidence_status": "fallback",
+        "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+        "extraction_method": "arxiv_abstract",
+        "submission_ids": [
+          "A-reg-21557a04-20261003T1322",
+          "Bsub_21557a04_239de342_20261003_1416"
+        ],
+        "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+        "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+      }
+    },
+    {
+      "text": "The bounded summary indicates a new humanoid-hand design topic but provides no release schedule, production volume, customer, pricing, order, or design-win disclosure.",
+      "attribution": "Phase2 source-grounded structure",
+      "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+      "event_id": "event-06479c80094b8e3d",
+      "citation": {
+        "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+        "source_id": "robotics-robot-report",
+        "source_name": "The Robot Report",
+        "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+        "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+        "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+        "evidence_status": "fallback",
+        "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+        "extraction_method": "summary",
+        "submission_ids": [
+          "A-reg-1f9fd3e9-20261003T1322",
+          "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+        ],
+        "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+        "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+      }
+    },
+    {
+      "text": "Strong first-party ecosystem and deployment signal: Ambarella states an installed base of more than 50 million AI processors/AI SoC units and announces multiple partnerships/tooling expansions aimed at production and fleet-scale Physical AI.",
+      "attribution": "Phase2 source-grounded structure",
+      "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+      "event_id": "event-52d906008bce9df7",
+      "citation": {
+        "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+        "source_id": "robotics-ambarella",
+        "source_name": "Ambarella Blog",
+        "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+        "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+        "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+        "evidence_status": "extracted",
+        "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+        "extraction_method": "html_article_paragraphs.v1",
+        "submission_ids": [
+          "A-reg-5baa5d53-20261003T1322",
+          "Bsub_5baa5d53_9117df35_20261003_1416"
+        ],
+        "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+        "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+      }
+    }
+  ],
+  "editorial_spec": {
+    "version": "1.2-editorial-preview.20261005",
+    "sha256": "e697ffd95c3a923161fb81f1a6bc5b9b7ce848e9dffa8d968d7d3eb741798782",
+    "path": "industry/robotics/editorial/PHASE3-CONTENT-SPEC.md"
+  },
+  "reading": {
+    "mode": "seven-day-editorial-synthesis",
+    "editor_note": "These three verified samples bring this week’s attention beyond the model: workload coordination on silicon, the path from policy learning to deployment, and trade-offs in hand design. Reading them together helps identify what needs testing next. Coverage is incomplete and the previous-period baseline is insufficient, so they cannot establish an industry turning point.",
+    "themes": [
+      {
+        "heading": "Compute questions are becoming questions about workloads running together",
+        "paragraphs": [
+          "Ambarella says its N1-655 ran SmolVLA, SLAM, navigation and pick-and-place in a mobile-manipulator demo. It also introduced the X7 standalone accelerator. The demo offers a workload-integration signal; sustained performance, power and customer production evidence were not disclosed.",
+          "The demo places the model, perception and navigation in the same configuration. The next question is how they share resources. Without sustained measurements or customer production data, an integration demo cannot be treated as a mature product."
+        ],
+        "event_ids": [
+          "event-52d906008bce9df7"
+        ],
+        "fact_ids": [
+          "5baa5d53-15ec-44a5-b054-1058752304fe:fact:0",
+          "5baa5d53-15ec-44a5-b054-1058752304fe:fact:4"
+        ],
+        "citations": [
+          {
+            "article_id": "5baa5d53-15ec-44a5-b054-1058752304fe",
+            "source_id": "robotics-ambarella",
+            "source_name": "Ambarella Blog",
+            "source_url": "https://www.ambarella.com/blog/ambarella-at-the-ai-infrastructure-summit-in-santa-clara",
+            "evidence_hash": "56f3f46d5ac7ba03b04b378e0def7135083f7e55280c3b0539f0df791f26259d",
+            "input_hash": "9117df35fc406ef857eb8d19283b500e56df889094550acf02e78a7aa28bcb82",
+            "evidence_status": "extracted",
+            "content_hash": "c142cf56fdccc77effed5c4e4fef64c4805b7c4539ce79439f2268deb6437d1b",
+            "extraction_method": "html_article_paragraphs.v1",
+            "submission_ids": [
+              "A-reg-5baa5d53-20261003T1322",
+              "Bsub_5baa5d53_9117df35_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-company.json"
+          }
+        ],
+        "interpretation": "editorial synthesis / verification question; not established trend"
+      },
+      {
+        "heading": "Policy learning advances, while deployment remains a separate test",
+        "paragraphs": [
+          "The paper’s abstract describes critic-based proposal selection and a conditional refinement flow, with results on OGBench. It offers a lead in policy learning; real-robot deployment and SoC measurements were not disclosed.",
+          "Algorithm benchmarks and real robots face different constraints. Read alongside the chip demo, this raises a shared verification question: how can a learned capability remain usable in a concrete system? It is still a question, not evidence that the two announcements form an established trend."
+        ],
+        "event_ids": [
+          "event-f26adc63fb32017b"
+        ],
+        "fact_ids": [
+          "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:0",
+          "21557a04-bf5f-4de9-bc62-738fdeb03ceb:fact:3"
+        ],
+        "citations": [
+          {
+            "article_id": "21557a04-bf5f-4de9-bc62-738fdeb03ceb",
+            "source_id": "robotics-arxiv-robotics",
+            "source_name": "arXiv cs.RO",
+            "source_url": "https://arxiv.org/abs/2609.36812",
+            "evidence_hash": "4320d2098e9cdebedb4a9bf7e006546b380d446bee759c0dd7bd14e87ce4b262",
+            "input_hash": "239de342e43c36579e4567731a54c616b027867181f8caea833eca90feeba30d",
+            "evidence_status": "fallback",
+            "content_hash": "ba4c4dee66e914be171d7ba1261b5cc476b699ba7d64906a0324ae18bbae1811",
+            "extraction_method": "arxiv_abstract",
+            "submission_ids": [
+              "A-reg-21557a04-20261003T1322",
+              "Bsub_21557a04_239de342_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-arxiv.json"
+          }
+        ],
+        "interpretation": "editorial synthesis / verification question; not established trend"
+      },
+      {
+        "heading": "Hand design brings manipulation trade-offs into view, with thin evidence",
+        "paragraphs": [
+          "The report’s headline says the new humanoid hand drops the little finger; its short summary describes engineers trying tasks with their little and ring fingers tied together. The design trade-off is worth following, but this thin evidence cannot establish hand specifications or performance.",
+          "The available headline and short summary justify attention to design trade-offs, but do not support comparisons of degrees of freedom or grasping performance. They add a mechanical perspective to the week’s observations without proving a shift across the humanoid industry."
+        ],
+        "event_ids": [
+          "event-06479c80094b8e3d"
+        ],
+        "fact_ids": [
+          "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:0",
+          "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:1",
+          "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070:fact:2"
+        ],
+        "citations": [
+          {
+            "article_id": "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070",
+            "source_id": "robotics-robot-report",
+            "source_name": "The Robot Report",
+            "source_url": "https://www.therobotreport.com/boston-dynamics-drops-pinkie-on-new-humanoid-hand",
+            "evidence_hash": "82e877e75fbd24005b5045a3fcc8f9bf60b3f2cf8e23685f2986255b7faee0cd",
+            "input_hash": "bddb6691d6a5864a83c4786428c9ce26f1abaae9705b47c44063b17538be3295",
+            "evidence_status": "fallback",
+            "content_hash": "95b7f2e8b804796bcb391f804f8b03469de8ac85917f3336808869826f59b66e",
+            "extraction_method": "summary",
+            "submission_ids": [
+              "A-reg-1f9fd3e9-20261003T1322",
+              "Bsub_1f9fd3e9_bddb6691_20261003_1416"
+            ],
+            "acceptance": "acceptance/phase2-optimization-2026-10-03.json",
+            "evidence_file": "acceptance/phase2-optimization/sdk-evidence-news.json"
+          }
+        ],
+        "interpretation": "editorial synthesis / verification question; not established trend"
+      }
+    ],
+    "watch_items": [
+      {
+        "event_id": "event-52d906008bce9df7",
+        "article_ids": [
+          "5baa5d53-15ec-44a5-b054-1058752304fe"
+        ],
+        "kind": "research-question",
+        "text": "Look for latency, power, memory/bandwidth and independent or customer validation under the same configuration; a demo is not production deployment.",
+        "unknowns": [
+          "ASP/pricing for N1-655 or X7: not disclosed.",
+          "Exact latency/FPS and model sizes for SmolVLA, vision-to-action, RAG and video-search demonstrations: not disclosed.",
+          "Memory capacity and bandwidth for the demonstrated N1-655/X7 configurations: not disclosed.",
+          "N1-655 and X7 exact SoC/accelerator TOPS, precision throughput and utilization: not disclosed.",
+          "N1-655 and X7 power/TDP and thermal envelope: not disclosed."
+        ]
+      },
+      {
+        "event_id": "event-f26adc63fb32017b",
+        "article_ids": [
+          "21557a04-bf5f-4de9-bc62-738fdeb03ceb"
+        ],
+        "kind": "research-question",
+        "text": "Follow real-robot validation, implementation details and end-to-end runtime measurements; research benchmarks do not establish deployment performance.",
+        "unknowns": [
+          "ASP/pricing or commercial deployment: not disclosed.",
+          "Memory capacity/bandwidth: not disclosed.",
+          "Physical robot platform or real-world deployment: not disclosed.",
+          "Power/thermal envelope: not disclosed.",
+          "SoC TOPS/throughput and numerical compute requirements: not disclosed."
+        ]
+      },
+      {
+        "event_id": "event-06479c80094b8e3d",
+        "article_ids": [
+          "1f9fd3e9-0e21-413d-8bb7-b2d16b3be070"
+        ],
+        "kind": "research-question",
+        "text": "Obtain more accessible evidence on the hand design before judging degrees of freedom, grasping ability or the specific trade-offs; do not infer performance from the current summary.",
+        "unknowns": [
+          "ASP/pricing, production timing, order volume and customer deployment: not disclosed.",
+          "Exact humanoid platform/model associated with the hand: not disclosed in bounded evidence.",
+          "Hand degrees of freedom, actuators, sensors, payload and manipulation benchmarks: not disclosed.",
+          "Memory capacity/bandwidth: not disclosed.",
+          "Power/thermal envelope: not disclosed.",
+          "SoC TOPS/throughput and compute architecture: not disclosed."
+        ]
+      }
+    ],
+    "partial": true,
+    "baseline": "insufficient-baseline",
+    "coverage_note": "A partial view of a seven-day window, not a complete industry weekly report."
+  },
+  "translation": {
+    "translationKey": "weekly-2026-09-28",
+    "sourceLanguage": "en",
+    "editorialOriginalLanguage": "zh-CN",
+    "status": "session-reviewed-draft",
+    "reviewed_at": "2026-10-05",
+    "source_sha256": "6aeb3f25dab00d6582e07bade4a99300b0cd0d28563e0a08b988281116da24d7",
+    "english_sha256": "a9f11fe7e660ad516ed8d2d28e1ba0ada9e39373653f5b47ee525498151ecf7e",
+    "publication": "draft; publish=false; author approval pending"
+  }
+}
