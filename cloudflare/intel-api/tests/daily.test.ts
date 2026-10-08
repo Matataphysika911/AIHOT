@@ -11,3 +11,20 @@ test('original-first translation freezes original; changed original and incomple
 test('numeric drift fails in either translation direction',async()=>{for(const lang of ['en','zh-CN']){const c:any={...structuredClone(copy),snapshot_sha256:'a',original_language:lang};c.highlights[0].en.text='Reports 80.7% on 4 tasks';c.highlights[0].zh.text='报告 80.7% 和 4 项任务';const original=originalFromCopy(c),h=await dailyHash(original);c.translation={translated_from_sha256:h,review_checks:{facts:true,numbers_units_names:true,uncertainty:true,complete_sections:true}};assert.equal(await validateTranslation(c,original,h),true);c.highlights[0][lang==='en'?'zh':'en'].text+=' 99%';await assert.rejects(()=>validateTranslation(c,original,h),/numeric/);}});
 import {numericTokens} from '../src/daily-policy.ts';
 test('equivalent percentage ranges and Chinese/English large units normalize without masking changed values',()=>{assert.deepEqual(numericTokens('增加 490 万参数，成功率 79%–97%'),numericTokens('Adds 4.9 million parameters; 79–97% success'));assert.notDeepEqual(numericTokens('490 万参数'),numericTokens('4.8 million parameters'));});
+
+test('bilingual calendar dates normalize without accepting a different day or month',()=>{
+ const english=numericTokens('Daily Intelligence · October 8, 2026');
+ assert.deepEqual(english,numericTokens('日报 · 2026年10月8日'));
+ assert.deepEqual(english,numericTokens('Daily · 2026-10-08'));
+ assert.deepEqual(english,numericTokens('Daily · 8 October 2026'));
+ assert.notDeepEqual(english,numericTokens('日报 · 2026年11月8日'));
+ assert.notDeepEqual(english,numericTokens('日报 · 2026年10月9日'));
+ assert.notDeepEqual(numericTokens('80.7%'),numericTokens('80.8%'));
+});
+test('locked original bilingual title date passes while changed translation date fails',async()=>{
+ const c:any={...structuredClone(copy),snapshot_sha256:'a',title:{en:'Daily · October 8, 2026',zh:'日报 · 2026年10月8日'}};
+ const original=originalFromCopy(c),h=await dailyHash(original);
+ c.translation={translated_from_sha256:h,review_checks:{facts:true,numbers_units_names:true,uncertainty:true,complete_sections:true}};
+ assert.equal(await validateTranslation(c,original,h),true);
+ c.title.zh='日报 · 2026年11月8日';await assert.rejects(()=>validateTranslation(c,original,h),/header_numeric_drift/);
+});
