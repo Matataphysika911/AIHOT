@@ -1,4 +1,4 @@
-# Daily production and bilingual handoff — 2026-10-07
+# Daily production and bilingual handoff — 2026-10-08
 
 ## Actual topology and scope
 
@@ -8,7 +8,7 @@ The 2026-10-06 catch-up issue is published from 10 selected / 20 finalized same-
 
 ## Timing and reporting window
 
-All user times are Asia/Shanghai; GitHub and Cloudflare cron expressions use UTC. Future daily issue dates identify a rolling window from **previous day 08:30 through issue day 08:30, end exclusive**. The snapshot freezes at or after 08:40 and includes only A/B-applied completed evidence then present. This avoids silently dropping the previous day's afternoon news, which a morning same-calendar-day export would do. Frozen partial coverage never implies all industry sources were reviewed. The first post-catch-up window may overlap the catch-up issue; no same-date publication can duplicate.
+All user times are Asia/Shanghai; GitHub and Cloudflare cron expressions use UTC. Future daily issue dates identify a rolling window from **previous day 08:30 through issue day 08:30, end exclusive**. The Worker retries the export every ten minutes from 08:40 through 09:50. The snapshot freezes at or after 08:40 and includes only A/B-applied completed evidence then present. This avoids silently dropping the previous day's afternoon news, which a morning same-calendar-day export would do. Frozen partial coverage never implies all industry sources were reviewed. The first post-catch-up window may overlap the catch-up issue; no same-date publication can duplicate.
 
 ```mermaid
 flowchart LR
@@ -27,7 +27,7 @@ flowchart LR
   W --> V
 ```
 
-Daily editorial starts at 08:40; deterministic build first attempts **08:50**, then 09:00/10/20/30/40/50. Ten minutes allows the :25 B run and :30/:40 finalize work and paired editorial handoff; actual latency must still be observed. GitHub schedules are best effort, not a hard real-time SLA. Missing copy at 08:50 fails closed and retries the same date. After 09:00 a missing publication becomes an actionable health failure. After 09:50 use the existing workflow's manual retry for that same date. A/B exact minute offsets must be verified in actual task metadata, not inferred from prompts.
+Daily editorial target is 08:45 (the existing task was configured through the UI; its custom rule is not fully rendered on reopening); deterministic build first attempts **08:50**, then 09:00/10/20/30/40/50. Ten minutes allows the :25 B run and :30/:40 finalize work and paired editorial handoff; actual latency must still be observed. GitHub schedules are best effort, not a hard real-time SLA. Missing copy at 08:50 fails closed and retries the same date. After 09:00 a missing publication becomes an actionable health failure. After 09:50 use the existing workflow's manual retry for that same date. A/B exact minute offsets must be verified in actual task metadata, not inferred from prompts.
 
 Weekly target remains Sunday **08:45**; Insight target Sunday **17:00**, with an explicit publication gate. This implementation neither schedules nor automatically publishes those content types.
 
@@ -68,10 +68,14 @@ Only after the deterministic path is implemented and verified should the failing
 
 Run a full 24-hour observation crossing the old OAuth-expiry boundary: role tasks stay enabled, grants refresh, A/B independently submit, finalize runs, source health/backlog stay bounded, Daily original/translation receipts are produced, GitHub builds once per date, both public locales and feeds are current, and an injected build failure alerts and safely retries. Unit tests and one manual publication do not replace this acceptance observation.
 
-## Current activation status — 2026-10-07
+## Current activation status — 2026-10-08
 
-Both reviewer tasks are enabled at a two-hour interval. The editor currently aligns their next run; the intended :00/:25 separation is not verified and must not be reported as configured. Reviewer A prompt defects (colon-containing context claims and arithmetic-only failed submission recovery) were fixed; a real subsequent run saved two independent A receipts before its execution budget ended. General Phase 2A OAuth was reconnected with explicitly approved articles:read, processing:write and probes:write.
+GitHub DAILY_PUBLISH_KEY is configured and verified by a real publisher run. The Oct 8 issue uses 36 frozen finalized candidates from Oct 7 08:30 through Oct 8 08:30 Shanghai, with 10 selected body articles (3 priority signals and 7 briefs). Original d95973bb76a5375d1e8a015b0a3846fc13cc1aed6b9a16c22a76a4c6f25f9914 remains unchanged. Paired copy 7dd0b0fe14ffb2667a6eee4958b9373468afc29b1b715fac394ef43deeb930a7 passed the evidence gate. Publication commit 19745ba8908715de9ee177bdf14bea7aaa70dec5 was acknowledged at 2026-10-08 13:57:34 UTC. Pages deployment 918453bb-1ece-4f5c-8e9c-0223c728295c served the publication. Both dated pages, reciprocal links, both home/archive/RSS routes and sitemap were independently verified. A second real publisher run (37792882608) returned already-published and skipped build/deploy, proving safe rerun without duplicate publication.
 
-The GitHub publisher secret is intentionally pending user configuration. Do not activate or claim the full unattended path until the matching secret and editorial-only task are verified. The general once-daily editorial connection also needs a verified sub-24-hour read-only heartbeat to avoid the 24-hour idle refresh expiry. A/B activity does not prove the separate general connection stays live. Old Daily build/deploy task remains disabled pending replacement acceptance.
+A real blocker was equivalent English month-date and Chinese numeric-date parsing. Numeric validation now normalizes calendar dates before comparing values; different dates still fail. Translation must retain both UTC and Shanghai references when the original includes both. Watch references must point to selected body articles. These gates remain enforced. API tests 54/54 and Phase3 tests 39/39 pass; blog validation and the real publication job pass.
 
-Initial exports more than four hours after the reporting window closes are rejected before creating a permanent date snapshot; retries cannot rescue stale evidence by relabeling its age.
+Worker version 0fcd74e8-eba8-4fce-822e-f8a22bacbee1 retries initial export through 09:50; GitHub pins engine ad2e1d51086cc068f68e67ddfc3ad64ebb7b563f. The existing Daily task was resumed only after production verification and is editorial-only. UI shows active Daily with next run in 10 hours. Both A/B tasks remain enabled, but their intended :00/:25 separation is still unverified (UI showed the same next-run interval).
+
+Autonomy acceptance is NOT complete. General once-daily OAuth still needs a verified sub-24-hour heartbeat; separate A/B refresh activity cannot prove its grant stays live. The legacy Stability Watch is marked active but its last visible runs are Oct 4 and its monitoring cadence cannot be treated as a verified heartbeat. GitHub schedule latency, editorial failure retry and alert delivery require an unattended morning observation. Latest health has no stale reviewers, no missing publication and no pending apply, but backlog is critical (A 1087/B 18) and four sources have repeated failures. Preserve these warnings instead of suppressing them.
+
+Initial exports more than four hours after the reporting window closes are rejected before creating a permanent date snapshot; retries cannot rescue stale evidence by relabeling its age. The Oct 8 evening catch-up reused the morning frozen snapshot honestly and does not prove timely morning publishing.
