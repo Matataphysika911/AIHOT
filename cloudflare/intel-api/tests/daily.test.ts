@@ -30,7 +30,7 @@ test('locked original bilingual title date passes while changed translation date
 });
 
 import {dailyExportDue} from '../src/daily-policy.ts';
-test('morning export retries through 09:50 Shanghai without freezing late snapshots',()=>{
- for(const minute of ['00:40','00:50','01:00','01:30','01:50'])assert.equal(dailyExportDue(new Date('2026-10-08T'+minute+':00Z')),true);
- for(const minute of ['00:30','02:00','16:40','23:50'])assert.equal(dailyExportDue(new Date('2026-10-08T'+minute+':00Z')),false);
+test('morning export retries through 12:20 Shanghai within the existing freshness guard',()=>{
+ for(const minute of ['00:40','00:50','01:00','01:30','01:50','02:00','03:50','04:20'])assert.equal(dailyExportDue(new Date('2026-10-08T'+minute+':00Z')),true);
+ for(const minute of ['00:30','04:30','16:40','23:50'])assert.equal(dailyExportDue(new Date('2026-10-08T'+minute+':00Z')),false);
 });

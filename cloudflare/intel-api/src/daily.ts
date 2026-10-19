@@ -53,11 +53,38 @@ export async function dailyPublishRequest(request:Request,db:D1Database){
  }
  return Response.json({error:'invalid_action'},{status:400});
 }
-export async function dailyWatchdog(db:D1Database){
- const roles=await db.prepare("SELECT reviewer,max(created_at) last_submission FROM review_submissions GROUP BY reviewer").all<any>();const backlog=await processingBacklog(db);const sources=await db.prepare('SELECT id,consecutive_failures,last_success_at FROM sources WHERE enabled=1 AND consecutive_failures>=3').all<any>();const now=new Date();const date=new Date(now.valueOf()+8*3600000).toISOString().slice(0,10);const job=await db.prepare('SELECT date,state,last_error,published_at FROM phase3_daily_jobs WHERE date=?').bind(date).first<any>();
- const stale=roles.results.filter(r=>now.valueOf()-Date.parse(r.last_submission.replace(' ','T')+'Z')>4*3600000).map(r=>r.reviewer);for(const role of ['A','B'])if(!roles.results.some(r=>r.reviewer===role))stale.push(role);
- const overdue=now.valueOf()>Date.parse(date+'T09:00:00+08:00')&&job?.state!=='published';const health={status:stale.length||overdue||backlog.status==='critical'||sources.results.length?'degraded':'healthy',stale_reviewers:stale,missing_publication:overdue,backlog,degraded_sources:sources.results,job:job??null,task_enabled_status:'not observable from Worker; staleness is a proxy, not proof of disabled tasks'};
- const digest=await dailyHash({status:health.status,stale_reviewers:stale,missing_publication:overdue,backlog_status:backlog.status,degraded_sources:sources.results.map(s=>s.id),publication_state:job?.state??null,last_error:job?.last_error??null}),old=await db.prepare('SELECT digest FROM phase3_daily_health WHERE id=1').first<any>();await db.prepare('INSERT INTO phase3_daily_health(id,digest,health_json,checked_at) VALUES(1,?,?,?) ON CONFLICT(id) DO UPDATE SET digest=excluded.digest,health_json=excluded.health_json,checked_at=excluded.checked_at').bind(digest,JSON.stringify(health),now.toISOString()).run();if(old?.digest!==digest){console.log(JSON.stringify({event:'daily_health_changed',...health}));await db.prepare('INSERT INTO phase3_daily_events(date,event,detail_json) VALUES(?,?,?)').bind(date,'health_changed',JSON.stringify(health)).run();}await db.prepare("DELETE FROM phase3_daily_events WHERE created_at<datetime('now','-30 days')").run();return health;
+export async function dailyWatchdog(db:D1Database) {
+  const now = new Date();
+  const old = await db.prepare('SELECT digest,health_json FROM phase3_daily_health WHERE id=1').first<any>();
+  let previous;
+  try { previous = JSON.parse(old?.health_json ?? 'null'); } catch { previous = null; }
+  let backlogCheckedAt = previous?.backlog_checked_at;
+  const cacheAge = now.valueOf() - Date.parse(backlogCheckedAt ?? '');
+  const cacheValid = previous?.backlog && Number.isFinite(cacheAge) && cacheAge >= 0 && cacheAge < 30 * 60000;
+  const backlog = cacheValid ? previous.backlog : await processingBacklog(db);
+  if (!cacheValid) backlogCheckedAt = now.toISOString();
+  const roles = await db.prepare("SELECT 'A' reviewer,max(created_at) last_submission FROM review_submissions WHERE reviewer='A' UNION ALL SELECT 'B' reviewer,max(created_at) last_submission FROM review_submissions WHERE reviewer='B'").all<any>();
+  const sources = await db.prepare('SELECT id,consecutive_failures,last_success_at FROM sources WHERE enabled=1 AND consecutive_failures>=3').all<any>();
+  const date = new Date(now.valueOf() + 8 * 3600000).toISOString().slice(0,10);
+  const job = await db.prepare('SELECT date,state,last_error,published_at FROM phase3_daily_jobs WHERE date=?').bind(date).first<any>();
+  const expectedDate = now.valueOf() >= Date.parse(date + 'T09:00:00+08:00') ? date : new Date(Date.parse(date + 'T00:00:00Z') - 86400000).toISOString().slice(0,10);
+  const expectedJob = expectedDate === date ? job : await db.prepare('SELECT date,state,last_error,published_at FROM phase3_daily_jobs WHERE date=?').bind(expectedDate).first<any>();
+  const stale = ['A','B'].filter(role => {
+    const value = roles.results.find(r => r.reviewer === role)?.last_submission;
+    const timestamp = value ? Date.parse(value.replace(' ','T') + 'Z') : NaN;
+    return !Number.isFinite(timestamp) || now.valueOf() - timestamp > 4 * 3600000;
+  });
+  const overdue = expectedJob?.state !== 'published';
+  const health = {status:stale.length || overdue || backlog.status === 'critical' || sources.results.length ? 'degraded' : 'healthy',stale_reviewers:stale,missing_publication:overdue,expected_publication_date:expectedDate,backlog,backlog_checked_at:backlogCheckedAt,backlog_cache_max_age_minutes:30,degraded_sources:sources.results,job:job ?? null,expected_publication:expectedJob ?? null,task_enabled_status:'not observable from Worker; staleness is a proxy, not proof of disabled tasks'};
+  const digest = await dailyHash({status:health.status,stale_reviewers:stale,missing_publication:overdue,expected_publication_date:expectedDate,backlog_status:backlog.status,degraded_sources:sources.results.map(s => s.id),publication_state:expectedJob?.state ?? null,last_error:expectedJob?.last_error ?? null});
+  await db.prepare('INSERT INTO phase3_daily_health(id,digest,health_json,checked_at) VALUES(1,?,?,?) ON CONFLICT(id) DO UPDATE SET digest=excluded.digest,health_json=excluded.health_json,checked_at=excluded.checked_at').bind(digest,JSON.stringify(health),now.toISOString()).run();
+  if (old?.digest !== digest) {
+    console.log(JSON.stringify({event:'daily_health_changed',...health}));
+    await db.prepare('INSERT INTO phase3_daily_events(date,event,detail_json) VALUES(?,?,?)').bind(date,'health_changed',JSON.stringify(health)).run();
+  }
+  await db.prepare("DELETE FROM phase3_daily_events WHERE created_at<datetime('now','-30 days')").run();
+  return health;
 }
 
 export async function appendDailyOriginal(db:D1Database,args:z.infer<typeof dailyOriginalSchema>){const row=await freezeDaily(db,args.date);if(row.state==='published')throw new Error('already_published_no_editorial_mutation');if(row.snapshot_sha256!==args.snapshot_sha256||args.original.snapshot_sha256!==args.snapshot_sha256)throw new Error('stale_original_snapshot');const original=validateOriginal(args.original,JSON.parse(row.snapshot_json),args.date);const digest=await dailyHash(original);if(row.original_sha256&&row.original_sha256!==digest)throw new Error('immutable_original_conflict');await db.prepare('UPDATE phase3_daily_jobs SET original_sha256=?,original_json=? WHERE date=? AND original_sha256 IS NULL').bind(digest,JSON.stringify(original),args.date).run();const saved=await db.prepare('SELECT original_sha256 FROM phase3_daily_jobs WHERE date=?').bind(args.date).first<any>();if(saved.original_sha256!==digest)throw new Error('immutable_original_conflict');return {saved:true,original_sha256:digest,next:'Translate this exact locked original, then review both languages and submit paired copy. Changed original requires explicit correction/revision, never silently replace it.'};}
+
