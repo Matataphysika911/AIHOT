@@ -123,8 +123,8 @@ async function appliedA(db:D1Database,articleId:string) {
 }
 // Cloudflare cron applies A first, then B; no model or reviewer token is involved.
 export async function applyPendingReviews(db:D1Database,limit=10) {
- const rows=await db.prepare(`SELECT s.id FROM review_submissions s LEFT JOIN review_submission_applications v ON v.submission_id=s.id
- WHERE v.submission_id IS NULL ORDER BY s.reviewer,s.created_at,s.id LIMIT ?`).bind(limit).all<{id:string}>();
+ const rows=await db.prepare(`SELECT submission_id AS id FROM review_pending_applications
+ ORDER BY reviewer,created_at,submission_id LIMIT ?`).bind(limit).all<{id:string}>();
  const results=[];for(const row of rows.results)results.push(await applyReviewSubmission(db,row));
  return results;
 }
