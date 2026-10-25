@@ -6,9 +6,9 @@ import { getReviewerBatch, saveReviewer, reviewerAllowed } from '../src/reviewer
 import { REVIEWER_PROMPT_VERSION, saveProduction } from '../src/processing.ts';
 function fixture(){
  const sql=new DatabaseSync(':memory:');
- for(const name of ['0001_initial','0002_phase_1_1','0005_intelligence','0007_phase2b_mcp','0008_optional_agnes_review','0009_agnes_connectivity_probe','0010_agnes_scoring_probe','0011_phase2b1_reviewers','0012_phase2b2_submissions','0013_phase2_finalization'])sql.exec(readFileSync(`../ingest/migrations/${name}.sql`,'utf8'));
+ for(const name of ['0001_initial','0002_phase_1_1','0005_intelligence','0007_phase2b_mcp','0008_optional_agnes_review','0009_agnes_connectivity_probe','0010_agnes_scoring_probe','0011_phase2b1_reviewers','0012_phase2b2_submissions','0013_phase2_finalization','0015_daily_production','0018_daily_operational_readiness'])sql.exec(readFileSync(`../ingest/migrations/${name}.sql`,'utf8'));
  sql.exec("INSERT INTO sources(id,name,kind,config_json,tier) VALUES('s','Source','rss','{}','T1_5'); INSERT INTO articles(id,source_id,canonical_url,url_hash,title,summary,discovered_at,raw_r2_key) VALUES('a','s','https://example.com/a','h','Robot','Original robotics facts','2026-10-02','raw/a')");
- const db:any={prepare(query:string){let values:any[]=[];return {bind(...v:any[]){values=v;return this;},async first(){return sql.prepare(query).get(...values)??null;},async all(){return {results:sql.prepare(query).all(...values)};},execute(){return sql.prepare(query).run(...values);}};},async batch(stmts:any[]){sql.exec('BEGIN');try{const result=stmts.map(s=>s.execute());sql.exec('COMMIT');return result;}catch(e){sql.exec('ROLLBACK');throw e;}}};
+ const db:any={prepare(query:string){let values:any[]=[];return {bind(...v:any[]){values=v;return this;},async first(){return sql.prepare(query).get(...values)??null;},async all(){return {results:sql.prepare(query).all(...values)};},execute(){return sql.prepare(query).run(...values);},async run(){return {meta:sql.prepare(query).run(...values)};}};},async batch(stmts:any[]){sql.exec('BEGIN');try{const result=stmts.map(s=>s.execute());sql.exec('COMMIT');return result;}catch(e){sql.exec('ROLLBACK');throw e;}}};
  return {sql,db};
 }
 const a={article_id:'a',run_id:'phase2b1-interactive-a',scheduled_task_id:'interactive-a',context_id:'chat-a',prompt_version:REVIEWER_PROMPT_VERSION};
@@ -64,4 +64,15 @@ test('BLOCK closes deterministically in Worker/database without giving A finaliz
  assert.equal(sql.prepare('SELECT selection_status FROM articles').get()!.selection_status,'blocked');
  assert.equal((await saveReviewer(db,'A','finalize_processing',{article_id:'a',run_id:a.run_id,scheduled_task_id:a.scheduled_task_id,context_id:a.context_id},'chatgpt')).error,'reviewer_scope_denied');
  assert.equal((await saveReviewer(db,'A','save_score',score,'chatgpt')).saved,false);
+});
+
+test('only observed global polls record candidate counts; scoped and nonobserved reads cannot certify quiet queues',async()=>{
+ const {sql,db}=fixture();
+ await getReviewerBatch(db,'A',{},{});assert.equal(sql.prepare('SELECT count(*) n FROM reviewer_poll_health').get()!.n,0);
+ await getReviewerBatch(db,'A',{}, {},undefined,true);await getReviewerBatch(db,'B',{}, {},undefined,true);
+ assert.equal(sql.prepare("SELECT candidate_count FROM reviewer_poll_health WHERE reviewer='A'").get()!.candidate_count,1);
+ assert.equal(sql.prepare("SELECT candidate_count FROM reviewer_poll_health WHERE reviewer='B'").get()!.candidate_count,0);
+ await getReviewerBatch(db,'A',{article_id:'missing'}, {},undefined,true);
+ assert.equal(sql.prepare("SELECT candidate_count FROM reviewer_poll_health WHERE reviewer='A'").get()!.candidate_count,1);
+ assert.equal(sql.prepare("SELECT count(*) n FROM mcp_task_receipts").get()!.n,0);
 });
