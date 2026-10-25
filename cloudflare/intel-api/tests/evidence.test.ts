@@ -9,7 +9,7 @@ import { getReviewerBatch } from '../src/reviewers.ts';
 import { EVIDENCE_PROMPT_VERSION, REVIEWER_PROMPT_VERSION } from '../src/processing.ts';
 function fixture(){
  const sql=new DatabaseSync(':memory:');
- for(const name of ['0001_initial','0002_phase_1_1','0005_intelligence','0007_phase2b_mcp','0008_optional_agnes_review','0009_agnes_connectivity_probe','0010_agnes_scoring_probe','0011_phase2b1_reviewers','0012_phase2b2_submissions','0013_phase2_finalization','0014_phase2_evidence'])sql.exec(readFileSync(`../ingest/migrations/${name}.sql`,'utf8'));
+ for(const name of ['0001_initial','0002_phase_1_1','0005_intelligence','0007_phase2b_mcp','0008_optional_agnes_review','0009_agnes_connectivity_probe','0010_agnes_scoring_probe','0011_phase2b1_reviewers','0012_phase2b2_submissions','0013_phase2_finalization','0014_phase2_evidence','0017_pending_review_queue'])sql.exec(readFileSync(`../ingest/migrations/${name}.sql`,'utf8'));
  sql.exec("INSERT INTO sources(id,name,kind,config_json,tier) VALUES('s','Source','rss','{}','T1_5'); INSERT INTO articles(id,source_id,canonical_url,url_hash,title,summary,discovered_at,raw_r2_key) VALUES('a','s','https://example.com/a','h','Robot','Original robotics facts','2026-10-02','raw/a')");
  const db:any={prepare(query:string){let values:any[]=[];return {bind(...v:any[]){values=v;return this;},async first(){return sql.prepare(query).get(...values)??null;},async all(){return {results:sql.prepare(query).all(...values)};},execute(){return sql.prepare(query).run(...values);},async run(){const r=sql.prepare(query).run(...values);return {meta:{changes:r.changes}};}};},async batch(stmts:any[]){sql.exec('BEGIN');try{const result=stmts.map(s=>s.execute());sql.exec('COMMIT');return result;}catch(e){sql.exec('ROLLBACK');throw e;}}};
  return {sql,db};
@@ -65,3 +65,4 @@ test('migration preserves old applied receipts and supports exact old replay',as
  assert.deepEqual(sql.prepare('SELECT * FROM mcp_reviewer_runs').all(),before);assert.equal((await appendReview(db,a,caller)).inserted,false);assert.equal((await applyReviewSubmission(db,{id:a.id})).inserted,false);
  assert.equal(sql.prepare('PRAGMA foreign_key_check').all().length,0);
 });
+
