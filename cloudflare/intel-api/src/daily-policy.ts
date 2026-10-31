@@ -1,4 +1,4 @@
-export function dailyExportDue(at:Date){const minute=at.getUTCHours()*60+at.getUTCMinutes();return minute>=40&&minute<=110;}
+export function dailyExportDue(at:Date){const minute=at.getUTCHours()*60+at.getUTCMinutes();return minute>=40&&minute<=260;}
 export function dailyWindow(date:string){
  if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||new Date(date).toISOString().slice(0,10)!==date)throw new Error('invalid_date');
  const end=new Date(date+'T08:30:00+08:00').toISOString();
@@ -37,7 +37,7 @@ export async function validateTranslation(copy:any,original:any,originalHash:str
  if(!['facts','numbers_units_names','uncertainty','complete_sections'].every(k=>copy.translation?.review_checks?.[k]===true))throw new Error('translation_review_incomplete');
  const numbers=numericTokens;
  for(const [field,p] of [['title',copy.title],['coverage_note',copy.coverage_note]] as const){const zh=numbers(p.zh),en=numbers(p.en);if(JSON.stringify(zh)!==JSON.stringify(en))throw new Error('translation_header_numeric_drift:'+field+' zh='+JSON.stringify(zh)+' en='+JSON.stringify(en));}
- for(const s of [...copy.highlights,...copy.briefs])if(JSON.stringify(numbers(s.zh.title+' '+s.zh.text))!==JSON.stringify(numbers(s.en.title+' '+s.en.text)))throw new Error('translation_numeric_drift');
+ for(const s of [...copy.highlights,...copy.briefs]){const zh=numbers(s.zh.title+' '+s.zh.text),en=numbers(s.en.title+' '+s.en.text);if(JSON.stringify(zh)!==JSON.stringify(en))throw new Error('translation_numeric_drift:'+s.article_id+' zh='+JSON.stringify(zh)+' en='+JSON.stringify(en));}
  for(const w of copy.watch_items)if(JSON.stringify(numbers(w.zh))!==JSON.stringify(numbers(w.en)))throw new Error('translation_watch_numeric_drift');
  return true;
 }
@@ -47,8 +47,15 @@ function normalizedDate(year:string,month:number,day:string,original:string){
  const date=`${year}-${String(month).padStart(2,'0')}-${day.padStart(2,'0')}`;
  return Number(month)>=1&&Number(month)<=12&&Number(day)>=1&&Number(day)<=31&&new Date(date+'T00:00:00Z').toISOString().slice(0,10)===date?date:original;
 }
+function scaledDecimal(value:string,power:number){
+ const [whole,fraction='']=value.replaceAll(',','').split('.');
+ const digits=BigInt(whole+fraction).toString();if(digits==='0')return '0';const scale=fraction.length-power;
+ if(scale<=0)return digits+'0'.repeat(-scale);
+ const padded=digits.padStart(scale+1,'0');return (padded.slice(0,-scale)+'.'+padded.slice(-scale)).replace(/0+$/,'').replace(/\.$/,'');
+}
 export function numericTokens(text:string){
  const dated=text.replace(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\s+(\d{1,2})(?:st|nd|rd|th)?[,]?\s+(\d{4})\b/gi,(all,m,d,y)=>normalizedDate(y,months[m.toLowerCase()],d,all))
  .replace(/\b(\d{1,2})(?:st|nd|rd|th)?\s+(January|February|March|April|May|June|July|August|September|October|November|December)[,]?\s+(\d{4})\b/gi,(all,d,m,y)=>normalizedDate(y,months[m.toLowerCase()],d,all))
  .replace(/(\d{4})年\s*(\d{1,2})月\s*(\d{1,2})日/g,(all,y,m,d)=>normalizedDate(y,Number(m),d,all));
- const expanded=dated.replace(/(\d+(?:\.\d+)?)\s*[–—~～-]\s*(\d+(?:\.\d+)?)%/g,'$1%–$2%').replace(/(\d+(?:[.,]\d+)*)\s*(million\b|billion\b|thousand\b|万|亿)/gi,(_,n,u)=>String(Number(n.replaceAll(',',''))*({million:1e6,billion:1e9,thousand:1e3,'万':1e4,'亿':1e8} as any)[u.toLowerCase()]));return (expanded.match(/\d+(?:[.,]\d+)*(?:%)?/g)??[]).map(s=>s.replaceAll(',','')).sort();}
+ const expanded=dated.replace(/(?:\$|USD\s+)(\d+(?:[.,]\d+)*)\s*([KMB])\b/g,(_,n,u)=>scaledDecimal(n,({K:3,M:6,B:9} as any)[u]))
+ .replace(/(\d+(?:\.\d+)?)\s*[–—~～-]\s*(\d+(?:\.\d+)?)%/g,'$1%–$2%').replace(/(\d+(?:[.,]\d+)*)\s*(million\b|billion\b|thousand\b|万|亿)/gi,(_,n,u)=>scaledDecimal(n,({million:6,billion:9,thousand:3,'万':4,'亿':8} as any)[u.toLowerCase()]));return (expanded.match(/\d+(?:[.,]\d+)*(?:%)?/g)??[]).map(s=>s.replaceAll(',','')).sort();}
