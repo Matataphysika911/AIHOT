@@ -25,7 +25,7 @@ export async function getReviewerBatch(db:D1Database,role:Reviewer,input:unknown
  AND a.prefilter_status IN ('PASS','UNKNOWN') AND a.score_a IS NOT NULL AND a.score_b IS NULL AND a.processing_status='processing'`;
  // Snapshot equality is the exact preimage of the validated SHA-256 dedup key.
  // Filter before LIMIT so submitted articles cannot starve the next batch.
- const query=`SELECT ${factProjection},f.snapshot FROM articles a JOIN sources s ON s.id=a.source_id
+ const query=`SELECT ${factProjection},f.snapshot FROM articles a INDEXED BY ${role==='A'?'idx_reviewer_a_candidates_order':'idx_reviewer_b_candidates_order'} JOIN sources s ON s.id=a.source_id
  JOIN mcp_article_facts f ON f.id=a.id WHERE ${predicate}
  AND NOT EXISTS(SELECT 1 FROM review_submissions submitted WHERE submitted.article_id=a.id
  AND submitted.reviewer=? AND submitted.prompt_version IN (?,'robotics-plus-mcp.phase2b1.v1') AND submitted.input_snapshot=f.snapshot)
