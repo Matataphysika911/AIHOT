@@ -14,7 +14,7 @@ export const factProjection=`a.id,a.source_id,substr(a.canonical_url,1,2048) AS 
  substr(a.title,1,512) AS title,substr(a.summary,1,2000) AS summary,
  substr(a.author,1,256) AS author,a.published_at,a.discovered_at,a.is_backfill,a.publish_eligible,
  substr(s.name,1,256) AS source_name,s.kind AS source_kind,s.tier AS source_tier,s.first_party AS source_first_party`;
-export async function getReviewerBatch(db:D1Database,role:Reviewer,input:unknown,policy:Record<string,unknown>,evidenceEnv?:EvidenceEnv) {
+export async function getReviewerBatch(db:D1Database,role:Reviewer,input:unknown,policy:Record<string,unknown>,evidenceEnv?:EvidenceEnv,observe=false) {
  const args=reviewerBatchSchema.parse(input);
  const version=evidenceEnv?EVIDENCE_PROMPT_VERSION:REVIEWER_PROMPT_VERSION;
  const predicate=role==='A'?`a.processing_status='new' AND a.intelligence_revision IS NULL AND a.prefilter_status IS NULL AND a.score_a IS NULL AND a.score_b IS NULL`:
@@ -25,7 +25,7 @@ export async function getReviewerBatch(db:D1Database,role:Reviewer,input:unknown
  AND a.prefilter_status IN ('PASS','UNKNOWN') AND a.score_a IS NOT NULL AND a.score_b IS NULL AND a.processing_status='processing'`;
  // Snapshot equality is the exact preimage of the validated SHA-256 dedup key.
  // Filter before LIMIT so submitted articles cannot starve the next batch.
- const query=`SELECT ${factProjection},f.snapshot FROM articles a JOIN sources s ON s.id=a.source_id
+ const query=`SELECT ${factProjection},f.snapshot FROM articles a INDEXED BY ${role==='A'?'idx_reviewer_a_candidates_order':'idx_reviewer_b_candidates_order'} JOIN sources s ON s.id=a.source_id
  JOIN mcp_article_facts f ON f.id=a.id WHERE ${predicate}
  AND NOT EXISTS(SELECT 1 FROM review_submissions submitted WHERE submitted.article_id=a.id
  AND submitted.reviewer=? AND submitted.prompt_version IN (?,'robotics-plus-mcp.phase2b1.v1') AND submitted.input_snapshot=f.snapshot)
@@ -46,6 +46,9 @@ export async function getReviewerBatch(db:D1Database,role:Reviewer,input:unknown
   if(evidenceEnv)row.prompt_version=effectiveVersion;
   rows.results.push(row);
  }
+ // Only global production MCP polls count. An article-specific probe cannot
+ // certify an empty queue; skipped/missing evidence is not an empty candidate set.
+ if(observe&&!args.article_id)await db.prepare('INSERT INTO reviewer_poll_health(reviewer,candidate_count,returned_count,checked_at) VALUES(?,?,?,CURRENT_TIMESTAMP) ON CONFLICT(reviewer) DO UPDATE SET candidate_count=excluded.candidate_count,returned_count=excluded.returned_count,checked_at=excluded.checked_at').bind(role,candidates.results.length,rows.results.length).run();
  return {articles:rows.results,count:rows.results.length,read_only:role==='B'||!evidenceEnv,frozen_policy:policy};
 }
 export async function saveReviewer(db:D1Database,role:Reviewer,tool:keyof typeof processingSchemas,input:unknown,clientId:string) {

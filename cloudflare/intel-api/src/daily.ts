@@ -1,6 +1,7 @@
 import {z} from 'zod';
 import {dailyWindow,dailyHash,validateDailyCopy,publicationDecision,validateOriginal,validateTranslation} from './daily-policy.ts';
 import {processingBacklog} from './health.ts';
+import {quietDailyReadiness,recentObservation} from './readiness.ts';
 export const dailyBatchSchema=z.object({date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/),offset:z.number().int().min(0).max(200).default(0),limit:z.number().int().min(1).max(3).default(1)});
 export const dailyOriginalSchema=z.object({date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/),snapshot_sha256:z.string().regex(/^[a-f0-9]{64}$/),original:z.record(z.string(),z.unknown())});
 export const dailyCopySchema=z.object({date:z.string().regex(/^\d{4}-\d{2}-\d{2}$/),snapshot_sha256:z.string().regex(/^[a-f0-9]{64}$/),copy:z.record(z.string(),z.unknown())});
@@ -10,8 +11,8 @@ export async function freezeDaily(db:D1Database,date:string){
  const today=new Date(Date.parse(now.now)+8*3600000).toISOString().slice(0,10);
  if(date!==today||Date.parse(now.now)<Date.parse(date+'T08:40:00+08:00'))throw new Error('outside_daily_export_time');
  if(Date.parse(now.now)-Date.parse(window.end)>4*3600000)throw new Error('outside_daily_export_freshness_window');
- const fresh=await db.prepare("SELECT max(v.applied_at) t FROM review_submissions s JOIN review_submission_applications v ON v.submission_id=s.id WHERE s.reviewer='B' AND v.validation_status='applied'").first<any>();
- if(!fresh?.t||Date.parse(now.now)-Date.parse(fresh.t.replace(' ','T')+'Z')>4*3600000)throw new Error('stale_finalized_data');
+ const fresh=await db.prepare("SELECT applied_at t FROM review_application_latest WHERE reviewer='B'").first<any>();
+ if(!recentObservation(fresh?.t,Date.parse(now.now))&&!await quietDailyReadiness(db,now.now))throw new Error('stale_finalized_data');
  const q=`SELECT a.id,a.source_id,a.canonical_url,a.title,a.summary,a.author,a.published_at,a.discovered_at,a.is_backfill,a.publish_eligible,a.processing_status,a.selection_status,a.final_score,a.structure_json,s.name source_name,s.tier source_tier,s.kind source_kind,s.first_party source_first_party,e.snapshot_json evidence_json,e.evidence_snapshot_hash evidence_hash,b.prompt_version,b.input_snapshot_hash,b.id b_submission_id,ra.id a_submission_id,ba.applied_at completed_at,
  ra.scheduled_task_id a_task,b.scheduled_task_id b_task,ra.context_id a_context,b.context_id b_context
  FROM articles a JOIN sources s ON s.id=a.source_id JOIN article_evidence e ON e.article_id=a.id
@@ -38,7 +39,14 @@ export async function freezeDaily(db:D1Database,date:string){
 export async function getDailyBatch(db:D1Database,args:z.infer<typeof dailyBatchSchema>){const row=await freezeDaily(db,args.date);const snapshot=JSON.parse(row.snapshot_json);return {date:args.date,snapshot_sha256:row.snapshot_sha256,as_of:snapshot.snapshot_at,period:snapshot.period,coverage:'partial; finalized only',total:snapshot.articles.length,state:row.state,original_sha256:row.original_sha256,original:row.original_json?JSON.parse(row.original_json):null,translation_workflow:'Submit and freeze daily-original.v1 first; translate that exact original; preserve numbers/units/names/uncertainty; submit complete paired copy with translated_from_sha256 and all four review_checks true.',articles:snapshot.articles.slice(args.offset,args.offset+args.limit),editorial_format:{schema_version:'daily-editorial.v1',date:args.date,snapshot_sha256:row.snapshot_sha256,review_status:'session-reviewed',original_language:'en',title:{zh:'完整中文标题',en:'Complete English title'},highlights:[{article_id:'from snapshot',fact_indices:[0],zh:{title:'中文',text:'中文完整段落'},en:{title:'English',text:'Complete English paragraph'}}],briefs:[],watch_items:[],coverage_note:{zh:'明确实际窗口、样本量及覆盖不足',en:'State actual window, sample count and limitations'}}};}
 export async function appendDailyCopy(db:D1Database,args:z.infer<typeof dailyCopySchema>){const row=await freezeDaily(db,args.date);if(row.state==='published')throw new Error('already_published_no_editorial_mutation');if(row.snapshot_sha256!==args.snapshot_sha256||args.copy.snapshot_sha256!==args.snapshot_sha256)throw new Error('stale_editorial_snapshot');const copy=validateDailyCopy(args.copy,JSON.parse(row.snapshot_json),args.date);if(!row.original_json||!row.original_sha256)throw new Error('original_required_before_translation');await validateTranslation(copy,JSON.parse(row.original_json),row.original_sha256);const digest=await dailyHash(copy);if(row.copy_sha256&&row.copy_sha256!==digest)throw new Error('immutable_daily_copy_conflict');await db.prepare("UPDATE phase3_daily_jobs SET copy_sha256=?,copy_json=?,state='ready' WHERE date=? AND copy_sha256 IS NULL").bind(digest,JSON.stringify(copy),args.date).run();const current=await db.prepare('SELECT copy_sha256,state FROM phase3_daily_jobs WHERE date=?').bind(args.date).first<any>();if(current.copy_sha256!==digest)throw new Error('immutable_daily_copy_conflict');return {saved:true,idempotent:!!row.copy_sha256,date:args.date,copy_sha256:digest,state:current.state,publication:'inbox only; GitHub verifies/builds/deploys'};}
 export async function dailyPublishRequest(request:Request,db:D1Database){
- const u=new URL(request.url),date=u.searchParams.get('date')??'';dailyWindow(date);
+ const u=new URL(request.url);
+ if(request.method==='GET'&&u.searchParams.get('pending')==='1'){
+  const today=new Date(Date.now()+8*3600000).toISOString().slice(0,10);
+  const rows=await db.prepare("SELECT date FROM phase3_daily_jobs WHERE state='ready' AND copy_sha256 IS NOT NULL AND date<? ORDER BY date LIMIT 2").bind(today).all<{date:string}>();
+  const current=await db.prepare("SELECT date FROM phase3_daily_jobs WHERE date=? AND state='ready' AND copy_sha256 IS NOT NULL").bind(today).first<{date:string}>();
+  return Response.json({dates:[...rows.results.map(r=>r.date),...(current?[current.date]:[])],limit:3});
+ }
+ const date=u.searchParams.get('date')??'';dailyWindow(date);
  const row=await db.prepare('SELECT * FROM phase3_daily_jobs WHERE date=?').bind(date).first<any>();if(!row)return Response.json({error:'missing_daily_snapshot'},{status:409});
  if(request.method==='GET'){if(!row.copy_json)return Response.json({error:'missing_bilingual_editorial'},{status:409});return Response.json({date,snapshot_sha256:row.snapshot_sha256,copy_sha256:row.copy_sha256,state:row.state,snapshot:JSON.parse(row.snapshot_json),copy:JSON.parse(row.copy_json),original:JSON.parse(row.original_json),original_sha256:row.original_sha256});}
  const body=await request.json() as any;if(!/^[a-f0-9]{64}$/.test(body.copy_sha256??''))return Response.json({error:'invalid_copy_hash'},{status:400});
@@ -53,11 +61,38 @@ export async function dailyPublishRequest(request:Request,db:D1Database){
  }
  return Response.json({error:'invalid_action'},{status:400});
 }
-export async function dailyWatchdog(db:D1Database){
- const roles=await db.prepare("SELECT reviewer,max(created_at) last_submission FROM review_submissions GROUP BY reviewer").all<any>();const backlog=await processingBacklog(db);const sources=await db.prepare('SELECT id,consecutive_failures,last_success_at FROM sources WHERE enabled=1 AND consecutive_failures>=3').all<any>();const now=new Date();const date=new Date(now.valueOf()+8*3600000).toISOString().slice(0,10);const job=await db.prepare('SELECT date,state,last_error,published_at FROM phase3_daily_jobs WHERE date=?').bind(date).first<any>();
- const stale=roles.results.filter(r=>now.valueOf()-Date.parse(r.last_submission.replace(' ','T')+'Z')>4*3600000).map(r=>r.reviewer);for(const role of ['A','B'])if(!roles.results.some(r=>r.reviewer===role))stale.push(role);
- const overdue=now.valueOf()>Date.parse(date+'T09:00:00+08:00')&&job?.state!=='published';const health={status:stale.length||overdue||backlog.status==='critical'||sources.results.length?'degraded':'healthy',stale_reviewers:stale,missing_publication:overdue,backlog,degraded_sources:sources.results,job:job??null,task_enabled_status:'not observable from Worker; staleness is a proxy, not proof of disabled tasks'};
- const digest=await dailyHash({status:health.status,stale_reviewers:stale,missing_publication:overdue,backlog_status:backlog.status,degraded_sources:sources.results.map(s=>s.id),publication_state:job?.state??null,last_error:job?.last_error??null}),old=await db.prepare('SELECT digest FROM phase3_daily_health WHERE id=1').first<any>();await db.prepare('INSERT INTO phase3_daily_health(id,digest,health_json,checked_at) VALUES(1,?,?,?) ON CONFLICT(id) DO UPDATE SET digest=excluded.digest,health_json=excluded.health_json,checked_at=excluded.checked_at').bind(digest,JSON.stringify(health),now.toISOString()).run();if(old?.digest!==digest){console.log(JSON.stringify({event:'daily_health_changed',...health}));await db.prepare('INSERT INTO phase3_daily_events(date,event,detail_json) VALUES(?,?,?)').bind(date,'health_changed',JSON.stringify(health)).run();}await db.prepare("DELETE FROM phase3_daily_events WHERE created_at<datetime('now','-30 days')").run();return health;
+export async function dailyWatchdog(db:D1Database) {
+  const now = new Date();
+  const old = await db.prepare('SELECT digest,health_json FROM phase3_daily_health WHERE id=1').first<any>();
+  let previous;
+  try { previous = JSON.parse(old?.health_json ?? 'null'); } catch { previous = null; }
+  let backlogCheckedAt = previous?.backlog_checked_at;
+  const cacheAge = now.valueOf() - Date.parse(backlogCheckedAt ?? '');
+  const cacheValid = previous?.backlog && Number.isFinite(cacheAge) && cacheAge >= 0 && cacheAge < 30 * 60000;
+  const backlog = cacheValid ? previous.backlog : await processingBacklog(db);
+  if (!cacheValid) backlogCheckedAt = now.toISOString();
+  const roles = await db.prepare("SELECT 'A' reviewer,max(created_at) last_submission FROM review_submissions WHERE reviewer='A' UNION ALL SELECT 'B' reviewer,max(created_at) last_submission FROM review_submissions WHERE reviewer='B'").all<any>();
+  const polls=await db.prepare('SELECT reviewer,candidate_count,returned_count,checked_at FROM reviewer_poll_health').all<any>();
+  const sources = await db.prepare('SELECT id,consecutive_failures,last_success_at FROM sources WHERE enabled=1 AND consecutive_failures>=3').all<any>();
+  const date = new Date(now.valueOf() + 8 * 3600000).toISOString().slice(0,10);
+  const job = await db.prepare('SELECT date,state,last_error,published_at FROM phase3_daily_jobs WHERE date=?').bind(date).first<any>();
+  const expectedDate = now.valueOf() >= Date.parse(date + 'T09:00:00+08:00') ? date : new Date(Date.parse(date + 'T00:00:00Z') - 86400000).toISOString().slice(0,10);
+  const expectedJob = expectedDate === date ? job : await db.prepare('SELECT date,state,last_error,published_at FROM phase3_daily_jobs WHERE date=?').bind(expectedDate).first<any>();
+  const stale = ['A','B'].filter(role => {
+    const value = roles.results.find(r => r.reviewer === role)?.last_submission;
+    const poll=polls.results.find(p=>p.reviewer===role);
+    return !recentObservation(value,now.valueOf())&&!recentObservation(poll?.checked_at,now.valueOf());
+  });
+  const overdue = expectedJob?.state !== 'published';
+  const health = {status:stale.length || overdue || backlog.status === 'critical' || sources.results.length ? 'degraded' : 'healthy',stale_reviewers:stale,reviewer_polls:polls.results,poll_observation:'authenticated MCP activity; not proof of scheduler enabled',missing_publication:overdue,expected_publication_date:expectedDate,backlog,backlog_checked_at:backlogCheckedAt,backlog_cache_max_age_minutes:30,degraded_sources:sources.results,job:job ?? null,expected_publication:expectedJob ?? null,task_enabled_status:'not observable from Worker; staleness is a proxy, not proof of disabled tasks'};
+  const digest = await dailyHash({status:health.status,stale_reviewers:stale,missing_publication:overdue,expected_publication_date:expectedDate,backlog_status:backlog.status,degraded_sources:sources.results.map(s => s.id),publication_state:expectedJob?.state ?? null,last_error:expectedJob?.last_error ?? null});
+  await db.prepare('INSERT INTO phase3_daily_health(id,digest,health_json,checked_at) VALUES(1,?,?,?) ON CONFLICT(id) DO UPDATE SET digest=excluded.digest,health_json=excluded.health_json,checked_at=excluded.checked_at').bind(digest,JSON.stringify(health),now.toISOString()).run();
+  if (old?.digest !== digest) {
+    console.log(JSON.stringify({event:'daily_health_changed',...health}));
+    await db.prepare('INSERT INTO phase3_daily_events(date,event,detail_json) VALUES(?,?,?)').bind(date,'health_changed',JSON.stringify(health)).run();
+  }
+  await db.prepare("DELETE FROM phase3_daily_events WHERE created_at<datetime('now','-30 days')").run();
+  return health;
 }
 
 export async function appendDailyOriginal(db:D1Database,args:z.infer<typeof dailyOriginalSchema>){const row=await freezeDaily(db,args.date);if(row.state==='published')throw new Error('already_published_no_editorial_mutation');if(row.snapshot_sha256!==args.snapshot_sha256||args.original.snapshot_sha256!==args.snapshot_sha256)throw new Error('stale_original_snapshot');const original=validateOriginal(args.original,JSON.parse(row.snapshot_json),args.date);const digest=await dailyHash(original);if(row.original_sha256&&row.original_sha256!==digest)throw new Error('immutable_original_conflict');await db.prepare('UPDATE phase3_daily_jobs SET original_sha256=?,original_json=? WHERE date=? AND original_sha256 IS NULL').bind(digest,JSON.stringify(original),args.date).run();const saved=await db.prepare('SELECT original_sha256 FROM phase3_daily_jobs WHERE date=?').bind(args.date).first<any>();if(saved.original_sha256!==digest)throw new Error('immutable_original_conflict');return {saved:true,original_sha256:digest,next:'Translate this exact locked original, then review both languages and submit paired copy. Changed original requires explicit correction/revision, never silently replace it.'};}
